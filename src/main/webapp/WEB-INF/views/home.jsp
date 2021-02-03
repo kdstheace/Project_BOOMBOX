@@ -1,12 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 	<title>Home</title>
 	<link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-	    <script src="https://kit.fontawesome.com/a6b1415e6e.js" crossorigin="anonymous"></script>
-	    		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+	<script src="https://kit.fontawesome.com/a6b1415e6e.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
     <style>
         * {
             font-family: 'Do Hyeon';
@@ -35,7 +37,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light upper-bar">
         <div class="col-3">
-            <img src="./image/logo/BOOMBOX_main2.png" class="main-logo img-fluid" href="#">
+            <img src="/resources/img/logo_home.png" class="main-logo img-fluid" href="#">
         </div>
 
         <form class="form-inline my-2 my-lg-0 col-6">
@@ -63,13 +65,15 @@
                         My Info
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Movie</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">개인정보 수정</a>
+                        <a class="dropdown-item" href="#">My Stage</a>
+                        <a class="dropdown-item" href="#">결제 및 멤버십</a>
+                        <a class="dropdown-item" href="#">프리미엄 강사 관리</a>
+                        <a class="dropdown-item" href="#">고객센터</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">로그아웃</a>
                     </div>
                 </li>
-
             </ul>
         </div>
     </nav>
