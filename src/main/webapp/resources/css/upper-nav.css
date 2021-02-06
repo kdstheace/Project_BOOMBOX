@@ -1,0 +1,20 @@
+.upper-bar {
+  background-color: #ffd343 !important;
+  font-size: 20px;
+}
+
+.search-bar {
+  width: 70% !important;
+  margin-left: 20px;
+  min-width: 300px;
+}
+
+.main-logo {
+  width: 50%;
+  height: 50%;
+  min-width: 200px;
+}
+
+.dropdown-item {
+  font-size: 20px;
+}

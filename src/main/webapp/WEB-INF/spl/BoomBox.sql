@@ -25,7 +25,7 @@ CREATE TABLE video_tb (
 	video_hit			NUMBER				NOT NULL,
 	video_urlS			VARCHAR2(300)		NOT NULL,
 	video_urlO			VARCHAR2(300)		NOT NULL,
-	video_ad			VARCHAR2(300)		NOT NULL,
+	video_ad			VARCHAR2(300),
 	video_inDate		DATE DEFAULT sysdate			NOT NULL,
 	video_class			VARCHAR2(5) DEFAULT 1	NOT NULL,
 	video_public		VARCHAR2(5) DEFAULT 1	NOT NULL,

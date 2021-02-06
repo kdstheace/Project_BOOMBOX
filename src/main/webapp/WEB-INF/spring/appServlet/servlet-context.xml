@@ -29,9 +29,16 @@
 
 	<interceptors>
 		<interceptor>
-
-			<mapping path="#" />
-
+			<mapping path="/note/**" />
+			<mapping path="/boomMaster/**" />
+			<mapping path="/leftBar/**" />
+			<mapping path="/manager/**" />
+			<mapping path="/membership/**" />
+			<mapping path="/school/**" />
+			<mapping path="/search/**" />
+			<mapping path="/stage/**" />
+			<mapping path="/video/**" />
+			<!-- <mapping path="/"/> -->
 
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>

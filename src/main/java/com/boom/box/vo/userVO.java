@@ -3,8 +3,8 @@ package com.boom.box.vo;
 import lombok.Data;
 
 @Data
-public class userVO {
-	private String user_id;
+public class UserVO {
+	private int user_id;
 	private String user_name;
 	private String user_googleId;
 	private String user_phone;

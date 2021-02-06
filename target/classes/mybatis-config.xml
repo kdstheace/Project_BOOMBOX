@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.boom.box.vo.userVO" alias="user" />
+		<typeAlias type="com.boom.box.vo.UserVO" alias="user" />
 
 	</typeAliases>
 	<mappers>

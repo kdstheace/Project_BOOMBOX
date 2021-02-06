@@ -5,5 +5,47 @@
 
 <mapper namespace="com.boom.box.dao.UserMapper">
 
+	<select id="selectGoogleId" parameterType="string" resultType="user">
+		select
+			user_id
+			,user_googleId
+		from
+			user_tb
+		where
+			user_googleId = #{user_googleId}
+	</select>
+	
+	
+	<select id="userInsert" parameterType="user">
+
+		INSERT INTO
+		   USER_TB (
+			   user_id,
+			   user_name,
+			   user_googleId,
+			   user_phone,
+			   user_address,
+			   user_zip,
+			   user_email,
+			   user_gender,
+			   user_bday,
+			   user_inDate,
+			   user_manager,
+			   user_pending
+		   )VALUES(
+				usersql.nextval,
+				#{user_name},
+				#{user_googleId},
+				#{user_phone},
+				#{user_address},
+				#{user_zip},
+				#{user_email},
+				#{user_gender},
+				#{user_bday},
+				sysdate,
+				1 ,
+				1 )	
+	
+	</select>
 
 </mapper>
