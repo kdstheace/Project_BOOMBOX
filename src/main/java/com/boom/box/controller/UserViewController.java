@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping(value="/user")
@@ -18,8 +19,6 @@ public class UserViewController {
 	private static final Logger logger = LoggerFactory.getLogger(UserViewController.class);
 	@Autowired
 	private UserService service;
-
-	private String uploadPath="/uploadFile";
 	
 	//로그인 폼
 	
@@ -37,9 +36,9 @@ public class UserViewController {
 	
 	//구글로그인
 	@RequestMapping(value="/googleLogin", method= RequestMethod.GET)
-	public String googleLogin(String id) {
-		String path = service.googleLogin(id);
-		logger.info("성공적으로 가져왔는지 확인{}",id);
+	public String googleLogin(UserVO user, Model model) {
+		String path = service.googleLogin(user, model);
+		
 		
 		return path;
 	}
@@ -47,7 +46,8 @@ public class UserViewController {
 	//회원가입
 	@RequestMapping(value="/join", method = RequestMethod.POST)
 	public String join(UserVO user) {
-		String path = service.userInsert(user);
+		String path = service.insertUser(user);
+		logger.info("회원가입 최종 성공");
 		return path;
 	}
 	

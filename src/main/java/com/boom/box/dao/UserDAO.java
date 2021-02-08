@@ -1,8 +1,11 @@
 package com.boom.box.dao;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.boom.box.vo.UserVO;
 
@@ -10,7 +13,8 @@ import com.boom.box.vo.UserVO;
 public class UserDAO {
 	@Autowired
 	private SqlSession session;
-	
+	private static final Logger logger = LoggerFactory.getLogger(UserDAO.class);
+
 	public UserVO selectGoogleId(String id) {
 		UserVO vo = null;
 		
@@ -24,14 +28,20 @@ public class UserDAO {
 		return vo;
 	}
 
-	public int userInsert(UserVO user) {
-		int cnt = 0;
+	@Transactional(rollbackFor = {Exception.class})
+	public int insertUser(UserVO user) throws Exception{
+		logger.info("다오까지 들어옴");
+		int count1 = 0;
+		int count2 = 0;
 		try {
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			cnt = mapper.userInsert(user);
+			count1 = mapper.insertUser(user);
+			count2 = mapper.insertUserInterest(user);
+			logger.info("유저 디비에 삽입 완료!");
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new Exception();
 		}
-		return cnt;
+		return count1;
 	}
 }

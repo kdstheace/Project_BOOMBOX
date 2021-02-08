@@ -165,7 +165,7 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="/video/editorForm"><i class="fas fa-film"></i>Editor</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="/video/uploadEditForm"><i class="fas fa-cloud-upload-alt"></i>Upload</a>
+					href="/video/uploadForm"><i class="fas fa-cloud-upload-alt"></i>Upload</a>
 				</li>
 				<li class="nav-item active"><a class="nav-link"
 					href="/others/alarmForm"><i class="fas fa-bell"></i>Alarm</a></li>

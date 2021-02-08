@@ -7,6 +7,7 @@ public class UserVO {
 	private int user_id;
 	private String user_name;
 	private String user_googleId;
+	private String user_googleImg;
 	private String user_phone;
 	private String user_address;
 	private String user_zip;
@@ -16,4 +17,5 @@ public class UserVO {
 	private String user_inDate;
 	private String user_manager;
 	private String user_pending;
+	private String[] userInterest_interest;
 }

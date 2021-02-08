@@ -38,7 +38,7 @@
 			<mapping path="/search/**" />
 			<mapping path="/stage/**" />
 			<mapping path="/video/**" />
-			<!-- <mapping path="/"/> -->
+ 			<mapping path="/"/>
 
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>

@@ -9,22 +9,25 @@
 <body>
 	<form action="/video/upload" method="post" enctype="multipart/form-data">
 		Movie<br>
-		<input type="file" name="upload" value="영상 업로드"><br>
+		<input type="file" name="uploadVideo"><br>
 		Thumbnail<br>
-		<input type="file" name="uploadThumbnail" value="썸네일 업로드"><br>
-		<label>General<input type="radio" name="video_class" checked="checked"></label>
-		<label>Teaching<input type="radio" name="video_class"></label><br>
-		<label>Use MotionAI<input type="checkbox" name="video_motion"></label><br>
+		<input type="file" name="uploadThumbnail"><br>
+		
+		<label>General<input type="radio" name="video_class" value = "1" checked="checked"></label>
+		<label>Teaching<input type="radio" name="video_class" value = "2"></label><br>
+		
+		<label>Use MotionAI<input type="checkbox" name="video_motion" value="true"></label><br>
 		Title
 		<input type="text" name="video_title"><br>
 		Content<br>
-		<textarea rows="4" cols="30"></textarea><br>
-		License <input type="checkbox" name="copyright">
-		AdultOnly <input type="checkbox" name="ageLimit">
+		<textarea rows="4" cols="30" name="video_content"></textarea><br>
+		License <input type="checkbox" name="video_copyright" value="true">
+		AdultOnly <input type="checkbox" name="video_ageLimit" value="true">
+		check: secret <input type="checkbox" name="video_public" value="true"> <br>
 		Category<br>
-		<input type="checkbox" name="videoInterest_interest" value="101">
-		<input type="checkbox" name="videoInterest_interest" value="102">
-		<input type="checkbox" name="videoInterest_interest" value="103">
+			가나<input type="checkbox" name="videoInterest_interest" value="101">
+			다라<input type="checkbox" name="videoInterest_interest" value="102">
+			마바<input type="checkbox" name="videoInterest_interest" value="103">
 		<input type="submit" value="submit">
 	</form>
 </body>

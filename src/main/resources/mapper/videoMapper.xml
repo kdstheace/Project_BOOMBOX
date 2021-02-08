@@ -3,50 +3,63 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.boom.box.dao.Videomapper">
-<insert id="video">
-INSERT
-	INTO
-	HR.VIDEO_TB (VIDEO_ID,
-	VIDEO_USER_ID,
-	VIDEO_TITLE,
-	VIDEO_CONTENT,
-	VIDEO_HIT,
-	VIDEO_URLS,
-	VIDEO_URLO,
-	VIDEO_AD,
-	VIDEO_INDATE,
-	VIDEO_CLASS,
-	VIDEO_PUBLIC,
-	VIDEO_AGELIMIT,
-	VIDEO_THUMBNAILS,
-	VIDEO_THUMBNAILO,
-	VIDEO_COPYRIGHT,
-	VIDEO_MOTION)
-VALUES(videoSQL.nextval,
-	#{video_user_id},
-	#{video_title},
-	#{video_content},
-	#{video_hit},
-	#{video_urlS},
-	#{video_urlO},
-	#{video_ad},
-	sysdate ,
-	#{video_class} ,
-	#{video_public} ,
-	#{video_ageLimit} ,
-	#{video_thumbnailS},
-	#{video_thumbnailO},
-	#{video_copyright} ,
-	#{video_motion} 
-	)
+<mapper namespace="com.boom.box.dao.VideoMapper">
 
+<insert id="insertVideo" parameterType="video">
+	<selectKey keyProperty="video_id" resultType="int" order="BEFORE">
+		select
+			video_seq.nextval
+		from
+			dual
+	</selectKey>
+	insert into video_tb(
+		video_id
+		,video_user_id
+		,video_title
+		,video_content
+		,video_urlS
+		,video_urlO
+		,video_class
+		,video_public
+		,video_ageLimit
+		,video_thumbnailS
+		,video_thumbnailO
+		,video_copyright
+		,video_motion
+	)values(
+	    #{video_id}
+	    ,#{video_user_id}
+	    ,#{video_title}
+	    ,#{video_content}
+	    ,#{video_urlS}
+	    ,#{video_urlO}
+	    ,#{video_class}
+	    ,#{video_public}
+	    ,#{video_ageLimit}
+	    ,#{video_thumbnailS}
+	    ,#{video_thumbnailO}
+	    ,#{video_copyright}
+	    ,#{video_motion}
+	)
 </insert>
 
-
-<select id="">
-
-</select>
-
-
+<insert id="insertVideoInterest" parameterType="video">
+	insert into
+		videoInterest_tb(
+			videoInterest_id
+			,videoInterest_video_id
+			,videoInterest_interest
+		)
+		select
+			videoInterest_seq.nextval
+			, A.* from (
+		<foreach collection="videoInterest_interest" item="arr" separator="UNION ALL ">
+			select
+				#{video_id} as videoInterest_video_id
+				,#{arr} as videoInterest_interest
+			from
+				dual
+		</foreach>
+		) A
+</insert>
 </mapper>

@@ -91,7 +91,7 @@ function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + id_token);
 
-	if(id_token != null) location.href = "/user/googleLogin?id="+profile.getId();
+	if(id_token != null) location.href = "/user/googleLogin?user_googleId="+profile.getId()+"&user_googleImg="+profile.getImageUrl();
     
   }
 
@@ -112,8 +112,6 @@ function onSignIn(googleUser) {
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
     </div>
-    
-    
     
     
 <!-- Optional JavaScript -->

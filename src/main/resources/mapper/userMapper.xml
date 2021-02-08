@@ -5,47 +5,69 @@
 
 <mapper namespace="com.boom.box.dao.UserMapper">
 
-	<select id="selectGoogleId" parameterType="string" resultType="user">
+<insert id="insertUser" parameterType="user">
+	<selectKey keyProperty="user_id" resultType="int" order="BEFORE">
 		select
-			user_id
-			,user_googleId
+			user_seq.nextval
 		from
-			user_tb
-		where
-			user_googleId = #{user_googleId}
-	</select>
-	
-	
-	<select id="userInsert" parameterType="user">
+			dual
+	</selectKey>
+	insert into user_tb(
+	    user_id
+	   ,user_name
+	   ,user_googleId
+	   ,user_googleImg
+	   ,user_phone
+	   ,user_address
+	   ,user_zip
+	   ,user_email
+	   ,user_gender
+	   ,user_bday
+	)values(
+		#{user_id}
+	    ,#{user_name}
+	    ,#{user_googleId}
+	    ,#{user_googleImg}
+	    ,#{user_phone}
+	    ,#{user_address}
+	    ,#{user_zip}
+	    ,#{user_email}
+	    ,#{user_gender}
+	    ,#{user_bday}
+	)
+</insert>
 
-		INSERT INTO
-		   USER_TB (
-			   user_id,
-			   user_name,
-			   user_googleId,
-			   user_phone,
-			   user_address,
-			   user_zip,
-			   user_email,
-			   user_gender,
-			   user_bday,
-			   user_inDate,
-			   user_manager,
-			   user_pending
-		   )VALUES(
-				usersql.nextval,
-				#{user_name},
-				#{user_googleId},
-				#{user_phone},
-				#{user_address},
-				#{user_zip},
-				#{user_email},
-				#{user_gender},
-				#{user_bday},
-				sysdate,
-				1 ,
-				1 )	
+<insert id="insertUserInterest" parameterType="user">
+	insert into
+		userInterest_tb(
+			userInterest_id
+			,userInterest_user_id
+			,userInterest_interest
+		)
+		select
+			userInterest_seq.nextval
+			, A.* from(
+		<foreach collection="userInterest_interest" item="arr" separator="UNION ALL ">
+			select
+				#{user_id} as userInterest_user_id
+				,#{arr} as userInterest_interest
+			from
+				dual
+		</foreach>
+		) A
+</insert>
+
+<select id="selectGoogleId" parameterType="string" resultType="user">
+	select
+		user_id
+		,user_googleId
+		,user_googleImg
+	from
+		user_tb
+	where
+		user_googleId = #{user_googleId}
+</select>
 	
-	</select>
+	
 
 </mapper>

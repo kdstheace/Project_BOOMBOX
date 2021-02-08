@@ -11,7 +11,6 @@ public class VideoVO {
 	private int video_hit;
 	private String video_urlS;
 	private String video_urlO;
-	private String video_ad;
 	private String video_inDate;
 	private String video_class;
 	private String video_public;
@@ -20,4 +19,5 @@ public class VideoVO {
 	private String video_thumbnailO;
 	private String video_copyright;
 	private String video_motion;
+	private String[] videoInterest_interest;
 }

@@ -5,10 +5,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.boom.box.vo.UserVO" alias="user" />
-
+		<typeAlias type="com.boom.box.vo.VideoVO" alias="video" />
+		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/userMapper.xml" />
-
+		<mapper resource="mapper/videoMapper.xml" />
+		
 	</mappers>
 </configuration>
