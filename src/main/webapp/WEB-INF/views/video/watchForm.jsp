@@ -216,12 +216,15 @@
    <div class="container-fluid watch_video">
       <div class="row pt-4">
          <div class="col-md-8 video_box">
-            <iframe id="videoPlayer" class="video_responsive" width="100%" height="500" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+         		<video width="100%" height="500" controls autoplay="autoplay">
+         			<source src="/video/watch?video_id=${video.VIDEO_ID }" type="video/mp4">
+         			Your browser does not support this video
+         		</video>
             <div class="p-1 pt-3">
 
                <div class="row mt-2 border-bottom">
                   <div class="col-7">
-                  <div>제목 : 홍주오빠 나해도되?</div>
+                  <div>${video.VIDEO_TITLE }</div>
                   </div>
 							<div class="col-5 text-right">
 								<div class="row">
@@ -269,13 +272,13 @@
 							</div>
 							<div class="col-9 pl-0">
 								<p style="color: #303030;">
-									<b>채널이름</b> <i class="fas fa-check-circle"></i><br> <span
-										style="color: #606060">139M 구독자</span> <span
-										style="color: #606060">등록일</span>
+									<b>${video.USER_NAME }</b> <i class="fas fa-check-circle"></i><br> <span
+										style="color: #606060">139M Followers</span> <span
+										style="color: #606060">${video.VIDEO_INDATE }</span>
 
 								</p>
 								<p>
-									영상 소개 내용 ~~알라비 뽀이~야야~~<span id="dots">...</span>
+									${video.VIDEO_CONTENT }<span id="dots">...</span>
 								</p>
 
 							</div>

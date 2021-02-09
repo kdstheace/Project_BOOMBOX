@@ -1,5 +1,8 @@
 package com.boom.box.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +34,38 @@ public class VideoDAO {
 		}
 		return count1;
 	}
+	
+	public ArrayList<HashMap<String, Object>> selectVideoList(){
+		ArrayList<HashMap<String, Object>> list = null;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			list = mapper.selectVideoList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
+	public VideoVO selectVideoById(int video_id) {
+		VideoVO video = null;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			video = mapper.selectVideoById(video_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return video;
+
+	}
+	public HashMap<String, Object> selectVideoOne(int video_id){
+		HashMap<String, Object> list = null;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			list = mapper.selectVideoOne(video_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 }

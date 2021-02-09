@@ -44,4 +44,27 @@ public class UserDAO {
 		}
 		return count1;
 	}
+	public UserVO selectUserOne(UserVO user) {
+		UserVO one = null;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			one = mapper.selectUserOne(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return one;
+	}
+	
+	public UserVO selectUserEmail(UserVO user) {
+		UserVO one = null;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			one = mapper.selectUserEmail(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return one;
+	}
 }

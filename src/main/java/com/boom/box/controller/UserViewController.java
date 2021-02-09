@@ -19,9 +19,8 @@ public class UserViewController {
 	private static final Logger logger = LoggerFactory.getLogger(UserViewController.class);
 	@Autowired
 	private UserService service;
-	
+
 	//로그인 폼
-	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String login() {
 		return "user/loginForm";
@@ -30,7 +29,6 @@ public class UserViewController {
 	//조인폼
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm() {
-		
 		return "user/joinForm";		
 	}
 	
@@ -38,9 +36,40 @@ public class UserViewController {
 	@RequestMapping(value="/googleLogin", method= RequestMethod.GET)
 	public String googleLogin(UserVO user, Model model) {
 		String path = service.googleLogin(user, model);
-		
-		
 		return path;
+	}
+	
+	// name 중복검사Form
+	@RequestMapping(value = "/nameCheckForm", method = RequestMethod.GET)
+	public String nameCheckForm() {
+		return "user/nameCheckForm";
+	}
+	
+	// id중복검사
+	@RequestMapping(value = "/nameCheck", method = RequestMethod.POST)
+	public String nameCheck(UserVO user, Model model) {
+		UserVO userOne = service.selectUserOne(user);
+		System.out.println(userOne);           
+		model.addAttribute("userOne", userOne);
+		model.addAttribute("checkName", user);
+		
+		return "user/nameCheckForm";
+	}
+	
+	// email 중복검사 Form
+	@RequestMapping(value = "/emailCheckForm", method = RequestMethod.GET)
+	public String emailCheckForm() {
+		return "user/emailCheckForm";
+	}
+	
+	// email 중복검사
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
+	public String emailCheck(UserVO user, Model model) {
+		UserVO userOne = service.selectUserOne(user);
+		model.addAttribute("userOne", userOne);
+		model.addAttribute("checkEmail", user);
+		
+		return "user/emailCheckForm";
 	}
 	
 	//회원가입
@@ -58,7 +87,12 @@ public class UserViewController {
 		return "redirect:/user/loginForm";
 	}
 	
-
+	//개인정보수정 폼가기
+	@RequestMapping(value = "/updateInfoForm", method = RequestMethod.GET)
+	public String updateInfoForm() {
+		System.out.println("개인정보 폼 들어감");
+		return "user/updateInfoForm";
+	}
 	
 	
 	@RequestMapping(value="/editInfoForm", method=RequestMethod.GET)

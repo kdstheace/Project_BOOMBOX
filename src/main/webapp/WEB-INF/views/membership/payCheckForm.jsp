@@ -5,8 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
-
+<title>Pay Check</title>
 
 
 <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet"
@@ -22,17 +21,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="module" src="https://unpkg.com/player-chrome"></script>
 
-<script type="text/javascript">
 
-
-function wirteForm() {
-	var date1 = new Date(Time2);
-	console.log(date1);
-
-}
-
-
-</script>
 
 
 
@@ -98,6 +87,14 @@ function wirteForm() {
 }
 
 @media ( min-width : 768px) {
+
+	/* #videoPlayer{
+	width: 100%;
+	height: 100%;
+
+	} */
+
+
 	#sidebar-wrapper {
 		margin-left: 0;
 	}
@@ -115,43 +112,17 @@ function wirteForm() {
 #follow {
 	margin-bottom: 20px;
 }
+
 /* WATCHFORM END */
-
-/* uplord START */
-#uplordTitle {
-	margin-left: 30px;
-	margin-top: 30px;
-}
-
-#uplordSTY {
-	margin-left: 100px;
-	margin-right: 30px;
-	margin-bottom: 30px;
-}
-
-#deleteSTY {
-
-}
-
-#uploadsub {
-	margin-top: 30px;
-}
-
-#titleSTY {
-	margin-top: 20px;
-}
-
-#movieSTY {
-	margin-left: 20px;
-	margin-bottom: 40px;
-}
-
-/* uplord END */
 </style>
 
 </head>
 
 <body>
+
+
+
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-light upper-bar">
 		<div class="col-3">
 			<img src="/resources/img/logo_home.png" class="main-logo img-fluid"
@@ -233,72 +204,69 @@ function wirteForm() {
 				<a href="#" class="list-group-item list-group-item-action bg-light">Likes</a>
 			</div>
 		</div>
-		<!-- /#sidebar-wrapper -->
-
-		<!-- 멤버쉽  -->
+			<!-- 멤버쉽  -->
 
 
 		<div class="col-md-8 video_box">
 			<div class="p-4 pt-3">
-				<h1>맴버십</h1>
+				<h1>맴버십 구독하기</h1>
 			</div>
 			<br>
-		<%-- <c:if test="${vo!=null }"> --%>
-			<input type="hidden" id="Time2" name="Time2" value="${indate }">
 			<div class="p-5 pt-3">
-							<h3>현재 맴버쉽  </h3>&emsp;<a><h5>마지막 결제일 : ${indate } <br><br>
-							남은 맴버쉽 날짜 : <span style="color: red;">${diff }</span>일</h5></a>
-				<div class="col-7 text-right"><a class="btn btn-primary" href="/membership/payCheckForm" role="button">결제하러가기</a></div>
-			</div>
-	<%-- 	</c:if>
-		<c:if test="${vo==null }"> --%>
-			<div class="p-5 pt-3">
-							<h3>현재 맴버쉽  </h3>&emsp;<a><h5>미 가입자 <br>
+				<h3>&emsp;상품명 : BoomBox MemberShip  </h3>&emsp;<a><h5> &emsp;&emsp;가격 : 5000WON </h5></a>
+				<h3></h3>&emsp;<a><h5> &emsp;&emsp;이용 기간 : 30 </h5></a><br>
 
-				<div class="col-7 text-right"><a class="btn btn-primary" href="/membership/payCheckForm" role="button">결제하러가기</a></div>
-			</div>
-	<%-- 	</c:if>
- --%>
-			<div class="p-5 pt-3">
-			<div >
-				<h3>환불</h3>&emsp;<a><h5>- 고객센터 email</h5></a>
-				<div class="col-7 text-right"><a class="btn btn-primary" href="#" role="button">환불 문의하기</a></div>
+				<div class="p-5 pt-3">
+					<h6>멤버십 구독하기구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라
+					 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 </h6><br>
+						<div>
+							<input type="checkbox" id="payCheck" name="payCkeck" value="payCkeck"> 동의함
+						</div>
+
+				</div>
 			</div>
 
+			<div class="p-5 pt-3">
+
+
+				<div class="col-7 text-right">
+					<a class="btn btn-primary" href="/membership/payForm" role="button">결제하러가기</a>&emsp;
+					<a class="btn btn-danger" href="/membership/membershipForm" role="button">취소</a>
+				</div>
+
+				<br>
+
+
 			</div>
-			<div  class="p-5 pt-3">
-			<c:if test="${vo!=null }">
-				<h3>결제내역</h3>&emsp;<a></a>
-				<div class="col-7 text-right"><h5>200일</h5></div>
-			</c:if>
-			</div>
+
 
 
 	</div>
 
+		</div>
+
+				<script>
+			$(document).ready(function(){
+				$('[data-toggle="tooltip"]').tooltip();
+			});
+
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "SHOW MORE";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "SHOW LESS";
+    moreText.style.display = "inline";
+  }
+}
 
 
-
-	<script>
-		$(document).ready(function() {
-			$('[data-toggle="tooltip"]').tooltip();
-		});
-
-		function myFunction() {
-			var dots = document.getElementById("dots");
-			var moreText = document.getElementById("more");
-			var btnText = document.getElementById("myBtn");
-
-			if (dots.style.display === "none") {
-				dots.style.display = "inline";
-				btnText.innerHTML = "SHOW MORE";
-				moreText.style.display = "none";
-			} else {
-				dots.style.display = "none";
-				btnText.innerHTML = "SHOW LESS";
-				moreText.style.display = "inline";
-			}
-		}
-	</script>
+</script>
 </body>
 </html>

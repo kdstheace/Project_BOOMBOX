@@ -57,11 +57,39 @@
 		) A
 </insert>
 
+<select id="selectUserOne" resultType="user">
+	select
+		user_name
+	from
+		user_tb
+	where
+		user_name = #{user_name}
+</select>
+
+<select id="selectUserEmail" resultType="user">
+	select
+		user_email
+	from
+		user_tb
+	where
+		user_email = #{user_email}
+</select>
+
 <select id="selectGoogleId" parameterType="string" resultType="user">
 	select
 		user_id
+		,user_name
 		,user_googleId
 		,user_googleImg
+		,user_phone
+		,user_address
+		,user_zip
+		,user_email
+		,user_gender
+		,to_char(user_bday, 'yyyy-MM-dd') as user_bday
+		,user_indate
+		,user_manager
+		,user_pending
 	from
 		user_tb
 	where

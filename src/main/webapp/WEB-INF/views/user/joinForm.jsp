@@ -157,57 +157,92 @@ function fn_joinFormCheck(){
             }
         }
 	
- 	/* 닉네임 유효성 검사 */
-	/* if(user_name == null || user_name.length == 0){
+     	/* 닉네임 유효성 검사 */
+ 	  	if(user_name == null || user_name.length == 0){
 		alert("닉네임을 입력해 주세요");
 		return false;
-	} else if(user_name.length < 3 || user_name.length < 8) {
+	} else if(user_name.length < 3 || user_name.length > 8) {
 		alert("닉네임은 3~8글자 사이로 입력해 주세요");
 		return false;
-	} */
+	}
 
-	/* 생년월일 */
-	/* if(user_bday == null || user_bday.length == 0){
+	/* 핸드폰 */
+		var EXP_MOBILENUMBER = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+		
+	  	if(user_phone == null || user_phone.length == 0){
+			alert("핸드폰번호를 입력해 주세요");
+			return false;
+		}  else if (!EXP_MOBILENUMBER.test(user_phone)) {
+			alert("핸드폰번호를 제대로 입력해 주세요");
+			return false;
+		}
+
+ 	/* 생년월일 */
+ 	 if(user_bday == null || user_bday.length == 0){
 		alert("생년월일을 입력해 주세요");
 		return false;
-	} else if (isNaN(user_address.value)){
-		alert("생년월일은 숫자로 입력해주세요");
-		return false;
-		} */
+	}
 
-	/* 성별 */
-	/* if(user_gender == null || user_gender.length == 0){
+	/* 성별 - 유효성검사 필요없음 */
+/*  	if(user_gender == null || user_gender.length == 0){
 		alert("성별을 입력해 주세요");
 		return false;
 	} */
 
 	/* 우편번호 */
-	/* if(user_zip == null || user_zip.length == 0){
+ 	  if(user_zip == null || user_zip.length == 0){
 		alert("우편번호을 입력해 주세요");
 		return false;
-	} */
+	}   
 
 	/* 주소 */
-	/* if(user_address == null || user_address.length == 0){
+  	if(user_address == null || user_address.length == 0){
 		alert("주소을 입력해 주세요");
 		return false;
-	} */
+	}  
+
+	/* 이메일 */
+	
+  	if(user_email == null || user_email.length == 0){
+		alert("이메일을 입력해 주세요");
+		return false;
+	}
 	
 	/* 관심장르 */
-	/* if(userInterest_interest == null || userInterest_interest.length == 0){
-		alert("관심장르을 입력해 주세요");
-		return false;
-	} */
+	var count = 0;
+	var interestCheck = document.getElementsByName('userInterest_interest');
+	for(var i = 0; i < interestCheck.length; i++) {
+		if(interestCheck[i].checked) {
+			count = 1;
+			break;
+			}
+		}
+	if (count == 0) {  //관심분야 확인 
+		  alert("관심분야를 체크해 주세요"); 
+		  return false; 
+	}
 
 	/* 규약 */
-	/* if(user_bday == null || user_bday.length == 0){
-		alert("규약을 체크해 주세요");
-		return false;
-	}   */
-	
+ 	var count1 = 0;
+	var agreeCheck = document.getElementById('agreement');
+		if(agreeCheck.checked) {
+			count1 = 1;
+			}
+	if (count1 == 0) {  //관심분야 확인 
+		  alert("구약를 체크해 주세요"); 
+		  return false; 
+	} 
 	return true;
 }
 
+function nameCheckForm(){
+	window.open("/user/nameCheckForm", "nameCheckForm","width=300, height=400");
+	}
+
+function emailCheckForm(){
+	window.open("/user/emailCheckForm", "emailCheckForm","width=300, height=400");
+	}
+	
 
 function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
@@ -261,7 +296,6 @@ function fn_check(){
 </script>
 </head>
 <body>
-
 	<div id="allSize" class="container">
 		<h1>
 			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
@@ -272,8 +306,8 @@ function fn_check(){
 			<input type="hidden" id="user_googleImg" name="user_googleImg" value="${userVO.user_googleImg}"> 
 			<label>
 			<p class="label-txt">닉네임</p> 
-			<input type="text" class="input" id="user_name" name="user_name"> 
-			<input id="button"type="button" value="중복체크">
+			<input type="text" class="input" id="user_name" name="user_name" readonly="readonly"> 
+			<input type="button" value="닉네임 중복체크" onclick="nameCheckForm();">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -319,19 +353,75 @@ function fn_check(){
 				</div>
 			</label> 
 			<label>
-				<p class="label-txt">이메일</p> <input type="text" class="input"
-				id="user_email" name="user_email"> <input id="button"
-				type="button" value="중복체크">
+				<p class="label-txt">이메일</p> 
+				<input type="text" class="input" id="user_email" name="user_email"> 
+				<input type="button" value="이메일 중복체크" onclick="emailCheckForm();">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label> 
 			<label>
-				<p class="label-txt">관심장르</p> 
-					101<input type="checkbox" name="userInterest_interest" value = "101">
-					102<input type="checkbox" name="userInterest_interest" value = "102">
-					201<input type="checkbox" name="userInterest_interest" value = "201">
-					202<input type="checkbox" name="userInterest_interest" value = "202">
+				<p class="label-txt">관심장르</p> <br>
+
+					<div>
+					<a href=#none id="show100" onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='▶홈트레이닝 접기'} else {hide100.style.display='none';show100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝 펼치기</a>
+					<div id="hide100" style="display: none">
+						홈 트레이닝<input type="checkbox" name="userInterest_interest" value = "101">
+					</div>
+					</div>
+
+					<div>
+					<a href=#none id="show200" onclick="if(hide200.style.display=='none') {hide200.style.display='';show200.innerText='▶Kids 접기'} else {hide200.style.display='none';show200.innerText='▶Kids 펼치기'}">▶Kids 펼치기</a>
+					<div id="hide200" style="display: none">
+						동요율동<input type="checkbox" name="userInterest_interest" value = "201">
+						치어리딩<input type="checkbox" name="userInterest_interest" value = "202">
+						Other<input type="checkbox" name="userInterest_interest" value = "299">
+					</div>
+					</div>
+					
+					
+					<div >
+					<a href=#none id="show300" onclick="if(hide300.style.display=='none') {hide300.style.display='';show300.innerText='▶방송댄스 접기'} else {hide300.style.display='none';show300.innerText='▶방송댄스 펼치기'}">▶방송댄스 펼치기</a>
+					<div id="hide300" style="display: none">
+						K-POP<input type="checkbox" name="userInterest_interest" value = "301">
+						J-POP<input type="checkbox" name="userInterest_interest" value = "302">
+						Others<input type="checkbox" name="userInterest_interest" value = "399">
+					</div>
+					</div>
+					
+					<div>
+					<a href=#none id="show400" onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='▶클럽댄스 접기'} else {hide400.style.display='none';show400.innerText='▶클럽댄스 펼치기'}">▶클럽댄스 펼치기</a>
+					<div id="hide400" style="display: none">
+					MALE<input type="checkbox" name="userInterest_interest" value = "401">
+					FEMALE<input type="checkbox" name="userInterest_interest" value = "402">
+					Others<input type="checkbox" name="userInterest_interest" value = "499">
+					</div>
+					</div>
+					
+					<div>
+					<a href=#none id="show500" onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='▶힙합 접기'} else {hide500.style.display='none';show500.innerText='▶힙합 펼치기'}">▶힙합 펼치기</a>
+					<div id="hide500" style="display: none">
+					팝핀<input type="checkbox" name="userInterest_interest" value = "501">
+					B-BOY<input type="checkbox" name="userInterest_interest" value = "502">
+					락킹<input type="checkbox" name="userInterest_interest" value = "503">
+					Others<input type="checkbox" name="userInterest_interest" value = "599">
+					</div>
+					</div>
+					
+					
+					<div>
+					<a href=#none id="show600" onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='▶Others 접기'} else {hide600.style.display='none';show600.innerText='▶Others 펼치기'}">▶Others 펼치기</a>
+					<div id="hide600" style="display: none">
+					탱고<input type="checkbox" name="userInterest_interest" value = "601">
+					탭댄스<input type="checkbox" name="userInterest_interest" value = "602">
+					발리댄스<input type="checkbox" name="userInterest_interest" value = "603">
+					자이브<input type="checkbox" name="userInterest_interest" value = "604">
+					재즈<input type="checkbox" name="userInterest_interest" value = "605">
+					Others<input type="checkbox" name="userInterest_interest" value = "699">
+					</div>
+					</div><br>
+					
+					
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -339,7 +429,7 @@ function fn_check(){
 			<label>
 				<p class="label-txt">
 					아래 약관에 동의합니다.	
-					<input type="checkbox" id = "agreement">
+					<input type="checkbox" id = "agreement" name="agreement">
 				</p>
 				<div class="container">
     <br>

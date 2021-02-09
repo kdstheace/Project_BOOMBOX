@@ -173,19 +173,14 @@
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <img id="img"
-						src="/resources/img/logo_home.png" class="rounded-circle">
-						${sessionScope.loginName } <%--                         <c:if test="${empty sessionScope.loginId}">
-                        	Manager
-                        </c:if>
-                        <c:otherwise>
-                        	${sessionScope.loginName }
-                        </c:otherwise> --%>
+						src="${sessionScope.loginImg }" class="rounded-circle">
+						${sessionScope.loginName } 
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/user/editInfoForm">개인정보 수정</a> <a
+						<a class="dropdown-item" href="/user/updateInfoForm">개인정보 수정</a> <a
 							class="dropdown-item" href="/stage/myStageForm">My Stage</a> <a
-							class="dropdown-item" href="/membership/membershipForm">결제 및
-							멤버십</a> <a class="dropdown-item" href="/boomMaster/bmMngForm">붐마스터
+							class="dropdown-item" href="/membership/membershipForm">결제 및 멤버십</a> 
+						<a class="dropdown-item" href="/boomMaster/bmMngForm">붐마스터
 							관리</a> <a class="dropdown-item" href="/manager/crmForm">고객센터</a>
 						<div class="dropdown-divider"></div>
 	                        <a class="dropdown-item" href="#" onclick="signOut();">로그아웃</a>
@@ -193,7 +188,6 @@
 			</ul>
 		</div>
 	</nav>
-
 	<!--Main Contents-->
 	<div class="d-flex" id="wrapper">
 		<!-- Sidebar -->
@@ -203,8 +197,8 @@
 				<a href="/school/schoolForm"
 					class="list-group-item list-group-item-action bg-light">School</a>
 				<a href="#" class="list-group-item list-group-item-action bg-light">My
-					Follows</a> <a href="#"
-					class="list-group-item list-group-item-action bg-light">Trending</a>
+					Follows</a> 
+				<a href="#" class="list-group-item list-group-item-action bg-light">Trending</a>
 				<a href="#" class="list-group-item list-group-item-action bg-light">Interests</a>
 				<a href="#" class="list-group-item list-group-item-action bg-light">History</a>
 				<a href="#" class="list-group-item list-group-item-action bg-light">Likes</a>
@@ -222,12 +216,13 @@
 						<div class="container-fluid">
 							<div class="grid_title">Recommended</div>
 							<div class="row">
+							
 								<!--FEED-SMALL-->
+							<c:forEach items="${list }" var="video">
 								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="/video/watchForm">
+									<a href="/video/watchForm?video_id=${video.VIDEO_ID}">
 										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image">
+											<img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image" alt="image" />
 											<div class="row">
 												<div class="col-2 mt-3 pl-4">
 													<img id="img"
@@ -236,12 +231,12 @@
 												</div>
 												<div class="col-10 mt-3">
 													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
+														title="${video.VIDEO_TITLE }">
+														${video.VIDEO_TITLE }
 													</p>
 													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
+														${video.USER_NAME } <i class="fas fa-check-circle"></i><br> 
+														${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
 													</p>
 												</div>
 											</div>
@@ -249,87 +244,8 @@
 									</a>
 								</div>
 								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
+							</c:forEach>
+
 							</div>
 						</div>
 						<!-- Recommended Section -->

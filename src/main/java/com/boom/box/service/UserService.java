@@ -25,11 +25,11 @@ public class UserService {
 		UserVO vo = dao.selectGoogleId(user.getUser_googleId());
 		String path = "";
 		if (vo != null) {
-			session.setAttribute("googleId",vo.getUser_googleId());
+			session.setAttribute("loginGoogleId",vo.getUser_googleId());
 			session.setAttribute("loginId", vo.getUser_id());
-			logger.info("세션에 아이디 넣었음");
 			session.setAttribute("loginImg", vo.getUser_googleImg());
-			logger.info("로그인 성공 아이디는 {}",session.getAttribute("loginId"));
+			session.setAttribute("loginName", vo.getUser_name());
+
 			path = "redirect:/";
 		} else {
 			model.addAttribute("userVO", user);
@@ -58,5 +58,14 @@ public class UserService {
 	//로그아웃
 	public void logout() {
 		session.removeAttribute("loginId");
+	}
+	//중복 닉네임 찾기
+	public UserVO selectUserOne(UserVO user) {
+		return dao.selectUserOne(user);
+	}
+	
+	//중복 이메일 찾기
+	public UserVO selectUserEmail(UserVO user) {
+		return dao.selectUserEmail(user);
 	}
 }

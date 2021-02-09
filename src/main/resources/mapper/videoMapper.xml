@@ -62,4 +62,74 @@
 		</foreach>
 		) A
 </insert>
+
+<select id="selectVideoList" resultType="hashmap">
+	select
+	    v.video_id as video_id
+		,v.video_user_id as video_user_id
+		,v.video_title as video_title
+		,v.video_content as video_content
+		,v.video_hit as video_hit
+		,v.video_urlS as video_urlS 
+		,v.video_urlO as video_urlO
+		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
+		,v.video_class as video_class
+		,v.video_public as video_public
+		,v.video_ageLimit as video_ageLimit
+		,v.video_thumbnailS as video_thumbnailS 
+		,v.video_thumbnailO as video_thumbnailO
+		,v.video_copyright as video_copyright
+		,v.video_motion as video_motion
+		,v.video_likeNum as video_likeNum
+		,u.user_name as user_name
+	from
+	    video_tb v, user_tb u
+	where
+		v.video_user_id = u.user_id
+	order by
+	    video_indate
+</select>
+
+<select id="selectVideoOne" parameterType="int" resultType="hashmap">
+	select
+	    v.video_id as video_id
+		,v.video_user_id as video_user_id
+		,v.video_title as video_title
+		,v.video_content as video_content
+		,v.video_hit as video_hit
+		,v.video_urlS as video_urlS 
+		,v.video_urlO as video_urlO
+		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
+		,v.video_class as video_class
+		,v.video_public as video_public
+		,v.video_ageLimit as video_ageLimit
+		,v.video_thumbnailS as video_thumbnailS 
+		,v.video_thumbnailO as video_thumbnailO
+		,v.video_copyright as video_copyright
+		,v.video_motion as video_motion
+		,v.video_likeNum as video_likeNum
+		,u.user_name as user_name
+	from
+	    video_tb v, user_tb u
+	where
+		v.video_user_id = u.user_id
+        and
+        v.video_id = #{video_id}
+</select>
+
+<select id="selectVideoById" parameterType="int" resultType="video">
+	select
+	    video_urlS
+	    , video_urlO
+	    , video_thumbnailS
+	    , video_thumbnailO
+	from
+	    video_tb
+	where
+	    video_id = #{video_id}
+</select>
+
+
+
+
 </mapper>

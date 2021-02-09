@@ -1,5 +1,8 @@
 package com.boom.box.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +29,19 @@ public class VideoService {
 			e.printStackTrace();
 		}
 		return count;
-
+	}
+	
+	public ArrayList<HashMap<String, Object>> selectVideoList(){
+		ArrayList<HashMap<String, Object>> list = dao.selectVideoList();
+		return list;
+	}
+	public VideoVO selectVideoById(int video_id) {
+		VideoVO video = dao.selectVideoById(video_id);
+		return video;
+	}
+	public HashMap<String, Object> selectVideoOne(int video_id){
+		HashMap<String, Object> list = dao.selectVideoOne(video_id);
+		return list;
 	}
 
 }
