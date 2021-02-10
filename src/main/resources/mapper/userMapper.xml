@@ -66,6 +66,7 @@
 		user_name = #{user_name}
 </select>
 
+
 <select id="selectUserEmail" resultType="user">
 	select
 		user_email
@@ -96,6 +97,28 @@
 		user_googleId = #{user_googleId}
 </select>
 	
+<update id="updateInfo" parameterType="user">
+	
+UPDATE
+	USER_TB
+SET
+	user_name = #{user_name},
+	USER_ADDRESS = #{user_address},
+	USER_ZIP = #{user_zip},
+	USER_EMAIL = #{user_email}
+WHERE
+	user_id = #{user_id }
+	
+</update>
+
+<delete id="deleteUserInterest" parameterType="user">
+
+DELETE FROM 
+	userInterest_tb
+WHERE 
+	userInterest_user_id = #{user_id }
+
+</delete>	
 	
 
 </mapper>

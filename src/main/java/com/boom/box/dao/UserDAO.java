@@ -56,6 +56,7 @@ public class UserDAO {
 		return one;
 	}
 	
+	
 	public UserVO selectUserEmail(UserVO user) {
 		UserVO one = null;
 		try {
@@ -66,5 +67,27 @@ public class UserDAO {
 		}
 		
 		return one;
+	}
+
+	@Transactional(rollbackFor = {Exception.class})
+	public int updateInfo(UserVO user)  throws Exception{
+		logger.info("다오까지 들어옴");
+		int count1 = 0;
+		int count2 = 0;
+		int count3 = 0;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			System.out.println("update Info 들어감");
+			count1 = mapper.updateInfo(user);
+//			System.out.println("deleteUserInterest 들어감");
+			count2 = mapper.deleteUserInterest(user); 
+//			System.out.println("insertUserInterest 들어감");
+			count3 = mapper.insertUserInterest(user);
+			logger.info("유저 디비에 삽입");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
+		return count1;
 	}
 }

@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Video Upload</title>
+				<title>Home</title>
+				<link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+				<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+				<script src="https://kit.fontawesome.com/a6b1415e6e.js" crossorigin="anonymous"></script>
+				<script type="text/javascript"
+					src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/menu/navi.jsp" />
 	<form action="/video/upload" method="post" enctype="multipart/form-data">
 		Movie<br>
 		<input type="file" name="uploadVideo"><br>

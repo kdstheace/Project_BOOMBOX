@@ -88,6 +88,7 @@
 
 </head>
 <body>
+				<jsp:include page="/WEB-INF/views/menu/navi.jsp" />
 
 </body>
 </html>

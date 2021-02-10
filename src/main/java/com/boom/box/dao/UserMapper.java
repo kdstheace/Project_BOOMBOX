@@ -17,4 +17,6 @@ public interface UserMapper {
 	public UserVO selectUserEmail(UserVO user);
 	//업데이트 할 때 우선 인터레스트 지우고 인서트 하는걸로 
 	public int deleteUserInterest(UserVO user);
+	//유저 수정에 필요한 전체정보
+	public UserVO selectUserOne2(UserVO user);
 }

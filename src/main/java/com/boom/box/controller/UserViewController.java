@@ -65,7 +65,8 @@ public class UserViewController {
 	// email 중복검사
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
 	public String emailCheck(UserVO user, Model model) {
-		UserVO userOne = service.selectUserOne(user);
+		System.out.println(user);
+		UserVO userOne = service.selectUserEmail(user);
 		model.addAttribute("userOne", userOne);
 		model.addAttribute("checkEmail", user);
 		
@@ -95,9 +96,13 @@ public class UserViewController {
 	}
 	
 	
-	@RequestMapping(value="/editInfoForm", method=RequestMethod.GET)
-	public String editInfoForm() {
-		return "user/editInfoForm";
+	//개인정보수정 진행하기
+	@RequestMapping(value="/updateInfo", method = RequestMethod.POST)
+	public String editInfoForm(UserVO user) {
+		System.out.println("개인정보 수정 시행 클릭");
+		System.out.println(user);
+		String path = service.updateInfo(user);
+		return path;
 	}
 	
 }
