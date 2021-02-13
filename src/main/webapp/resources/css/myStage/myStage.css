@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#cover {
+	max-width: 1200px;
+	max-height: 200px;
+}
+
+#cover_photo {
+	max-width: 1200px;
+	max-height: 200px;
+}
+
+#profile {
+
+	width: 200px;
+	height: 200px;
+}
