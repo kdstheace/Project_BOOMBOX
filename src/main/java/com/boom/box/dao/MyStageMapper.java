@@ -6,9 +6,8 @@ import java.util.HashMap;
 import com.boom.box.vo.MyStageVO;
 
 public interface MyStageMapper {
-
-	//스테이지 vo 가져오기
+	public int insertStage(int userId);
 	public MyStageVO selectMyStageone(int id);
-	public int insertStage(MyStageVO vo);
+	public int updateStage(MyStageVO vo);
 	public ArrayList<HashMap<String, Object>> selectVideoListMystage(int id);
 }

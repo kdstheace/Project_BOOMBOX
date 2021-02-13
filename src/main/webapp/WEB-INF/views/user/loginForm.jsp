@@ -92,6 +92,10 @@ function onSignIn(googleUser) {
     console.log("ID Token: " + id_token);
 
 	if(id_token != null) location.href = "/user/googleLogin?user_googleId="+profile.getId()+"&user_googleImg="+profile.getImageUrl();
+/* 
+	if(${sessionScope.loginName } == 1){
+		location.href = "/user/googleLogin;";
+		} */
     
   }
 

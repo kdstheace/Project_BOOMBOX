@@ -23,32 +23,33 @@ WHERE
 
 </select>
 
-<insert id="insertStage" parameterType="mystage">
+<insert id="insertStage" parameterType="int">
 
-INSERT
-	INTO
-	STAGE_TB (
-	STAGE_ID,
-	STAGE_USER_ID,
-	STAGE_BANNERIMGS,
-	STAGE_BANNERIMGO,
-	STAGE_PROFILEIMGS,
-	STAGE_PROFILEIMGO,
-	STAGE_INTRO
-	)VALUES(
+INSERT INTO STAGE_TB (
+	STAGE_ID
+	,STAGE_USER_ID
+)VALUES(
 	stage_seq.nextval
 	,#{stage_user_id}
-	,#{stage_bannerImgS}
-	,#{stage_bannerImgO}
-	,#{stage_profileImgS}
-	,#{stage_profileImgO}
-	,#{stage_intro}
-	)
-
-
+)
 
 </insert>
 
+<update id="updateStage" parameterType="myStage">
+
+UPDATE
+	STAGE_TB
+SET
+	STAGE_USER_ID = #{stage_user_id}
+	,STAGE_BANNERIMGS = #{stage_bannerImgS}
+	,STAGE_BANNERIMGO = #{stage_bannerImgO}
+	,STAGE_PROFILEIMGS = #{stage_profileImgS}
+	,STAGE_PROFILEIMGO = #{stage_profileImgO}
+	,STAGE_INTRO = #{stage_intro}
+WHERE
+	STAGE_USER_ID = #{stage_user_id}
+
+</update>
 
 <select id="selectVideoListMystage" parameterType="int" resultType="hashmap">
 	select

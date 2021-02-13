@@ -6,7 +6,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
 
 <style type="text/css">
 
@@ -135,7 +137,7 @@ function fn_bmApplyFormCheck(){
 			
 			<label>
 				<p class="label-txt">메인분야</p> <br>
-
+				
 					<div>
 					<a href=#none id="show100" onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='▶홈트레이닝 접기'} else {hide100.style.display='none';show100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝 펼치기</a>
 					<div id="hide100" style="display: none">
@@ -194,11 +196,85 @@ function fn_bmApplyFormCheck(){
 					</div>
 					</div><br>
 				
-				
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label> 
+			
+			
+			
+			<label>
+				<p class="label-txt">메인분야2</p> <br>
+				
+				<div>
+
+						없음<input type="radio" name="boommaster_major2" value = "000">
+				
+					<div>
+					<a href=#none id="show2100" onclick="if(hide2100.style.display=='none') {hide2100.style.display='';show2100.innerText='▶홈트레이닝 접기'} else {hide2100.style.display='none';show2100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝 펼치기</a>
+					<div id="hide2100" style="display: none">
+						홈 트레이닝<input type="radio" name="boommaster_major2" value = "101">
+					</div>
+					</div>
+
+					<div>
+					<a href=#none id="show2200" onclick="if(hide2200.style.display=='none') {hide2200.style.display='';show2200.innerText='▶Kids 접기'} else {hide2200.style.display='none';show2200.innerText='▶Kids 펼치기'}">▶Kids 펼치기</a>
+					<div id="hide2200" style="display: none">
+						동요율동<input type="radio" name="boommaster_major2" value = "201">
+						치어리딩<input type="radio" name="boommaster_major2" value = "202">
+						Other<input type="radio" name="boommaster_major2" value = "299">
+					</div>
+					</div>
+					
+					
+					<div >
+					<a href=#none id="show2300" onclick="if(hide2300.style.display=='none') {hide2300.style.display='';show2300.innerText='▶방송댄스 접기'} else {hide2300.style.display='none';show2300.innerText='▶방송댄스 펼치기'}">▶방송댄스 펼치기</a>
+					<div id="hide2300" style="display: none">
+						K-POP<input type="radio" name="boommaster_major2" value = "301">
+						J-POP<input type="radio" name="boommaster_major2" value = "302">
+						Others<input type="radio" name="boommaster_major2" value = "399">
+					</div>
+					</div>
+					
+					<div>
+					<a href=#none id="show2400" onclick="if(hide2400.style.display=='none') {hide2400.style.display='';show2400.innerText='▶클럽댄스 접기'} else {hide2400.style.display='none';show2400.innerText='▶클럽댄스 펼치기'}">▶클럽댄스 펼치기</a>
+					<div id="hide2400" style="display: none">
+						MALE<input type="radio" name="boommaster_major2" value = "401">
+						FEMALE<input type="radio" name="boommaster_major2" value = "402">
+						Others<input type="radio" name="boommaster_major2" value = "499">
+					</div>
+					</div>
+					
+					<div>
+					<a href=#none id="show2500" onclick="if(hide2500.style.display=='none') {hide2500.style.display='';show2500.innerText='▶힙합 접기'} else {hide2500.style.display='none';show2500.innerText='▶힙합 펼치기'}">▶힙합 펼치기</a>
+					<div id="hide2500" style="display: none">
+						팝핀<input type="radio" name="boommaster_major2" value = "501">
+						B-BOY<input type="radio" name="boommaster_major2" value = "502">
+						락킹<input type="radio" name="boommaster_major2" value = "503">
+						Others<input type="radio" name="boommaster_major2" value = "599">
+					</div>
+					</div>
+					
+					
+					<div>
+					<a href=#none id="show2600" onclick="if(hide2600.style.display=='none') {hide2600.style.display='';show2600.innerText='▶Others 접기'} else {hide2600.style.display='none';show2600.innerText='▶Others 펼치기'}">▶Others 펼치기</a>
+					<div id="hide2600" style="display: none">
+						탱고<input type=radio name="boommaster_major2" value = "601">
+						탭댄스<input type="radio" name="boommaster_major2" value = "602">
+						발리댄스<input type="radio" name="boommaster_major2" value = "603">
+						자이브<input type="radio" name="boommaster_major2" value = "604">
+						재즈<input type="radio" name="boommaster_major2" value = "605">
+						Others<input type="radio" name="boommaster_major2" value = "699">
+					</div>
+					</div><br>
+				
+				<div class="line-box">
+					<div class="line"></div>
+				</div>
+			</label>
+			
+			
+			
 			
 			<label>
 				<p class="label-txt">자기소개</p> <br>
@@ -210,7 +286,7 @@ function fn_bmApplyFormCheck(){
 				</div>
 			</label>
 			
-				<input class="butten" type="submit" value="고객센터 보내기"> 
+				<input class="butten" type="submit" value="붐마스터 신청하기"> 
 				<input type="reset" value="cancel">
 			</button>
 		</form>

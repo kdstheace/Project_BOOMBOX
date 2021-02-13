@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boom.box.HomeController;
+import com.boom.box.service.MyStageService;
 import com.boom.box.service.UserService;
 import com.boom.box.vo.UserVO;
 
@@ -103,6 +104,13 @@ public class UserViewController {
 		System.out.println(user);
 		String path = service.updateInfo(user);
 		return path;
+	}
+	//유저 홈
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(UserVO user, Model model) {
+		service.home(user, model);
+		System.out.println("홈 들어감");
+		return "redirect:/";
 	}
 	
 }

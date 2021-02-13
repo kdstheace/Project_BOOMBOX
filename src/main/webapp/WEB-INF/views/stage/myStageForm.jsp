@@ -14,6 +14,7 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+	
 <!-- google -->
 <meta name="google-signin-scope" content="profile email">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -23,67 +24,7 @@
 
 
 <style>
-* {
-	font-family: 'Do Hyeon';
-}
 
-.grid_title {
-	font-size: 30px;
-}
-
-.upper-bar {
-	background-color: #ffd343 !important;
-	font-size: 20px;
-}
-
-.search-bar {
-	width: 70% !important;
-	margin-left: 20px;
-	min-width: 300px;
-}
-
-.main-logo {
-	width: 300px;
-	height: 100px;
-	min-width: 300px;
-}
-
-.dropdown-item {
-	font-size: 20px;
-}
-
-/* sidebar */
-#wrapper {
-	overflow-x: hidden;
-}
-
-#sidebar-wrapper {
-	min-height: 100vh;
-	margin-left: -15rem;
-	-webkit-transition: margin .25s ease-out;
-	-moz-transition: margin .25s ease-out;
-	-o-transition: margin .25s ease-out;
-	transition: margin .25s ease-out;
-}
-
-#sidebar-wrapper .sidebar-heading {
-	padding: 0.875rem 1.25rem;
-	font-size: 1.2rem;
-}
-
-#sidebar-wrapper .list-group {
-	width: 15rem;
-}
-
-#page-content-wrapper {
-	min-width: 100vw;
-	 display: inline-block;
-
-}
-
-#wrapper.toggled #sidebar-wrapper {
-	margin-left: 0;
-}
 
 @media ( min-width : 768px) {
 	#sidebar-wrapper {
@@ -145,75 +86,25 @@
           gapi.auth2.init();
         });
       }
+
+
+	/* 스테이지 수정 */
+    function updateStageForm(){
+	    var upload=	 window.open("/stage/updateStageForm", "updateStageForm","width=650, height=950");
+
+    	}
+
+
+
     </script>
 
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light upper-bar">
-		<div class="col-3">
-			<img src="/resources/img/logo_home.png" class="main-logo img-fluid"
-				href="/">
-		</div>
-
-		<form action="/video/searchForm" method="get" id="searchForm"
-			class="form-inline my-2 my-lg-0 col-6">
-			<input class="form-control mr-sm-2 search-bar" type="search"
-				value="${searchText }" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse col-3"
-			id="navbarSupportedContent">
-			<ul class="navbar-nav col-3">
-				<li class="nav-item active"><a class="nav-link"
-					href="/video/editorForm"><i class="fas fa-film"></i>Editor</a></li>
-				<li class="nav-item active"><a class="nav-link"
-					href="/video/uploadForm"><i class="fas fa-cloud-upload-alt"></i>Upload</a>
-				</li>
-				<li class="nav-item active"><a class="nav-link"
-					href="/others/alarmForm"><i class="fas fa-bell"></i>Alarm</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <img id="img"
-						src="${sessionScope.loginImg }" class="rounded-circle">
-						${sessionScope.loginName }
-				</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/user/updateInfoForm">개인정보 수정</a> <a
-							class="dropdown-item" href="/stage/myStageForm">My Stage</a> <a
-							class="dropdown-item" href="/membership/membershipForm">결제 및 멤버십</a>
-						<a class="dropdown-item" href="/boomMaster/bmMngForm">붐마스터
-							관리</a> <a class="dropdown-item" href="/manager/crmForm">고객센터</a>
-						<div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#" onclick="signOut();">로그아웃</a>
-					</div></li>
-			</ul>
-		</div>
-	</nav>
+<jsp:include page="/WEB-INF/views/menu/navi.jsp" />
 	<!--Main Contents-->
 	<div class="d-flex" id="wrapper">
-		<!-- Sidebar -->
-		<div class="bg-light border-right" id="sidebar-wrapper">
-			<div class="list-group list-group-flush">
-				<a href="/" class="list-group-item list-group-item-action bg-light">Home</a>
-				<a href="/school/schoolForm"
-					class="list-group-item list-group-item-action bg-light">School</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">My
-					Follows</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Trending</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Interests</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">History</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">Likes</a>
-			</div>
-		</div>
-		<!-- /#sidebar-wrapper -->
+		
 
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
@@ -225,38 +116,67 @@
 						<div class="container-fluid">
 							<div class="p-5"><h1>My Stage </h1></div>
 
-							<c:if test="${vo!=null }">
-							<form action="/stage/uploadStage" method="post" enctype="multipart/form-data">
+
+
+
 								<div >
-									<img  alt="BannerPhoto" src="/resources/img/myStage/defultPhotoBar.png" height="180px" width="1000px"></div>
-								 	<div class=" col-8 text-right">Banner Upload : <input type="file" name="uploadBanner"></div>
+
+
 								<div class="row p-2">
 									<div class="p-2 text-left" >
-										<img  alt="ProfileImg" src="/resources/img/myStage/defultProfileImg.png" height="200px" width="150px">
+									<!-- 배너사진 -->
+										<c:choose>
+											<c:when test="${myStage.stage_bannerImgO != null }">
+												<div class="p-2"><img  alt="uploadPhoto" src="/stage/banner?=${myStage.stage_id }" height="200px" width="1000px"></div>
+											</c:when>
+											<c:otherwise>
+												<div><img  alt="BannerPhoto" src="/resources/img/myStage/defultPhotoBar.png" height="180px" width="1000px"></div>
+											</c:otherwise>
+										</c:choose>
+
+										<!-- 프로필사진 -->
+										<c:choose>
+											<c:when test="${myStage.stage_profileImgO != null }">
+												<img  alt="ProfileImg" src="/stage/profile?=${myStage.stage_id }" height="200px" width="150px">
+											</c:when>
+											<c:otherwise>
+												<img  alt="ProfileImg" src="/resources/img/myStage/defultProfileImg.png" height="200px" width="150px">
+											</c:otherwise>
+										</c:choose>
 										<h4 >프로필 사진</h4>
-										Profile Upload : <br><input type="file" name="profileImg"><br><br>
-										<textarea rows="15px" cols="18px" name="stage_intro"></textarea><br>소개글을 적어주세요.<br>
-										<br> <input class="btn btn-outline-success my-2 my-sm-7" type="submit" id="uploadsub" value="수정하기">
+
+										<!-- 수정하기 팔로우 -->
+										<!-- 아직 회원가입시 보이는 수정하기 버튼이 보이지 않아 팔로워버튼으로 해놓은상태 -->
+										<c:choose>
+											<c:when test="${sessionScope.loginId == myStage.stage_user_id }">
+												<div >
+													<a class="btn btn-primary" href="#" role="button" onclick="updateStageForm();">수정 하기</a>
+												</div>
+											</c:when>
+
+											<c:otherwise>
+												<div>
+													<a class="btn btn-primary" href="#" role="button" onclick="updateStageForm();">Follow</a>
+												</div>
+											</c:otherwise>
+										</c:choose>
+
+										<!-- 프로필사진 -->
+										<c:choose>
+											<c:when test="${myStage.stage_intro != null }">
+												${myStage.stage_intro }
+											</c:when>
+											<c:otherwise>
+												소개글을 적어주세요.
+											</c:otherwise>
+										</c:choose>
+
+
 
 
 									</div>
 								</div>
-							</form>
-							</c:if>
 
-							<c:if test="${vo==null }">
-								<div class="p-2"><img  alt="uploadPhoto" src="/stage/banner?=${myStage.stage_id }" height="200px" width="1000px"></div>
-									<div class=" col-8 text-right"> Banner Upload : <input type="file" name="uploadBanner"></div>
-								<div class="row p-2">
-									<div class="p-2 text-left" >
-										<img  alt="ProfileImg" src="/stage/profile?=${myStage.stage_id }" height="200px" width="150px">
-										<h4 >프로필 사진</h4>
-										Profile Upload : <br><input type="file" name="profileImg"><br><br>
-										${myStage.stage_intro }
-										<br> <input class="btn btn-outline-success my-2 my-sm-7" type="submit" id="uploadsub" value="수정하기">
-
-
-									</div>
 
 
 
@@ -549,8 +469,8 @@
 			</div>
 		</div>
 		</div>
-</c:if>
 
+</div>
 
 		</div>
 		<!-- /#page-content-wrapper -->
@@ -559,7 +479,11 @@
 	</div>
 	</div>
 
-</div>
+
+
+	</div>
+
+
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,12 +20,12 @@
         font-size : 20px;
     }
 
-    body { 
-        background: #ffd343; 
-        } 
+    body {
+        background: #ffd343;
+        }
 
     div#allSize{
-        max-width: 1000px; 
+        max-width: 1000px;
         text-align: center;
     }
 
@@ -34,56 +36,56 @@
     img{
         margin: 20px 20px 0px 20px;
     }
-    
-    form { 
-        width: 60%; 
-        margin: auto; 
-        background: #ffffff; 
-        padding: 30px 120px 40px 120px; 
-        text-align: center; 
-        -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1); 
-        box-shadow: 2px 2px 3px rgba(0,0,0,0.1); 
+
+    form {
+        width: 60%;
+        margin: auto;
+        background: #ffffff;
+        padding: 30px 120px 40px 120px;
+        text-align: center;
+        -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+        box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
         min-width: 600px;
-        } 
-    label { 
-        display: block; 
-        position: relative; 
-        margin: 40px 0px; } 
-    .label-txt { 
-        position: absolute; 
-        top: -1.6em; 
-        padding: 10px; 
-        font-size: .8em; 
-        letter-spacing: 1px; 
-        color: rgb(120,120,120); 
-        transition: ease .3s; 
-        } 
-    .input { 
+        }
+    label {
+        display: block;
+        position: relative;
+        margin: 40px 0px; }
+    .label-txt {
+        position: absolute;
+        top: -1.6em;
+        padding: 10px;
+        font-size: .8em;
+        letter-spacing: 1px;
+        color: rgb(120,120,120);
+        transition: ease .3s;
+        }
+    .input {
         /* width: 100%;  */
-        padding: 10px; 
-        background: transparent; 
-        border: none; 
-        outline: none; } 
-    .line-box { 
-        position: relative; 
-        width: 100%; 
-        height: 2px; 
-        background: #BCBCBC; 
-    } 
-    .line { 
-        position: absolute; 
-        width: 0%; 
-        height: 2px; 
-        top: 0px;    
-        left: 50%; 
-        transform: translateX(-50%); 
-        background: #8BC34A; 
-        transition: ease .6s; 
-    } 
-    .input:focus + .line-box .line { width: 100%; } 
-    .label-active { top: -3em; } button { display: inline-block; padding: 12px 24px; background: rgb(220,220,220); font-weight: bold; color: rgb(120,120,120); border: none; outline: none; border-radius: 3px; cursor: pointer; transition: ease .3s; } 
-    button:hover { background: #8BC34A; color: #ffffff; } 
-    
+        padding: 10px;
+        background: transparent;
+        border: none;
+        outline: none; }
+    .line-box {
+        position: relative;
+        width: 100%;
+        height: 2px;
+        background: #BCBCBC;
+    }
+    .line {
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        top: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #8BC34A;
+        transition: ease .6s;
+    }
+    .input:focus + .line-box .line { width: 100%; }
+    .label-active { top: -3em; } button { display: inline-block; padding: 12px 24px; background: rgb(220,220,220); font-weight: bold; color: rgb(120,120,120); border: none; outline: none; border-radius: 3px; cursor: pointer; transition: ease .3s; }
+    button:hover { background: #8BC34A; color: #ffffff; }
+
 
 </style>
 <title>회원가입</title>
@@ -130,6 +132,11 @@ function realtimeClock() {
 	  return zero + n;
 	}
 
+	function uploadClose(){
+	var upload=	location.href = "/"
+		upload.close();
+		}
+
 
 </script>
 
@@ -137,49 +144,43 @@ function realtimeClock() {
 </head>
 <body>
 
-	<div id="allSize" class="container">
+
+<div id="allSize" class="container">
 		<p>
 			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</p>
 		<h1>고객센터</h1>
-		<form action="/user/updateInfo" method="get" onsubmit="return fn_crmFormCheck();" >
-			<input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}"> 
+		<form action="/stage/uploadStage" method="post" enctype="multipart/form-data">
+
 			<label>
-			<p class="label-txt">제목</p> 
-			<input type="text" class="input" id="user_name" name="user_name"> 
+			<p class="label-txt">Banner Upload :</p>
+			<input type="file" name="uploadBanner">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
-			</label> 
-			
+			</label>
+
 			<label>
-				<p class="label-txt">내용</p><br> 
-				<textarea class="form-control" cols="200" rows="3" ></textarea> <br>
+			<p class="label-txt">Profile Upload :</p>
+			<input type="file" name="profileImg">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
-			</label> 
-			
+			</label>
+
 			<label>
-			<p class="label-txt">날짜</p> 
-			<input type="datetime-local" class="input" id="crm_writeDate" name="crm_writeDate"><br>
-			<input type="text" class="input" id="crm_writeDate2" name="crm_writeDate2" onload="realtimeClock();" onclick="realtimeClock();" readonly="readonly">
+				<p class="label-txt"> Intro </p><br> <textarea  name="stage_intro" class="form-control col-sm-7" rows="5" ></textarea>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
-			</label> 
-			
-			<label>
-				<p class="label-txt">사용자</p> <input type="text" class="input" id="user_zip" name="user_zip" value="${loginName } ">
-				<div class="line-box">
-					<div class="line"></div>
-				</div>
-			</label> 
-			
-				<input class="butten" type="submit" value="고객센터 보내기"> 
-				<input type="reset" value="cancel">
-			</button>
+			</label>
+
+
+
+				<input class="btn btn-outline-success my-2 my-sm-7" type="submit" id="uploadsub" value="수정하기" onclick="uploadClose();">
+				<a class="btn btn-danger" href="/stage/myStageForm" role="button">취소</a>
+
 		</form>
 
 	</div>
@@ -194,6 +195,6 @@ function realtimeClock() {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
 		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
 		crossorigin="anonymous"></script>
-		
+
 </body>
 </html>

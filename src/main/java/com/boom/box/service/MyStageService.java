@@ -21,17 +21,17 @@ public class MyStageService {
 		return dao.selectMyStageone(id);
 	}
 
-
-	public int insertStage(MyStageVO vo) {
+	public int updateStage(MyStageVO vo) {
 		int count = 0;
 		try {
-			count = dao.insertStage(vo);
+			count = dao.updateStage(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return count;
 	}
 
+	
 	public ArrayList<HashMap<String, Object>> selectVideoListMystage(int id){
 
 		return dao.selectVideoListMystage(id);

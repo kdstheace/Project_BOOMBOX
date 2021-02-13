@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.boom.box.dao.MyStageDAO;
 import com.boom.box.dao.UserDAO;
 import com.boom.box.vo.UserVO;
 
@@ -16,6 +17,8 @@ import com.boom.box.vo.UserVO;
 public class UserService {
 	@Autowired
 	private UserDAO dao;
+	@Autowired
+	private MyStageDAO daoStage;
 	@Autowired
 	private HttpSession session;
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
@@ -33,7 +36,15 @@ public class UserService {
 			session.setAttribute("userZip", vo.getUser_zip());
 			session.setAttribute("userAddress", vo.getUser_address());
 			
-			path = "redirect:/";
+			String num = "2";
+			String managerNum = vo.getUser_manager();
+			
+			if (managerNum.equals(num)) {
+				path = "manager/managerHome";
+			} else {
+				path = "redirect:/";
+			}
+			
 		} else {
 			model.addAttribute("userVO", user);
 			path = "user/joinForm";
@@ -93,6 +104,18 @@ public class UserService {
 		return path;
 	}
 	
-	//
+	//홈
+	public void home(UserVO user, Model model) {
+		UserVO vo = dao.selectGoogleId(user.getUser_googleId());
+
+			session.setAttribute("loginGoogleId",vo.getUser_googleId());
+			session.setAttribute("loginId", vo.getUser_id());
+			session.setAttribute("loginImg", vo.getUser_googleImg());
+			session.setAttribute("loginName", vo.getUser_name());
+			session.setAttribute("userEmail", vo.getUser_email());
+			session.setAttribute("userZip", vo.getUser_zip());
+			session.setAttribute("userAddress", vo.getUser_address());
+
+	}
 
 }

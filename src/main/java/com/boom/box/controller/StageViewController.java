@@ -47,22 +47,10 @@ public class StageViewController {
 
 		int id = (int)session.getAttribute("loginId");
 		ArrayList<HashMap<String, Object>> list = service.selectVideoListMystage(id);
+
 		model.addAttribute("list", list);
-		model.addAttribute("uploadPath", uploadPath);
-		System.out.println("list="+list);
-
-
-
-		MyStageVO vo = service.selectMyStageone(id);
-		System.out.println("vo="+vo);
-		if(vo==null) {
-		model.addAttribute("vo", "null");
-		}
-		else {
-		model.addAttribute("myStage", vo);
-
-		}
-
+		MyStageVO myStage = service.selectMyStageone(id);
+		model.addAttribute("myStage",myStage);
 		return "stage/myStageForm";
 	}
 
@@ -95,23 +83,16 @@ public class StageViewController {
 
 
 		};
-		System.out.println(vo);
 
-
-		int cnt = service.insertStage(vo);
+		int cnt = service.updateStage(vo);
 
 		if(cnt > 0) {
 
 		}else {
-
-
-			System.out.println("실패");
 			return "redirect:/";
 		}
-		System.out.println("성공");
+
 		return "redirect:/stage/myStageForm";
-
-
 
 	}
 
@@ -209,7 +190,13 @@ public class StageViewController {
 
 	}
 
+	@RequestMapping(value = "/updateStageForm" ,method = RequestMethod.GET)
+	public String updateStageForm(Model  model) {
 
+
+
+		return"stage/updateStageForm";
+	}
 
 
 
