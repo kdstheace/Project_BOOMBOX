@@ -29,7 +29,10 @@ public class UserService {
 			session.setAttribute("loginId", vo.getUser_id());
 			session.setAttribute("loginImg", vo.getUser_googleImg());
 			session.setAttribute("loginName", vo.getUser_name());
-
+			session.setAttribute("userEmail", vo.getUser_email());
+			session.setAttribute("userZip", vo.getUser_zip());
+			session.setAttribute("userAddress", vo.getUser_address());
+			
 			path = "redirect:/";
 		} else {
 			model.addAttribute("userVO", user);
@@ -68,4 +71,28 @@ public class UserService {
 	public UserVO selectUserEmail(UserVO user) {
 		return dao.selectUserEmail(user);
 	}
+	
+	public String updateInfo(UserVO user) {
+		int loginID = (int)session.getAttribute("loginId");
+		user.setUser_id(loginID);
+		String path = "";
+		int count = 0;
+		try {
+			System.out.println("개인정보 DAO 들어감");
+			count = dao.updateInfo(user);
+			if(count > 0) {
+				System.out.println("개인정보 수정 성동");
+				path = "redirect:/";
+			}else {
+				System.out.println("개인정보 수정 실패");
+				path = "user/updateInfoForm";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return path;
+	}
+	
+	//
+
 }

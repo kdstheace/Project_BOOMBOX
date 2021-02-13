@@ -25,12 +25,19 @@ public class MembershipService {
 		return dao.selectMemberUser(user);
 	}
 
+	public int insertMembership(MembershipVO vo) {
+		return dao.insertMembership(vo);
+
+	}
 
 
+	public int insertStartMembership(int vo) {
+		return dao.insertStartMembership(vo);
+	}
 
-
-
-
+	public String selectSecondOut(int userId) {
+		return dao.selectSecondOut(userId);
+	}
 
 
 

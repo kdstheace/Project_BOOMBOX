@@ -21,10 +21,12 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.boom.box.service.VideoService;
 import com.boom.box.util.FileService;
+import com.boom.box.util.PageNavigator;
 import com.boom.box.vo.VideoVO;
 
 @Controller
@@ -34,6 +36,8 @@ public class VideoViewController {
 	@Autowired
 	private VideoService service;
 	private String uploadPath = "/uploadFile/Boombox";
+	private final int countPerPage = 10;
+	private final int pagePerGroup = 5;
 	
 	@RequestMapping(value="/uploadForm", method=RequestMethod.GET)
 	public String uploadEditForm() {
@@ -126,50 +130,6 @@ public class VideoViewController {
 
 	}
 	
-//	@RequestMapping(value="/watch", method=RequestMethod.GET)
-//	public void watch(int video_id, HttpServletResponse response) {
-//		HashMap<String, Object> list = service.selectVideoOne(video_id);
-//		String original_file = (String)list.get("VIDEO_URLO");
-//		logger.info(original_file);
-//		try {
-//			response.setHeader("Content-Disposition", "attachment;filename="+
-//			URLEncoder.encode(original_file,"UTF-8"));
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		String fullPath = uploadPath + "/" + (String)list.get("VIDEO_URLS");
-//		FileInputStream fis = null;
-//		ServletOutputStream sos = null;
-//		
-//		try {
-//			fis = new FileInputStream(fullPath); //읽어옴
-//			sos = response.getOutputStream();//서버에서 클라이언트로 나감
-//			
-//			//스프링에서 파일 전달에 사용할 유틸 제공해줌.
-//			FileCopyUtils.copy(fis, sos);
-//			
-//		} catch (Exception e) {
-//
-//		} finally { 
-//			if(fis != null) {
-//				try {
-//					fis.close();
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			if(sos != null) {
-//				try {
-//					sos.close();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//		
-//	}
 	
 	
 	@RequestMapping(value="/thumbnail", method=RequestMethod.GET)
@@ -214,4 +174,22 @@ public class VideoViewController {
 			}
 		}
 	}
+	@RequestMapping(value="/searchForm", method = RequestMethod.GET)
+	public String searchForm(Model model, @RequestParam(defaultValue = "")String searchText
+							, @RequestParam(defaultValue = "1")int page) {
+		logger.info("검색어:{}", searchText);
+		logger.info("검색결과 이동");
+		int total = service.selectVideoCount(searchText);
+		logger.info("서비스 제대로 확인");
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
+		logger.info("네비에 현재 변수들로 생성, 페이지: {}", page);
+		ArrayList<HashMap<String, Object>> list = service.selectVideoList(searchText, navi.getStartRecord(), navi.getCountPerPage());
+		
+		model.addAttribute("list",list);
+		model.addAttribute("searchText",searchText);
+		model.addAttribute("navi", navi);
+		
+		return "/video/searchForm";
+	}
+	
 }

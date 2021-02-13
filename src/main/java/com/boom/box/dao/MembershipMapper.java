@@ -7,6 +7,12 @@ import com.boom.box.vo.UserVO;
 public interface MembershipMapper {
 
 
-	public MembershipVO selectMemberShipOne(int memberShip);
+	public MembershipVO selectMembershipOne(int memberShip);
 	public UserVO selectMemberUser(int user);
+	public String selectSecondOut(int userId);
+	public int insertMembership(MembershipVO vo);
+	public int insertStartMembership(int vo) ;
+
+
+
 }

@@ -3,6 +3,7 @@ package com.boom.box.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,11 +36,12 @@ public class VideoDAO {
 		return count1;
 	}
 	
-	public ArrayList<HashMap<String, Object>> selectVideoList(){
+	public ArrayList<HashMap<String, Object>> selectVideoList(String searchText, int startRecord, int countPerPage){
 		ArrayList<HashMap<String, Object>> list = null;
+		RowBounds rb = new RowBounds(startRecord, countPerPage);
 		try {
 			VideoMapper mapper = session.getMapper(VideoMapper.class);
-			list = mapper.selectVideoList();
+			list = mapper.selectVideoList(rb, searchText);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,6 +68,17 @@ public class VideoDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public int selectVideoCount(String searchText) {
+		int count = 0;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			count = mapper.selectVideoCount(searchText);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 	
 }

@@ -7,13 +7,14 @@
 		<typeAlias type="com.boom.box.vo.UserVO" alias="user" />
 		<typeAlias type="com.boom.box.vo.VideoVO" alias="video" />
 		<typeAlias type="com.boom.box.vo.MembershipVO" alias="membership"/>
+		<typeAlias type="com.boom.box.vo.MyStageVO" alias="myStage"/>
 		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/userMapper.xml" />
 		<mapper resource="mapper/videoMapper.xml" />
 		<mapper resource="mapper/membershipMapper.xml" />
-
+		<mapper resource="mapper/myStageMapper.xml" />
 		
 	</mappers>
 </configuration>

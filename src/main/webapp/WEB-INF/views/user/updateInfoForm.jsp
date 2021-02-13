@@ -11,14 +11,10 @@
 
 	<!-- 구글로그인 -->
 	<meta name="google-signin-scope" content="profile email">
-	
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name = "google-signin-client_id"content = "290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
-
-
 
 <style type="text/css">
 
@@ -109,8 +105,6 @@ function fn_updateFormCheck(){
 	var user_email = document.getElementById("user_email").value;
 	
 	var user_googleId = document.getElementById("user_googleId").value;
-	var user_googleImg = document.getElementById("user_googleImg").value;
-
         	
  	/* 닉네임 유효성 검사 */
  	  	if(user_name == null || user_name.length == 0){
@@ -191,23 +185,6 @@ function emailCheckForm(){
 	window.open("/user/emailCheckForm", "emailCheckForm","width=300, height=400");
 	}
 	
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log(profile);
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-
-	if(id_token != null) location.href = "/user/googleLogin?id="+profile.getId();
-}
 
 
 
@@ -249,11 +226,10 @@ function fn_check(){
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</h1>
 		<form action="/user/updateInfo" method="post" onsubmit="return fn_updateFormCheck();">
-			<input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_googleId}"> 
-			<input type="hidden" id="user_googleImg" name="user_googleImg" value="${userVO.user_googleImg}"> 
+			<input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}"> 
 			<label>
 			<p class="label-txt">닉네임</p> 
-			<input type="text" class="input" id="user_name" name="user_name" readonly="readonly"> 
+			<input type="text" class="input" id="user_name" name="user_name" readonly="readonly" value="${loginName }"> 
 			<input type="button" value="닉네임 중복체크" onclick="nameCheckForm();">
 				<div class="line-box">
 					<div class="line"></div>
@@ -261,22 +237,22 @@ function fn_check(){
 			</label> 
 			
 			<label>
-				<p class="label-txt">우편번호</p> <input type="text" class="input" id="user_zip" name="user_zip"> 
-				<input id="button" type="button" value="주소검색">
+				<p class="label-txt">우편번호</p> <input type="text" class="input" id="user_zip" name="user_zip" value="${userZip }"> 
+				<input id="button" type="button" value="주소검색" >
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label> 
 			<label>
 				<p class="label-txt">주소</p> 
-				<input type="text" class="input" id="user_address" name="user_address">
+				<input type="text" class="input" id="user_address" name="user_address" value="${userAddress }">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label> 
 			<label>
 				<p class="label-txt">이메일</p> 
-				<input type="text" class="input" id="user_email" name="user_email"> 
+				<input type="text" class="input" id="user_email" name="user_email" readonly="readonly" value="${userEmail }"> 
 				<input type="button" value="이메일 중복체크" onclick="emailCheckForm();">
 				<div class="line-box">
 					<div class="line"></div>
@@ -314,19 +290,19 @@ function fn_check(){
 					<div>
 					<a href=#none id="show400" onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='▶클럽댄스 접기'} else {hide400.style.display='none';show400.innerText='▶클럽댄스 펼치기'}">▶클럽댄스 펼치기</a>
 					<div id="hide400" style="display: none">
-					MALE<input type="checkbox" name="userInterest_interest" value = "401">
-					FEMALE<input type="checkbox" name="userInterest_interest" value = "402">
-					Others<input type="checkbox" name="userInterest_interest" value = "499">
+						MALE<input type="checkbox" name="userInterest_interest" value = "401">
+						FEMALE<input type="checkbox" name="userInterest_interest" value = "402">
+						Others<input type="checkbox" name="userInterest_interest" value = "499">
 					</div>
 					</div>
 					
 					<div>
 					<a href=#none id="show500" onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='▶힙합 접기'} else {hide500.style.display='none';show500.innerText='▶힙합 펼치기'}">▶힙합 펼치기</a>
 					<div id="hide500" style="display: none">
-					팝핀<input type="checkbox" name="userInterest_interest" value = "501">
-					B-BOY<input type="checkbox" name="userInterest_interest" value = "502">
-					락킹<input type="checkbox" name="userInterest_interest" value = "503">
-					Others<input type="checkbox" name="userInterest_interest" value = "599">
+						팝핀<input type="checkbox" name="userInterest_interest" value = "501">
+						B-BOY<input type="checkbox" name="userInterest_interest" value = "502">
+						락킹<input type="checkbox" name="userInterest_interest" value = "503">
+						Others<input type="checkbox" name="userInterest_interest" value = "599">
 					</div>
 					</div>
 					
@@ -334,12 +310,12 @@ function fn_check(){
 					<div>
 					<a href=#none id="show600" onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='▶Others 접기'} else {hide600.style.display='none';show600.innerText='▶Others 펼치기'}">▶Others 펼치기</a>
 					<div id="hide600" style="display: none">
-					탱고<input type="checkbox" name="userInterest_interest" value = "601">
-					탭댄스<input type="checkbox" name="userInterest_interest" value = "602">
-					발리댄스<input type="checkbox" name="userInterest_interest" value = "603">
-					자이브<input type="checkbox" name="userInterest_interest" value = "604">
-					재즈<input type="checkbox" name="userInterest_interest" value = "605">
-					Others<input type="checkbox" name="userInterest_interest" value = "699">
+						탱고<input type="checkbox" name="userInterest_interest" value = "601">
+						탭댄스<input type="checkbox" name="userInterest_interest" value = "602">
+						발리댄스<input type="checkbox" name="userInterest_interest" value = "603">
+						자이브<input type="checkbox" name="userInterest_interest" value = "604">
+						재즈<input type="checkbox" name="userInterest_interest" value = "605">
+						Others<input type="checkbox" name="userInterest_interest" value = "699">
 					</div>
 					</div><br>
 					
