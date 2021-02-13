@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+				<link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
 				<script type="text/javascript">
 					function onSignIn(googleUser) {
 						var profile = googleUser.getBasicProfile();
@@ -34,6 +35,18 @@
 				    function crmForm(){
 				    	window.open("/manager/crmForm", "crmForm","width=650, height=950");
 				    	}
+			    	
+				    function bmApplyForm(){
+				    	window.open("/boomMaster/bmApplyForm", "bmApplyForm","width=650, height=950");
+				    	}
+									
+					function searchFnc(page){
+						var searchform = document.getElementById("searchForm");
+						console.log("펑션으로 들어옴.");
+						document.getElementById("page").value = page;
+						searchForm.submit();
+						}
+
 				</script>
 				
 				<style type="text/css">
@@ -118,11 +131,11 @@
 						<img src="/resources/img/logo_home.png" class="main-logo img-fluid" href="/">
 					</div>
 
-					<form action="/video/searchForm" method="get" id="searchForm"
-						class="form-inline my-2 my-lg-0 col-6">
-						<input class="form-control mr-sm-2 search-bar" type="search" value="${searchText }"
-							placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					<form action="/video/searchForm" method="get" id="searchForm" class="form-inline my-2 my-lg-0 col-6">
+						<input type="hidden" name="page" id="page">
+						<input class="form-control mr-sm-2 search-bar" type="search" name = "searchText" value="${searchText }"
+							placeholder="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchFnc(1);">Search</button>
 					</form>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -148,7 +161,7 @@
 										<a class="dropdown-item" onclick="updateInfoForm();">개인정보 수정</a> <a
 							class="dropdown-item" href="/stage/myStageForm">My Stage</a> <a
 							class="dropdown-item" href="/membership/membershipForm">결제 및 멤버십</a> 
-						<a class="dropdown-item" href="/boomMaster/bmMngForm">붐마스터
+						<a class="dropdown-item" onclick="bmApplyForm();">붐마스터
 							관리</a> <a class="dropdown-item" onclick="crmForm();">고객센터</a>
 						<div class="dropdown-divider"></div>
 	                        <a class="dropdown-item" href="#" onclick="signOut();">로그아웃</a>

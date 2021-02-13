@@ -19,7 +19,10 @@
 
 
 				<style>
-
+				        .main_container{
+				        	padding-top : 30px;
+				        	padding-left : 30px;
+				        }
 					.grid_title {
 						font-size: 30px;
 					}
@@ -47,9 +50,6 @@
 
 				    	}	
 				</style>
-								<!-- 구글 -->
-
-
 
 			</head>
 

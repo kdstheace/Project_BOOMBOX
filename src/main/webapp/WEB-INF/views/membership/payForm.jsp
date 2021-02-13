@@ -42,8 +42,9 @@ IMP.request_pay({
         msg += '결제 금액 : ' + rsp.paid_amount;
 
         msg += '카드 승인번호 : ' + rsp.apply_num;
+
         alert(msg);
-      //  location.href="/membership/membershipForm";
+        location.href="/membership/paySuccessForm?membership_price="+rsp.paid_amount;
 
     } else {
         var msg = '결제에 실패하였습니다.';

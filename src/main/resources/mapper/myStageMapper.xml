@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boom.box.dao.MyStageMapper">
+
+<select id="selectMyStageone" parameterType="int" resultType="myStage">
+
+SELECT
+	STAGE_ID,
+	STAGE_USER_ID,
+	STAGE_BANNERIMGS,
+	STAGE_BANNERIMGO,
+	STAGE_PROFILEIMGS,
+	STAGE_PROFILEIMGO,
+	STAGE_INTRO
+FROM
+	HR.STAGE_TB
+WHERE
+	STAGE_USER_ID=#{stage_user_id}
+
+
+</select>
+
+<insert id="insertStage" parameterType="mystage">
+
+INSERT
+	INTO
+	STAGE_TB (
+	STAGE_ID,
+	STAGE_USER_ID,
+	STAGE_BANNERIMGS,
+	STAGE_BANNERIMGO,
+	STAGE_PROFILEIMGS,
+	STAGE_PROFILEIMGO,
+	STAGE_INTRO
+	)VALUES(
+	stage_seq.nextval
+	,#{stage_user_id}
+	,#{stage_bannerImgS}
+	,#{stage_bannerImgO}
+	,#{stage_profileImgS}
+	,#{stage_profileImgO}
+	,#{stage_intro}
+	)
+
+
+
+</insert>
+
+
+<select id="selectVideoListMystage" parameterType="int" resultType="hashmap">
+	select
+	    v.video_id as video_id
+		,v.video_user_id as video_user_id
+		,v.video_title as video_title
+		,v.video_content as video_content
+		,v.video_hit as video_hit
+		,v.video_urlS as video_urlS
+		,v.video_urlO as video_urlO
+		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
+		,v.video_class as video_class
+		,v.video_public as video_public
+		,v.video_ageLimit as video_ageLimit
+		,v.video_thumbnailS as video_thumbnailS
+		,v.video_thumbnailO as video_thumbnailO
+		,v.video_copyright as video_copyright
+		,v.video_motion as video_motion
+		,v.video_likeNum as video_likeNum
+		,u.user_name as user_name
+	from
+	    video_tb v, user_tb u
+	where
+		v.video_user_id =#{video_user_id}
+	order by
+	    video_indate
+</select>
+
+
+</mapper>

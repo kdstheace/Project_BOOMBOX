@@ -63,7 +63,7 @@
 		) A
 </insert>
 
-<select id="selectVideoList" resultType="hashmap">
+<select id="selectVideoList" resultType="hashmap" parameterType="String">
 	select
 	    v.video_id as video_id
 		,v.video_user_id as video_user_id
@@ -86,8 +86,12 @@
 	    video_tb v, user_tb u
 	where
 		v.video_user_id = u.user_id
+		<if test="_parameter != null">
+	and
+		v.video_title like '%' || #{searchText} || '%'
+		</if>
 	order by
-	    video_indate
+	    video_indate desc
 </select>
 
 <select id="selectVideoOne" parameterType="int" resultType="hashmap">
@@ -129,7 +133,16 @@
 	    video_id = #{video_id}
 </select>
 
-
+<select id="selectVideoCount" parameterType="String" resultType="int">
+	select
+		count(*)
+	from
+		video_tb
+	<if test = "_parameter != null">
+	where
+		video_title like '%' || ${searchText} || '%'
+	</if>
+</select>
 
 
 </mapper>

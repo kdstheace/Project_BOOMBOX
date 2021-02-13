@@ -31,8 +31,8 @@ public class VideoService {
 		return count;
 	}
 	
-	public ArrayList<HashMap<String, Object>> selectVideoList(){
-		ArrayList<HashMap<String, Object>> list = dao.selectVideoList();
+	public ArrayList<HashMap<String, Object>> selectVideoList(String searchText, int startRecord, int countPerPage){
+		ArrayList<HashMap<String, Object>> list = dao.selectVideoList(searchText, startRecord, countPerPage);
 		return list;
 	}
 	public VideoVO selectVideoById(int video_id) {
@@ -42,6 +42,10 @@ public class VideoService {
 	public HashMap<String, Object> selectVideoOne(int video_id){
 		HashMap<String, Object> list = dao.selectVideoOne(video_id);
 		return list;
+	}
+	public int selectVideoCount(String searchText) {
+		int count = dao.selectVideoCount(searchText);
+		return count;
 	}
 
 }

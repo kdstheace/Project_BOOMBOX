@@ -28,7 +28,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) {
 		logger.info("홈으로 이동");
-		ArrayList<HashMap<String, Object>> list = service.selectVideoList();
+		ArrayList<HashMap<String, Object>> list = service.selectVideoList(null, 1, 8);
 		model.addAttribute("list", list);
 		model.addAttribute("uploadPath", uploadPath);
 		return "home";

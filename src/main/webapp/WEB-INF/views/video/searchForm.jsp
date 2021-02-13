@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,82 +14,149 @@
         * {
             font-family: 'Do Hyeon';
         }
-        .grid_title {
-            font-size: 30px;
+        .main_container{
+        	padding-top : 30px;
+        	padding-left : 30px;
         }
-        .upper-bar {
-            background-color: #ffd343 !important;
-            font-size: 20px;
+        .card{
+        	height : 200px;
         }
-
-        .search-bar {
-            width: 70% !important;
-            margin-left: 20px;
-            min-width: 300px;
+        .feed_img{
+        	width : 100%;
+        	max-height : 200px;
         }
-
-        .main-logo {
-            width: 300px;
-            height: 100px;
-            min-width: 300px;
-        }
-        
-        .dropdown-item {
-		  font-size: 20px;
-		}
-        
-        
-        /* sidebar */
-		#wrapper {
-		    overflow-x: hidden;
-		 }
-		
-		#sidebar-wrapper {
-		  min-height: 100vh;
-		  margin-left: -15rem;
-		  -webkit-transition: margin .25s ease-out;
-		  -moz-transition: margin .25s ease-out;
-		  -o-transition: margin .25s ease-out;
-		  transition: margin .25s ease-out;
-		}
-		
-		#sidebar-wrapper .sidebar-heading {
-		  padding: 0.875rem 1.25rem;
-		  font-size: 1.2rem;
-		}
-		
-		#sidebar-wrapper .list-group {
-		  width: 15rem;
-		}
-		
-		#page-content-wrapper {
-		  min-width: 100vw;
-		}
-		
-		#wrapper.toggled #sidebar-wrapper {
-		  margin-left: 0;
-		}
-		
-		@media (min-width: 768px) {
-		  #sidebar-wrapper {
-		    margin-left: 0;
-		  }
-		
-		  #page-content-wrapper {
-		    min-width: 0;
-		    width: 100%;
-		  }
-		
-		  #wrapper.toggled #sidebar-wrapper {
-		    margin-left: -15rem;
-		  }
-		}
 
     </style>
 
 </head>
 <body>
-				<jsp:include page="/WEB-INF/views/menu/navi.jsp" />
+	<jsp:include page="/WEB-INF/views/menu/navi.jsp" />
+	<!-- main content -->
+	<div class="row main_container">
+		<div class="col-md-10">
+			<!-- content section -->		
+			<div class="container-fluid">
+				<div class="container-fluid pb-1 border-bottom">
+				  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				    <div class="panel panel-default">
+				      <div class="panel-heading" role="tab" id="headingOne">
+				        <div class="panel-title">
+				        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				         	<svg style="height: 24px; width: 24px;" viewBox="0 0 24 24">
+								  <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" fill="#606060"></path>
+								</svg>
+								<span class="accordion_btn">FILTER</span>
+				        </div>
+				      </h4>
+				      </div>
+				      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				        <div class="panel-body">
+				        	<div class="row">
+				        		<div class="col-8">
+				         <table class="table table-borderless table-sm">
+							  <thead>
+							    <tr>
+							      <th scope="col" class="border-bottom pl-2 pr-2">UPLOAD DATE</th>
+							      <th scope="col" class="border-bottom">TYPE</th>
+							      <th scope="col" class="border-bottom">DURATION</th>
+							      <th scope="col" class="border-bottom">FEATURES</th>
+							      <th scope="col" class="border-bottom">SORT BY</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td>Last hour</td>
+							      <td>Video</td>
+							      <td>Short (<4 minutes)</td>
+							      <td>Live</td>
+							      <th>Relevance</th>
+							    </tr>
+							    <tr>
+							      <td>Today</td>
+							      <td>Channel</td>
+							      <td>Long (>20 minutes)</td>
+							      <td>4K</td>
+							      <td>Upload date</td>
+							    </tr>
+							    <tr>
+							    	<td>This week</td>
+							      <td>Playlist</td>
+							      <td></td>
+							      <td>HD</td>
+							      <td>View count</td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>
+				        </div>
+				      </div>
+				    </div>
+				    
+				  </div>
+				</div>
 
+				<div class="container-fluid mt-4">
+					<c:forEach items = "${list }" var="video">
+					<a href="/video/watchForm?video_id=${video.VIDEO_ID}">
+						<div class="card">
+							<div class="row">
+								<div class="col-md-4">
+									<img src="/video/thumbnail?video_id=${video.VIDEO_ID}" alt="image" class="feed_img"/>
+								</div>
+								<div class="col-md-7 p-0 pt-2">
+									<div class="row">
+										<div class="col-1 ml-2 mr-3 desc_hide">
+											<img id="img" width="48" src="#" class="rounded-circle">
+										</div>
+										<div class="col-9">
+											<p class="mb-1 title" title="${video.VIDEO_TITLE }">${video.VIDEO_TITLE }</p>
+											<p class="subtitle">
+												${video.USER_NAME }  <i class="fas fa-check-circle"></i> 
+												${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
+											</p>
+											<div class="short_description">
+												${video.CONTENT }
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</a>
+					</c:forEach>
+					<script>
+					function searchFnc(page){
+						var searchform = document.getElementById("searchForm");
+						console.log("펑션으로 들어옴.");
+						document.getElementById("page").value = page;
+						searchForm.submit();
+						}
+					</script>
+									<div>
+		<a href="javascript:searchFnc(${navi.currentPage - navi.pagePerGroup});">◁◁</a>   
+			<a href="javascript:searchFnc(${navi.currentPage - 1 });">◀</a>  
+				<c:forEach begin="${navi.startPageGroup }" end="${navi.endPageGroup }" var="counter">
+					<c:choose>
+						<c:when test="${counter == navi.currentPage }">
+							<b>${counter }</b>
+						</c:when>
+						<c:otherwise>
+							<a href="javascript:searchFnc(${counter });">${counter }</a>  
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			<a href="javascript:searchFnc(${navi.currentPage + 1 });">▶</a>   
+		<a href="javascript:searchFnc(${navi.currentPage + navi.pagePerGroup});">▷▷</a>
+	</div>
+					</div>
+					
+				</div>
+
+			</div>
+
+</div>
+
+				<!-- content Section -->
 </body>
 </html>

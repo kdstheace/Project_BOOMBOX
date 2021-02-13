@@ -8,13 +8,29 @@
 SELECT
 	MEMBERSHIP_ID,
 	MEMBERSHIP_USER_ID,
-	TO_CHAR(MEMBERSHIP_INDATE,'yyyy-MM-dd') as MEMBERSHIP_INDATE,
-	TO_CHAR(MEMBERSHIP_OUTDATE,'yyyy-MM-dd')as  MEMBERSHIP_OUTDATE,
+	TO_CHAR(MEMBERSHIP_INDATE, 'yyyy-MM-dd') as MEMBERSHIP_INDATE,
+	TO_CHAR(MEMBERSHIP_OUTDATE, 'yyyy-MM-dd') as MEMBERSHIP_OUTDATE,
 	MEMBERSHIP_PRICE
 FROM
-	MEMBERSHIP_TB
+	HR.MEMBERSHIP_TB
 WHERE
-	MEMBERSHIP_USER_ID= #{membership_user_id}
+	MEMBERSHIP_USER_ID = #{MEMBERSHIP_USER_ID}
+	AND
+	membership_id = (SELECT max(membership_id) FROM MEMBERSHIP_TB WHERE membership_user_id = #{MEMBERSHIP_USER_ID})
+</select>
+
+<select id="selectSecondOut" parameterType="int" resultType="String">
+SELECT
+	max(TO_CHAR(MEMBERSHIP_OUTDATE, 'yyyyMMdd')) AS MEMBERSHIP_OUTDATE
+FROM
+	membership_tb
+WHERE
+	MEMBERSHIP_USER_ID = #{MEMBERSHIP_USER_ID}
+	AND membership_id NOT IN (
+	SELECT
+		max(membership_id)
+	FROM
+		MEMBERSHIP_TB)
 </select>
 
 <select id="selectMemberUser" parameterType="int" resultType="user">
@@ -39,6 +55,38 @@ WHERE
 	USER_ID=#{user_id}
 
 </select>
+
+
+<insert id="insertMembership" parameterType="membership">
+
+INSERT INTO HR.MEMBERSHIP_TB (
+	MEMBERSHIP_ID,
+	MEMBERSHIP_USER_ID,
+	MEMBERSHIP_OUTDATE,
+	MEMBERSHIP_PRICE
+)VALUES(
+	membership_seq.nextval
+	,#{membership_user_id}
+	,(SELECT MEMBERSHIP_OUTDATE FROM MEMBERSHIP_TB WHERE MEMBERSHIP_ID = (SELECT max(MEMBERSHIP_ID) FROM MEMBERSHIP_TB WHERE membership_user_id = #{membership_user_id}))+30
+	,#{membership_price}
+)
+
+</insert>
+<insert id="insertStartMembership" parameterType="int">
+
+INSERT INTO HR.MEMBERSHIP_TB (
+	MEMBERSHIP_ID,
+	MEMBERSHIP_USER_ID,
+	MEMBERSHIP_OUTDATE,
+	MEMBERSHIP_PRICE
+)VALUES(
+	membership_seq.nextval
+	,#{membership_user_id}
+	,sysdate
+	,5000
+)
+
+</insert>
 
 
 

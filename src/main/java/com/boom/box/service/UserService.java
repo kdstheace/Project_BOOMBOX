@@ -29,7 +29,10 @@ public class UserService {
 			session.setAttribute("loginId", vo.getUser_id());
 			session.setAttribute("loginImg", vo.getUser_googleImg());
 			session.setAttribute("loginName", vo.getUser_name());
-
+			session.setAttribute("userEmail", vo.getUser_email());
+			session.setAttribute("userZip", vo.getUser_zip());
+			session.setAttribute("userAddress", vo.getUser_address());
+			
 			path = "redirect:/";
 		} else {
 			model.addAttribute("userVO", user);

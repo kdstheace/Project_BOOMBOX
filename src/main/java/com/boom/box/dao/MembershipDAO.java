@@ -20,7 +20,7 @@ public class MembershipDAO {
 
 		try {
 			MembershipMapper mapper = session.getMapper(MembershipMapper.class);
-			vo = mapper.selectMemberShipOne(memberShip);
+			vo = mapper.selectMembershipOne(memberShip);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -42,10 +42,50 @@ public class MembershipDAO {
 
 		return vo;
 
+	}
+
+
+	public int insertMembership(MembershipVO vo) {
+		int cnt =0;
+
+		try {
+			MembershipMapper mapper = session.getMapper(MembershipMapper.class);
+			cnt = mapper.insertMembership(vo);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return cnt;
 
 
 	}
 
+	public int insertStartMembership(int vo) {
+
+		int cnt =0;
+
+		try {
+			MembershipMapper mapper = session.getMapper(MembershipMapper.class);
+			cnt = mapper.insertStartMembership(vo);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return cnt;
+
+	}
+
+	public String selectSecondOut(int userId) {
+		String outDate = null;
+		try {
+			MembershipMapper mapper = session.getMapper(MembershipMapper.class);
+			outDate = mapper.selectSecondOut(userId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return outDate;
+	}
 
 
 
