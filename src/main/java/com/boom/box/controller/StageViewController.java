@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.boom.box.service.MyStageService;
@@ -43,9 +44,20 @@ public class StageViewController {
 	private String uploadPath = "/uploadFile/Boombox";
 
 	@RequestMapping(value="/myStageForm", method=RequestMethod.GET)
-	public String MyStageForm(Model model) {
+	public String MyStageForm(Model model, @RequestParam(defaultValue = "0")int stage_user_id) {
+		logger.info("들어온 값{}",stage_user_id);
+		int id = 0;
+		int loginId = (int)session.getAttribute("loginId");	
+		if(stage_user_id == 0) {
+			stage_user_id = loginId;
+		}
+		
+		if(stage_user_id == loginId) {
+			id = loginId;
+		}else {
+			id = stage_user_id;
+		}
 
-		int id = (int)session.getAttribute("loginId");
 		ArrayList<HashMap<String, Object>> list = service.selectVideoListMystage(id);
 
 		model.addAttribute("list", list);
@@ -89,10 +101,10 @@ public class StageViewController {
 		if(cnt > 0) {
 
 		}else {
-			return "redirect:/";
+			return "/stage/uploadStage";
 		}
 
-		return "redirect:/stage/myStageForm";
+		return "redirect:/report/closeForm";
 
 	}
 

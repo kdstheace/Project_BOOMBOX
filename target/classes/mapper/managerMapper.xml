@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boom.box.dao.ManagerMapper">
+
+<select id="selectUserCount" parameterType="String" resultType="int">
+	select
+		count(*)
+	from
+		user_tb
+	<if test = "_parameter != null">
+	where
+		user_id like '%' || ${searchText} || '%'
+	</if>
+</select>
+
+<select id="selectUserList" resultType="hashmap" parameterType="String">
+	select
+	    user_id as user_id
+		,user_name as user_name
+		,user_googleId as user_googleId
+		,user_googleImg as user_googleImg
+		,user_phone as user_phone
+		,user_address as user_address 
+		,user_zip as user_zip
+		,user_email as user_email
+		,user_gender as user_gender
+		,user_bday as user_bday	
+		,to_char(user_inDate, 'yyyy-MM-dd') as user_inDate
+		,user_manager as user_manager		
+		,user_pending as user_pending
+	from
+	   user_tb
+	where
+		v.video_user_id = u.user_id
+	and
+		v.video_title like '%' || #{searchText} || '%'
+	order by
+	    video_indate desc
+</select>
+	
+
+</mapper>

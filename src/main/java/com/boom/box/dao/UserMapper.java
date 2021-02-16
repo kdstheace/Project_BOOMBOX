@@ -9,6 +9,8 @@ public interface UserMapper {
 	public int insertUser(UserVO user);
 	//회원가입시 유저관심 인서트
 	public int insertUserInterest(UserVO user);
+	//회원가입시 마이스테이지 생성
+	public int insertStage(UserVO user);
 	//회원정보 수정
 	public int updateInfo(UserVO user);
 	//유저 닉네임 중복검사

@@ -23,17 +23,7 @@ WHERE
 
 </select>
 
-<insert id="insertStage" parameterType="int">
 
-INSERT INTO STAGE_TB (
-	STAGE_ID
-	,STAGE_USER_ID
-)VALUES(
-	stage_seq.nextval
-	,#{stage_user_id}
-)
-
-</insert>
 
 <update id="updateStage" parameterType="myStage">
 

@@ -14,7 +14,7 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
-	
+
 <!-- google -->
 <meta name="google-signin-scope" content="profile email">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -93,6 +93,11 @@
 	    var upload=	 window.open("/stage/updateStageForm", "updateStageForm","width=650, height=950");
 
     	}
+    /* 신고하기 수정 */
+    function reportForm(){
+	    var upload=	 window.open("/report/reportForm", "reportForm","width=650, height=950");
+
+    	}
 
 
 
@@ -104,7 +109,7 @@
 <jsp:include page="/WEB-INF/views/menu/navi.jsp" />
 	<!--Main Contents-->
 	<div class="d-flex" id="wrapper">
-		
+
 
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
@@ -114,27 +119,30 @@
 					<div class="col-md-12">
 						<!-- Recommended section -->
 						<div class="container-fluid">
-							<div class="p-5"><h1>My Stage </h1></div>
-
-
-
+							<div class="p-3 pt-5"><h1>My Stage </h1></div>
 
 								<div >
 
-
 								<div class="row p-2">
-									<div class="p-2 text-left" >
+									<div class=" text-left" >
+									<br>
 									<!-- 배너사진 -->
+									<div class="text-left">
 										<c:choose>
 											<c:when test="${myStage.stage_bannerImgO != null }">
-												<div class="p-2"><img  alt="uploadPhoto" src="/stage/banner?=${myStage.stage_id }" height="200px" width="1000px"></div>
+												<div class="pl-5 pr-5 pb-5"><img  alt="uploadPhoto" src="/stage/banner?=${myStage.stage_id }" height="200px" width="1000px"></div>
 											</c:when>
 											<c:otherwise>
 												<div><img  alt="BannerPhoto" src="/resources/img/myStage/defultPhotoBar.png" height="180px" width="1000px"></div>
 											</c:otherwise>
 										</c:choose>
 
+
+									</div>
+
 										<!-- 프로필사진 -->
+										<div class=" pl-2">
+
 										<c:choose>
 											<c:when test="${myStage.stage_profileImgO != null }">
 												<img  alt="ProfileImg" src="/stage/profile?=${myStage.stage_id }" height="200px" width="150px">
@@ -145,8 +153,12 @@
 										</c:choose>
 										<h4 >프로필 사진</h4>
 
+										</div>
+
 										<!-- 수정하기 팔로우 -->
 										<!-- 아직 회원가입시 보이는 수정하기 버튼이 보이지 않아 팔로워버튼으로 해놓은상태 -->
+
+										<div class=" pl-2">
 										<c:choose>
 											<c:when test="${sessionScope.loginId == myStage.stage_user_id }">
 												<div >
@@ -160,24 +172,79 @@
 												</div>
 											</c:otherwise>
 										</c:choose>
+										</div>
 
 										<!-- 프로필사진 -->
-										<c:choose>
-											<c:when test="${myStage.stage_intro != null }">
-												${myStage.stage_intro }
-											</c:when>
-											<c:otherwise>
-												소개글을 적어주세요.
-											</c:otherwise>
-										</c:choose>
+										<div class="pt-5 pl-2">
+											<div><h4>Intro</h4></div>
+												<c:choose>
+													<c:when test="${myStage.stage_intro != null }">
+													${myStage.stage_intro }
+													</c:when>
+													<c:otherwise>
+													소개글을 적어주세요.
+													</c:otherwise>
+												</c:choose>
+										</div>
+
+										<div class="pt-5 pl-2">
+
+											<c:if test="${sessionScope.loginId != myStage.stage_user_id }">
+												<div >
+													<a class="btn btn-primary" href="#" role="button"   onclick="reportForm();">신고하기</a>
+												</div>
+											</c:if>
 
 
+										</div>
+
+											<div id="myStagefeed" class="container-fluid ">
+											<div class="grid_title">Recommended</div>
+
+
+											<div class="p-2 text-left">
+
+												<!--FEED-SMALL-->
+											<c:forEach items="${list }" var="video">
+												<div class="col-md-3 col-sx-10 p-2 feed-small">
+													<a href="/video/watchForm?video_id=${video.VIDEO_ID}">
+														<div class="card">
+															<img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image" alt="image" />
+															<div class="row">
+																<div class="col-2 mt-3 pl-4">
+																	<img id="img"
+																		src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
+																		class="rounded-circle">
+																</div>
+																<div class="col-10 mt-3">
+																	<p class="mb-2"
+																		title="${video.VIDEO_TITLE }">
+																		${video.VIDEO_TITLE }
+																	</p>
+																	<p class=small-feed-info>
+																		${video.USER_NAME } <i class="fas fa-check-circle"></i><br>
+																		${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
+																	</p>
+																</div>
+															</div>
+														</div>
+													</a>
+												</div>
+												<!--FEED-SMALL Ends-->
+											</c:forEach>
+
+											</div>
+										</div>
 
 
 									</div>
+
+
+
+
+
+
 								</div>
-
-
 
 
 
@@ -190,43 +257,7 @@
 						<!-- Recommended section -->
 
 
-						<div id="myStagefeed" class="container-fluid">
-							<div class="grid_title">Recommended</div>
 
-
-							<div class="p-2 text-left">
-
-								<!--FEED-SMALL-->
-							<c:forEach items="${list }" var="video">
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="/video/watchForm?video_id=${video.VIDEO_ID}">
-										<div class="card">
-											<img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image" alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="${video.VIDEO_TITLE }">
-														${video.VIDEO_TITLE }
-													</p>
-													<p class=small-feed-info>
-														${video.USER_NAME } <i class="fas fa-check-circle"></i><br>
-														${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-							</c:forEach>
-
-							</div>
-						</div>
 						<!-- Recommended Section -->
 
 						<hr>

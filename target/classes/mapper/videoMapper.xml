@@ -82,10 +82,14 @@
 		,v.video_motion as video_motion
 		,v.video_likeNum as video_likeNum
 		,u.user_name as user_name
+		,s.stage_profileImgS as stage_profileImgS
+		,s.stage_profileImgO as stage_profileImgO
 	from
-	    video_tb v, user_tb u
+	    video_tb v, user_tb u, stage_tb s
 	where
 		v.video_user_id = u.user_id
+		and
+		s.stage_user_id = u.user_id
 		<if test="_parameter != null">
 	and
 		v.video_title like '%' || #{searchText} || '%'

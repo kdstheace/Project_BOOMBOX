@@ -19,9 +19,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name = "google-signin-client_id"content = "290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
-    
+        <link
+	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+	rel="stylesheet">
+	
+	
     <style type="text/css">
-    
+    * {
+	font-family: 'Do Hyeon';
+	font-size: 20px;
+}    
     body{
     padding: 0px;
     margin: 0px;
@@ -47,7 +54,7 @@ video{
     width: 80%;
     height:40%;
     padding: 40px;
-    background-color: rgba(255, 255, 255, 0.322);
+    background-color: rgba(255, 255, 255, 0);
     margin: 0 auto;
 
     transform: translate(-50%); /* 추가 */
@@ -112,7 +119,7 @@ function onSignIn(googleUser) {
         </video>
         <div class="frontBox">
             <img class="front_Logo" src="/resources/img/BOOMBOXsq.png" width="200px" style="align-items: center;">
-            <p class="front_text">Boom Box 들어가는 입구 페이지</p><br><br>
+            <p class="front_text">당신을 댄스머신으로 만들어 줄 Boom Box</p><br><br>
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
     </div>

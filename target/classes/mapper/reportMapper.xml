@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boom.box.dao.ReportMapper">
+
+
+<select id="selectReportone" parameterType="int" resultType="hashmap">
+
+SELECT
+	s.STAGE_ID 		as stage_id
+	,s.STAGE_USER_ID	as stage_user_id
+	,s.STAGE_BANNERIMGS as stage_bannerImgS
+	,s.STAGE_BANNERIMGO as stage_bannerImgO
+	,s.STAGE_PROFILEIMGS as stage_profileImgS
+	,s.STAGE_PROFILEIMGO as stage_profileImgO
+	,s.STAGE_INTRO as stage_intro
+	,u.user_name as user_name
+
+FROM
+	STAGE_TB s , USER_TB u
+WHERE
+	STAGE_USER_ID=#{stage_user_id}
+
+
+</select>
+
+
+<insert id="insertReport" parameterType="report">
+
+INSERT
+	INTO
+	PENDING_TB (
+	PENDING_ID,
+	PENDING_USER_ID,
+	PENDING_TITLE,
+	PENDING_NAME,
+	PENDING_CONTENT,
+	PENDING_STATUS
+	)VALUES(
+	pending_seq.nextval
+	,#{pending_user_id}
+	,#{pending_title}
+	,#{pending_name}
+	,#{pending_content}
+	 ,'0'
+	 )
+
+
+</insert>
+
+
+
+</mapper>

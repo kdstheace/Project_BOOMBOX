@@ -1,13 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리페이지</title>
 
-<link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet"
-	type="text/css">
+<link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+	
+	<script type="text/javascript">
+	
+	function searchFnc(page){
+		var searchform = document.getElementById("searchForm");
+		console.log("펑션으로 들어옴.");
+		document.getElementById("page").value = page;
+		searchForm.submit();
+		}
+	
+	</script>
 
 </head>
 <body>
@@ -36,12 +47,29 @@
 		style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
 	<br>
 
-	<p> &emsp; 유저 검색하기</p>
-	<form action="/video/searchForm" method="get" id="searchForm" class="form-inline my-2 my-lg-0 col-6">
-		<input type="hidden" name="page" id="page"> 
-		<input class="form-control mr-sm-2 search-bar" type="search" name="userNameSearch" value="${searchText }" placeholder="user Name Search">
-		<button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchFnc(1);">Search</button>
-	</form>
+<form action="/manager/reportManagerForm" name="searchUser" id="searchUser" method="get" >
+	<input type="hidden" name="page" id="page">
+    <input class="form-control mr-sm-2 search-bar" type="search" name = "searchText" value="${searchText }" placeholder="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchFnc(1);">Search</button>
+</form>
+
+
+
+<c:forEach var="userName" items="${userNameList}" varStatus="status">
+	<p>${userOne.user_name}</p><br>
+</c:forEach>
+
+<c:if test="${userOne.user_name != null}">
+			Name이 중복입니다. 다시 입력해 주세요.
+	</c:if>
+
+	<c:if test="${userOne.user_name == null}">
+		<c:if test="${checkName.user_name != null}">
+				${checkName.user_name }는 사용 가능합니다.<br>
+			<input type="button" value="적용하기" onclick="useName('${checkName.user_name }');">
+		</c:if>
+	</c:if>
+
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

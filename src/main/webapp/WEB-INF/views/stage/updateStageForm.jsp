@@ -133,7 +133,7 @@ function realtimeClock() {
 	}
 
 	function uploadClose(){
-	var upload=	location.href = "/"
+	var upload=	location.href = "/";
 		upload.close();
 		}
 

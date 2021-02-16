@@ -30,20 +30,28 @@ public class UserDAO {
 
 	@Transactional(rollbackFor = {Exception.class})
 	public int insertUser(UserVO user) throws Exception{
-		logger.info("다오까지 들어옴");
 		int count1 = 0;
 		int count2 = 0;
+		int count3 = 0;
+		logger.info("다오까지는 들어왔다잉");
 		try {
 			UserMapper mapper = session.getMapper(UserMapper.class);
 			count1 = mapper.insertUser(user);
-			count2 = mapper.insertUserInterest(user);
 			logger.info("유저 디비에 삽입 완료!");
+			count2 = mapper.insertUserInterest(user);
+			logger.info("유저 흥미 디비에 삽입완료!");
+			count3 = mapper.insertStage(user);
+			logger.info("스테이지 디비에 삽입완료!");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception();
 		}
 		return count1;
 	}
+	
+	
+	
 	public UserVO selectUserOne(UserVO user) {
 		UserVO one = null;
 		try {

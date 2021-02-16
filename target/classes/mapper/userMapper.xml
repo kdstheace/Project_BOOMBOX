@@ -36,6 +36,22 @@
 	    ,#{user_bday}
 	)
 </insert>
+	
+<insert id="insertStage" parameterType="user">
+	INSERT INTO 
+		stage_tb (
+			stage_id
+			, stage_user_id
+		)select
+			stage_seq.nextval
+			, A.* from(
+			select
+				#{user_id} as stage_user_id
+			from
+				dual
+			) A
+</insert>
+
 
 <insert id="insertUserInterest" parameterType="user">
 	insert into

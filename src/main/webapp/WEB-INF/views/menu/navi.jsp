@@ -121,6 +121,19 @@
 										.rounded-circle {
 						width: 48px;
 					}
+					        .nav-btn > a > img{
+            width : 30px;
+            display : block;
+            margin : auto;
+            height : 30px;
+
+        }
+
+        .nav-link{
+            width: 80px;
+            text-align : center;
+        }    
+					
 				
 				</style>
 
@@ -128,7 +141,7 @@
 <body>
 				<nav class="navbar navbar-expand-lg navbar-light bg-light upper-bar">
 					<div class="col-3">
-						<img src="/resources/img/logo_home.png" class="main-logo img-fluid" href="/">
+						<a href="/"><img src="/resources/img/logo_home.png" class="main-logo img-fluid"></a>
 					</div>
 
 					<form action="/video/searchForm" method="get" id="searchForm" class="form-inline my-2 my-lg-0 col-6">
@@ -144,13 +157,10 @@
 					</button>
 					<div class="collapse navbar-collapse col-3" id="navbarSupportedContent">
 						<ul class="navbar-nav col-3">
-							<li class="nav-item active"><a class="nav-link" href="/video/editorForm"><i
-										class="fas fa-film"></i>Editor</a></li>
-							<li class="nav-item active"><a class="nav-link" href="/video/uploadForm"><i
-										class="fas fa-cloud-upload-alt"></i>Upload</a>
+							<li class="nav-item nav-btn active"><a class="nav-link" href="/video/editorForm"><img src="/resources/img/nav/edit.png">Editor</a></li>
+							<li class="nav-item nav-btn active"><a class="nav-link" href="/video/uploadForm"><img src="/resources/img/nav/upload.png">Upload</a>
 							</li>
-							<li class="nav-item active"><a class="nav-link" href="/others/alarmForm"><i
-										class="fas fa-bell"></i>Alarm</a></li>
+							<li class="nav-item nav-btn active"><a class="nav-link" href="/others/alarmForm"><img src="/resources/img/nav/alarm.png">Alarm</a></li>
 							<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
 									id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"> <img id="img" src="${sessionScope.loginImg }"

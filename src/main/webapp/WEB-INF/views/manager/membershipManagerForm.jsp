@@ -25,6 +25,14 @@
 <hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
 
 
+	<p> &emsp; 유저 검색하기</p>
+	<form method="get" id="searchUser" class="form-inline my-2 my-lg-0 col-6">
+		<input type="hidden" name="page" id="page"> 
+		<input class="form-control mr-sm-2 search-bar" type="search" name="userNameSearch" value="${searchText }" placeholder="user Name Search">
+		<button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="fn_searchUser();">Search</button>
+	</form>
+
+
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
