@@ -132,10 +132,59 @@ function realtimeClock() {
 	  return zero + n;
 	}
 
-	function uploadClose(){
-	var upload=	location.href = "/";
-		upload.close();
+
+	function delectFuntion(){
+		var result = confirm("정말로 삭제 하시겠습니까?");
+		if(result){
+		    alert("삭제 되었습니다.");
+		}else{
+		    alert("취소 되었습니다.");
+		    return false;
 		}
+		return true;
+		}
+
+
+	function uploadClose(){
+
+	
+
+		if(stage_intro/* 	var uploadBanner = document.getElementById("uploadBanner").value;
+		var profileImg = document.getElementById("profileImg").value;
+		var stage_intro = document.getElementById("stage_intro").value;
+
+		if(uploadBanner == null || uploadBanner.length == 0){
+			alert("배너 파일을 선택해 주세요.");
+			return false;
+		}
+
+		if(profileImg == null || profileImg.length == 0){
+			alert("프로필 사진을 선택해 주세요.");
+			return false;
+		} */ == null || stage_intro.length == 0){
+			alert("소개글을 적어주세요.");
+			return false;
+		}else if( stage_intro != null && stage_intro.length != 0){
+
+			var result = confirm(" 업로드 하시겠습니까?");
+
+			if(result){
+			    alert("업로드 되었습니다.");
+			}else{
+			    alert("취소 되었습니다.");
+			    return false;
+			}
+
+			return true;
+			}
+
+
+
+		}
+
+
+
+
 
 
 </script>
@@ -150,27 +199,27 @@ function realtimeClock() {
 			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</p>
-		<h1>고객센터</h1>
+		<h1>스테이지 수정</h1>
 		<form action="/stage/uploadStage" method="post" enctype="multipart/form-data">
 
 			<label>
-			<p class="label-txt">Banner Upload :</p>
-			<input type="file" name="uploadBanner">
+			<p class="label-txt">Banner Upload :&emsp; &emsp;&emsp;&emsp;<a class="btn btn-danger" href="/stage/deleteBanner" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a></p><br>
+			<input type="file" id="uploadBanner" name="uploadBanner">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label>
 
 			<label>
-			<p class="label-txt">Profile Upload :</p>
-			<input type="file" name="profileImg">
+			<p class="label-txt">Profile Upload : &emsp;&emsp;&emsp;&emsp; <a class="btn btn-danger" href="/stage/deleteProfile" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a></p><br>
+			<input type="file" id="profileImg" name="profileImg" >
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label>
 
 			<label>
-				<p class="label-txt"> Intro </p><br> <textarea  name="stage_intro" class="form-control col-sm-7" rows="5" ></textarea>
+				<p class="label-txt"> Intro </p><br> <textarea  id="stage_intro" name="stage_intro" class="form-control col-sm-7" rows="5"  ></textarea>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -178,8 +227,8 @@ function realtimeClock() {
 
 
 
-				<input class="btn btn-outline-success my-2 my-sm-7" type="submit" id="uploadsub" value="수정하기" onclick="uploadClose();">
-				<a class="btn btn-danger" href="/stage/myStageForm" role="button">취소</a>
+				<input class="btn btn-outline-success my-2 my-sm-7" type="submit" id="uploadsub" value="수정하기" onclick="return uploadClose();">
+				<a class="btn btn-danger" href="/report/closeForm" role="button">취소</a>
 
 		</form>
 

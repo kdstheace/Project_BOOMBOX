@@ -23,6 +23,18 @@
 
 
 <hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
+<form action="/motion/upload" method="post" enctype="multipart/form-data">
+	Video ID<input type="text" name="motion_video_id" value="${video_id}"><br>
+	Motion Title<input type="text" name="motion_title"><br>
+	Motion Class<br>
+	자세교정<input type="radio" name="motion_class" value="1" checked="checked">
+	카운트<input type="radio" name="motion_class" value="2"><br>
+	metadata.json<input type="file" name="uploadMetadata"><br>
+	model.json<input type="file" name="uploadModel"><br>
+	<input type="submit" value="Upload">
+</form>
+
+	
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

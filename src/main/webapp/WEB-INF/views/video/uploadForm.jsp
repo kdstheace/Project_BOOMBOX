@@ -53,8 +53,7 @@
          <div class="p-1 pt-3">
 
 
-            <form action="/video/upload" method="post"
-               enctype="multipart/form-data">
+            <form action="/video/upload" method="post" enctype="multipart/form-data">
 
                <div class="row mt-2 border-bottom">
 

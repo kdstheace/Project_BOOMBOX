@@ -58,10 +58,33 @@ public class MyStageDAO {
 		return list;
 	}
 
+	public int deleteBanner(MyStageVO vo) {
+	int cnt= 0;
+	try {
+		MyStageMapper mapper = session.getMapper(MyStageMapper.class);
+		cnt = mapper.deleteBanner(vo);
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+
+	return cnt;
+}
 
 
 
+	public int deleteProfile(MyStageVO vo) {
+	int cnt= 0;
+	try {
+		MyStageMapper mapper = session.getMapper(MyStageMapper.class);
+		cnt = mapper.deleteProfile(vo);
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
 
+	return cnt;
+
+
+	}
 
 
 

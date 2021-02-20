@@ -109,11 +109,11 @@ function fn_bmApplyFormCheck(){
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</p>
 		<h1>붐마스터 신청하기</h1>
-		<form action="/user/updateInfo" method="get" onsubmit="return fn_bmApplyFormCheck();" >
+		<form action="/boomMaster/bmApply" method="post" onsubmit="return fn_bmApplyFormCheck();" >
 			<input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}"> 
 			<label>
 				<p class="label-txt">프로필 사진</p><br>
-				<input type="file" name="boommaster_cardImgS"><br> 
+				<input type="file" name="boommaster_cardImg"><br> 
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -121,7 +121,7 @@ function fn_bmApplyFormCheck(){
 			
 			<label>
 				<p class="label-txt">샘플영상</p><br> 
-				<input type="file" name="uploadThumbnail"><br>
+				<input type="file" name="boommaster_sampleVideo"><br>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -129,7 +129,7 @@ function fn_bmApplyFormCheck(){
 			
 			<label>
 				<p class="label-txt">샘플사진</p><br> 
-				<input type="file" name="uploadThumbnail"><br>
+				<input type="file" name="boommaster_careerImg"><br>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -278,8 +278,7 @@ function fn_bmApplyFormCheck(){
 			
 			<label>
 				<p class="label-txt">자기소개</p> <br>
-
-				<textarea class="form-control" cols="200" rows="3" ></textarea> 
+					<textarea class="form-control" cols="200" rows="3" id="boommaster_intro" name="boommaster_intro"></textarea> 
 <br>
 				<div class="line-box">
 					<div class="line"></div>

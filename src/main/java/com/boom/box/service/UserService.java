@@ -35,6 +35,7 @@ public class UserService {
 			session.setAttribute("userEmail", vo.getUser_email());
 			session.setAttribute("userZip", vo.getUser_zip());
 			session.setAttribute("userAddress", vo.getUser_address());
+			session.setAttribute("userManager", vo.getUser_manager());
 			
 			String num = "2";
 			String managerNum = vo.getUser_manager();
@@ -71,7 +72,13 @@ public class UserService {
 	
 	//로그아웃
 	public void logout() {
-		session.removeAttribute("loginId");
+	  session.removeAttribute("loginGoogleId");
+      session.removeAttribute("loginId");
+      session.removeAttribute("loginImg");
+      session.removeAttribute("loginName");
+      session.removeAttribute("userEmail");
+      session.removeAttribute("userZip");
+      session.removeAttribute("userAddress");
 	}
 	//중복 닉네임 찾기
 	public UserVO selectUserOne(UserVO user) {

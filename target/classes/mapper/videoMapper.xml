@@ -148,5 +148,15 @@
 	</if>
 </select>
 
+<delete id="deleteVideo" parameterType="int">
+
+DELETE
+FROM
+	VIDEO_TB
+WHERE
+	VIDEO_ID = #{video_id}
+
+
+</delete>
 
 </mapper>

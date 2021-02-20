@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boom.box.dao.BoomMasterMapper">
+
+<insert id="insertBoomMaster" parameterType="boomMaster">
+
+INSERT INTO
+	BOOMMASTER_TB (
+		boommaster_id,
+		boommaster_user_id,
+		boommaster_inDate,
+		boommaster_outDate,
+		boommaster_cardImgS,
+		boommaster_cardImgO,
+		boommaster_careerImgS,
+		boommaster_careerImgO,
+		boommaster_sampleVideoS,
+		boommaster_sampleVideoO,
+		boommaster_intro,
+		boommaster_major1,
+		boommaster_major2,
+		boommaster_m
+		
+	) VALUES (
+		boommaster_seq.nextval,
+		#{boommaster_user_id},
+		#{boommaster_inDate},
+		#{boommaster_outDate},
+		#{boommaster_cardImgS},
+		#{boommaster_cardImgO},
+		#{boommaster_careerImgS},
+		#{boommaster_careerImgO},
+		#{boommaster_sampleVideoS},
+		#{boommaster_sampleVideoO},
+		#{boommaster_intro},
+		#{boommaster_major1},
+		#{boommaster_major2})
+
+</insert>
+
+
+<select id="selectBoomMasterList" resultType="hashmap" parameterType="String">
+
+select
+	boommaster_id
+	,boommaster_user_id
+	,boommaster_inDate
+	,boommaster_outDate
+	,boommaster_cardImgS
+	,boommaster_cardImgO
+	,boommaster_careerImgS
+	,boommaster_careerImgO
+	,boommaster_sampleVideoS
+	,boommaster_sampleVideoO
+	,boommaster_intro
+	,boommaster_major1
+	,boommaster_major2
+from
+	boommaster_tb
+	
+</select>
+	
+
+</mapper>

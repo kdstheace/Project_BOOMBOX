@@ -39,10 +39,10 @@ public class ManagerViewController {
 		return "manager/crmSend";
 	}
 
-	//고객센터 메인페이지 가기
+	//관리자 메인페이지 가기
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String managerHome() {
-		System.out.println("고객센터 홈");
+		System.out.println("관리자페이지");
 		return "manager/managerHome";
 	}
 	
@@ -55,8 +55,9 @@ public class ManagerViewController {
 	
 	//모션등록 페이지 가기
 	@RequestMapping(value = "/motionRegistrationForm", method = RequestMethod.GET)
-	public String motionRegistrationForm() {
+	public String motionRegistrationForm(@RequestParam(defaultValue = "0")int video_id, Model model) {
 		System.out.println("모션등록 페이지");
+		model.addAttribute("video_id", video_id);
 		return "/manager/motionRegistrationForm";
 	}
 	

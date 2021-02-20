@@ -18,5 +18,6 @@ public class BoomMasterVO {
 	public String boommaster_intro;
 	public String boommaster_major1;
 	public String boommaster_major2;
+	public int boommaster_confirm;
 
 }

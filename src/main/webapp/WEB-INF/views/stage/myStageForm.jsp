@@ -133,7 +133,7 @@
 												<div class="pl-5 pr-5 pb-5"><img  alt="uploadPhoto" src="/stage/banner?=${myStage.stage_id }" height="200px" width="1000px"></div>
 											</c:when>
 											<c:otherwise>
-												<div><img  alt="BannerPhoto" src="/resources/img/myStage/defultPhotoBar.png" height="180px" width="1000px"></div>
+												<div class="pl-5 pr-5 pb-5"><img   alt="BannerPhoto" src="/resources/img/myStage/defultPhotoBar.png" height="200px" width="1000px"></div>
 											</c:otherwise>
 										</c:choose>
 
@@ -148,7 +148,7 @@
 												<img  alt="ProfileImg" src="/stage/profile?=${myStage.stage_id }" height="200px" width="150px">
 											</c:when>
 											<c:otherwise>
-												<img  alt="ProfileImg" src="/resources/img/myStage/defultProfileImg.png" height="200px" width="150px">
+												<img  alt="ProfileImg" src="${sessionScope.loginImg }" height="200px" width="150px">
 											</c:otherwise>
 										</c:choose>
 										<h4 >프로필 사진</h4>
@@ -175,14 +175,14 @@
 										</div>
 
 										<!-- 프로필사진 -->
-										<div class="pt-5 pl-2">
+										<div class="col-2 mt-3 pl-4">
 											<div><h4>Intro</h4></div>
 												<c:choose>
 													<c:when test="${myStage.stage_intro != null }">
-													${myStage.stage_intro }
+													<div class="card">${myStage.stage_intro }</div>
 													</c:when>
 													<c:otherwise>
-													소개글을 적어주세요.
+													<div class="card ">소개글을 적어주세요.</div>
 													</c:otherwise>
 												</c:choose>
 										</div>

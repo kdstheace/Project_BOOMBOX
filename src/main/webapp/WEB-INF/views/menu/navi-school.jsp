@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <!DOCTYPE html>
     <html>
 
@@ -128,18 +129,18 @@
             .rounded-circle {
                 width: 48px;
             }
-        .nav-btn > a > img{
-            width : 30px;
-            display : block;
-            margin : auto;
-            height : 30px;
-
-        }
-
-        .nav-link{
-            width: 80px;
-            text-align : center;
-        }          
+	        .nav-btn > a > img{
+	            width : 30px;
+	            display : block;
+	            margin : auto;
+	            height : 30px;
+	
+	        }
+	
+	        .nav-link{
+	            width: 80px;
+	            text-align : center;
+	        }          
             
             
         </style>
@@ -168,18 +169,21 @@
                     <li class="nav-item nav-btn active"><a class="nav-link" href="/video/uploadForm"><img src="/resources/img/nav/uploadY.png"><font color="yellow">Upload</font></a>
                     </li>
                     <li class="nav-item nav-btn active"><a class="nav-link" href="/others/alarmForm"><img src="/resources/img/nav/alarmY.png"><font color="yellow">Alarm</font></a></li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img
-                                id="img" src="${sessionScope.loginImg }" class="rounded-circle">
+                    <li class="nav-item dropdown">
+                    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                            <img id="img" src="${sessionScope.loginImg }" class="rounded-circle">
                             <font color="yellow">${sessionScope.loginName }</font>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" onclick="updateInfoForm();">개인정보 수정</a> <a class="dropdown-item"
-                                href="/stage/myStageForm">My Stage</a> <a class="dropdown-item"
-                                href="/membership/membershipForm">결제 및 멤버십</a>
-                            <a class="dropdown-item" onclick="bmApplyForm();">붐마스터
-                                관리</a> <a class="dropdown-item" onclick="crmForm();">고객센터</a>
+                            <a class="dropdown-item" onclick="updateInfoForm();">개인정보 수정</a> 
+                            <a class="dropdown-item" href="/stage/myStageForm">My Stage</a> 
+                            <a class="dropdown-item" href="/membership/membershipForm">결제 및 멤버십</a>
+						<a class="dropdown-item" href="/boomMaster/bmHome">붐마스터 관리</a> 
+                           <a class="dropdown-item" onclick="crmForm();">고객센터</a>
                             <div class="dropdown-divider"></div>
+                            <c:if test="${sessionScope.userManager == 2 }">
+                           		 <a class="dropdown-item" href="/manager/home">관리자 페이지</a>                            
+                            </c:if>
                             <a class="dropdown-item" href="#" onclick="signOut();">로그아웃</a>
 
                         </div>

@@ -36,5 +36,28 @@ public class MyStageService {
 
 		return dao.selectVideoListMystage(id);
 	}
+	
+	public int deleteBanner(MyStageVO vo) {
+		int count = 0;
+		try {
+			count = dao.deleteBanner(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+
+	public int deleteProfile(MyStageVO vo) {
+		int count = 0;
+		try {
+			count = dao.deleteProfile(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+
 
 }

@@ -48,4 +48,9 @@ public class VideoService {
 		return count;
 	}
 
+	public int deleteVideo(int video_id) {
+		return dao.deleteVideo(video_id);
+
+	}
+
 }

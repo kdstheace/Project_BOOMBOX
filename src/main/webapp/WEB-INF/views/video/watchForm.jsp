@@ -48,6 +48,16 @@
                             moreText.style.display = "inline";
                         }
                     }
+                   	function delectFuntion(){
+                		var result = confirm("정말로 삭제 하시겠습니까?");
+                		if(result){
+                		    alert("삭제 되었습니다.");
+                		}else{
+                		    alert("취소 되었습니다.");
+                		    return false;
+                		}
+                		return true;
+                		}
                 </script>
 
 
@@ -62,6 +72,22 @@
                     }
 
                     /* WATCHFORM END */
+                    .panel-group{
+                    	width : 100%;
+                    }
+                    .panel-title{
+                    	margin-top: 10px;
+                    	margin-left: 10px;
+                    }
+					.textinput {  
+					  width: 90%;
+					  min-height: 60px;
+					  outline: none;
+					  resize: none;
+					  border: 1px solid #f0f0f0;
+					}
+					                    
+                    
                 </style>
 
             </head>
@@ -99,6 +125,9 @@
                                 <div class="row mt-2 border-bottom">
                                     <div class="col-7">
                                         <div>${video.VIDEO_TITLE }</div>
+                                        	<c:if test="${video.VIDEO_USER_ID==sessionScope.loginId }">
+												<a class="btn btn-danger" href="/video/deleteVideo?video_id=${video.VIDEO_ID }" role="button" style="font-size: 2px; line-height: 0.5px; " onclick="delectFuntion();">영상 삭제</a></p><br>
+                                        	</c:if>
                                     </div>
                                     <div class="col-5 text-right">
                                         <div class="row">
@@ -113,7 +142,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-3 border-bottom border-dark">
-                                                <a href="#" style="color: #606060;" title="I dislike this">
+                                                <a href="#" style="color: #606060;" title="Refresh">
                                                     <input type="button" value="원상복구" onclick="test1();">
                                                     <svg style="height: 18px; width: 18px; margin: auto;"
                                                         viewBox="0 0 24 24"></svg>
@@ -121,7 +150,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-3 border-bottom border-dark">
-                                                <a href="#" style="color: #606060;" title="Share"> <input type="button"
+                                                <a href="#" style="color: #606060;" title="Mirror"> <input type="button"
                                                         value="거울모드" onclick="test();"> <svg
                                                         style="height: 18px; width: 18px; margin: auto;"
                                                         viewBox="0 0 24 24">
@@ -157,25 +186,112 @@
 
                                     </div>
                                     <div class="col-2 text-right">
-                                        <button class="btn btn-danger" id="follow">Follow</button>
+                                        <a href="" class="btn btn-danger" id="follow">Follow</a>
                                         <br>
-                                        <button class="btn btn-outline-success my-2 my-sm-0">Motion</button>
+                                        <c:if test="${video.VIDEO_MOTION == 1 }">
+                                        	<a href="/motion/motionSelect?motion_video_id=${video.VIDEO_ID }" class="btn btn-outline-success my-2 my-sm-0">Motion</a>
+                                    	</c:if>
+                                    	<br>
+                                    	<c:if test="${sessionScope.userManager == 2 }">
+                                    	    <a href="/manager/motionRegistrationForm?video_id=${video.VIDEO_ID }" class="btn btn-outline-success my-2 my-sm-0">Motion Upload</a>
+                                    	</c:if>
                                     </div>
 
 
                                 </div>
                                 <div class="row mb-4">
-                                    <div class="col-12 m-4" style="color: #303030; font-weight: bold">댓글수</div>
-                                    <div class="col-1">
-                                        <img id="img" width="50" src="/resources/img/logo_home.png"
-                                            class="rounded-circle">
-                                    </div>
-                                    <div class="col-11">
-                                        <form>
-                                            <input type="text" name="comment" class="input_comment"
-                                                placeholder="Add a public comment...">
-                                        </form>
-                                    </div>
+                                                <div class=panel-group role=tablist>
+                                                    <div class="panel panel-default">
+                                                        <div class=panel-heading role=tab id=collapseListGroupHeading1>
+                                                            <h4 class=panel-title> 
+	                                                            <a href=#collapseListGroup1 class="collapsed" card-title role=button data-toggle=collapse aria-expanded=false aria-controls=collapseListGroup1>
+	                                                                    Comments 
+	                                                            </a> 
+                                                            </h4>
+                                                        </div>
+                                                        <div class="collapse panel-collapse" role=tabpanel
+                                                            id=collapseListGroup1
+                                                            aria-labelledby=collapseListGroupHeading1>
+                                                            <div class="comment-widgets">
+                                                                <!-- Comment Row -->
+                                                                <div class="d-flex flex-row comment-row m-t-0">
+                                                                    <div class="p-2">
+                                                                    	<img src="${sessionScope.loginImg }" alt="user" width="50" class="rounded-circle">
+                                                                    </div>
+                                                                    <div class="comment-text w-100">
+                                                                        <p class="font-medium">${sessionScope.loginName }</p>
+                                                                        <textarea class="textinput" placeholder="Comment"></textarea>
+                                                                        <div class="comment-footer float-right">
+                                                                            <button type="button" class="btn btn-success btn-sm">Submit</button>
+                                                                           <br><br><button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <!-- Comment Row -->
+                                                                <div class="d-flex flex-row comment-row m-t-0">
+                                                                    <div class="p-2"><img
+                                                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg"
+                                                                            alt="user" width="50"
+                                                                            class="rounded-circle"></div>
+                                                                    <div class="comment-text w-100">
+                                                                        <h6 class="font-medium">HONGJU</h6>
+                                                                        <span class="m-b-15 d-block">HOAH</span>
+                                                                        <span
+                                                                            class="text-muted float-right">2021/02/13</span><br>
+                                                                        <button type="button"
+                                                                            class="btn btn-danger btn-sm float-right">Report</button>
+
+                                                                        <div class="comment-footer">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <!-- Comment Row -->
+                                                                <div class="d-flex flex-row comment-row m-t-0">
+                                                                    <div class="p-2"><img
+                                                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg"
+                                                                            alt="user" width="50"
+                                                                            class="rounded-circle"></div>
+                                                                    <div class="comment-text w-100">
+                                                                        <h6 class="font-medium">CHANGWON</h6>
+                                                                        <span class="m-b-15 d-block">Someday Ill be just like you!</span>
+                                                                        <span
+                                                                            class="text-muted float-right">2021/02/12</span><br>
+                                                                        <button type="button"
+                                                                            class="btn btn-danger btn-sm float-right">Report</button>
+
+                                                                        <div class="comment-footer">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="d-flex flex-row comment-row m-t-0">
+                                                                    <div class="p-2"><img
+                                                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg"
+                                                                            alt="user" width="50"
+                                                                            class="rounded-circle"></div>
+                                                                    <div class="comment-text w-100">
+                                                                        <h6 class="font-medium">James KIM</h6>
+                                                                        <span class="m-b-15 d-block">HOAH</span>
+                                                                        <span
+                                                                            class="text-muted float-right">2021/02/11</span><br>
+                                                                        <button type="button"
+                                                                            class="btn btn-danger btn-sm float-right">Report</button>
+
+                                                                        <div class="comment-footer">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+
+                                                            </div> <!-- Card -->
+                                                        </div>
+                                                    </div>
+                                                </div>                                    
                                 </div>
                             </div>
                         </div>

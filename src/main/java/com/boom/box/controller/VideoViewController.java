@@ -130,8 +130,6 @@ public class VideoViewController {
 
 	}
 	
-	
-	
 	@RequestMapping(value="/thumbnail", method=RequestMethod.GET)
 	public void thumbnail(int video_id, HttpServletResponse response) {
 		VideoVO video = service.selectVideoById(video_id);
@@ -189,7 +187,16 @@ public class VideoViewController {
 		model.addAttribute("searchText",searchText);
 		model.addAttribute("navi", navi);
 		
-		return "/video/searchForm";
+		return "video/searchForm";
+	}
+	@RequestMapping(value="/deleteVideo")
+	public String deleteVideo(int video_id) {
+		System.out.println(video_id);
+
+		service.deleteVideo(video_id);
+
+		return "redirect:/";
+
 	}
 	
 }

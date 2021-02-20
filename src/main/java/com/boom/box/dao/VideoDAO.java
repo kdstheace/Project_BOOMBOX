@@ -81,4 +81,16 @@ public class VideoDAO {
 		return count;
 	}
 	
+	public int deleteVideo(int video_id) {
+		int count = 0;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			count = mapper.deleteVideo(video_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+
+	}
+	
 }

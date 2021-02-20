@@ -41,6 +41,32 @@ WHERE
 
 </update>
 
+<update id="deleteBanner" parameterType="myStage">
+
+UPDATE
+	STAGE_TB
+SET
+	STAGE_USER_ID = #{stage_user_id}
+	,STAGE_BANNERIMGS = #{stage_bannerImgS}
+	,STAGE_BANNERIMGO = #{stage_bannerImgO}
+WHERE
+	STAGE_USER_ID = #{stage_user_id}
+
+</update>
+
+<update id="deleteProfile" parameterType="myStage">
+
+UPDATE
+	STAGE_TB
+SET
+	STAGE_USER_ID = #{stage_user_id}
+	,STAGE_PROFILEIMGS = #{stage_profileImgS}
+	,STAGE_PROFILEIMGO = #{stage_profileImgO}
+WHERE
+	STAGE_USER_ID = #{stage_user_id}
+
+</update>
+
 <select id="selectVideoListMystage" parameterType="int" resultType="hashmap">
 	select
 	    v.video_id as video_id

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -157,9 +158,19 @@ public class StageViewController {
 
 
 	@RequestMapping(value = "/profile")
-	public void profile(HttpServletResponse response) {
+	public void profile(HttpServletResponse response, @RequestParam(defaultValue = "0")int video_user_id) {
+		int id = 0;
+		int loginId = (int)session.getAttribute("loginId");	
+		if(video_user_id == 0) {
+			video_user_id = loginId;
+		}
+		
+		if(video_user_id == loginId) {
+			id = loginId;
+		}else {
+			id = video_user_id;
+		}
 
-		int id = (int)session.getAttribute("loginId");
 		MyStageVO stage = service.selectMyStageone(id);
 
 		String original_file = stage.getStage_profileImgO();
@@ -205,9 +216,66 @@ public class StageViewController {
 	@RequestMapping(value = "/updateStageForm" ,method = RequestMethod.GET)
 	public String updateStageForm(Model  model) {
 
+		int id = (int)session.getAttribute("loginId");
+		MyStageVO stage = service.selectMyStageone(id);
+		System.out.println(stage);
+
+		model.addAttribute("stage", stage);
 
 
 		return"stage/updateStageForm";
+	}
+
+
+	@RequestMapping(value = "/deleteBanner" )
+	public String deleteBanner(Model  model) {
+
+		int id = (int)session.getAttribute("loginId");
+		MyStageVO stage = service.selectMyStageone(id);
+		System.out.println(stage);
+
+		stage.setStage_bannerImgO("");
+		stage.setStage_bannerImgS("");
+		System.out.println(stage);
+
+
+		int cnt = service.deleteBanner(stage);
+
+		if(cnt > 0) {
+			System.out.println("삭제성공");
+		}else {
+
+			return"redirect:/stage/updateStageForm";
+		}
+
+		return"redirect:/stage/updateStageForm";
+	}
+
+
+	@RequestMapping(value = "/deleteProfile")
+	public String deleetProfile(Model  model) {
+
+
+		int id = (int)session.getAttribute("loginId");
+		MyStageVO stage = service.selectMyStageone(id);
+		System.out.println(stage);
+
+		stage.setStage_profileImgO("");
+		stage.setStage_profileImgS("");
+		System.out.println(stage);
+
+
+		int cnt = service.deleteProfile(stage);
+
+		if(cnt > 0) {
+			System.out.println("삭제성공");
+		}else {
+
+			return"redirect:/stage/updateStageForm";
+		}
+
+
+		return"redirect:/stage/updateStageForm";
 	}
 
 

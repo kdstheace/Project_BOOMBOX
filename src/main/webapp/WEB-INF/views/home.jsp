@@ -55,6 +55,9 @@
 
 			<body>
 				<jsp:include page="/WEB-INF/views/menu/navi.jsp" />
+<!-- 				<img src="/motionAi/img/cw.png">
+				<img src="/motionAi/img/123.jpg">
+				<img src="/motionAi/img/Bed.jpg"> -->
 					<!-- Page Content -->
 					<div id="page-content-wrapper">
 						<div class="container-fluid">
@@ -76,7 +79,7 @@
 																<div class="col-2 mt-3 pl-4">
 																<c:choose>
 																	<c:when test="${video.STAGE_PROFILEIMGO != null }">
-																		<img id="img" src="/stage/profile?=${myStage.stage_id }" class="rounded-circle">
+																		<img id="img" src="/stage/profile?=${video.VIDEO_USER_ID}" class="rounded-circle">
 																	</c:when>
 																	<c:otherwise>
 																		<img id="img" src="/resources/img/myStage/defultProfileImg.png" class="rounded-circle">
