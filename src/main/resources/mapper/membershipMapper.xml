@@ -60,15 +60,15 @@ WHERE
 <insert id="insertMembership" parameterType="membership">
 
 INSERT INTO HR.MEMBERSHIP_TB (
-	MEMBERSHIP_ID,
-	MEMBERSHIP_USER_ID,
-	MEMBERSHIP_OUTDATE,
-	MEMBERSHIP_PRICE
+   MEMBERSHIP_ID,
+   MEMBERSHIP_USER_ID,
+   MEMBERSHIP_OUTDATE,
+   MEMBERSHIP_PRICE
 )VALUES(
-	membership_seq.nextval
-	,#{membership_user_id}
-	,(SELECT MEMBERSHIP_OUTDATE FROM MEMBERSHIP_TB WHERE MEMBERSHIP_ID = (SELECT max(MEMBERSHIP_ID) FROM MEMBERSHIP_TB WHERE membership_user_id = #{membership_user_id}))+30
-	,#{membership_price}
+   membership_seq.nextval
+   ,#{membership_user_id}
+   ,(SELECT MEMBERSHIP_INDATE FROM MEMBERSHIP_TB WHERE MEMBERSHIP_ID = (SELECT max(MEMBERSHIP_ID) FROM MEMBERSHIP_TB WHERE membership_user_id = #{membership_user_id}))+30
+   ,#{membership_price}
 )
 
 </insert>
