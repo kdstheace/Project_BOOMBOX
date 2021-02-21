@@ -55,9 +55,7 @@
 
 			<body>
 				<jsp:include page="/WEB-INF/views/menu/navi.jsp" />
-<!-- 				<img src="/motionAi/img/cw.png">
-				<img src="/motionAi/img/123.jpg">
-				<img src="/motionAi/img/Bed.jpg"> -->
+
 					<!-- Page Content -->
 					<div id="page-content-wrapper">
 						<div class="container-fluid">

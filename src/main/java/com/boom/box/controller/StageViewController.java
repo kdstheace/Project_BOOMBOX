@@ -253,7 +253,7 @@ public class StageViewController {
 
 
 	@RequestMapping(value = "/deleteProfile")
-	public String deleetProfile(Model  model) {
+	public String deleteProfile(Model  model) {
 
 
 		int id = (int)session.getAttribute("loginId");

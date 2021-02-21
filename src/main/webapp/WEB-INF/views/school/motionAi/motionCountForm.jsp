@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,10 +43,14 @@
 	<script src="/resources/js/tf.min.js"></script>
 	<script src="/resources/js/teachablemachine-pose.min.js"></script>
 	<script type="text/javascript">
-	/* 	const URL1 = "/resources/motionAi/metadata.json";
-		const URL2 = "/resources/motionAi/model.json"; */
- 	    const URL1 = "../../resources/motionAi/metadata.json";
-	    const URL2 = "../../resources/motionAi/model.json"; 
+
+		const video_id = "<c:out value='${motion.motion_video_id}'/>"
+		const motion_class = "<c:out value='${motion.motion_class}'/>"
+		const motion_title = "<c:out value='${motion.motion_title}'/>"
+	    
+ 	    const URL1 = '../../resources/motionAi/'.concat(video_id, '/',motion_class,'/',motion_title,'/metadata.json');
+	    const URL2 = '../../resources/motionAi/'.concat(video_id, '/',motion_class,'/',motion_title,'/model.json'); 
+
 	    let model, webcam, ctx, labelContainer, maxPredictions;
 	
 	    async function init() {
@@ -119,7 +124,7 @@
 	            labelContainer.childNodes[i].innerHTML = classPrediction;
 	        }
 	
-	        // finally draw the poses
+	        
 	        drawPose(pose);
 	    }
 	

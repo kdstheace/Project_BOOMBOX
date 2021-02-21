@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,7 @@
 	카운트<input type="radio" name="motion_class" value="2"><br>
 	metadata.json<input type="file" name="uploadMetadata"><br>
 	model.json<input type="file" name="uploadModel"><br>
+	weight.zip<input type="file" name="uploadweight"><br>
 	<input type="submit" value="Upload">
 </form>
 

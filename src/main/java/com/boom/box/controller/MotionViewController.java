@@ -45,15 +45,24 @@ public class MotionViewController {
 	
 	@RequestMapping(value="/count", method=RequestMethod.GET)
 	public String count(int motion_video_id, Model model) {
-
 		MotionVO motion = service.selectMotionOne(motion_video_id);
+		logger.info("{}",motion);
 		model.addAttribute("motion", motion);
 		logger.info("카운트 창으로 이동");
 		return "school/motionAi/motionCountForm";
 	}
 	
+	@RequestMapping(value="/pose", method=RequestMethod.GET)
+	public String pose(int motion_video_id, Model model) {
+		MotionVO motion = service.selectMotionOne(motion_video_id);
+		logger.info("{}",motion);
+		model.addAttribute("motion", motion);
+		logger.info("카운트 창으로 이동");
+		return "school/motionAi/motionPoseForm";
+	}
+	
 	@RequestMapping(value="/upload", method=RequestMethod.POST)
-	public String upload(MotionVO motion, MultipartFile uploadMetadata, MultipartFile uploadModel, HttpSession session) {
+	public String upload(MotionVO motion, MultipartFile uploadMetadata, MultipartFile uploadModel, MultipartFile uploadweight, HttpSession session) {
 		uploadPath = uploadPath + "/" + motion.getMotion_video_id() + "/" + motion.getMotion_class() + "/" + motion.getMotion_title();
 		if(!uploadMetadata.isEmpty()) {
 			String motion_metaS = uploadMetadata.getOriginalFilename();
@@ -67,6 +76,11 @@ public class MotionViewController {
 			String motion_modelO = FileService2.saveFile(uploadModel, uploadPath);
 			motion.setMotion_modelO(motion_modelO);
 			motion.setMotion_modelS(motion_modelS);
+		}
+		
+		if(!uploadweight.isEmpty()) {
+			String motion_modelS = uploadweight.getOriginalFilename();
+			String motion_modelO = FileService2.saveFile(uploadweight, uploadPath);
 		}
 		String path = service.insertMotion(motion);
 		return path;

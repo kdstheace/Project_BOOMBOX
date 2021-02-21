@@ -138,6 +138,7 @@
                 width: 80px;
                 text-align: center;
             }
+            
         </style>
 
     </head>
