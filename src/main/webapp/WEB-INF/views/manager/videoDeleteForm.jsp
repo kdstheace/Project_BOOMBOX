@@ -10,6 +10,7 @@
 
 </head>
 <body>
+<div style="margin: 30px;">
 
 <h1>비디오 삭제 페이지</h1><br>
 
@@ -25,6 +26,7 @@
 <hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
 
 
+</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

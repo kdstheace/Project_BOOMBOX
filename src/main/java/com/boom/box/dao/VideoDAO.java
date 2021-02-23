@@ -93,4 +93,20 @@ public class VideoDAO {
 
 	}
 	
+
+	public VideoVO selectVideoClass(int video_id) {
+
+		VideoVO video = null;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			video = mapper.selectVideoClass(video_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return video;
+
+	}
+
+
+	
 }

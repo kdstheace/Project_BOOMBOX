@@ -11,7 +11,7 @@
 
 </head>
 <body>
-
+<div style="margin: 30px;">
 <h1>모션 등록 페이지</h1><br>
 
 <a href="/" class="btn btn-dark">메인홈으로 가기</a><br><br>
@@ -48,6 +48,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
 		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
 		crossorigin="anonymous"></script>
-
+</div>
 </body>
 </html>

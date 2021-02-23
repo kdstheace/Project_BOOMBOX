@@ -26,8 +26,28 @@ insert into motion_tb(
     ,#{motion_title}
 )
 </insert>
-	
-<select id="selectMotionOne" parameterType="int" resultType="motion">
+
+<select id="selectMotionListByClass" parameterType="motion" resultType="motion">
+select
+	motion_id
+	,motion_video_id	
+	,motion_class
+	,motion_metaS
+	,motion_metaO
+	,motion_modelS
+	,motion_modelO
+	,motion_title
+    ,motion_indate
+from
+    motion_tb
+where
+    motion_video_id =${motion_video_id}
+    and
+    motion_class=${motion_class}
+</select>
+
+
+<select id="selectMotionOne" parameterType="motion" resultType="motion">
 select
 	motion_id
 	,motion_video_id	
@@ -42,7 +62,25 @@ from
     motion_tb
 where
     motion_video_id = #{motion_video_id}
+    and
+    motion_title= #{motion_title}
+</select>
 
+<select id="selectMotionOneByTitle" parameterType="String" resultType="motion">
+select
+	motion_id
+	,motion_video_id	
+	,motion_class
+	,motion_metaS
+	,motion_metaO
+	,motion_modelS
+	,motion_modelO
+	,motion_title
+    ,motion_indate
+from
+    motion_tb
+where
+    motion_title= #{motion_title}
 </select>
 
 </mapper>

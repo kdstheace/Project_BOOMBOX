@@ -1,5 +1,8 @@
 package com.boom.box.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.boom.box.vo.UserVO;
 
 public interface UserMapper {
@@ -21,4 +24,6 @@ public interface UserMapper {
 	public int deleteUserInterest(UserVO user);
 	//유저 수정에 필요한 전체정보
 	public UserVO selectUserOne2(UserVO user);
+	//유저 전체 검색
+	public ArrayList<HashMap<String, Object>> selectUserList();
 }

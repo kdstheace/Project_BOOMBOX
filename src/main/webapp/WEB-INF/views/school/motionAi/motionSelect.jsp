@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -33,22 +34,25 @@
 <body>
 	<jsp:include page="/WEB-INF/views/menu/navi-school.jsp" />
     <!-- Page Content -->
-    <div id="page-content-wrapper">
-       <div class="container-fluid">
           <!-- main content -->
           <div class="row main_container">
              <div class="col-md-12">
              
              <!-- 여기에 쓰면 된다!! -->
-             	<a href="/motion/count?motion_video_id=${motion_video_id }">Count</a>
-				<a href="/motion/pose?motion_video_id=${motion_video_id }">Pose Accuracy</a>
+             	<h1>Pose Accuracy</h1>
+             	<c:forEach items="${list1 }" var="motion1">
+             		<a href="/motion/pose?motion_video_id=${motion1.motion_video_id }&motion_title=${motion1.motion_title }">${motion1.motion_title }</a><br>
+             	</c:forEach>
+             	
+             	<h1>Count</h1>
+             	<c:forEach items="${list2 }" var="motion2">
+             		<a href="/motion/count?motion_video_id=${motion2.motion_video_id }&motion_title=${motion2.motion_title }">${motion2.motion_title }</a><br>
+             	</c:forEach>
+             	
              
              
 	 		 </div>
 		  </div>
-	   </div>
-	</div>
-
    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"></script>

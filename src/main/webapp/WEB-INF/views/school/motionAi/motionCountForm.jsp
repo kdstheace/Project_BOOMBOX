@@ -23,10 +23,9 @@
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/menu/navi-school.jsp" />
+	<jsp:include page="/WEB-INF/views/school/motionAi/motionSelect.jsp" />
     <!-- Page Content -->
-   <div id="page-content-wrapper">
-      <div class="container-fluid">
+
          <!-- main content -->
          <div class="row main_container">
             <div class="col-md-12">
@@ -56,13 +55,7 @@
 	    async function init() {
 	    	const metadataURL = URL1;
 	        const modelURL = URL2;
-/* 	    	const metadataURL = URL1 + "metadata.json";
-	        const modelURL = URL1 + "model.json"; */
 	        
-	
-	        // load the model and metadata
-	        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-	        // Note: the pose library adds a tmPose object to your window (window.tmPose)
 	        model = await tmPose.load(modelURL, metadataURL);
 	        maxPredictions = model.getTotalClasses();
 	
@@ -144,8 +137,7 @@
             
             </div>
          </div>
-      </div>
-  </div>
+
           
 	
 

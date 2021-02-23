@@ -82,7 +82,8 @@
         transition: ease .6s; 
     } 
     .input:focus + .line-box .line { width: 100%; } 
-    .label-active { top: -3em; } button { display: inline-block; padding: 12px 24px; background: rgb(220,220,220); font-weight: bold; color: rgb(120,120,120); border: none; outline: none; border-radius: 3px; cursor: pointer; transition: ease .3s; } 
+    .label-active { top: -3em; } 
+    button { display: inline-block; padding: 12px 24px; background: rgb(220,220,220); font-weight: bold; color: rgb(120,120,120); border: none; outline: none; border-radius: 3px; cursor: pointer; transition: ease .3s; } 
     button:hover { background: #8BC34A; color: #ffffff; } 
     
 
@@ -90,26 +91,30 @@
 <title>붐마스터 신청하기</title>
 
 <script type="text/javascript">
+	function fn_bmApplyFormCheck() {
 
-function fn_bmApplyFormCheck(){
+		return true;
+	}
 
-	return true;
-}
+	function fn_applyMotion() {
 
+		alert("신청 메일이 전송되었습니다.");
+		window.close();
 
+	}
 </script>
 
 
 </head>
 <body>
-<div>
-	<div id="allSize" class="container">
-		<p>
-			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
-				width="15%" style="min-width: 120px; max-width: 200px;">
-		</p>
-		<h1>붐마스터 신청하기</h1>
-		<form action="/user/updateInfo" method="get" onsubmit="return fn_bmApplyFormCheck();" >
+	<div>
+		<div id="allSize" class="container">
+			<p>
+				<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
+					width="15%" style="min-width: 120px; max-width: 200px;">
+			</p>
+			<h1>모션인식 신청하기</h1>
+			<%-- 		<form action="/user/updateInfo" method="get" onsubmit="return fn_bmApplyFormCheck();" >
 			<input type="hidden" id="user_googleId" name="user_googleId" value="${loginGoogleId}"> 
 
 			<label>
@@ -152,19 +157,49 @@ function fn_bmApplyFormCheck(){
 				<input class="butten" type="submit" value="붐마스터 신청하기"> 
 				<input type="reset" value="cancel">
 			</button>
-		</form>
+		</form> --%>
 
+			<div class="panel-body">
+
+				<form id="form" class="topBefore"
+					onsubmit="return fn_applyMotion();">
+
+					<input id="name" type="text" placeholder="NAME"
+						style="width: 100%;">
+					<hr class="one"
+						style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
+					<input id="email" type="text" placeholder="E-MAIL"
+						style="width: 100%;">
+					<hr class="one"
+						style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
+					<textarea class="form-control" cols="200" rows="3"
+						id="boommaster_intro" name="boommaster_intro"
+						placeholder="MESSAGE"></textarea>
+					<hr class="one"
+						style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
+
+					<input id="submit" type="submit" value="모션인식 신청메일 보내기">
+
+				</form>
+
+			</div>
+
+
+
+
+		</div>
 	</div>
-</div>
 
 	<!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->
 
-				<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-					integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-					crossorigin="anonymous"></script>
-				<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-					integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
-					crossorigin="anonymous"></script>
-		
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+		crossorigin="anonymous"></script>
+
 </body>
 </html>

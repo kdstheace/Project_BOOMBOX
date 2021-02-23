@@ -39,6 +39,9 @@ public class MembershipService {
 		return dao.selectSecondOut(userId);
 	}
 
+	public int  updateDefultday(int userId) {
+		return dao.updateDefultday(userId);
+	}
 
 
 

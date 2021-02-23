@@ -94,8 +94,9 @@
                               
                                  <!--FEED-SMALL-->
 								<!-- for each문으로 카드 반복 시행 -->
+								<c:if test="${videoClass ==1}">
 								<%-- <c:forEach items="${list}" var="video"> --%>
-								<div class="col-md-2 col-sx-10 p-2 feed-small">
+								<div class="col-md-2 col-sx-10 p-2 feed-small" style="background-color: #ffc107;">
 									<a href="">
 										<div class="card">
 											<!-- 강사사진 -->
@@ -117,6 +118,7 @@
 										</div>
 									</a>
 								</div>
+								</c:if>
 								<%-- </c:forEach> --%>
 								<!--FEED-SMALL Ends-->
                                  <!--FEED-SMALL Ends-->

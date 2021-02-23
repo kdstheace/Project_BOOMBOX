@@ -135,6 +135,28 @@ WHERE
 	userInterest_user_id = #{user_id }
 
 </delete>	
-	
+
+
+<select id="selectUserList" resultType="hashmap" parameterType="string">
+
+
+SELECT
+	user_id,
+	user_name,
+	user_googleId,
+	user_googleImg,
+	user_phone,
+	user_address,
+	user_zip,
+	user_email,
+	user_gender,
+	user_bday,
+	user_inDate,
+	user_manager,
+	user_pending
+FROM
+	user_tb
+
+</select>
 
 </mapper>

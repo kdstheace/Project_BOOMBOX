@@ -1,5 +1,9 @@
 package com.boom.box.dao;
 
+import java.util.HashMap;
+
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,5 +101,16 @@ public class UserDAO {
 			throw new Exception();
 		}
 		return count1;
+	}
+	
+	public ArrayList<HashMap<String, Object>> selectUserList() {
+		ArrayList<HashMap<String, Object>> list = null;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			list = mapper.selectUserList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

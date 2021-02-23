@@ -1,5 +1,7 @@
 package com.boom.box.service;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,17 @@ public class MotionService {
 		return path;
 	}
 	
-	public MotionVO selectMotionOne(int motion_video_id) {
-		MotionVO motion = dao.selectMotionOne(motion_video_id);
-		return motion;
+	public MotionVO selectMotionOne(MotionVO motion) {
+		MotionVO vo = dao.selectMotionOne(motion);
+		return vo;
+	}
+	
+	public MotionVO selectMotionOneByTitle(String motion_title) {
+		MotionVO vo = dao.selectMotionOneByTitle(motion_title);
+		return vo;
+	}
+	public ArrayList<MotionVO> selectMotionListByClass(MotionVO motion){
+		ArrayList<MotionVO> list = dao.selectMotionListByClass(motion);
+		return list;
 	}
 }

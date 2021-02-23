@@ -11,8 +11,6 @@ INSERT INTO
 	BOOMMASTER_TB (
 		boommaster_id,
 		boommaster_user_id,
-		boommaster_inDate,
-		boommaster_outDate,
 		boommaster_cardImgS,
 		boommaster_cardImgO,
 		boommaster_careerImgS,
@@ -22,13 +20,11 @@ INSERT INTO
 		boommaster_intro,
 		boommaster_major1,
 		boommaster_major2,
-		boommaster_m
+		boommaster_confirm
 		
 	) VALUES (
 		boommaster_seq.nextval,
 		#{boommaster_user_id},
-		#{boommaster_inDate},
-		#{boommaster_outDate},
 		#{boommaster_cardImgS},
 		#{boommaster_cardImgO},
 		#{boommaster_careerImgS},
@@ -37,31 +33,68 @@ INSERT INTO
 		#{boommaster_sampleVideoO},
 		#{boommaster_intro},
 		#{boommaster_major1},
-		#{boommaster_major2})
+		#{boommaster_major2},
+		#{boommaster_confirm}		
+	)
 
 </insert>
 
+<select id="selectBoomMasterApplyList" resultType="hashmap" parameterType="String">
 
-<select id="selectBoomMasterList" resultType="hashmap" parameterType="String">
-
-select
-	boommaster_id
-	,boommaster_user_id
-	,boommaster_inDate
-	,boommaster_outDate
-	,boommaster_cardImgS
-	,boommaster_cardImgO
-	,boommaster_careerImgS
-	,boommaster_careerImgO
-	,boommaster_sampleVideoS
-	,boommaster_sampleVideoO
-	,boommaster_intro
-	,boommaster_major1
-	,boommaster_major2
-from
+SELECT
+	boommaster_id,
+	boommaster_user_id,
+	boommaster_inDate,
+	boommaster_outDate,
+	boommaster_cardImgS,
+	boommaster_cardImgO,
+	boommaster_careerImgS,
+	boommaster_careerImgO,
+	boommaster_sampleVideoS,
+	boommaster_sampleVideoO,
+	boommaster_intro,
+	boommaster_major1,
+	boommaster_major2,
+	boommaster_confirm
+FROM
 	boommaster_tb
 	
 </select>
 	
+<update id="changeBoomMaster" parameterType="boomMaster">
+
+update
+	boommaster_tb
+set
+	boommaster_confirm = #{boommaster_confirm}
+where
+	boommaster_id = #{boommaster_id}
+
+
+</update>
+
+<select id="selectBoomasterOne" parameterType="int" resultType="boomMaster">
+SELECT
+	BOOMMASTER_ID,
+	BOOMMASTER_USER_ID,
+	BOOMMASTER_INDATE,
+	BOOMMASTER_OUTDATE,
+	BOOMMASTER_CARDIMGS,
+	BOOMMASTER_CARDIMGO,
+	BOOMMASTER_CAREERIMGS,
+	BOOMMASTER_CAREERIMGO,
+	BOOMMASTER_SAMPLEVIDEOS,
+	BOOMMASTER_SAMPLEVIDEOO,
+	BOOMMASTER_INTRO,
+	BOOMMASTER_MAJOR1,
+	BOOMMASTER_MAJOR2,
+	BOOMMASTER_CONFIRM
+FROM
+	HR.BOOMMASTER_TB
+WHERE
+	BOOMMASTER_USER_ID = #{boommaster_user_id}
+
+</select>
+
 
 </mapper>

@@ -159,4 +159,16 @@ WHERE
 
 </delete>
 
+<select id="selectVideoClass" parameterType="int" resultType="video">
+
+select
+	video_class
+from
+	video_tb
+where 
+video_user_id= #{video_user_id}
+
+
+</select>
+
 </mapper>

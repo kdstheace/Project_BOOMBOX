@@ -12,7 +12,7 @@ public interface MembershipMapper {
 	public String selectSecondOut(int userId);
 	public int insertMembership(MembershipVO vo);
 	public int insertStartMembership(int vo) ;
-
+	public int  updateDefultday(int userId);
 
 
 }

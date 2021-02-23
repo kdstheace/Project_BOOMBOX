@@ -15,5 +15,5 @@ public interface VideoMapper {
 	public HashMap<String, Object> selectVideoOne(int video_id);
 	public int selectVideoCount(String searchText);
 	public int deleteVideo(int video_id);
-
+	public VideoVO selectVideoClass(int video_id);
 }

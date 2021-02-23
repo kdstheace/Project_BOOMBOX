@@ -88,6 +88,22 @@ public class MembershipDAO {
 	}
 
 
+	public int  updateDefultday(int userId) {
+
+		int cnt =0;
+
+		try {
+			MembershipMapper mapper = session.getMapper(MembershipMapper.class);
+			cnt = mapper.updateDefultday(userId);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return cnt;
+
+
+
+	}
 
 
 

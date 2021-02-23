@@ -12,13 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boom.box.service.BoomMasterService;
 import com.boom.box.service.ManagerService;
+import com.boom.box.service.UserService;
 import com.boom.box.util.PageNavigator;
+import com.boom.box.vo.BoomMasterVO;
+import com.boom.box.vo.BoomMasterVO;
 
 @Controller
 @RequestMapping(value = "/manager")
 public class ManagerViewController {
 	private static final Logger logger = LoggerFactory.getLogger(ManagerViewController.class);
+	@Autowired
+	private UserService usService;
+	@Autowired
+	private BoomMasterService bmService;
+	
 	@Autowired
 	private ManagerService service;
 	
@@ -46,10 +55,13 @@ public class ManagerViewController {
 		return "manager/managerHome";
 	}
 	
-	//신고관리 페이지 가기
+	// 신고관리 페이지 가기
 	@RequestMapping(value = "/reportManagerForm", method = RequestMethod.GET)
-	public String reportManagerForm() {
+	public String reportManagerForm(Model model) {
 		System.out.println("신고관리 페이지");
+		ArrayList<HashMap<String, Object>> list = usService.selectUserList();
+		model.addAttribute("list", list);
+		logger.info("체크:{}", list);
 		return "manager/reportManagerForm";
 	}
 	
@@ -61,13 +73,22 @@ public class ManagerViewController {
 		return "/manager/motionRegistrationForm";
 	}
 	
-	//붐마스터 등록 페이지 가기
+	// 붐마스터 등록 페이지 가기
 	@RequestMapping(value = "/boomMasterRegistrationForm", method = RequestMethod.GET)
-	public String boomMasterRegistrationForm() {
-		System.out.println("붐마스터 등록 페이지");
+	public String boomMasterRegistrationForm(Model model) {
+		logger.info("붐마스터 등록/취소 페이지");
+		ArrayList<HashMap<String, Object>> list = bmService.selectBoomMasterApplyList();
+		model.addAttribute("list", list);
+		logger.info("체크:{}", list);
 		return "/manager/boomMasterRegistrationForm";
 	}
-	
+	// 붐마스터 등록/취소 전환
+	@RequestMapping(value = "/changeBoomMaster", method = RequestMethod.GET)
+	public String changeBoomMaster(BoomMasterVO boomMaster) {
+		logger.info("수락/취소 클릭클릭 베이베~");
+		bmService.changeBoomMaster(boomMaster);
+		return "redirect:/manager/boomMasterRegistrationForm";
+	}
 	//광고등록 페이지 가기
 	@RequestMapping(value = "/adRegistrationForm", method = RequestMethod.GET)
 	public String adRegistrationForm() {

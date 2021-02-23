@@ -3,6 +3,10 @@ package com.boom.box.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 
@@ -124,5 +128,11 @@ public class UserService {
 			session.setAttribute("userAddress", vo.getUser_address());
 
 	}
+
+
+	public ArrayList<HashMap<String, Object>> selectUserList() {
+			ArrayList<HashMap<String, Object>> list = dao.selectUserList();
+			return list;
+		}
 
 }

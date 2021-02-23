@@ -6,53 +6,53 @@
 <mapper namespace="com.boom.box.dao.MembershipMapper">
 <select id="selectMembershipOne" parameterType="int" resultType="membership" >
 SELECT
-	MEMBERSHIP_ID,
-	MEMBERSHIP_USER_ID,
-	TO_CHAR(MEMBERSHIP_INDATE, 'yyyy-MM-dd') as MEMBERSHIP_INDATE,
-	TO_CHAR(MEMBERSHIP_OUTDATE, 'yyyy-MM-dd') as MEMBERSHIP_OUTDATE,
-	MEMBERSHIP_PRICE
+   MEMBERSHIP_ID,
+   MEMBERSHIP_USER_ID,
+   TO_CHAR(MEMBERSHIP_INDATE, 'yyyy-MM-dd') as MEMBERSHIP_INDATE,
+   TO_CHAR(MEMBERSHIP_OUTDATE, 'yyyy-MM-dd') as MEMBERSHIP_OUTDATE,
+   MEMBERSHIP_PRICE
 FROM
-	HR.MEMBERSHIP_TB
+   HR.MEMBERSHIP_TB
 WHERE
-	MEMBERSHIP_USER_ID = #{MEMBERSHIP_USER_ID}
-	AND
-	membership_id = (SELECT max(membership_id) FROM MEMBERSHIP_TB WHERE membership_user_id = #{MEMBERSHIP_USER_ID})
+   MEMBERSHIP_USER_ID = #{MEMBERSHIP_USER_ID}
+   AND
+   membership_id = (SELECT max(membership_id) FROM MEMBERSHIP_TB WHERE membership_user_id = #{MEMBERSHIP_USER_ID})
 </select>
 
 <select id="selectSecondOut" parameterType="int" resultType="String">
 SELECT
-	max(TO_CHAR(MEMBERSHIP_OUTDATE, 'yyyyMMdd')) AS MEMBERSHIP_OUTDATE
+   max(TO_CHAR(MEMBERSHIP_OUTDATE, 'yyyyMMdd')) AS MEMBERSHIP_OUTDATE
 FROM
-	membership_tb
+   membership_tb
 WHERE
-	MEMBERSHIP_USER_ID = #{MEMBERSHIP_USER_ID}
-	AND membership_id NOT IN (
-	SELECT
-		max(membership_id)
-	FROM
-		MEMBERSHIP_TB)
+   MEMBERSHIP_USER_ID = #{MEMBERSHIP_USER_ID}
+   AND membership_id NOT IN (
+   SELECT
+      max(membership_id)
+   FROM
+      MEMBERSHIP_TB)
 </select>
 
 <select id="selectMemberUser" parameterType="int" resultType="user">
 
 SELECT
-	USER_ID,
-	USER_NAME,
-	USER_GOOGLEID,
-	USER_GOOGLEIMG,
-	USER_PHONE,
-	USER_ADDRESS,
-	USER_ZIP,
-	USER_EMAIL,
-	USER_GENDER,
-	USER_BDAY,
-	USER_INDATE,
-	USER_MANAGER,
-	USER_PENDING
+   USER_ID,
+   USER_NAME,
+   USER_GOOGLEID,
+   USER_GOOGLEIMG,
+   USER_PHONE,
+   USER_ADDRESS,
+   USER_ZIP,
+   USER_EMAIL,
+   USER_GENDER,
+   USER_BDAY,
+   USER_INDATE,
+   USER_MANAGER,
+   USER_PENDING
 FROM
-	USER_TB
+   USER_TB
 WHERE
-	USER_ID=#{user_id}
+   USER_ID=#{user_id}
 
 </select>
 
@@ -67,7 +67,7 @@ INSERT INTO HR.MEMBERSHIP_TB (
 )VALUES(
    membership_seq.nextval
    ,#{membership_user_id}
-   ,(SELECT MEMBERSHIP_INDATE FROM MEMBERSHIP_TB WHERE MEMBERSHIP_ID = (SELECT max(MEMBERSHIP_ID) FROM MEMBERSHIP_TB WHERE membership_user_id = #{membership_user_id}))+30
+   ,(SELECT MEMBERSHIP_OUTDATE FROM MEMBERSHIP_TB WHERE MEMBERSHIP_ID = (SELECT max(MEMBERSHIP_ID) FROM MEMBERSHIP_TB WHERE membership_user_id = #{membership_user_id}))+30
    ,#{membership_price}
 )
 
@@ -75,18 +75,39 @@ INSERT INTO HR.MEMBERSHIP_TB (
 <insert id="insertStartMembership" parameterType="int">
 
 INSERT INTO HR.MEMBERSHIP_TB (
-	MEMBERSHIP_ID,
-	MEMBERSHIP_USER_ID,
-	MEMBERSHIP_OUTDATE,
-	MEMBERSHIP_PRICE
+   MEMBERSHIP_ID,
+   MEMBERSHIP_USER_ID,
+   MEMBERSHIP_OUTDATE,
+   MEMBERSHIP_PRICE
 )VALUES(
-	membership_seq.nextval
-	,#{membership_user_id}
-	,sysdate
-	,5000
+   membership_seq.nextval
+   ,#{membership_user_id}
+   ,sysdate
+   ,5000
 )
 
+
 </insert>
+
+<update id="updateDefultday" parameterType="int">
+
+UPDATE
+   HR.MEMBERSHIP_TB
+SET
+   MEMBERSHIP_INDATE = sysdate
+   ,MEMBERSHIP_OUTDATE = sysdate
+   ,MEMBERSHIP_PRICE = 100
+WHERE
+   MEMBERSHIP_ID = (
+   SELECT
+      MIN(MEMBERSHIP_ID)
+   FROM
+      MEMBERSHIP_TB
+   WHERE
+      membership_user_id =#{membership_user_id})
+
+
+</update>
 
 
 

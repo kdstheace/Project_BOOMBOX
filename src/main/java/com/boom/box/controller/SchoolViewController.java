@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boom.box.service.BoomMasterService;
 import com.boom.box.service.MembershipService;
+import com.boom.box.vo.BoomMasterVO;
 import com.boom.box.vo.MembershipVO;
+import com.boom.box.vo.VideoVO;
 
 @Controller
 @RequestMapping(value = "/school")
@@ -26,18 +28,18 @@ public class SchoolViewController {
 	private HttpSession session;
 	@Autowired
 	private MembershipService service;
+	@Autowired
+	private BoomMasterService boomService;
 
 	@RequestMapping(value = "/schoolForm", method = RequestMethod.GET)
 	public String schoolForm(Model model) {
+
 
 		int id = (int) session.getAttribute("loginId");
 
 		MembershipVO vo = service.selectMembershipOne(id);
 		System.out.println("vo =" + vo);
-		/*
-		 * ArrayList<HashMap<String, Object>> list = bmService.selectBoomMasterList();
-		 * model.addAttribute("list", list);
-		 */
+
 		// ���� ��¥
 		Calendar mon = Calendar.getInstance();
 		mon.add(Calendar.DATE, +0);
@@ -45,7 +47,23 @@ public class SchoolViewController {
 		String[] array2 = beforeMonth.split("-");
 		String today = array2[0] + array2[1] + array2[2];
 
+		//����� ����
 		if (vo == null) {
+			//���� �η��
+			//�ո����� ����
+			BoomMasterVO boomVO = boomService.selectBoomasterOne(id);
+			if(boomVO==null) {
+
+				//���� ���� ����
+
+				VideoVO videoVO = boomService.selectVideoClass(id);
+				System.out.println(videoVO);
+
+				String videoClass = videoVO.getVideo_class();
+				model.addAttribute("videoClass", videoClass);
+
+			}
+
 			service.insertStartMembership(id);
 			MembershipVO vo2 = service.selectMembershipOne(id);
 
@@ -69,6 +87,23 @@ public class SchoolViewController {
 
 			}
 		} else {
+			//���� �η��
+			//�ո����� ����
+			BoomMasterVO boomVO = boomService.selectBoomasterOne(id);
+			if(boomVO==null) {
+
+				//���� ���� ����
+
+				VideoVO videoVO = boomService.selectVideoClass(id);
+				System.out.println(videoVO);
+
+				String videoClass = videoVO.getVideo_class();
+				model.addAttribute("videoClass", videoClass);
+
+			}
+
+
+
 			// ��������.
 			String outdate = vo.getMembership_outdate();
 			String[] array21 = outdate.split("-");
@@ -94,6 +129,7 @@ public class SchoolViewController {
 
 
 	}
+
 
 	 @RequestMapping(value = "/schoolDeniedForm" , method = RequestMethod.GET)
 	 public String schoolDeniedForm() {

@@ -109,8 +109,8 @@ function fn_bmApplyFormCheck(){
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</p>
 		<h1>붐마스터 신청하기</h1>
-		<form action="/boomMaster/bmApply" method="post" onsubmit="return fn_bmApplyFormCheck();" >
-			<input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}"> 
+		<form action="/boomMaster/bmApply" method="post" enctype="multipart/form-data">
+			<%-- <input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}">  --%>
 			<label>
 				<p class="label-txt">프로필 사진</p><br>
 				<input type="file" name="boommaster_cardImg"><br> 
@@ -285,12 +285,34 @@ function fn_bmApplyFormCheck(){
 				</div>
 			</label>
 			
-				<input class="butten" type="submit" value="붐마스터 신청하기"> 
+				<input class="butten" type="submit" value="붐마스터 신청하기" id="uploadsub" value="Upload"> 
 				<input type="reset" value="cancel">
 			</button>
 		</form>
 
 	</div>
+	
+	  <script>
+      $(document).ready(function() {
+         $('[data-toggle="tooltip"]').tooltip();
+      });
+
+      function myFunction() {
+         var dots = document.getElementById("dots");
+         var moreText = document.getElementById("more");
+         var btnText = document.getElementById("myBtn");
+
+         if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "SHOW MORE";
+            moreText.style.display = "none";
+         } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "SHOW LESS";
+            moreText.style.display = "inline";
+         }
+      }
+   </script>
 
 	<!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->
 

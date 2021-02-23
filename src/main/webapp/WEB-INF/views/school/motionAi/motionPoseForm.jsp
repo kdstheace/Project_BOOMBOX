@@ -47,8 +47,8 @@
 <body>
 	<jsp:include page="/WEB-INF/views/school/motionAi/motionSelect.jsp" />
     <!-- Page Content -->
-   <div id="page-content-wrapper">
-      <div class="container-fluid">
+
+
          <!-- main content -->
          <div class="row main_container">
             <div class="col-md-12">   
@@ -161,8 +161,7 @@
             
             </div>
          </div>
-      </div>
-  </div>
+
           
 	
 
