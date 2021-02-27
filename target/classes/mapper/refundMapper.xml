@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boom.box.dao.RefundMapper">
+<insert id="insertRefund" parameterType="refund">
+
+INSERT
+	INTO
+	HR.REFUND_TB (
+	REFUND_ID,
+	REFUND_USER_ID,
+	REFUND_CONTENT,
+	REFUND_NAME
+	)VALUES(
+	refund_seq.nextval,
+	#{refund_user_id},
+	#{refund_content},
+	#{refund_name}
+	)
+
+</insert>
+
+</mapper>

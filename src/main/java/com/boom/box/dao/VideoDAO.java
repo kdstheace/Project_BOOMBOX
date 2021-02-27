@@ -107,6 +107,59 @@ public class VideoDAO {
 
 	}
 
+	public void updateVideoHits(int video_id) {
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			mapper.updateVideoHits(video_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int insertLike(VideoVO video) {
+		int count = 0;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			count = mapper.insertLike(video);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public int countLike(int like_video_id) {
+		int count = 0;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			count = mapper.countLike(like_video_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public Integer isLike(HashMap<String, Integer> map) {
+		Integer like_id = 0;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			like_id = mapper.isLike(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return like_id;
+	}
+	
+	public int deleteLike(HashMap<String, Integer> map) {
+		int count = 0;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			count = mapper.deleteLike(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+		
+	}
 
 	
 }

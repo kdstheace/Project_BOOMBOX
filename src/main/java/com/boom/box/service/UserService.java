@@ -104,7 +104,8 @@ public class UserService {
 			count = dao.updateInfo(user);
 			if(count > 0) {
 				System.out.println("개인정보 수정 성동");
-				path = "redirect:/";
+				session.setAttribute("loginName", user.getUser_name());
+				path = "redirect:/report/closeForm";
 			}else {
 				System.out.println("개인정보 수정 실패");
 				path = "user/updateInfoForm";
@@ -134,5 +135,10 @@ public class UserService {
 			ArrayList<HashMap<String, Object>> list = dao.selectUserList();
 			return list;
 		}
+	
+	public String selectGoogleImg(int user_id) {
+		String url = dao.selectGoogleImg(user_id);
+		return url;
+	}
 
 }

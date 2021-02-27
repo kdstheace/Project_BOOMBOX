@@ -149,7 +149,7 @@ function realtimeClock() {
 
 	
 
-		if(stage_intro/* 	var uploadBanner = document.getElementById("uploadBanner").value;
+	/* 	var uploadBanner = document.getElementById("uploadBanner").value;
 		var profileImg = document.getElementById("profileImg").value;
 		var stage_intro = document.getElementById("stage_intro").value;
 

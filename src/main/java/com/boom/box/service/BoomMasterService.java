@@ -56,4 +56,10 @@ public class BoomMasterService {
 	public VideoVO selectVideoClass(int video_id) {
 	return videoDAO.selectVideoClass(video_id);
 	}
+	
+	public int deleteBoomMaster(int boomMaster_User_Id) {
+		logger.info("붐마삭제, 서비스로 데이터 받아서 서비스 동작 시작");
+		int count = dao.deleteBoomMasterOne(boomMaster_User_Id);
+		return count;
+	}
 }

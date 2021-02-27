@@ -99,11 +99,30 @@ public class BoomMasterViewController {
 			return "redirect:/";
 		}
 	}
-
-	// 붐마스터 관리 폼
+	
+	// 붐마스터 캔슬 폼
 	@RequestMapping(value = "/bmCancelForm", method = RequestMethod.GET)
 	public String bmCancelForm() {
+		logger.info("붐마스터 취소 폼 들어옴");
 		return "boomMaster/bmCancelForm";
+	}
+
+	// 붐마스터 캔슬
+	@RequestMapping(value = "/bmCancel", method = RequestMethod.POST)
+	public String deleteBoomMaster(int boomMaster_User_Id) {
+
+		logger.info("{}", boomMaster_User_Id);
+		int cnt;
+		cnt = service.deleteBoomMaster(boomMaster_User_Id);
+		logger.info("데이터 넣고 돌아옴");
+
+		if (cnt > 0) {
+			logger.info("붐마삭제 최종 성공!");
+			return "redirect:/";
+		} else {
+			logger.info("실패");
+			return "redirect:/";
+		}
 	}
 
 	// 붐마스터 관리 폼

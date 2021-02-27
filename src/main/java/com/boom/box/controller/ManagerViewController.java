@@ -34,20 +34,6 @@ public class ManagerViewController {
 	private final int countPerPage = 10;
 	private final int pagePerGroup = 5;
 
-	// 고객센터 폼
-	@RequestMapping(value = "/crmForm", method = RequestMethod.GET)
-	public String crmForm() {
-		System.out.println("고객센터 폼 들어감");
-		return "manager/crmForm";
-	}
-
-	// 고객센터 전달하기
-	@RequestMapping(value = "/crmSend", method = RequestMethod.POST)
-	public String crmSend() {
-		System.out.println("고객센터 내용 전달 시작");
-		return "manager/crmSend";
-	}
-
 	//관리자 메인페이지 가기
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String managerHome() {
@@ -96,13 +82,17 @@ public class ManagerViewController {
 		return "/manager/adRegistrationForm";
 	}
 	
-	//비디오 삭제 페이지 가기
-	@RequestMapping(value = "/videoDeleteForm", method = RequestMethod.GET)
-	public String videoDeleteForm() {
-		System.out.println("비디오 삭제 페이지");
-		return "/manager/videoDeleteForm";
-	}
 	
+	//고객센터 페이지 가기
+	@RequestMapping(value = "/crmManagerForm", method = RequestMethod.GET)
+	public String crmManagerForm(Model model) {
+		System.out.println("고객센터 페이지");
+		ArrayList<HashMap<String, Object>> list = service.selectCrmList();
+		model.addAttribute("crm", list);
+		logger.info("체크:{}", list);
+		return "/manager/crmManagerForm";
+	}
+		
 	//멤버십 관리 페이지 가기
 	@RequestMapping(value = "/membershipManagerForm", method = RequestMethod.GET)
 	public String membershipManagerForm() {

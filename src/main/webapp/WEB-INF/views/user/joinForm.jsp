@@ -236,11 +236,11 @@ function fn_joinFormCheck(){
 }
 
 function nameCheckForm(){
-	window.open("/user/nameCheckForm", "nameCheckForm","width=300, height=400");
+	window.open("/user/nameCheckForm", "nameCheckForm","width=500, height=700");
 	}
 
 function emailCheckForm(){
-	window.open("/user/emailCheckForm", "emailCheckForm","width=300, height=400");
+	window.open("/user/emailCheckForm", "emailCheckForm","width=500, height=700");
 	}
 	
 
@@ -340,9 +340,9 @@ function fn_check(){
 			</label> 
 			
 			<label>
-				<p class="label-txt">우편번호</p> 
-				<input type="text" class="input" id="user_zip" name="user_zip"> 
-				<input id="button" type="button" onclick="sample6_execDaumPostcode()" value="우편번호찾기">
+				<p class="label-txt">우편번호</p> <input type="text" class="input"
+				id="user_zip" name="user_zip" value="${userZip }"> 
+				<input type="button" value="우편번호찾기" onclick="sample6_execDaumPostcode()" style="width: 130px;">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -450,8 +450,6 @@ function fn_check(){
 				<input type="reset" value="cancel">
 			</button>
 		</form>
-
-		<input type="button" onclick="fn_check();">
 
 	</div>
 

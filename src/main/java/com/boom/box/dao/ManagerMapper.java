@@ -9,5 +9,7 @@ public interface ManagerMapper {
 
 	public int selectUserCount(String searchText);
 	public ArrayList<HashMap<String, Object>> selectUserList(RowBounds rb, String searchText);
+	//고객센터 전체 인원
+	public ArrayList<HashMap<String, Object>> selectCrmList();
 
 }

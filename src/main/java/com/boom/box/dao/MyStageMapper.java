@@ -11,4 +11,5 @@ public interface MyStageMapper {
 	public int deleteBanner(MyStageVO vo);
 	public int deleteProfile(MyStageVO vo);
 	public ArrayList<HashMap<String, Object>> selectVideoListMystage(int id);
+	public  ArrayList<HashMap<String, Object>> selectMyStageReport(int id);
 }

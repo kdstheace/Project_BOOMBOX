@@ -113,4 +113,15 @@ public class UserDAO {
 		}
 		return list;
 	}
+	
+	public String selectGoogleImg(int user_id) {
+		String url = null;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			url = mapper.selectGoogleImg(user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return url;
+	}
 }

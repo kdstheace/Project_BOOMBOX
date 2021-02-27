@@ -73,7 +73,7 @@ where
 
 </update>
 
-<select id="selectBoomasterOne" parameterType="int" resultType="boomMaster">
+<select id="selectBoomMasterOne" parameterType="int" resultType="boomMaster">
 SELECT
 	BOOMMASTER_ID,
 	BOOMMASTER_USER_ID,
@@ -95,6 +95,16 @@ WHERE
 	BOOMMASTER_USER_ID = #{boommaster_user_id}
 
 </select>
+
+<delete id="deleteBoomMasterOne" parameterType="int">
+
+DELETE 
+FROM
+	boommaster_tb
+WHERE
+	boommaster_user_id = #{boommaster_user_id}
+	
+</delete>
 
 
 </mapper>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boom.box.service.MembershipService;
+import com.boom.box.service.RefundService;
 import com.boom.box.vo.MembershipVO;
 import com.boom.box.vo.UserVO;
 
@@ -31,14 +32,15 @@ public class MembershipViewController {
 	private HttpSession session;
 	@Autowired
 	private MembershipService service;
-
+	@Autowired
+	private RefundService refundService;
 	@RequestMapping(value = "/membershipForm", method = RequestMethod.GET)
 	public String membershipForm(Model model) {
 
 		int id = (int) session.getAttribute("loginId");
 
 
-		// ¿À´Ã ³¯Â¥
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
 		Calendar mon = Calendar.getInstance();
 		mon.add(Calendar.DATE, +0);
 		String beforeMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
@@ -49,7 +51,7 @@ public class MembershipViewController {
 		MembershipVO vo = service.selectMembershipOne(id);
 		System.out.println(vo);
 		service.updateDefultday(id);
-		System.out.println("³¯Â¥¾÷µ«");
+		System.out.println("ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½");
 
 
 		model.addAttribute("vo", vo);
@@ -57,12 +59,12 @@ public class MembershipViewController {
 		if (vo != null) {
 
 			try {
-				// ÀÎµ¥ÀÌÆ®
+				// ï¿½Îµï¿½ï¿½ï¿½Æ®
 				String intdate = vo.getMembership_indate();
 				String[] array = intdate.split("-");
 				String payStart = array[0] + array[1] + array[2];
 
-				// ¾Æ¿ôµ¥ÀÌÆ®
+				// ï¿½Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 				String outdate = vo.getMembership_outdate();
 
 				if (outdate != null) {
@@ -73,8 +75,8 @@ public class MembershipViewController {
 					int year = Integer.parseInt(array[0]);
 
 					if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-						// 29ÀÏ ÀÖÀ½
-						System.out.println(year + "³âÀº À±³â");
+						// 29ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+						System.out.println(year + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 						String today = sysdate;
 
@@ -122,8 +124,8 @@ public class MembershipViewController {
 						model.addAttribute("diff", result);
 
 					} else {
-						System.out.println(year + "³âÀº Æò³â");
-						// 28ÀÏ ÀÖÀ½
+						System.out.println(year + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
+						// 28ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						String outSecond = service.selectSecondOut(id);
 						logger.info("outSecond:{}",outSecond);
 
@@ -186,12 +188,12 @@ public class MembershipViewController {
 			System.out.println("vo2 :" + vo2);
 
 			try {
-				// ÀÎµ¥ÀÌÆ®
+				// ï¿½Îµï¿½ï¿½ï¿½Æ®
 				String indate = vo2.getMembership_indate();
 				String[] array = indate.split("-");
 				String payStart = array[0] + array[1] + array[2];
 
-				// ¾Æ¿ôµ¥ÀÌÆ®
+				// ï¿½Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 				String outdate = vo2.getMembership_outdate();
 
 				if (outdate != null) {
@@ -202,8 +204,8 @@ public class MembershipViewController {
 					int year = Integer.parseInt(array[0]);
 
 					if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-						// 29ÀÏ ÀÖÀ½
-						System.out.println(year + "³âÀº À±³â");
+						// 29ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+						System.out.println(year + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 						String today = sysdate;
 
@@ -251,8 +253,8 @@ public class MembershipViewController {
 						model.addAttribute("diff", result);
 
 					} else {
-						System.out.println(year + "³âÀº Æò³â");
-						// 28ÀÏ ÀÖÀ½
+						System.out.println(year + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
+						// 28ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 						String today = sysdate;
 
@@ -344,6 +346,11 @@ public class MembershipViewController {
 		service.insertMembership(vo);
 
 		return "membership/paySuccessForm";
+	}
+	@RequestMapping(value = "/payagree", method = RequestMethod.GET)
+	public String payagree() {
+
+		return "membership/payagree";
 	}
 
 }

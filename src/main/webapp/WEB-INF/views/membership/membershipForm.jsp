@@ -24,6 +24,10 @@
 
 <script type="text/javascript">
 
+function memberShipCrmForm() {
+    window.open("/membership/memberShipCrmForm", "memberShipCrmForm", "width=650, height=950");
+}
+
 
 function wirteForm() {
 	var date1 = new Date(Time2);
@@ -53,15 +57,15 @@ function extendCk(){
 
 		<div class="col-md-8 video_box">
 			<div class="p-4 pt-3">
-				<h1>맴버십</h1>
+				<h1>멤버십</h1>
 			</div>
 			<br>
 		 <c:if test="${diff!=0 && diff!=null }">
 			<form action="/membership/payCheckForm" method = "get" onsubmit="return extendCk();">
 				<input type="hidden" id="diff" name="diff" value="${diff }">
 				<div class="pl-5 pt-3 ">
-								<h3>현재 맴버쉽  </h3>&emsp;<a><h5>만기일 : ${year }년 ${mm }월 ${dd }일<br><br>
-								남은 맴버쉽 날짜 : <span style="color: red;">${diff }</span>일</h5></a>
+								<h3>현재 멤버쉽  </h3>&emsp;<a><h5>만기일 : ${year }년 ${mm }월 ${dd }일<br><br>
+								남은 멤버쉽 날짜 : <span style="color: red;">${diff }</span>일</h5></a>
 					<div class="col-7 text-right">
 					<input type="submit" value="연장하기">
 					</div>
@@ -70,20 +74,15 @@ function extendCk(){
 			<div class="pl-5 pt-3 ">
 
 				<h3>환불</h3>&emsp;<a><h5>- 고객센터 email</h5></a>
-				<div class="col-7 text-right"><a class="btn btn-primary" href="#" role="button">환불 문의하기</a></div>
+				<div class="col-7 text-right"><a class="btn btn-primary" href="#" role="button" onclick="memberShipCrmForm();">환불 문의하기</a></div>
 			</div>
 
-			<div  class="pl-5 pt-3 ">
 
-				<h3>결제내역</h3>&emsp;<a></a>
-				<div class="col-7 text-right"><h5>200일</h5></div>
-
-			</div>
 			</c:if>
 
 			<c:if test="${diff==0}">
 				<div class="p-5 pt-3">
-					<h3>현재 맴버쉽  </h3>&emsp;<a><h5>미 가입자 <br>
+					<h3>현재 멤버쉽  </h3>&emsp;<a><h5>미 가입자 <br>
 					<div class="col-7 text-right"><a class="btn btn-primary" href="/membership/payCheckForm" role="button">결제하러가기</a></div>
 			</div>
 	 	</c:if>

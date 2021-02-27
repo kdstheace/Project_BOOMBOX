@@ -40,6 +40,18 @@
 	order by
 	    video_indate desc
 </select>
-	
+
+<select id="selectCrmList" resultType="hashmap" parameterType="String"> 
+
+SELECT
+	crm_id,
+	crm_user_id,
+	crm_date,
+	crm_title,
+	crm_content
+FROM
+	crm_tb
+
+</select>
 
 </mapper>

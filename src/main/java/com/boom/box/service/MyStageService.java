@@ -57,7 +57,10 @@ public class MyStageService {
 		}
 		return count;
 	}
+	public ArrayList<HashMap<String, Object>> selectMyStageReport(int id) {
 
+		return dao.selectMyStageReport(id);
+	}
 
 
 }

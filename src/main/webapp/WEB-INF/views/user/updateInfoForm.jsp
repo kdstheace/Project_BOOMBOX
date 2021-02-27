@@ -1,98 +1,133 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+	rel="stylesheet">
 
-	<!-- 구글로그인 -->
-	<meta name="google-signin-scope" content="profile email">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name = "google-signin-client_id"content = "290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
+<!-- 구글로그인 -->
+<meta name="google-signin-scope" content="profile email">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id"
+	content="290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
 
 <style type="text/css">
-
 @charset "UTF-8";
 
-    *{
-        font-family : 'Do Hyeon';
-        font-size : 20px;
-    }
+* {
+	font-family: 'Do Hyeon';
+	font-size: 20px;
+}
 
-    body { 
-        background: #ffd343; 
-        } 
+body {
+	background: #ffd343;
+}
 
-    div#allSize{
-        max-width: 1000px; 
-        text-align: center;
-    }
+div#allSize {
+	max-width: 1000px;
+	text-align: center;
+}
 
-    #button{
-        font-size: 15px;
-    }
+#button {
+	font-size: 15px;
+}
 
-    img{
-        margin: 20px 20px 0px 20px;
-    }
-    
-    form { 
-        width: 60%; 
-        margin: auto; 
-        background: #ffffff; 
-        padding: 30px 120px 40px 120px; 
-        text-align: center; 
-        -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1); 
-        box-shadow: 2px 2px 3px rgba(0,0,0,0.1); 
-        min-width: 600px;
-        } 
-    label { 
-        display: block; 
-        position: relative; 
-        margin: 40px 0px; } 
-    .label-txt { 
-        position: absolute; 
-        top: -1.6em; 
-        padding: 10px; 
-        font-size: .8em; 
-        letter-spacing: 1px; 
-        color: rgb(120,120,120); 
-        transition: ease .3s; 
-        } 
-    .input { 
-        /* width: 100%;  */
-        padding: 10px; 
-        background: transparent; 
-        border: none; 
-        outline: none; } 
-    .line-box { 
-        position: relative; 
-        width: 100%; 
-        height: 2px; 
-        background: #BCBCBC; 
-    } 
-    .line { 
-        position: absolute; 
-        width: 0%; 
-        height: 2px; 
-        top: 0px;    
-        left: 50%; 
-        transform: translateX(-50%); 
-        background: #8BC34A; 
-        transition: ease .6s; 
-    } 
-    .input:focus + .line-box .line { width: 100%; } 
-    .label-active { top: -3em; } button { display: inline-block; padding: 12px 24px; background: rgb(220,220,220); font-weight: bold; color: rgb(120,120,120); border: none; outline: none; border-radius: 3px; cursor: pointer; transition: ease .3s; } 
-    button:hover { background: #8BC34A; color: #ffffff; } 
-    
+img {
+	margin: 20px 20px 0px 20px;
+}
 
+form {
+	width: 60%;
+	margin: auto;
+	background: #ffffff;
+	padding: 30px 120px 40px 120px;
+	text-align: center;
+	-webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+	min-width: 600px;
+}
 
+label {
+	display: block;
+	position: relative;
+	margin: 40px 0px;
+}
+
+.label-txt {
+	position: absolute;
+	top: -1.6em;
+	padding: 10px;
+	font-size: .8em;
+	letter-spacing: 1px;
+	color: rgb(120, 120, 120);
+	transition: ease .3s;
+}
+
+.input {
+	/* width: 100%;  */
+	padding: 10px;
+	background: transparent;
+	border: none;
+	outline: none;
+}
+
+.line-box {
+	position: relative;
+	width: 100%;
+	height: 2px;
+	background: #BCBCBC;
+}
+
+.line {
+	position: absolute;
+	width: 0%;
+	height: 2px;
+	top: 0px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #8BC34A;
+	transition: ease .6s;
+}
+
+.input:focus+.line-box .line {
+	width: 100%;
+}
+
+.label-active {
+	top: -3em;
+}
+
+button {
+	display: inline-block;
+	padding: 12px 24px;
+	background: rgb(220, 220, 220);
+	font-weight: bold;
+	color: rgb(120, 120, 120);
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: ease .3s;
+}
+
+button:hover {
+	background: #8BC34A;
+	color: #ffffff;
+}
 </style>
 <title>회원가입</title>
 <script type="text/javascript">
@@ -103,11 +138,13 @@ function fn_updateFormCheck(){
 	var user_zip = document.getElementById("user_zip").value;
 	var user_address = document.getElementById("user_address").value;
 	var user_email = document.getElementById("user_email").value;
+	var userInterest_interest = document.getElementById("userInterest_interest").value;
+
+
+
 	
-	var user_googleId = document.getElementById("user_googleId").value;
-        	
  	/* 닉네임 유효성 검사 */
- 	  	if(user_name == null || user_name.length == 0){
+ 	 if(user_name == null || user_name.length == 0){
 		alert("닉네임을 입력해 주세요");
 		return false;
 	} else if(user_name.length < 3 || user_name.length > 8) {
@@ -115,16 +152,6 @@ function fn_updateFormCheck(){
 		return false;
 	}
 
-	/* 핸드폰 */
-		var EXP_MOBILENUMBER = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-		
-	  	if(user_phone == null || user_phone.length == 0){
-			alert("핸드폰번호를 입력해 주세요");
-			return false;
-		}  else if (!EXP_MOBILENUMBER.test(user_phone)) {
-			alert("핸드폰번호를 제대로 입력해 주세요");
-			return false;
-		}
 
 
 	/* 우편번호 */
@@ -150,41 +177,33 @@ function fn_updateFormCheck(){
 		return false;
 	} */
 
+	
 	/* 관심장르 */
 	var count = 0;
-	var interestCheck = document.getElementsByName('userInterest_interest');
-	for(var i = 0; i < interestCheck.length; i++) {
-		if(interestCheck[i].checked) {
+	for(var i = 0; i < userInterest_interest.length; i++) {
+		if(userInterest_interest[i].checked) {
 			count = 1;
-			break;
+			/* break; */
 			}
 		}
-	if (count == 0) {  //관심분야 확인 
+	
+	if (count < 1) {  //관심분야 확인 
 		  alert("관심분야를 체크해 주세요"); 
 		  return false; 
 	}
 
-	/* 규약 */
- 	var count1 = 0;
-	var agreeCheck = document.getElementById('agreement');
-		if(agreeCheck.checked) {
-			count1 = 1;
-			}
-	if (count1 == 0) {  //관심분야 확인 
-		  alert("구약를 체크해 주세요"); 
-		  return false; 
-	} 
-	self.close();
 	return true;
 	
 }
 
+
+
 function nameCheckForm(){
-	window.open("/user/nameCheckForm", "nameCheckForm","width=300, height=400");
+	window.open("/user/nameCheckForm", "nameCheckForm","width=500, height=700");
 	}
 
 function emailCheckForm(){
-	window.open("/user/emailCheckForm", "emailCheckForm","width=300, height=400");
+	window.open("/user/emailCheckForm", "emailCheckForm","width=500, height=700");
 	}
 	
 
@@ -222,120 +241,139 @@ function fn_check(){
 </head>
 <body>
 
-<!-- <input type="text" id="sample6_postcode" placeholder="우편번호"> -->
-<!-- <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br> -->
-<!-- <input type="text" id="sample6_address" placeholder="주소"><br> -->
-<!-- <input type="text" id="sample6_detailAddress" placeholder="상세주소"> -->
-<!-- <input type="text" id="sample6_extraAddress" placeholder="참고항목"> -->
+	<!-- <input type="text" id="sample6_postcode" placeholder="우편번호"> -->
+	<!-- <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br> -->
+	<!-- <input type="text" id="sample6_address" placeholder="주소"><br> -->
+	<!-- <input type="text" id="sample6_detailAddress" placeholder="상세주소"> -->
+	<!-- <input type="text" id="sample6_extraAddress" placeholder="참고항목"> -->
 
 
 	<div id="allSize" class="container">
-		<h1>
+		<p>
 			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
 				width="15%" style="min-width: 120px; max-width: 200px;">
-		</h1>
-		<form action="/user/updateInfo" method="post" onsubmit="return fn_updateFormCheck();">
-			<input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}"> 
-			<label>
-			<p class="label-txt">닉네임</p> 
-			<input type="text" class="input" id="user_name" name="user_name" readonly="readonly" value="${loginName }"> 
-			<input type="button" value="닉네임 중복체크" onclick="nameCheckForm();">
+		</p>
+		<h1>회원정보 수정하기</h1>
+		<form action="/user/updateInfo" method="post"
+			onsubmit="return fn_updateFormCheck();">
+			<input type="hidden" id="user_googleId" name="user_googleId"
+				value="${userVO.user_Id}"> <label>
+				<p class="label-txt">닉네임</p> 
+				<input type="text" class="input" id="user_name" name="user_name" readonly="readonly" value="${loginName }"> 
+				<input type="button" value="닉네임 중복체크" onclick="nameCheckForm();">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label> 
 			
 			<label>
-				<p class="label-txt">우편번호</p> 
-				<input type="text" class="input" id="user_zip" name="user_zip" value="${userZip }"> 
-				<input id="button" type="button" onclick="sample6_execDaumPostcode()" value="우편번호찾기">
-				<div class="line-box">
-					<div class="line"></div>
-				</div>
-			</label> 
-			<label>
-				<p class="label-txt">주소 + 상세주소 입력</p> 
-				<input type="text" class="input" id="user_address" name="user_address" value="${userAddress }">
+				<p class="label-txt">우편번호</p> <input type="text" class="input"
+				id="user_zip" name="user_zip" value="${userZip }"> 
+				<input type="button" value="우편번호찾기" onclick="sample6_execDaumPostcode()" style="width: 130px;">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label> 
 			
 			<label>
-				<p class="label-txt">이메일</p> 
-				<input type="text" class="input" id="user_email" name="user_email" readonly="readonly" value="${userEmail }"> 
+				<p class="label-txt">주소 + 상세주소 입력</p> <input type="text"
+				class="input" id="user_address" name="user_address"
+				value="${userAddress }">
+				<div class="line-box">
+					<div class="line"></div>
+				</div>
+			</label> <label>
+				<p class="label-txt">이메일</p> <input type="text" class="input" id="user_email" name="user_email" readonly="readonly" value="${userEmail }"> 
 				<input type="button" value="이메일 중복체크" onclick="emailCheckForm();">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
-			</label> 
-			<label>
-				<p class="label-txt">관심장르 1</p> <br>
-					<div>
-					<a href=#none id="show100" onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='▶홈트레이닝 접기'} else {hide100.style.display='none';show100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝 펼치기</a>
+			</label> <label>
+				<p class="label-txt">관심장르</p> <br>
+				<div>
+					<a href=#none id="show100"
+						onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='▶홈트레이닝 접기'} else {hide100.style.display='none';show100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝
+						펼치기</a>
 					<div id="hide100" style="display: none">
-						홈 트레이닝<input type="checkbox" name="userInterest_interest" value = "101">
+						홈 트레이닝<input type="checkbox" name="userInterest_interest"
+							value="101" checked="checked">
 					</div>
-					</div>
+				</div>
 
-					<div>
-					<a href=#none id="show200" onclick="if(hide200.style.display=='none') {hide200.style.display='';show200.innerText='▶Kids 접기'} else {hide200.style.display='none';show200.innerText='▶Kids 펼치기'}">▶Kids 펼치기</a>
+				<div>
+					<a href=#none id="show200"
+						onclick="if(hide200.style.display=='none') {hide200.style.display='';show200.innerText='▶Kids 접기'} else {hide200.style.display='none';show200.innerText='▶Kids 펼치기'}">▶Kids
+						펼치기</a>
 					<div id="hide200" style="display: none">
-						동요율동<input type="checkbox" name="userInterest_interest" value = "201">
-						치어리딩<input type="checkbox" name="userInterest_interest" value = "202">
-						Other<input type="checkbox" name="userInterest_interest" value = "299">
+						동요율동<input type="checkbox" name="userInterest_interest"
+							value="201"> 치어리딩<input type="checkbox"
+							name="userInterest_interest" value="202"> Other<input
+							type="checkbox" name="userInterest_interest" value="299">
 					</div>
-					</div>
-					
-					
-					<div >
-					<a href=#none id="show300" onclick="if(hide300.style.display=='none') {hide300.style.display='';show300.innerText='▶방송댄스 접기'} else {hide300.style.display='none';show300.innerText='▶방송댄스 펼치기'}">▶방송댄스 펼치기</a>
+				</div>
+
+
+				<div>
+					<a href=#none id="show300"
+						onclick="if(hide300.style.display=='none') {hide300.style.display='';show300.innerText='▶방송댄스 접기'} else {hide300.style.display='none';show300.innerText='▶방송댄스 펼치기'}">▶방송댄스
+						펼치기</a>
 					<div id="hide300" style="display: none">
-						K-POP<input type="checkbox" name="userInterest_interest" value = "301">
-						J-POP<input type="checkbox" name="userInterest_interest" value = "302">
-						Others<input type="checkbox" name="userInterest_interest" value = "399">
+						K-POP<input type="checkbox" name="userInterest_interest"
+							value="301"> J-POP<input type="checkbox"
+							name="userInterest_interest" value="302"> Others<input
+							type="checkbox" name="userInterest_interest" value="399">
 					</div>
-					</div>
-					
-					<div>
-					<a href=#none id="show400" onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='▶클럽댄스 접기'} else {hide400.style.display='none';show400.innerText='▶클럽댄스 펼치기'}">▶클럽댄스 펼치기</a>
+				</div>
+
+				<div>
+					<a href=#none id="show400"
+						onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='▶클럽댄스 접기'} else {hide400.style.display='none';show400.innerText='▶클럽댄스 펼치기'}">▶클럽댄스
+						펼치기</a>
 					<div id="hide400" style="display: none">
-						MALE<input type="checkbox" name="userInterest_interest" value = "401">
-						FEMALE<input type="checkbox" name="userInterest_interest" value = "402">
-						Others<input type="checkbox" name="userInterest_interest" value = "499">
+						MALE<input type="checkbox" name="userInterest_interest"
+							value="401"> FEMALE<input type="checkbox"
+							name="userInterest_interest" value="402"> Others<input
+							type="checkbox" name="userInterest_interest" value="499">
 					</div>
-					</div>
-					
-					<div>
-					<a href=#none id="show500" onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='▶힙합 접기'} else {hide500.style.display='none';show500.innerText='▶힙합 펼치기'}">▶힙합 펼치기</a>
+				</div>
+
+				<div>
+					<a href=#none id="show500"
+						onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='▶힙합 접기'} else {hide500.style.display='none';show500.innerText='▶힙합 펼치기'}">▶힙합
+						펼치기</a>
 					<div id="hide500" style="display: none">
-						팝핀<input type="checkbox" name="userInterest_interest" value = "501">
-						B-BOY<input type="checkbox" name="userInterest_interest" value = "502">
-						락킹<input type="checkbox" name="userInterest_interest" value = "503">
-						Others<input type="checkbox" name="userInterest_interest" value = "599">
+						팝핀<input type="checkbox" name="userInterest_interest" value="501">
+						B-BOY<input type="checkbox" name="userInterest_interest"
+							value="502"> 락킹<input type="checkbox"
+							name="userInterest_interest" value="503"> Others<input
+							type="checkbox" name="userInterest_interest" value="599">
 					</div>
-					</div>
-					
-					
-					<div>
-					<a href=#none id="show600" onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='▶Others 접기'} else {hide600.style.display='none';show600.innerText='▶Others 펼치기'}">▶Others 펼치기</a>
+				</div>
+
+
+				<div>
+					<a href=#none id="show600"
+						onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='▶Others 접기'} else {hide600.style.display='none';show600.innerText='▶Others 펼치기'}">▶Others
+						펼치기</a>
 					<div id="hide600" style="display: none">
-						탱고<input type="checkbox" name="userInterest_interest" value = "601">
-						탭댄스<input type="checkbox" name="userInterest_interest" value = "602">
-						발리댄스<input type="checkbox" name="userInterest_interest" value = "603">
-						자이브<input type="checkbox" name="userInterest_interest" value = "604">
-						재즈<input type="checkbox" name="userInterest_interest" value = "605">
-						Others<input type="checkbox" name="userInterest_interest" value = "699">
+						탱고<input type="checkbox" name="userInterest_interest" value="601">
+						탭댄스<input type="checkbox" name="userInterest_interest" value="602">
+						발리댄스<input type="checkbox" name="userInterest_interest"
+							value="603"> 자이브<input type="checkbox"
+							name="userInterest_interest" value="604"> 재즈<input
+							type="checkbox" name="userInterest_interest" value="605">
+						Others<input type="checkbox" name="userInterest_interest"
+							value="699">
 					</div>
-					</div><br>
-					
-					
+				</div>
+				<br>
+
+
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
-			</label> 
-				<input class="butten" type="submit" value="정보수정하기"> 
-				<input type="reset" value="cancel">
+			</label> <input class="butten" type="submit" value="정보수정하기"> <input
+				type="reset" value="cancel">
 			</button>
 		</form>
 
@@ -366,10 +404,11 @@ function fn_check(){
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
 		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
 		crossorigin="anonymous"></script>
-		
-		
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+
+
+	<script
+		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
 function sample6_execDaumPostcode() {
 new daum.Postcode({
 oncomplete: function(data) {
@@ -417,8 +456,8 @@ oncomplete: function(data) {
         }
     }).open();
 }
-</script>	
-		
-		
+</script>
+
+
 </body>
 </html>

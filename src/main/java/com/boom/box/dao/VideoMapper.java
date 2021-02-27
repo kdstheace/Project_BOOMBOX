@@ -16,4 +16,9 @@ public interface VideoMapper {
 	public int selectVideoCount(String searchText);
 	public int deleteVideo(int video_id);
 	public VideoVO selectVideoClass(int video_id);
+	public void updateVideoHits(int video_id);
+	public int insertLike(VideoVO video);
+	public int countLike(int like_video_id);
+	public Integer isLike(HashMap<String, Integer> map);
+	public int deleteLike(HashMap<String, Integer> map);
 }

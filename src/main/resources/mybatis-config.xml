@@ -11,6 +11,11 @@
 		<typeAlias type="com.boom.box.vo.ReportVO" alias="report"/>
 		<typeAlias type="com.boom.box.vo.MotionVO" alias="motion"/>
 		<typeAlias type="com.boom.box.vo.BoomMasterVO" alias="boomMaster"/>
+		<typeAlias type="com.boom.box.vo.CrmVO" alias="crm"/>
+		<typeAlias type="com.boom.box.vo.FollowVO" alias="follow"/>
+		<typeAlias type="com.boom.box.vo.RefundVO" alias="refund"/>
+		<typeAlias type="com.boom.box.vo.VideoInterestVO" alias="videoInterest"/>
+		<typeAlias type="com.boom.box.vo.UserInterestVO" alias="userInterest"/>
 	</typeAliases>
 	
 	<mappers>
@@ -22,6 +27,11 @@
 		<mapper resource="mapper/managerMapper.xml" />
 		<mapper resource="mapper/motionMapper.xml" />
 		<mapper resource="mapper/boomMasterMapper.xml" />
+		<mapper resource="mapper/crmMapper.xml" />
+		<mapper resource="mapper/followMapper.xml" />
+		<mapper resource="mapper/refundMapper.xml" />
+		<mapper resource="mapper/videoInterestMapper.xml" />
+		<mapper resource="mapper/userInterestMapper.xml" />
 	</mappers>
 	
 </configuration>

@@ -10,6 +10,13 @@
       <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
       <script src="https://kit.fontawesome.com/a6b1415e6e.js" crossorigin="anonymous"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+      									<!-- google -->
+				<meta name="google-signin-scope" content="profile email">
+				<meta http-equiv="X-UA-Compatible" content="ie=edge">
+				<script src="https://apis.google.com/js/platform.js" async defer></script>
+				<meta name="google-signin-client_id"
+					content="290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
+					      <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
       <style>
         * {
           font-family: 'Do Hyeon';

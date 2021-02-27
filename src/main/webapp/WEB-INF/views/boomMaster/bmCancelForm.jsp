@@ -91,9 +91,10 @@
 
 <script type="text/javascript">
 
-function fn_bmApplyFormCheck(){
+function fn_bmCancelFormCheck(){
 
-	return true;
+ 	confirm("정말 붐마스터 탈퇴하실겁니까?");
+
 }
 
 
@@ -108,13 +109,11 @@ function fn_bmApplyFormCheck(){
 			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</p>
-		<h1>붐마스터 신청하기</h1>
-		<form action="/user/updateInfo" method="get" onsubmit="return fn_bmApplyFormCheck();" >
-			<input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}"> 
-
+		<h1>붐마스터 취소하기</h1>
+		<form action="/boomMaster/bmCancel?boomMaster_User_Id=${sessionScope.loginId }" method="post"  onsubmit="return fn_bmCancelFormCheck();" >
 			<label>
 				<p class="label-txt">취소 신청자</p><br>
-				<input type="text" name="boommaster_cardImgS" readonly="readonly" value="${loginName }"><br> 
+				<input type="text" name="boomMaster_user_id" readonly="readonly" value="${loginName }"><br> 
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -125,7 +124,7 @@ function fn_bmApplyFormCheck(){
 				<p class="label-txt">붐마스터 취소 이유</p> <br>
 
 				<textarea class="form-control" cols="200" rows="3" ></textarea> 
-<br>
+			<br>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>

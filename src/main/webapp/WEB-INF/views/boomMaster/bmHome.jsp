@@ -45,7 +45,7 @@ function bmMotionApplyForm(){
 			<h3> 붐마스터 신청하기 </h3>
 		</div>
 		<div>
-			불라불라불라
+			붐마스터는 
 		</div>
 		<div>
 			<input type="button" value="붐마스터 신청하기" onclick="bmApplyForm();">
@@ -59,7 +59,8 @@ function bmMotionApplyForm(){
 			<h3> 붐마스터 취소하기 </h3>
 		</div>
 		<div>
-			불라불라불라
+			붐마스터 취소하시겠습니까?
+			취소하신다면 그동안 진행
 		</div>
 		<div>
 			<input type="button" value="붐마스터 취소하기" onclick="bmCancelForm();">
@@ -86,14 +87,16 @@ function bmMotionApplyForm(){
 	
 </div>
 
-
-	
-
-	
-	
-
-
-</div>
+				<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+      integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+      crossorigin="anonymous"></script>
 
 </body>
 </html>

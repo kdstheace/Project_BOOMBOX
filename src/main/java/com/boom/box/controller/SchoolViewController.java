@@ -1,6 +1,10 @@
 package com.boom.box.controller;
 
-import java.util.Calendar;import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boom.box.service.BoomMasterService;
+import com.boom.box.service.VideoService;
 import com.boom.box.service.MembershipService;
 import com.boom.box.vo.BoomMasterVO;
 import com.boom.box.vo.MembershipVO;
@@ -30,6 +35,8 @@ public class SchoolViewController {
 	private MembershipService service;
 	@Autowired
 	private BoomMasterService boomService;
+	@Autowired
+	private VideoService videoService;
 
 	@RequestMapping(value = "/schoolForm", method = RequestMethod.GET)
 	public String schoolForm(Model model) {
@@ -40,87 +47,59 @@ public class SchoolViewController {
 		MembershipVO vo = service.selectMembershipOne(id);
 		System.out.println("vo =" + vo);
 
-		// ���� ��¥
 		Calendar mon = Calendar.getInstance();
 		mon.add(Calendar.DATE, +0);
 		String beforeMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
 		String[] array2 = beforeMonth.split("-");
 		String today = array2[0] + array2[1] + array2[2];
+		
+		ArrayList<HashMap<String, Object>> list  = videoService.selectVideoList(null, 1, 8);
+		System.out.println(list);
+		model.addAttribute("list", list);
 
-		//����� ����
 		if (vo == null) {
-			//���� �η��
-			//�ո����� ����
 			BoomMasterVO boomVO = boomService.selectBoomasterOne(id);
-			if(boomVO==null) {
-
-				//���� ���� ����
-
-				VideoVO videoVO = boomService.selectVideoClass(id);
-				System.out.println(videoVO);
-
-				String videoClass = videoVO.getVideo_class();
-				model.addAttribute("videoClass", videoClass);
-
-			}
-
+			System.out.println(boomVO);
 			service.insertStartMembership(id);
 			MembershipVO vo2 = service.selectMembershipOne(id);
 
 			String outdate = vo2.getMembership_outdate();
 			String[] array21 = outdate.split("-");
 			String payEnd = array21[0] + array21[1] + array21[2];
-			System.out.println("payEand �ɹ��� �����³� :" + payEnd);
-
-			// ��Ʈ������ ġȯ
+		
 			int payEnd_int = Integer.parseInt(payEnd);
 			int today_int = Integer.parseInt(today);
 
-			// �ɹ����� ���
+			if (payEnd_int >= today_int) {
+				if(boomVO == null) {
+
+					return "redirect:/school/schoolDeniedForm";
+				}
+				return "/school/schoolForm";
+				} else {
+	
+					return "redirect:/school/schoolDeniedForm";
+				}
+			} else {
+				//붐마스터 여부
+				BoomMasterVO boomVO = boomService.selectBoomasterOne(id);
+				System.out.println(boomVO);
+				String outdate = vo.getMembership_outdate();
+				String[] array21 = outdate.split("-");
+				String payEnd = array21[0] + array21[1] + array21[2];
+
+
+				int payEnd_int = Integer.parseInt(payEnd);
+				int today_int = Integer.parseInt(today);
+
+
 			if (payEnd_int > today_int) {
+				if(boomVO == null) {
+					return "redirect:/school/schoolDeniedForm";
+				}
 
 				return "/school/schoolForm";
 			} else {
-				// �ɹ����� �ƴѰ汸
-
-				return "redirect:/school/schoolDeniedForm";
-
-			}
-		} else {
-			//���� �η��
-			//�ո����� ����
-			BoomMasterVO boomVO = boomService.selectBoomasterOne(id);
-			if(boomVO==null) {
-
-				//���� ���� ����
-
-				VideoVO videoVO = boomService.selectVideoClass(id);
-				System.out.println(videoVO);
-
-				String videoClass = videoVO.getVideo_class();
-				model.addAttribute("videoClass", videoClass);
-
-			}
-
-
-
-			// ��������.
-			String outdate = vo.getMembership_outdate();
-			String[] array21 = outdate.split("-");
-			String payEnd = array21[0] + array21[1] + array21[2];
-
-			// ��Ʈ������ ġȯ
-			int payEnd_int = Integer.parseInt(payEnd);
-			int today_int = Integer.parseInt(today);
-
-			// �ɹ����� ���
-			if (payEnd_int > today_int) {
-
-
-				return "/school/schoolForm";
-			} else {
-				// �ɹ����� �ƴѰ汸
-				System.out.println("�ƴѰ汸");
 
 				return "redirect:/school/schoolDeniedForm";
 			}

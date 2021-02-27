@@ -42,4 +42,16 @@ public class ManagerDAO {
 		return list;
 	}
 
+
+	public ArrayList<HashMap<String, Object>> selectCrmList() {
+		ArrayList<HashMap<String, Object>> list = null;
+		try {
+			ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+			list = mapper.selectCrmList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

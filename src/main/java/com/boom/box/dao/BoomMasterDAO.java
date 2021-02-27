@@ -68,18 +68,20 @@ public class BoomMasterDAO {
 		return vo;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int deleteBoomMasterOne(int boomMaster_User_Id) {
+		logger.info("붐마스터 삭제 다오까지 들어옴 ㅇㅇ");
+		// 오토와이어드 안될 때 this.dao = null 로 뜬다.
+		int count = 0;
+		try {
+			BoomMasterMapper mapper = session.getMapper(BoomMasterMapper.class);
+			count = mapper.deleteBoomMasterOne(boomMaster_User_Id);
+
+			logger.info("디비 들어갔다 막 나옴");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 	
 	
 	

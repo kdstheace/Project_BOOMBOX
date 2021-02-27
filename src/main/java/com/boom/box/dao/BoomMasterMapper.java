@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.boom.box.vo.BoomMasterVO;
+import com.boom.box.vo.CrmVO;
 import com.boom.box.vo.VideoVO;
 
 public interface BoomMasterMapper {
@@ -17,6 +18,10 @@ public interface BoomMasterMapper {
 	public void changeBoomMaster(BoomMasterVO boomMaster);
 	
 	public BoomMasterVO selectBoomasterOne(int id);
+	
+	public int deleteBoomMasterOne(int boomMaster_User_Id);
+
+	public int insertCrm(CrmVO crm);
 
 	
 	

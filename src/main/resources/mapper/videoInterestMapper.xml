@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boom.box.dao.VideoInterestMapper">
+
+<select id="selectVideoInterest" parameterType="string" resultType="videoInterest">
+
+SELECT
+	VIDEOINTEREST_ID,
+	VIDEOINTEREST_VIDEO_ID,
+	VIDEOINTEREST_INTEREST
+FROM
+	HR.VIDEOINTEREST_TB
+WHERE
+	VIDEOINTEREST_INTEREST= #{videoInterest_interest}
+
+</select>
+
+
+<select id="selectVideoInterest2" parameterType="string" resultType="videoInterest">
+
+SELECT
+	VIDEOINTEREST_ID,
+	VIDEOINTEREST_VIDEO_ID,
+	VIDEOINTEREST_INTEREST
+FROM
+	HR.VIDEOINTEREST_TB
+WHERE
+	VIDEOINTEREST_VIDEO_ID= #{videoInterest_video_id}
+
+</select>
+
+
+
+</mapper>

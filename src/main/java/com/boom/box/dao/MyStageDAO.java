@@ -86,9 +86,20 @@ public class MyStageDAO {
 
 	}
 
+	public ArrayList<HashMap<String, Object>> selectMyStageReport(int id) {
+
+		      ArrayList<HashMap<String, Object>> vo= null;
 
 
 
+		      try {
+		         MyStageMapper mapper = session.getMapper(MyStageMapper.class);
+		         vo = mapper.selectMyStageReport(id);
+		      }catch (Exception e) {
+		         e.printStackTrace();
+		      }
 
+		      return vo;
+	}
 
 }

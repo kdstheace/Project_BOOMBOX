@@ -17,17 +17,36 @@
                 <script type="module" src="https://unpkg.com/player-chrome"></script>
 
                 <script type="text/javascript">
-                    function test() {
-                        $(document).ready(function () {
+                	var flag = 1;
+                	
+          	   	    function rotate() {
+   	   	   				var status = document.getElementById("on");
+                   		if(flag == 1){
+                       		status.value = "off";
+                            $(document).ready(function () {
+                                $("#videoPlayer").css("transform", "rotateY(180deg)");
+                            });
+                            flag = 0;
+                       	}else{
+                       		status.value = "on";
+                            $(document).ready(function () {
+                                $("#videoPlayer").css("transform", "rotateY(0deg)");
+                            });
+                            flag = 1;
+                       	}
+          	   	    }
 
-                            $("#videoPlayer").css("transform", "rotateY(180deg)");
-                        });
-                    }
+
+
+                   		
                     function test1() {
                         $(document).ready(function () {
                             $("#videoPlayer").css("transform", "rotateY(0deg)");
                         });
                     }
+
+
+                    
 
                     $(document).ready(function () {
                         $('[data-toggle="tooltip"]').tooltip();
@@ -52,12 +71,13 @@
                 		var result = confirm("정말로 삭제 하시겠습니까?");
                 		if(result){
                 		    alert("삭제 되었습니다.");
+                		    location.href = "/video/deleteVideo?video_id=${video.VIDEO_ID }";
                 		}else{
                 		    alert("취소 되었습니다.");
                 		    return false;
                 		}
                 		return true;
-                		}
+                	}
                 </script>
 
 
@@ -122,56 +142,53 @@
                                 </player-chrome>
 
 
-                                <div class="row mt-2 border-bottom">
+                                <div class="row mt-2 border-bottom ">
                                     <div class="col-7">
                                         <div>${video.VIDEO_TITLE }</div>
-                                        	<c:if test="${video.VIDEO_USER_ID==sessionScope.loginId }">
-												<a class="btn btn-danger" href="/video/deleteVideo?video_id=${video.VIDEO_ID }" role="button" style="font-size: 2px; line-height: 0.5px; " onclick="delectFuntion();">영상 삭제</a></p><br>
-                                        	</c:if>
+
                                     </div>
                                     <div class="col-5 text-right">
                                         <div class="row">
-                                            <div class="col-3 border-bottom border-dark">
-                                                <a href="#" style="color: #606060;" title="I like this"> <svg
-                                                        style="height: 18px; width: 18px; margin: auto;"
-                                                        viewBox="0 0 24 24">
-                                                        <path
-                                                            d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"
-                                                            fill="#606060"></path>
-                                                    </svg> 500K
-                                                </a>
+                                        
+                                		<div class="col-5 border-bottom border-dark">
+                                             <input type="button" id="on" value="on" onclick="rotate();">
+                                         </div>
+                                            
+                                            
+                                            <div class="col-3 border-bottom border-dark">         
+	                                                <c:choose>
+	                                                	<c:when test="${video.VIDEO_USER_ID==sessionScope.loginId }">
+	                                                		<input type = "button" class="btn btn-danger" onclick="delectFuntion();" value="削除">
+	                                                	</c:when>
+	                                                	<c:when test="${flag}">
+	                                                		<a href="/video/unlike?video_id=${video.VIDEO_ID }" title="I like this">
+	                                                			<img src="/resources/img/liked.png" style="width:30px;">
+	                                                		</a>
+	                                                		${count }
+	                                                	</c:when>
+	                                                	<c:otherwise>
+	                                                		<a href="/video/like?video_id=${video.VIDEO_ID }" title="I like this">
+	                                                			<img src="/resources/img/unliked.png" style="width:30px;">
+	                                                		</a>
+	                                                		${count }
+	                                                	</c:otherwise>
+	                                                </c:choose> 
                                             </div>
-                                            <div class="col-3 border-bottom border-dark">
-                                                <a href="#" style="color: #606060;" title="Refresh">
-                                                    <input type="button" value="원상복구" onclick="test1();">
-                                                    <svg style="height: 18px; width: 18px; margin: auto;"
-                                                        viewBox="0 0 24 24"></svg>
 
-                                                </a>
-                                            </div>
-                                            <div class="col-3 border-bottom border-dark">
-                                                <a href="#" style="color: #606060;" title="Mirror"> <input type="button"
-                                                        value="거울모드" onclick="test();"> <svg
-                                                        style="height: 18px; width: 18px; margin: auto;"
-                                                        viewBox="0 0 24 24">
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                            <div class="col-3 border-bottom border-dark">
-                                                <a href="#" style="color: #606060;" title="Save"> <svg
-                                                        style="height: 18px; width: 18px; margin: auto;"
-                                                        viewBox="0 0 24 24">
-                                                    </svg>등록일
-                                                </a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-4 border-bottom ">
                                     <div class="col-1 pr-0 w-2 text-right">
-                                        <img id="img" width="48"
-                                            src="https://yt3.ggpht.com/a-/AOh14GinKFFtcXMMwrPfhFbie8tgLV0vMzfvVFSMlw=s68-c-k-c0x00ffffff-no-rj-mo"
-                                            class="rounded-circle">
+                                        <c:choose>
+                                            <c:when test="${video.STAGE_PROFILEIMGO != null }">
+                                                <img id="img" style="width:70%; margin-right: 10px" src="/stage/profile?=${video.VIDEO_USER_ID}" class="rounded-circle">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img id="img" style="width:70%; margin-right: 10px" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+                                            </c:otherwise>
+                                        </c:choose>
+                       
                                     </div>
                                     <div class="col-9 pl-0">
                                         <p style="color: #303030;">
@@ -302,14 +319,31 @@
                     <!-- 사이드 영상 -->
                     <div class="col-md-4">
                         <div class="row">
-                            <div class="col-6">Up Next</div>
-                            <div class="col-6 text-right">
-                                AUTOPLAY <label class="switch"> <input type="checkbox" class="switch-input">
-                                    <span class="switch-label" data-on="On" data-off="Off"></span> <span
-                                        class="switch-handle"></span>
-                                </label>
-                            </div>
+                            <div class="col-12" style="text-align: center">UP NEXT</div>
                         </div>
+                        <c:forEach items="${list }" var="video">
+	                        <div class="container-fluid video_list">
+	                            <div class="card">
+	                                <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
+	                                    <div class="row p-0">
+	                                        <div class="col-md-5">
+	                                            <img class="video_list_responsive" src="/video/thumbnail?video_id=${video.VIDEO_ID}" alt="image" width="100%" height="94">
+	                                        </div>
+	                                        <div class="col-md-7 p-0">
+	                                            <p class="mb-1 title" title="${video.VIDEO_TITLE }">${video.VIDEO_TITLE }</p>
+	                                            <p style="color: #606060;">
+	                                                ${video.USER_NAME } <i class="fas fa-check-circle"></i> <br> 
+	                                                ${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
+	                                            </p>
+	                                        </div>
+	                                    </div>
+	                                </a>
+	                            </div>
+	                        </div>
+                        </c:forEach>
+                        
+                        
+                        
                         <div class="container-fluid video_list">
                             <a href="#"> </a>
                             <div class="card">
@@ -408,17 +442,16 @@
 
                     </div>
                 </div>
-
-
-                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                    crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-                    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-                    crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-                    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
-                    crossorigin="anonymous"></script>
+				<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+      integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+      crossorigin="anonymous"></script>
             </body>
 
             </html>

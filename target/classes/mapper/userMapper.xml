@@ -156,7 +156,16 @@ SELECT
 	user_pending
 FROM
 	user_tb
-
 </select>
+
+<select id="selectGoogleImg" resultType="String" parameterType="int">
+	select 
+		user_googleimg
+	from 
+		user_tb
+	where 
+		user_id = #{user_id}
+</select>
+
 
 </mapper>

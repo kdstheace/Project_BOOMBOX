@@ -52,5 +52,26 @@ public class VideoService {
 		return dao.deleteVideo(video_id);
 
 	}
-
+	public void updateVideoHits(int video_id) {
+		dao.updateVideoHits(video_id);
+	}
+	public int insertLike(VideoVO video) {
+		return dao.insertLike(video);
+	}
+	public int countLike(int like_video_id) {
+		return dao.countLike(like_video_id);
+	}
+	public boolean isLike(HashMap<String, Integer> map) {
+		Integer count = dao.isLike(map);
+		if(count != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public int deleteLike(HashMap<String, Integer> map) {
+		int count = dao.deleteLike(map);
+		return count;
+	}
 }

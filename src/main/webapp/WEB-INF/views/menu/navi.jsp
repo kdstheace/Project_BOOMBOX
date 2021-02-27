@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
     <!DOCTYPE html>
     <html>
 
     <head>
         <meta charset="UTF-8">
         <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+		<meta name="google-signin-scope" content="profile email">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<meta name="google-signin-client_id" content="290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
+					
+		<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
         <script type="text/javascript">
             function onSignIn(googleUser) {
                 var profile = googleUser.getBasicProfile();
@@ -52,9 +61,8 @@
 
         <style type="text/css">
             * {
-                font-family: 'Do Hyeon';
+                font-family: 'Do Hyeon', 'Sawarabi Gothic', sans-serif;
             }
-
             /* sidebar */
             #wrapper {
                 overflow-x: hidden;
@@ -152,9 +160,9 @@
             <form action="/video/searchForm" method="get" id="searchForm" class="form-inline my-2 my-lg-0 col-6">
                 <input type="hidden" name="page" id="page">
                 <input class="form-control mr-sm-2 search-bar" type="search" name="searchText" value="${searchText }"
-                    placeholder="Search">
+                    placeholder=<spring:message code="nav.searchbar.search" />>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="button"
-                    onclick="searchFnc(1);">Search</button>
+                    onclick="searchFnc(1);"><spring:message code="nav.searchbar.search" /></button>
             </form>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -162,8 +170,17 @@
             </button>
             <div class="collapse navbar-collapse col-3" id="navbarSupportedContent">
                 <ul class="navbar-nav col-3">
-                    <li class="nav-item nav-btn active"><a class="nav-link" href="/video/editorForm">
-                    <img src="/resources/img/nav/edit.png">Editor</a></li>
+                
+                    <li class="nav-item dropdown active">
+                    	<a class="nav-link dropdown active" href="#" id="langDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                            <img id="img" src="/resources/img/nav/lang.png" class="rounded-circle" style="width:50%"><br><spring:message code="nav.button.region" />
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="langDropdown">
+                            <a class="dropdown-item" href="/?lang=ja">日本語</a> 
+                            <a class="dropdown-item" href="/?lang=ko">한국어</a> 
+                            <a class="dropdown-item" href="/?lang=en">English</a>
+                        </div>
+                    </li> 
                     <li class="nav-item nav-btn active"><a class="nav-link" href="/video/uploadForm">
                     <img src="/resources/img/nav/upload.png">Upload</a>
                     </li>
@@ -175,19 +192,21 @@
                             ${sessionScope.loginName }
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" onclick="updateInfoForm();">개인정보 수정</a> 
-                            <a class="dropdown-item" href="/stage/myStageForm">My Stage</a> 
-                            <a class="dropdown-item" href="/membership/membershipForm">결제 및 멤버십</a>
-						<a class="dropdown-item" href="/boomMaster/bmHome">붐마스터 관리</a> 
-                     <a class="dropdown-item" onclick="crmForm();">고객센터</a>
+                            <a class="dropdown-item" onclick="updateInfoForm();"><spring:message code="nav.dropdown.profile" /></a> 
+                            <a class="dropdown-item" href="/stage/myStageForm"><spring:message code="nav.dropdown.myStage" /></a> 
+                            <a class="dropdown-item" href="/membership/membershipForm"><spring:message code="nav.dropdown.membership" /></a>
+							<a class="dropdown-item" href="/boomMaster/bmHome"><spring:message code="nav.dropdown.boomMaster" /></a> 
+                    		<a class="dropdown-item" onclick="crmForm();"><spring:message code="nav.dropdown.crm" /></a>
                             <div class="dropdown-divider"></div>
                             <c:if test="${sessionScope.userManager == 2 }">
-                            <a class="dropdown-item" href="/manager/home">관리자 페이지</a>                            
+                            <a class="dropdown-item" href="/manager/home"><spring:message code="nav.dropdown.manager" /></a>                            
                             </c:if>
-                            <a class="dropdown-item" onclick="signOut();">로그아웃</a>
+                            <a class="dropdown-item" onclick="signOut();"><spring:message code="nav.dropdown.logout" /></a>
 
                         </div>
                     </li>
+                    
+                    
                 </ul>
             </div>
         </nav>
@@ -196,14 +215,12 @@
             <!-- Sidebar -->
             <div class="bg-light border-right" id="sidebar-wrapper">
                 <div class="list-group list-group-flush">
-                    <a href="/" class="list-group-item list-group-item-action bg-light">Home</a>
-                    <a href="/school/schoolForm" class="list-group-item list-group-item-action bg-light">School</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">My
-                        Follows</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Trending</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Interests</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">History</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Likes</a>
+                    <a href="/" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.home" /></a>
+                    <a href="/school/schoolForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.school" /></a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.follow" /></a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.trending" /></a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.interest" /></a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.like" /></a>
                 </div>
             </div>
             <!-- /#sidebar-wrapper -->

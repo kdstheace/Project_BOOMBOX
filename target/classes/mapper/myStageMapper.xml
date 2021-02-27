@@ -93,6 +93,23 @@ WHERE
 	order by
 	    video_indate
 </select>
+<select id="selectMyStageReport" parameterType="int" resultType="hashmap">
 
+SELECT
+	s.STAGE_ID as stage_id,
+	s.STAGE_USER_ID as stage_user_id,
+	s.STAGE_BANNERIMGS as stage_bannerImgS,
+	s.STAGE_BANNERIMGO as stage_bannerImgO,
+	s.STAGE_PROFILEIMGS as stage_profileImgS,
+	s.STAGE_PROFILEIMGO as stage_profileImgO,
+	s.STAGE_INTRO as stage_intro ,
+	u.user_name as user_name
+FROM
+	STAGE_TB s, user_tb u
+WHERE
+	stage_user_id=#{stage_user_id}
+
+
+</select>
 
 </mapper>

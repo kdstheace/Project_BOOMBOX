@@ -82,6 +82,7 @@
 		,v.video_motion as video_motion
 		,v.video_likeNum as video_likeNum
 		,u.user_name as user_name
+		,u.user_googleimg as user_googleimg
 		,s.stage_profileImgS as stage_profileImgS
 		,s.stage_profileImgO as stage_profileImgO
 	from
@@ -117,11 +118,16 @@
 		,v.video_motion as video_motion
 		,v.video_likeNum as video_likeNum
 		,u.user_name as user_name
+		,u.user_googleimg as user_googleimg
+		,s.stage_profileImgS as stage_profileImgS
+		,s.stage_profileImgO as stage_profileImgO
 	from
-	    video_tb v, user_tb u
+	    video_tb v, user_tb u, stage_tb s
 	where
 		v.video_user_id = u.user_id
-        and
+       and
+        s.stage_user_id = u.user_id
+       and
         v.video_id = #{video_id}
 </select>
 
@@ -149,26 +155,61 @@
 </select>
 
 <delete id="deleteVideo" parameterType="int">
-
 DELETE
 FROM
 	VIDEO_TB
 WHERE
 	VIDEO_ID = #{video_id}
-
-
 </delete>
 
-<select id="selectVideoClass" parameterType="int" resultType="video">
+<update id="updateVideoHits" parameterType="int">
+update 
+    video_tb 
+set 
+    video_hit = video_hit + 1
+where
+    video_id = #{video_id} 
+</update>
 
-select
-	video_class
-from
-	video_tb
-where 
-video_user_id= #{video_user_id}
+<insert id="insertLike" parameterType="video">
+	insert into like_tb (
+	    like_id
+	    ,like_user_id
+	    ,like_video_id
+	)values(
+	    like_seq.nextval
+	    ,#{video_user_id}
+	    ,#{video_id}
+	)
+</insert>
 
+<insert id="deleteLike" parameterType="hashmap">
+	delete from 
+		like_tb 
+	where 
+		like_user_id = #{like_user_id}
+	and
+		like_video_id = #{like_video_id}
+</insert>
 
+<select id="countLike" parameterType="int" resultType="int">
+	select 
+	    count(*)
+	from 
+	    like_tb
+	where
+	    like_video_id = #{like_video_id}
+</select>
+
+<select id="isLike" parameterType="hashmap" resultType="Integer">
+	select
+	    like_id
+	from
+	    like_tb
+	where
+	    like_user_id = #{like_user_id}
+	and
+		like_video_id = #{like_video_id}   
 </select>
 
 </mapper>

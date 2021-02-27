@@ -102,16 +102,40 @@ public class VideoViewController {
 		return "redirect:/stage/myStageForm";
 	}
 	
-	@RequestMapping(value="/search", method=RequestMethod.GET)
-	public String search() {
-		return "";
-	}
+	/*
+	 * @RequestMapping(value="/search", method=RequestMethod.GET) public String
+	 * search() { return ""; }
+	 */
 	
 	@RequestMapping(value="/watchForm", method=RequestMethod.GET)
-	public String watchForm(int video_id, Model model) {
+	public String watchForm(int video_id, Model model, HttpSession session) {
 		logger.info("동영상 시청하러 이동.");
-		HashMap<String, Object> list = service.selectVideoOne(video_id);
-		model.addAttribute("video", list);
+		//좋아요 실행 여부 확인.
+		int loginId = (int)session.getAttribute("loginId");
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("like_user_id", loginId);
+		map.put("like_video_id", video_id);
+		boolean flag = service.isLike(map);
+		model.addAttribute("flag", flag);
+		
+		int count = service.countLike(video_id);
+
+		HashMap<String, Object> video = service.selectVideoOne(video_id);
+		model.addAttribute("video", video);
+		ArrayList<HashMap<String, Object>> list = service.selectVideoList("", 0, 8);
+		
+		/* int count2 = 0; */
+		ArrayList<HashMap<String, Object>> list2 = new ArrayList<HashMap<String,Object>>();
+		for(HashMap<String, Object> vo : list) {
+			if(!vo.equals(video)) {
+				/* count2 = service.countLike((int)vo.get("VIDEO_ID")); */
+				list2.add(vo);
+			}
+		}
+
+		model.addAttribute("list", list2);
+		model.addAttribute("count",count);
+		service.updateVideoHits(video_id);
 		return "video/watchForm";
 	}
 	
@@ -189,14 +213,37 @@ public class VideoViewController {
 		
 		return "video/searchForm";
 	}
+	
 	@RequestMapping(value="/deleteVideo")
 	public String deleteVideo(int video_id) {
-		System.out.println(video_id);
-
 		service.deleteVideo(video_id);
-
 		return "redirect:/";
 
 	}
 	
+	@RequestMapping(value="/like")
+	public String like(int video_id, HttpSession session) {
+		VideoVO vo = new VideoVO();
+		int user_id = (int)session.getAttribute("loginId");
+		vo.setVideo_user_id(user_id);
+		vo.setVideo_id(video_id);;
+		service.insertLike(vo);
+		logger.info("좋아요 성공!");
+		
+		return "redirect:/video/watchForm?video_id="+video_id;
+	}
+	
+	@RequestMapping(value="/unlike")
+	public String unlike(int video_id, HttpSession session) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		int user_id = (int)session.getAttribute("loginId");
+		map.put("like_user_id", user_id);
+		map.put("like_video_id", video_id);
+		service.deleteLike(map);
+		logger.info("좋아요 해제!");
+		
+		return "redirect:/video/watchForm?video_id="+video_id;
+	}
+	
+
 }

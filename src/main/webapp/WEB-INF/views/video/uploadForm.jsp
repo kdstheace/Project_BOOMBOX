@@ -10,6 +10,12 @@
 				<script src="https://kit.fontawesome.com/a6b1415e6e.js" crossorigin="anonymous"></script>
 				<script type="text/javascript"
 					src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+									<!-- google -->
+				<meta name="google-signin-scope" content="profile email">
+				<meta http-equiv="X-UA-Compatible" content="ie=edge">
+				<script src="https://apis.google.com/js/platform.js" async defer></script>
+				<meta name="google-signin-client_id"
+					content="290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
 <style>
         .main_container{
         	padding-top : 30px;
@@ -44,13 +50,13 @@
       <div class="col-md-9 video_box">
          <div>
             <h1>영상 업로드/수정</h1>
-         </div>
+<!--          </div>
          <iframe id="videoPlayer" class="video_responsive" width="100%"
             height="500"
             src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             frameborder="0"
             ></iframe>
-         <div class="p-1 pt-3">
+         <div class="p-1 pt-3"> -->
 
 
             <form action="/video/upload" method="post" enctype="multipart/form-data">
@@ -148,8 +154,7 @@
 
                      <div>
                         <br> <input class="btn btn-outline-success my-2 my-sm-7" type="submit" id="uploadsub" value="Upload">&emsp;&emsp;
-                        <button class="btn btn-danger" value="" onclick="">취소</button>
-
+                        <a href="/" role="button" class="btn btn-danger">취소</a>
                      </div>
                   </div>
 
@@ -192,5 +197,6 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
       integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
       crossorigin="anonymous"></script>
+      <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
 </html>

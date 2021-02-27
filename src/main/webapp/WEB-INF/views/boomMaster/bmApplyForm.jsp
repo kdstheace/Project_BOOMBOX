@@ -141,7 +141,7 @@ function fn_bmApplyFormCheck(){
 					<div>
 					<a href=#none id="show100" onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='▶홈트레이닝 접기'} else {hide100.style.display='none';show100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝 펼치기</a>
 					<div id="hide100" style="display: none">
-						홈 트레이닝<input type="radio" name="boommaster_major1" value = "101">
+						홈 트레이닝<input type="radio" name="boommaster_major1" value = "101" checked="checked">
 					</div>
 					</div>
 
@@ -208,7 +208,7 @@ function fn_bmApplyFormCheck(){
 				
 				<div>
 
-						없음<input type="radio" name="boommaster_major2" value = "000">
+						없음<input type="radio" name="boommaster_major2" value = "000" checked="checked">
 				
 					<div>
 					<a href=#none id="show2100" onclick="if(hide2100.style.display=='none') {hide2100.style.display='';show2100.innerText='▶홈트레이닝 접기'} else {hide2100.style.display='none';show2100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝 펼치기</a>

@@ -148,7 +148,7 @@
 												<img  alt="ProfileImg" src="/stage/profile?=${myStage.stage_id }" height="200px" width="150px">
 											</c:when>
 											<c:otherwise>
-												<img  alt="ProfileImg" src="${sessionScope.loginImg }" height="200px" width="150px">
+												<img  alt="ProfileImg" src="${url }" height="200px" width="150px">
 											</c:otherwise>
 										</c:choose>
 										<h4 >프로필 사진</h4>
@@ -167,9 +167,20 @@
 											</c:when>
 
 											<c:otherwise>
-												<div>
-													<a class="btn btn-primary" href="#" role="button" onclick="updateStageForm();">Follow</a>
-												</div>
+											<c:choose>
+											<c:when test="${follow.follow_id ==null}">
+														<div>
+															<a class="btn btn-primary" href="/stage/insertFollow?stage_id=${myStage.stage_id }&stage_user_id=${myStage.stage_user_id }" role="button" >Follow</a>
+														</div>
+
+												</c:when>
+												<c:otherwise>
+														<div>
+															<a class="btn btn-primary" href="/stage/deleteFollow?follow_id=${follow.follow_id }&stage_user_id=${myStage.stage_user_id }" role="button" >취소하기</a>
+														</div>
+												</c:otherwise>
+
+											</c:choose>
 											</c:otherwise>
 										</c:choose>
 										</div>

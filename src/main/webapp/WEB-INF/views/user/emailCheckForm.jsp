@@ -25,7 +25,8 @@
 			}
 			return true;
 		}
-	//질문해야해
+
+	
 
 </script>
 </head>

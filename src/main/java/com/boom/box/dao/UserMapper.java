@@ -26,4 +26,6 @@ public interface UserMapper {
 	public UserVO selectUserOne2(UserVO user);
 	//유저 전체 검색
 	public ArrayList<HashMap<String, Object>> selectUserList();
+	//유저 구글 이미지 검색
+	public String selectGoogleImg(int user_id);
 }

@@ -16,12 +16,18 @@
 <h1>관리자 메인 페이지</h1><br>
 
 <a href="/" class="btn btn-dark">메인홈으로 가기</a><br><br>
-<a href="/manager/reportManagerForm" class="btn btn-danger">신고관리</a> &emsp; 
-<a href="/manager/motionRegistrationForm" class="btn btn-success">모션등록</a> &emsp;
-<a href="/manager/boomMasterRegistrationForm" class="btn btn-warning">붐마등록</a> &emsp;
-<a href="/manager/adRegistrationForm" class="btn btn-light">광고등록</a> &emsp;
-<a href="/manager/videoDeleteForm" class="btn btn-primary">영상삭제</a> &emsp;
-<a href="/manager/membershipManagerForm" class="btn btn-secondary">멤버십관리</a> &emsp;
+	<a href="/manager/reportManagerForm" class="btn btn-danger">신고관리</a>
+	&emsp;
+	<a href="/manager/motionRegistrationForm" class="btn btn-success">모션등록</a>
+	&emsp;
+	<a href="/manager/boomMasterRegistrationForm" class="btn btn-warning">붐마등록</a>
+	&emsp;
+	<a href="/manager/adRegistrationForm" class="btn btn-light">광고등록</a>
+	&emsp;
+	<a href="/manager/crmManagerForm" class="btn btn-primary">고객센터 관리</a>
+	&emsp;
+	<a href="/manager/membershipManagerForm" class="btn btn-secondary">멤버십관리</a>
+	&emsp;
 
 
 <hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">

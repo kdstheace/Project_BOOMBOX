@@ -21,6 +21,35 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="module" src="https://unpkg.com/player-chrome"></script>
 
+<script type="text/javascript">
+
+
+	function agree() {
+		var chkbox = document.getElementsByName('agree');
+		var chk = false;
+		for (var i = 0; i < chkbox.length; i++) {
+			if (chkbox[i].checked) {
+				chk = true;
+			} else {
+				chk = false;
+			}
+		}
+		if (chk) {
+			alert("동의함에 체크해주세요.");
+			return;
+		} else {
+			alert("동의함에 체크해주세요.")
+			return false;
+			}
+	}
+
+
+
+	function agreeform() {
+	    window.open("/membership/payagree", "payagree", "width=950, height=950");
+	}
+</script>
+
 
 
 
@@ -214,23 +243,35 @@
 			<br>
 			<div class="p-5 pt-3">
 				<h3>&emsp;상품명 : BoomBox MemberShip  </h3>&emsp;<a><h5> &emsp;&emsp;가격 : 5000WON </h5></a>
-				<h3></h3>&emsp;<a><h5> &emsp;&emsp;이용 기간 : 30 </h5></a><br>
+				<h3></h3>&emsp;<a><h5> &emsp;&emsp;이용 기간 : 30일 </h5></a><br>
 
 				<div class="p-5 pt-3">
-					<h6>멤버십 구독하기구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라
-					 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 샬라샬라 구독약관 </h6><br>
-						<div>
-							<input type="checkbox" id="payCheck" name="payCkeck" value="payCkeck"> 동의함
-						</div>
+					 <h6> 본 제품은 BoomMaster MemberShip으로 30일 동안 School에 들어갈 수 있는 혜택이 생깁니다.<br>
+					  Scghool에 들어 가시면 각종 댄스, 에어로빅, 힙합 등과 같이 다양한 서비스를 제공 받을 수 있습니다. <br><br>
 
-				</div>
+					 여러분의 강사를 찾아보세요!
+					<br><br><br><br>
+
+					 </h6>
+
+					 <div >
+					 		<div >
+					 			 <a class="#" href="#" role="button" onclick="return agreeform();">약관 동의</a>
+					 		</div>
+
+
+							<div>
+								<input type="checkbox" id="agree" name="agree" > 동의
+							</div>
+
+					</div>
 			</div>
 
 			<div class="p-5 pt-3">
 
 
 				<div class="col-7 text-right">
-					<a class="btn btn-primary" href="/membership/payForm" role="button">결제하러가기</a>&emsp;
+					<a class="btn btn-primary" href="/membership/payForm" role="button" onclick="return agree();">결제하러가기</a>&emsp;
 					<a class="btn btn-danger" href="/membership/membershipForm" role="button">취소</a>
 				</div>
 
