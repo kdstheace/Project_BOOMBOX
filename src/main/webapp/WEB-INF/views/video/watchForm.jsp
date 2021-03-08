@@ -182,7 +182,7 @@
                                     <div class="col-1 pr-0 w-2 text-right">
                                         <c:choose>
                                             <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                <img id="img" style="width:70%; margin-right: 10px" src="/stage/profile?=${video.VIDEO_USER_ID}" class="rounded-circle">
+                                                <img id="img" style="width:70%; margin-right: 10px" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}" class="rounded-circle">
                                             </c:when>
                                             <c:otherwise>
                                                 <img id="img" style="width:70%; margin-right: 10px" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
@@ -192,9 +192,12 @@
                                     </div>
                                     <div class="col-9 pl-0">
                                         <p style="color: #303030;">
-                                            <a href="/stage/myStageForm?stage_user_id=${video.VIDEO_USER_ID }"><b>${video.USER_NAME }</b> <i class="fas fa-check-circle"></i><br> <span
-                                                style="color: #606060">139M Followers</span> <span
-                                                style="color: #606060">${video.VIDEO_INDATE }</span></a>
+                                            <a href="/stage/myStageForm?stage_user_id=${video.VIDEO_USER_ID }">
+	                                            <b>${video.USER_NAME }</b> 
+	                                            <i class="fas fa-check-circle"></i> ${countFollow }<br> 
+	                                            <span style="color: #606060"><i class="fas fa-eye"></i> ${video.VIDEO_HIT }</span> 
+	                                            <span style="color: #606060">・${video.VIDEO_INDATE }</span>
+                                            </a>
 
                                         </p>
                                         <p>
@@ -203,13 +206,23 @@
 
                                     </div>
                                     <div class="col-2 text-right">
-                                        <a href="" class="btn btn-danger" id="follow">Follow</a>
+                                    	<c:if test="${video.VIDEO_USER_ID!=sessionScope.loginId }">
+                                    		<c:choose>
+                                    			<c:when test="${flag_follow}">
+                                    				<a href="/stage/deleteFollow?stage_user_id=${video.VIDEO_USER_ID }" class="btn btn-secondary" id="follow">Unfollow</a>
+                                    			</c:when>
+                                    			<c:otherwise>
+                                    				<a href="/stage/insertFollow?stage_user_id=${video.VIDEO_USER_ID }" class="btn btn-primary" id="follow">Follow</a>
+                                    			</c:otherwise>
+                                    		</c:choose>
+                                    	</c:if>
+                                        
                                         <br>
                                         <c:if test="${video.VIDEO_MOTION == 1 }">
                                         	<a href="/motion/motionSelect?motion_video_id=${video.VIDEO_ID }" class="btn btn-outline-success my-2 my-sm-0">Motion</a>
                                     	</c:if>
                                     	<br>
-                                    	<c:if test="${sessionScope.userManager == 2 }">
+                                    	<c:if test="${sessionScope.userManager == 2 && video.VIDEO_MOTION == 1}">
                                     	    <a href="/manager/motionRegistrationForm?video_id=${video.VIDEO_ID }" class="btn btn-outline-success my-2 my-sm-0">Motion Upload</a>
                                     	</c:if>
                                     </div>
@@ -333,7 +346,7 @@
 	                                            <p class="mb-1 title" title="${video.VIDEO_TITLE }">${video.VIDEO_TITLE }</p>
 	                                            <p style="color: #606060;">
 	                                                ${video.USER_NAME } <i class="fas fa-check-circle"></i> <br> 
-	                                                ${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
+	                                                <i class="fas fa-eye"></i> ${video.VIDEO_HIT }・${video.VIDEO_INDATE }
 	                                            </p>
 	                                        </div>
 	                                    </div>

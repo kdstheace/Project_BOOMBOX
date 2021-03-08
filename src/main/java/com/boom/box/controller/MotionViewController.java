@@ -56,7 +56,7 @@ public class MotionViewController {
 	
 	
 	  @RequestMapping(value="/pose", method=RequestMethod.GET) 
-	  public String pose(MotionVO motion, Model model) { 
+	  public String pose(MotionVO motion, Model model, int view_start) { 
 		  int motion_video_id = motion.getMotion_video_id();
 		  MotionVO vo1 = new MotionVO();
 		  MotionVO vo2 = new MotionVO();
@@ -70,6 +70,8 @@ public class MotionViewController {
 		  model.addAttribute("motion_video_id", motion_video_id);
 		  model.addAttribute("list1", list1);
 		  model.addAttribute("list2", list2);
+		  model.addAttribute("view_start", view_start);
+		  
 		  MotionVO vo = service.selectMotionOne(motion); 
 		  logger.info("{}",vo);
 		  model.addAttribute("motion", vo); 
@@ -78,7 +80,7 @@ public class MotionViewController {
 	  }
 	  
 	  @RequestMapping(value="/count", method=RequestMethod.GET) 
-	  public String count(MotionVO motion, Model model) { 
+	  public String count(MotionVO motion, Model model, int view_start) { 
 		  int motion_video_id = motion.getMotion_video_id();
 		  MotionVO vo1 = new MotionVO();
 		  MotionVO vo2 = new MotionVO();
@@ -92,6 +94,8 @@ public class MotionViewController {
 		  model.addAttribute("motion_video_id", motion_video_id);
 		  model.addAttribute("list1", list1);
 		  model.addAttribute("list2", list2);
+		  model.addAttribute("view_start", view_start);
+		  
 		  MotionVO vo = service.selectMotionOne(motion); 
 		  logger.info("{}",vo);
 		  model.addAttribute("motion", vo); 
@@ -101,8 +105,14 @@ public class MotionViewController {
 	 
 	
 	@RequestMapping(value="/upload", method=RequestMethod.POST)
-	public String upload(MotionVO motion, String motion_title, MultipartFile uploadMetadata, MultipartFile uploadModel, MultipartFile uploadweight, HttpSession session) {
-		String uploadPath = "/spring/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/BOOMBOX/resources/motionAi";
+	public String upload(HttpServletRequest request, MotionVO motion, String motion_title, MultipartFile uploadMetadata, MultipartFile uploadModel, MultipartFile uploadweight, HttpSession session) {
+
+//		String uploadPath = "/spring/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/BOOMBOX/resources/motionAi";
+		String rootPath = request.getSession().getServletContext().getRealPath("/resources");
+		String uploadPath = rootPath + "/motionAi";
+		System.out.println(uploadPath);
+		
+		
 		String title = null;
 		if(motion.getMotion_class().equals("1")) {
 			title = "(pose)" + motion_title;
@@ -134,27 +144,4 @@ public class MotionViewController {
 		return path;
 	}
 	
-	/*
-	 * @RequestMapping(value="/metadata", method=RequestMethod.GET) public void
-	 * metadata(int motion_video_id, HttpServletResponse response) {
-	 * 
-	 * MotionVO motion = service.selectMotionOne(motion_video_id); uploadPath =
-	 * uploadPath + "/" + motion.getMotion_video_id() + "/" +
-	 * motion.getMotion_class() + "/" + motion.getMotion_title(); String
-	 * original_file = motion.getMotion_metaO(); try {
-	 * response.setHeader("Content-Disposition", "attachment;filename=" +
-	 * URLEncoder.encode(original_file,"UTF-8")); } catch
-	 * (UnsupportedEncodingException e) { e.printStackTrace(); } String fullPath =
-	 * uploadPath + "/" + motion.getMotion_metaS(); FileInputStream fis = null;
-	 * ServletOutputStream sos = null; logger.info(fullPath); try { fis = new
-	 * FileInputStream(fullPath); //읽어옴 sos = response.getOutputStream();//서버에서
-	 * 클라이언트로 나감 //스프링에서 파일 전달에 사용할 유틸 제공해줌. FileCopyUtils.copy(fis, sos);
-	 * 
-	 * } catch (Exception e) {
-	 * 
-	 * } finally { //아래는 통로를 다쓰면 통로를 닫아줘야한다. if(fis != null) { try { fis.close(); }
-	 * catch (IOException e) { e.printStackTrace(); } } if(sos != null) { try {
-	 * sos.close(); } catch (IOException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } } } }
-	 */
 }

@@ -28,4 +28,6 @@ public interface UserMapper {
 	public ArrayList<HashMap<String, Object>> selectUserList();
 	//유저 구글 이미지 검색
 	public String selectGoogleImg(int user_id);
+	//유저 흥미 검색
+	public ArrayList<String> selectInterest(int user_id);
 }

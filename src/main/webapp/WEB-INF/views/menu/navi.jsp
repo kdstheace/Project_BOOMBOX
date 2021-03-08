@@ -121,9 +121,9 @@
             }
 
             .main-logo {
-                width: 300px;
-                height: 100px;
-                min-width: 300px;
+                width: 270px;
+                height: 90px;
+                min-width: 270px;
             }
 
             .dropdown-item {
@@ -217,10 +217,10 @@
                 <div class="list-group list-group-flush">
                     <a href="/" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.home" /></a>
                     <a href="/school/schoolForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.school" /></a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.follow" /></a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.trending" /></a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.interest" /></a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.like" /></a>
+                    <a href="/sidebar/followForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.follow" /></a>
+                    <a href="/sidebar/trendForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.trending" /></a>
+                    <a href="/sidebar/interestForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.interest" /></a>
+                    <a href="/sidebar/likeForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.like" /></a>
                 </div>
             </div>
             <!-- /#sidebar-wrapper -->

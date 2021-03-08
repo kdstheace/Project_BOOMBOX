@@ -35,6 +35,17 @@ public class VideoService {
 		ArrayList<HashMap<String, Object>> list = dao.selectVideoList(searchText, startRecord, countPerPage);
 		return list;
 	}
+	
+	public ArrayList<HashMap<String, Object>> selectVideoListByLike(int startRecord, int countPerPage, int user_id){
+		ArrayList<HashMap<String, Object>> list = dao.selectVideoListByLike(startRecord, countPerPage, user_id);
+		return list;
+	}
+	
+	public ArrayList<HashMap<String, Object>> selectVideoByFollow(int startRecord, int countPerPage, int follow_user_id){
+		ArrayList<HashMap<String, Object>> list = dao.selectVideoByFollow(startRecord, countPerPage, follow_user_id);
+		return list;
+	}
+	
 	public VideoVO selectVideoById(int video_id) {
 		VideoVO video = dao.selectVideoById(video_id);
 		return video;
@@ -73,5 +84,10 @@ public class VideoService {
 	public int deleteLike(HashMap<String, Integer> map) {
 		int count = dao.deleteLike(map);
 		return count;
+	}
+	
+	public ArrayList<HashMap<String, Object>> selectVideoByInterest(int user_id){
+		ArrayList<HashMap<String, Object>> list = dao.selectVideoByInterest(user_id);
+		return list;
 	}
 }

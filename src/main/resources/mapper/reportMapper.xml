@@ -21,7 +21,7 @@ SELECT
 FROM
 	STAGE_TB s , USER_TB u
 WHERE
-	STAGE_USER_ID=#{stage_user_id}
+	u.user_id=#{stage_user_id}
 
 
 </select>

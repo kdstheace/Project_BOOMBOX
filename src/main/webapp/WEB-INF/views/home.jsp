@@ -44,14 +44,29 @@
         .small-feed-info {
             color: #606060;
         }
+        .video_title{
+        	overflow: hidden;
+        	text-overflow: ellipsis;
+        	white-space: nowrap;
+        }
 
         /*피드 로우*/
-        .recommendRow {
+/*         .recommendRow {
             white-space: nowrap;
             overflow-x: auto;
 
+        }*/   
+        
+        /*광고*/ 
+        .ad{
+            width: 100%;
+            height: 200px;
+            background-image: url(https://328897-1008310-2-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2019/12/Amazon-Banner-Ad-Example-1-1.jpg);
+            background-size: contain;
+            background-position: center;
+            cursor: pointer;
         }
-    </style>
+ 	</style>
 
 </head>
 
@@ -68,17 +83,17 @@
                         <div class="grid_title">Recommended</div>
                         <div class="row recommendRow">
                             <!--FEED-SMALL-->
-                            <c:forEach items="${list }" var="video">
+                            <c:forEach items="${listFollow }" var="video">
                                 <div class="col-md-3 col-sx-10 p-2 feed-small">
                                     <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
                                         <div class="card">
                                             <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
                                                 alt="image" />
                                             <div class="row">
-                                                <div class="col-2 mt-3 pl-4">
+                                                <div class="col-3 mt-3 pl-4">
                                                     <c:choose>
                                                         <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                            <img id="img" src="/stage/profile?=${video.VIDEO_USER_ID}"
+                                                            <img id="img" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
                                                                 class="rounded-circle">
                                                         </c:when>
                                                         <c:otherwise>
@@ -86,13 +101,14 @@
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
-                                                <div class="col-10 mt-3">
-                                                    <p class="mb-2" title="${video.VIDEO_TITLE }">
+                                                <div class="col-9 mt-3">
+                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
                                                         ${video.VIDEO_TITLE }
                                                     </p>
                                                     <p class=small-feed-info>
-                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i><br>
-                                                        ${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
+                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
+                                                        <br>
+                                                        ${video.VIDEO_INDATE }
                                                     </p>
                                                 </div>
                                             </div>
@@ -105,13 +121,10 @@
                         </div>
                     </div>
                     <!-- Recommended Section -->
-
-                    <hr>
-
                     <!-- Trending Section -->
                     <div class="container-fluid">
                         <div class="grid_title">Trending</div>
-                        <div class="row">
+                        <div class="row recommendRow">
                             <!--FEED-SMALL-->
                             <c:forEach items="${list }" var="video">
                                 <div class="col-md-3 col-sx-10 p-2 feed-small">
@@ -120,10 +133,10 @@
                                             <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
                                                 alt="image" />
                                             <div class="row">
-                                                <div class="col-2 mt-3 pl-4">
+                                                <div class="col-3 mt-3 pl-4">
                                                     <c:choose>
                                                         <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                            <img id="img" src="/stage/profile?=${video.VIDEO_USER_ID}"
+                                                            <img id="img" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
                                                                 class="rounded-circle">
                                                         </c:when>
                                                         <c:otherwise>
@@ -131,13 +144,14 @@
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
-                                                <div class="col-10 mt-3">
-                                                    <p class="mb-2" title="${video.VIDEO_TITLE }">
+                                                <div class="col-9 mt-3">
+                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
                                                         ${video.VIDEO_TITLE }
                                                     </p>
                                                     <p class=small-feed-info>
-                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i><br>
-                                                        ${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
+                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
+                                                        <br>
+                                                        ${video.VIDEO_INDATE }
                                                     </p>
                                                 </div>
                                             </div>
@@ -147,43 +161,24 @@
                                 <!--FEED-SMALL Ends-->
                             </c:forEach>
 
-                            <!--FEED-SMALL-->
-                            <div class="col-md-3 col-sx-10 p-2 feed-small">
-                                <a href="">
-                                    <div class="card">
-                                        <img src="https://picsum.photos/200/300" class="head-image" alt="image" />
-                                        <div class="row">
-                                            <div class="col-2 mt-3 pl-4">
-                                                <img id="img"
-                                                    src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-                                                    class="rounded-circle">
-                                            </div>
-                                            <div class="col-10 mt-3">
-                                                <p class="mb-2"
-                                                    title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-                                                    Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE |
-                                                    Sushant,
-                                                </p>
-                                                <p class=small-feed-info>
-                                                    T-Series <i class="fas fa-check-circle"></i><br> 70M
-                                                    views 7 months ago
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!--FEED-SMALL Ends-->
-                            
                         </div>
                     </div>
                     <!-- Trending Section -->
-                    <p>
-                        <br>
-                    </p>
-                    <p>
-                        <br>
-                    </p>
+                    <img src="/resources/img/adimg/ad1.png" height="200px" width="100%">
+                        <div class="container-fluid">
+	                        <div class="grid_title">AD</div>
+	                        <div class="row recommendRow">
+	                            
+	                            <!--FEED-SMALL-->
+	 							<div class="ad">
+	 							</div>
+
+	                            <!--FEED-SMALL Ends-->
+	
+	                        </div>
+	                        
+                    	</div>
+                    	
                 </div>
             </div>
             <!-- main content -->

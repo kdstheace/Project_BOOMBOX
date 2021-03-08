@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boom.box.service.MyStageService;
 import com.boom.box.service.ReportService;
-import com.boom.box.vo.MyStageVO;
 import com.boom.box.vo.ReportVO;
 
 @Controller
@@ -28,10 +27,10 @@ public class ReportViewController {
 
 
 	@RequestMapping(value = "/reportForm" ,method = RequestMethod.GET)
-	public String reportForm(Model model ,HttpSession session) {
+	public String reportForm(int stage_user_id,Model model ,HttpSession session) {
 
 		int id = (int)session.getAttribute("loginId");
-		ArrayList<HashMap<String, Object>> list =service.selectVideoListMystage(id);
+		ArrayList<HashMap<String, Object>> list =reportService.selectReportone(stage_user_id);
 
 		System.out.println(list.get(0));
 
@@ -55,10 +54,10 @@ public class ReportViewController {
 
 		  if(cnt>0) {
 
-			  System.out.println("¼º°ø");
+			  System.out.println("ï¿½ï¿½ï¿½ï¿½");
 
 		  }else {
-			 System.out.println("½ÇÆÐ");
+			 System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			 return "/report/reportForm";
 			 }
 

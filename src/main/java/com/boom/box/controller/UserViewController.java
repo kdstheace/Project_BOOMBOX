@@ -112,5 +112,7 @@ public class UserViewController {
 		System.out.println("홈 들어감");
 		return "redirect:/";
 	}
+	//유저 흥미 가져오기
+	
 	
 }

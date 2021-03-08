@@ -11,25 +11,20 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.mybatis.spring.MyBatisSystemException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.boom.box.service.FollowService;
 import com.boom.box.service.MyStageService;
 import com.boom.box.service.UserService;
-import com.boom.box.service.VideoService;
 import com.boom.box.util.FileService;
-import com.boom.box.vo.FollowVO;
 import com.boom.box.vo.MyStageVO;
 
 @Controller
@@ -42,8 +37,6 @@ public class StageViewController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private FollowService FollowService;
-	@Autowired
 	private HttpSession session;
 
 	private String uploadPath = "/uploadFile/Boombox";
@@ -51,7 +44,7 @@ public class StageViewController {
 	@RequestMapping(value="/myStageForm", method=RequestMethod.GET)
 	public String MyStageForm(Model model, @RequestParam(defaultValue = "0")int stage_user_id) {
 
-		//아이디 처리
+		//아이디 처리(결국엔 id가 나오게 됨.)
 		int id = 0;
 		String url = null;
 		int loginId = (int)session.getAttribute("loginId");	
@@ -64,11 +57,13 @@ public class StageViewController {
 			id = stage_user_id;
 		}
 		
-		 FollowVO followvo= FollowService.seleteFollowUser(loginId);
-		 System.out.println(followvo);
-
-		 model.addAttribute("follow", followvo);
-
+		//팔로우 실행 여부 확인
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("follow_user_id", loginId);
+		map.put("follow_stage_id", id);
+		boolean flag = service.isFollow(map);
+		model.addAttribute("flag",flag);
+		
 		//프로필 사진 
 		url = userService.selectGoogleImg(id);
 		model.addAttribute("url", url);
@@ -80,7 +75,30 @@ public class StageViewController {
 		model.addAttribute("myStage",myStage);
 		return "stage/myStageForm";
 	}
+	//1. Follow 하기
+	@RequestMapping(value="/insertFollow", method = RequestMethod.GET)
+	public String insertFollow(int stage_user_id, HttpSession session) {
+		int follow_user_id = (int)session.getAttribute("loginId");		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("follow_user_id", follow_user_id);
+		map.put("follow_stage_id", stage_user_id);
+		service.insertFollow(map);
+		return "redirect:/stage/myStageForm?stage_user_id="+stage_user_id;
+	}
+	//2. Follow 해제
+	@RequestMapping(value="/deleteFollow", method = RequestMethod.GET)
+	public String deleteFollow(int stage_user_id, HttpSession session) {
+		int follow_user_id = (int)session.getAttribute("loginId");		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("follow_user_id", follow_user_id);
+		map.put("follow_stage_id", stage_user_id);
+		service.deleteFollow(map);
+		return "redirect:/stage/myStageForm?stage_user_id="+stage_user_id;
+	}
 
+	
+	
+	
 	@RequestMapping(value = "/uploadStage" ,method = RequestMethod.POST)
 	public String uploadBanner(MultipartFile uploadBanner ,MultipartFile profileImg, String stage_intro) {
 
@@ -232,7 +250,6 @@ public class StageViewController {
 
 		int id = (int)session.getAttribute("loginId");
 		MyStageVO stage = service.selectMyStageone(id);
-		System.out.println(stage);
 
 		model.addAttribute("stage", stage);
 
@@ -284,51 +301,10 @@ public class StageViewController {
 		if(cnt > 0) {
 			System.out.println("삭제성공");
 		}else {
-
 			return"redirect:/stage/updateStageForm";
 		}
-
-
 		return"redirect:/stage/updateStageForm";
 	}
-
-	@RequestMapping(value = "/insertFollow")
-	public String followStageForm( int stage_id ,int stage_user_id, Model  model) {
-
-		int user_id = (int)session.getAttribute("loginId");
-
-		System.out.println(stage_id);
-
-
-		FollowVO vo = new FollowVO();
-		vo.setFollow_stage_id(stage_id);
-		vo.setFollow_user_id(user_id);
-		System.out.println(vo);
-
-
-		FollowService.insertFollow(vo);
-
-
-
-		return "redirect:/stage/myStageForm?stage_user_id="+stage_user_id;
-	}
-	@RequestMapping(value = "/deleteFollow")
-	public String deleteStageForm(int follow_id,int stage_user_id , Model  model) {
-
-
-
-
-		FollowService.deleteFollow(follow_id);
-
-
-
-		return "redirect:/stage/myStageForm?stage_user_id="+stage_user_id;
-	}
-
-
-
-
-
 
 
 }

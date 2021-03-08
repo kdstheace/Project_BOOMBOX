@@ -1,5 +1,5 @@
 
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
@@ -33,6 +35,10 @@
         font-size: 15px;
     }
 
+
+
+
+
     img{
         margin: 20px 20px 0px 20px;
     }
@@ -50,12 +56,12 @@
     label {
         display: block;
         position: relative;
-        margin: 40px 0px; }
+        margin: 60px  0px; }
     .label-txt {
         position: absolute;
         top: -1.6em;
-        padding: 10px;
-        font-size: .8em;
+        padding: 0px;
+        font-size: 1em;
         letter-spacing: 1px;
         color: rgb(120,120,120);
         transition: ease .3s;
@@ -72,6 +78,12 @@
         height: 2px;
         background: #BCBCBC;
     }
+    .bannerST{
+  		   overflow: hidden;
+           text-overflow: ellipsis;
+           white-space: nowrap;
+
+    }
     .line {
         position: absolute;
         width: 0%;
@@ -85,6 +97,14 @@
     .input:focus + .line-box .line { width: 100%; }
     .label-active { top: -3em; } button { display: inline-block; padding: 12px 24px; background: rgb(220,220,220); font-weight: bold; color: rgb(120,120,120); border: none; outline: none; border-radius: 3px; cursor: pointer; transition: ease .3s; }
     button:hover { background: #8BC34A; color: #ffffff; }
+
+
+
+
+</style>
+
+<style type="text/css">
+
 
 
 </style>
@@ -147,9 +167,9 @@ function realtimeClock() {
 
 	function uploadClose(){
 
-	
 
-	/* 	var uploadBanner = document.getElementById("uploadBanner").value;
+
+		var uploadBanner = document.getElementById("uploadBanner").value;
 		var profileImg = document.getElementById("profileImg").value;
 		var stage_intro = document.getElementById("stage_intro").value;
 
@@ -161,7 +181,9 @@ function realtimeClock() {
 		if(profileImg == null || profileImg.length == 0){
 			alert("프로필 사진을 선택해 주세요.");
 			return false;
-		} */ == null || stage_intro.length == 0){
+		}
+
+		if(stage_intro == null || stage_intro.length == 0){
 			alert("소개글을 적어주세요.");
 			return false;
 		}else if( stage_intro != null && stage_intro.length != 0){
@@ -185,8 +207,6 @@ function realtimeClock() {
 
 
 
-
-
 </script>
 
 
@@ -203,23 +223,37 @@ function realtimeClock() {
 		<form action="/stage/uploadStage" method="post" enctype="multipart/form-data">
 
 			<label>
-			<p class="label-txt">Banner Upload :&emsp; &emsp;&emsp;&emsp;<a class="btn btn-danger" href="/stage/deleteBanner" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a></p><br>
-			<input type="file" id="uploadBanner" name="uploadBanner">
+			<p class="label-txt">Banner Upload :</p>
+			<a class="bannerST">현재 파일 : ${stage.stage_bannerImgS } <a class="btn btn-danger" href="/stage/deleteBanner" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a></a>
+
+			<input type="file" id="uploadBanner" name="uploadBanner" style="margin-top: 30px; margin-bottom: 10px;" >
+
+				<div class="line-box" style="margin-bottom: 20px">
+					<div class="line"> </div>
+					<div style="text-align: right;"><h6>1300X200<br></h6></div>
+
+				</div>
+			</label>
+
+
+
+
+			<label>
+			<p class="label-txt"  >Profile Upload :</p>
+
+			<a class="bannerST">현재 파일 : ${stage.stage_profileImgS} <a class="btn btn-danger" href="/stage/deleteProfile" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a><br></a>
+
+
+
+			<input type="file" id="profileImg" name="profileImg" style="margin-top: 28px; margin-bottom: 10px;" >
 				<div class="line-box">
 					<div class="line"></div>
+					<div style="text-align: right;"><h6>150X150<br></h6></div>
 				</div>
 			</label>
 
 			<label>
-			<p class="label-txt">Profile Upload : &emsp;&emsp;&emsp;&emsp; <a class="btn btn-danger" href="/stage/deleteProfile" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a></p><br>
-			<input type="file" id="profileImg" name="profileImg" >
-				<div class="line-box">
-					<div class="line"></div>
-				</div>
-			</label>
-
-			<label>
-				<p class="label-txt"> Intro </p><br> <textarea  id="stage_intro" name="stage_intro" class="form-control col-sm-7" rows="5"  ></textarea>
+				<p class="label-txt" style="margin-top: 20px; "> Intro </p><br> <textarea  id="stage_intro" name="stage_intro" class="form-control" rows="5"  >${stage.stage_intro }</textarea>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>

@@ -11,6 +11,7 @@ public interface VideoMapper {
 	public int insertVideo(VideoVO video);
 	public int insertVideoInterest(VideoVO video);
 	public ArrayList<HashMap<String, Object>> selectVideoList(RowBounds rb, String searchText);
+	public ArrayList<HashMap<String, Object>> selectVideoListByLike(RowBounds rb, int user_id);
 	public VideoVO selectVideoById(int video_id);
 	public HashMap<String, Object> selectVideoOne(int video_id);
 	public int selectVideoCount(String searchText);
@@ -21,4 +22,6 @@ public interface VideoMapper {
 	public int countLike(int like_video_id);
 	public Integer isLike(HashMap<String, Integer> map);
 	public int deleteLike(HashMap<String, Integer> map);
+	public ArrayList<HashMap<String, Object>> selectVideoByInterest(int user_id);
+	public ArrayList<HashMap<String, Object>> selectVideoByFollow(RowBounds rb, int follow_user_id);
 }

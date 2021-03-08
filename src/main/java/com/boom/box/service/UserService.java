@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.boom.box.dao.MyStageDAO;
 import com.boom.box.dao.UserDAO;
 import com.boom.box.vo.UserVO;
 
@@ -21,8 +20,6 @@ import com.boom.box.vo.UserVO;
 public class UserService {
 	@Autowired
 	private UserDAO dao;
-	@Autowired
-	private MyStageDAO daoStage;
 	@Autowired
 	private HttpSession session;
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
@@ -140,5 +137,8 @@ public class UserService {
 		String url = dao.selectGoogleImg(user_id);
 		return url;
 	}
-
+	public ArrayList<String> selectInterest(int user_id) {
+		ArrayList<String> list = dao.selectInterest(user_id);
+		return list;
+	}
 }

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.boom.box.service.MyStageService;
 import com.boom.box.service.VideoService;
 import com.boom.box.util.FileService;
 import com.boom.box.util.PageNavigator;
@@ -35,6 +36,9 @@ public class VideoViewController {
 	private static final Logger logger = LoggerFactory.getLogger(VideoViewController.class);
 	@Autowired
 	private VideoService service;
+	@Autowired
+	private MyStageService myStageService;
+	
 	private String uploadPath = "/uploadFile/Boombox";
 	private final int countPerPage = 10;
 	private final int pagePerGroup = 5;
@@ -95,7 +99,7 @@ public class VideoViewController {
 			logger.info("비디오 업로드 최종 성공!");
 		}else {
 			System.out.println(video.getVideo_id());
-			logger.info("실패패패패패패");
+			logger.info("실패");
 			return "redirect:/video/uploadForm";
 		}
 
@@ -118,10 +122,23 @@ public class VideoViewController {
 		boolean flag = service.isLike(map);
 		model.addAttribute("flag", flag);
 		
+		//팔로우 실행 여부 확인
+		HashMap<String, Integer> map_follow = new HashMap<String, Integer>();
+		map.put("follow_user_id", loginId);
+		int follow_stage_id = service.selectVideoById(video_id).getVideo_user_id();
+		map.put("follow_stage_id", follow_stage_id);
+		boolean flag_follow = myStageService.isFollow(map);
+		model.addAttribute("flag_follow",flag_follow);
+		
+		//팔로우 카운트 보내기
+		int countFollow = myStageService.countFollowByVideoId(video_id);
+		model.addAttribute("countFollow", countFollow);
+		
 		int count = service.countLike(video_id);
 
 		HashMap<String, Object> video = service.selectVideoOne(video_id);
 		model.addAttribute("video", video);
+
 		ArrayList<HashMap<String, Object>> list = service.selectVideoList("", 0, 8);
 		
 		/* int count2 = 0; */

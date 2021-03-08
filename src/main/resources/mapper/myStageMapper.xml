@@ -112,4 +112,72 @@ WHERE
 
 </select>
 
+
+<!-- 팔로우 처리 -->
+<insert id="insertFollow" parameterType="hashmap">
+	insert into follow_tb(
+	    follow_id
+	    ,follow_user_id
+	    ,follow_stage_id
+	)values(
+	    follow_seq.nextval
+	    ,#{follow_user_id}
+	    ,#{follow_stage_id}
+	)
+</insert>
+<delete id="deleteFollow" parameterType="hashmap">
+	delete from 
+		follow_tb
+	where
+	    follow_user_id = #{follow_user_id}
+	and
+	    follow_stage_id = #{follow_stage_id}
+</delete>
+
+<select id="isFollow" parameterType="hashmap" resultType="Integer">
+	select
+	    follow_id
+	from
+	    follow_tb
+	where
+	    follow_user_id = #{follow_user_id}
+	and
+	    follow_stage_id = #{follow_stage_id}
+</select>
+
+<select id="countFollow" parameterType="int" resultType="int">
+	select
+	    count(*)
+	from
+	    follow_tb
+	where
+	    follow_stage_id = #{follow_stage_id}
+</select>
+
+<select id="countFollowByVideoId" parameterType="int" resultType="int">
+	select
+	    count(*)
+	from
+	    follow_tb
+	where
+	    follow_stage_id = 
+	    (
+	    select
+	        video_user_id
+	    from
+	        video_tb
+	    where
+	        video_id = #{video_id})
+</select>
+
+<select id="selectFollowById" parameterType="int" resultType="int">
+	select
+	    follow_stage_id
+	from 
+	    follow_tb
+	where
+	    follow_user_id = #{follow_user_id}
+</select>
+
+<!-- 이상, 팔로우 처리 끝 -->
 </mapper>

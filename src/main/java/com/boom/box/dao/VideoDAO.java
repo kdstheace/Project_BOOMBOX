@@ -19,6 +19,7 @@ public class VideoDAO {
 	private SqlSession session;
 	private static final Logger logger = LoggerFactory.getLogger(VideoDAO.class);
 
+	//1. 비디오 업로드
 	@Transactional(rollbackFor = {Exception.class})
 	public int insertVideo(VideoVO video) throws Exception{
 		logger.info("다오까지 들어왔음. 다오작동시작.");
@@ -36,6 +37,7 @@ public class VideoDAO {
 		return count1;
 	}
 	
+	//2. 비디오 리스트 불러오기
 	public ArrayList<HashMap<String, Object>> selectVideoList(String searchText, int startRecord, int countPerPage){
 		ArrayList<HashMap<String, Object>> list = null;
 		RowBounds rb = new RowBounds(startRecord, countPerPage);
@@ -47,7 +49,32 @@ public class VideoDAO {
 		}
 		return list;
 	}
-
+	
+	//2-1. Like 비디오 리스트 불러오기
+	public ArrayList<HashMap<String, Object>> selectVideoListByLike(int startRecord, int countPerPage, int user_id){
+		ArrayList<HashMap<String, Object>> list = null;
+		RowBounds rb = new RowBounds(startRecord, countPerPage);
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			list = mapper.selectVideoListByLike(rb, user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public ArrayList<HashMap<String, Object>> selectVideoByFollow(int startRecord, int countPerPage, int follow_user_id){
+		ArrayList<HashMap<String, Object>> list = null;
+		RowBounds rb = new RowBounds(startRecord, countPerPage);
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			list = mapper.selectVideoByFollow(rb, follow_user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;		
+	}
+	
 	public VideoVO selectVideoById(int video_id) {
 		VideoVO video = null;
 		try {
@@ -159,6 +186,17 @@ public class VideoDAO {
 		}
 		return count;
 		
+	}
+	
+	public ArrayList<HashMap<String, Object>> selectVideoByInterest(int user_id){
+		ArrayList<HashMap<String, Object>> list = null;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			list = mapper.selectVideoByInterest(user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	

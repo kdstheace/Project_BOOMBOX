@@ -34,57 +34,93 @@ function bmMotionApplyForm(){
 
 </script>
 
+<style type="text/css">
+
+*{
+
+}
+
+#all_size{
+	font-size: 20px;
+	margin: 40px 20px 20px 80px;
+	width: 50%;
+	
+}
+
+.title{
+	color: rgb(255, 145, 0);
+}
+
+</style>
+
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/menu/navi.jsp" />
-<div style="margin: 20px;">
 
-	<h1>Boom Master Home</h1>
-	<div>
-		<div>
-			<h3> 붐마스터 신청하기 </h3>
-		</div>
-		<div>
-			붐마스터는 
-		</div>
-		<div>
-			<input type="button" value="붐마스터 신청하기" onclick="bmApplyForm();">
-		</div>
-	</div>
-	
+
+<div id="all_size">
+	<h2 style="font-style: italic;">붐마스터 관리 페이지에 오신것을 환영합니다!</h2>
 	<hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
 	
-	<div>
+	<div style="border: 1px;">
+	
 		<div>
-			<h3> 붐마스터 취소하기 </h3>
+			<div name="title" >
+				<h3 style="color: rgb(255, 145, 0);"> 붐마스터 신청하기 </h3>
+			</div>
+			<div style="margin: 20px 20px 20px 20px;">
+				붐마스터는 아래와 같은 혜택이 있습니다.<br><br>
+				1. 자신의 춤 실력을 바탕으로 자신을 응원하는 팔로워를 모아보세요! <br>
+				2. 붐마스터는 멤버십 자격이 기본으로 부여됩니다! <br>
+				3. 붐마스터 활동으로 자신의 수익을 창출해보세요! <br><br>
+				&emsp;<strong>신청</strong> 하러 갈까요~?<br>
+			</div>
+			<div style="float: right;">
+				<a onclick="bmApplyForm();" class="btn btn-success">붐마스터 신청하기</a>
+				<!-- <input type="button" value="붐마스터 신청하기" onclick="bmApplyForm();" style="float: right;"> -->
+			</div><br>
 		</div>
+		
+		<hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
+		
 		<div>
-			붐마스터 취소하시겠습니까?
-			취소하신다면 그동안 진행
+			<div>
+				<h3 style="color: rgb(255, 145, 0);"> 붐마스터 취소하기 </h3>
+			</div>
+			
+			<div style="margin: 20px 20px 20px 20px;">
+				취소하신다면 그동안 진행하셨던 <br><br>
+				붐마스터 활동을 <strong>그만두시겠어요?</strong><br>
+			</div>
+			
+			<div style="float: right;">
+				<a onclick="bmCancelForm();" class="btn btn-success">붐마스터 취소하기</a>
+				<!-- <input type="button" value="붐마스터 취소하기" onclick="bmCancelForm();" style="float: right;"> -->
+			</div><br>
 		</div>
+		
+		<hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
+		
 		<div>
-			<input type="button" value="붐마스터 취소하기" onclick="bmCancelForm();">
+			<div>
+				<h3 style="color: rgb(255, 145, 0);"> 모션인식 신청하기 </h3>
+			</div>
+			<div style="margin: 20px 20px 20px 20px;">
+				내가 춘 춤을 사람들이 그대로 따라하며 춤을 배울수 있다?!?!<br>
+				내가 춘 모습을 배우고 카운팅을 할 수 있는 모션 인식!<br>
+				나의 춤 강좌의 퀄리티를 한층 높혀보세요!<br><br>
+				그럼 바로 신청하러 갈까요~?<br>
+			</div><br>
+			
+			<div style="float: right;">
+				<a onclick="bmMotionApplyForm();" class="btn btn-success">모션인식 신청하기</a>
+				<!-- <input type="button" value="모션인식 신청하기" onclick="bmMotionApplyForm();" style="float: right;"> -->
+			</div><br>
 		</div>
+		
+		<hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px" >
+		
 	</div>
-	
-	<hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
-	
-	<div>
-		<div>
-			<h3> 모션인식 신청하기 </h3>
-		</div>
-		<div>
-			불라불라불라
-		</div>
-		<div>
-			<input type="button" value="모션인식 신청하기" onclick="bmMotionApplyForm();">
-		</div>
-	</div>
-	
-	<hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
-	
-	
-	
 </div>
 
 				<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>

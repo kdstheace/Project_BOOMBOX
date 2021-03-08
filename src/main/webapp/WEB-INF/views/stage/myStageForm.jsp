@@ -10,8 +10,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
 	rel="stylesheet">
-<script src="https://kit.fontawesome.com/a6b1415e6e.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a6b1415e6e.js" crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 
@@ -24,8 +23,6 @@
 
 
 <style>
-
-
 @media ( min-width : 768px) {
 	#sidebar-wrapper {
 		margin-left: 0;
@@ -38,17 +35,30 @@
 		margin-left: -15rem;
 	}
 }
-#myStagefeed{
 
- float: right;
+#myStagefeed {
+	float: right;
+}
 
+/* 스타일 추가 */
+#mystageStyle {
+	width: 1500px;
+}
 
+#stageVideoStyle {
+  	width: 300px;
+	height: 80px;
+	line-height: 20px ;
 }
 
 
+#feedSizs{
+height: 350px;
+}
+
 /* feed-small */
 .head-image {
-	height: 320px;
+	height: 250px;
 }
 
 .rounded-circle {
@@ -62,6 +72,57 @@
 .small-feed-info {
 	color: #606060;
 }
+
+/* style */
+#infoStyle{
+
+}
+
+#videoFeed {
+	width:1060;
+	margin-bottom: 20;
+	margin-left : 15px;
+
+	height:800;
+
+	border: 5px solid transparent;
+	border-radius: 20px;
+	box-sizing: border-box;
+ 	display: 5px solid transparent;
+	background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #fbfcb9be, #ffcdf3aa, #65d3ffaa);  border-image-slice: 1;
+ 	background: #D8D8D8;
+}
+#propileStyle {
+	margin-bottom: 20;
+	margin-top: 7;
+	width: 220;
+	height: 803;
+	border: 5px solid transparent;
+	border-radius: 20px;
+	 box-sizing: border-box;
+  display: 5px solid transparent;
+background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #fbfcb9be, #ffcdf3aa, #65d3ffaa);  border-image-slice: 1;
+  background: #f7f7f7;
+}
+
+#proFileStyleCircleshape1 {
+    margin: 20;
+    width: 150px;
+    height: 150px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.proFileStyleCircleshape2{
+	 width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.row{
+height: 120;
+}
+
+
 </style>
 <!-- 구글 -->
 <script type="text/javascript">
@@ -90,12 +151,13 @@
 
 	/* 스테이지 수정 */
     function updateStageForm(){
-	    var upload=	 window.open("/stage/updateStageForm", "updateStageForm","width=650, height=950");
+
+	    var upload=	 window.open("/stage/updateStageForm?stage_user_id="+${myStage.stage_user_id }, "updateStageForm","width=650, height=950");
 
     	}
     /* 신고하기 수정 */
     function reportForm(){
-	    var upload=	 window.open("/report/reportForm", "reportForm","width=650, height=950");
+	    var upload=	 window.open("/report/reportForm?stage_user_id="+${myStage.stage_user_id }, "reportForm","width=650, height=950");
 
     	}
 
@@ -108,422 +170,195 @@
 <body>
 <jsp:include page="/WEB-INF/views/menu/navi.jsp" />
 	<!--Main Contents-->
-	<div class="d-flex" id="wrapper">
-
 
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
 				<!-- main content -->
-				<div class="row main_container">
-					<div class="col-md-12">
+			<div class="row ">
+				<div id="mystageStyle" class="col-md-12">
 						<!-- Recommended section -->
-						<div class="container-fluid">
-							<div class="p-3 pt-5"><h1>My Stage </h1></div>
-
-								<div >
-
-								<div class="row p-2">
-									<div class=" text-left" >
+					<div class="container-fluid">
+							<div class="row" >
+								<div style="width: 1300;">
 									<br>
 									<!-- 배너사진 -->
 									<div class="text-left">
 										<c:choose>
 											<c:when test="${myStage.stage_bannerImgO != null }">
-												<div class="pl-5 pr-5 pb-5"><img  alt="uploadPhoto" src="/stage/banner?=${myStage.stage_id }" height="200px" width="1000px"></div>
+												<div class="pb-3">
+													<img alt="uploadPhoto"
+														src="/stage/banner?=${myStage.stage_id }" height="200px"
+														width="100%">
+												</div>
 											</c:when>
 											<c:otherwise>
-												<div class="pl-5 pr-5 pb-5"><img   alt="BannerPhoto" src="/resources/img/myStage/defultPhotoBar.png" height="200px" width="1000px"></div>
+												<div class="pb-3">
+													<img alt="BannerPhoto"
+														src="/resources/img/myStage/defultPhotoBar.png"
+														height="200px" width="100%">
+												</div>
 											</c:otherwise>
 										</c:choose>
 
 
 									</div>
+									<div id="infoStyle" class="container-fluid">
+										<div class="row recommendRow">
+
+										<div id="propileStyle"
+											class="col-md-2 col-sx-10 p-2 feed-small">
 
 										<!-- 프로필사진 -->
-										<div class=" pl-2">
+											<div >
 
-										<c:choose>
-											<c:when test="${myStage.stage_profileImgO != null }">
-												<img  alt="ProfileImg" src="/stage/profile?=${myStage.stage_id }" height="200px" width="150px">
-											</c:when>
-											<c:otherwise>
-												<img  alt="ProfileImg" src="${url }" height="200px" width="150px">
-											</c:otherwise>
-										</c:choose>
-										<h4 >프로필 사진</h4>
+													<div id="proFileStyleCircleshape1">
+												<c:choose>
+													<c:when test="${myStage.stage_profileImgO != null }">
+														<img class="proFileStyleCircleshape2" alt="ProfileImg"
+															src="/stage/profile?=${myStage.stage_id }" height="200px"
+															width="220px">
 
-										</div>
+													</c:when>
+													<c:otherwise>
+														<img class="proFileStyleCircleshape2" alt="ProfileImg" src="${url }" height="200px"
+															width="220px">
+													</c:otherwise>
+												</c:choose>
+													</div>
+												<p><br></p>
+												<h4><br>${list[0].USER_NAME }</h4>
+												<h5>Follow : ${followCount[0].COUNT }</h5>
+
+											</div>
 
 										<!-- 수정하기 팔로우 -->
-										<!-- 아직 회원가입시 보이는 수정하기 버튼이 보이지 않아 팔로워버튼으로 해놓은상태 -->
-
-										<div class=" pl-2">
+										<div>
 										<c:choose>
 											<c:when test="${sessionScope.loginId == myStage.stage_user_id }">
 												<div >
-													<a class="btn btn-primary" href="#" role="button" onclick="updateStageForm();">수정 하기</a>
+													<a class="btn btn-primary" role="button" onclick="updateStageForm();">수정 하기</a>
 												</div>
 											</c:when>
-
 											<c:otherwise>
-											<c:choose>
-											<c:when test="${follow.follow_id ==null}">
+												<c:choose>
+													<c:when test="${flag }">
 														<div>
-															<a class="btn btn-primary" href="/stage/insertFollow?stage_id=${myStage.stage_id }&stage_user_id=${myStage.stage_user_id }" role="button" >Follow</a>
+															<a class="btn btn-primary" href="/stage/deleteFollow?stage_user_id=${myStage.stage_user_id }" role="button" >취소하기</a>
 														</div>
-
-												</c:when>
-												<c:otherwise>
+													</c:when>
+													<c:otherwise>
 														<div>
-															<a class="btn btn-primary" href="/stage/deleteFollow?follow_id=${follow.follow_id }&stage_user_id=${myStage.stage_user_id }" role="button" >취소하기</a>
+															<a class="btn btn-primary" href="/stage/insertFollow?stage_user_id=${myStage.stage_user_id }" role="button" >Follow</a>
 														</div>
-												</c:otherwise>
-
-											</c:choose>
+													</c:otherwise>
+												</c:choose>
 											</c:otherwise>
 										</c:choose>
 										</div>
 
+
 										<!-- 프로필사진 -->
-										<div class="col-2 mt-3 pl-4">
-											<div><h4>Intro</h4></div>
+
+											<div>
+												<div>
+												<p><br></p>
+													<h4>Intro</h4>
+												</div>
 												<c:choose>
 													<c:when test="${myStage.stage_intro != null }">
-													<div class="card">${myStage.stage_intro }</div>
+														<div class="card">${myStage.stage_intro }</div>
 													</c:when>
 													<c:otherwise>
-													<div class="card ">소개글을 적어주세요.</div>
+														<div class="card ">소개글을 적어주세요.</div>
 													</c:otherwise>
 												</c:choose>
+											</div>
+											<div class="col-10 pt-5 pl-2">
+
+												<c:if
+													test="${sessionScope.loginId != myStage.stage_user_id }">
+													<div>
+														<a class="btn btn-primary" href="#" role="button"
+															onclick="reportForm();">신고하기</a>
+													</div>
+												</c:if>
+											</div>
 										</div>
 
-										<div class="pt-5 pl-2">
+										<!--영상시작-->
 
-											<c:if test="${sessionScope.loginId != myStage.stage_user_id }">
+									<div id="stageVideoStyle" class="col-md-9 col-sx-8 p-2 feed-small">
+										<div id="videoFeed" class="row recommendRow">
+
+
+										<!--FEED-SMALL-->
+										<c:forEach items="${list }" var="video">
+
+											<div id="feedSizs"
+												class="col-md-3 col-sx-8 p-2 feed-small">
 												<div >
-													<a class="btn btn-primary" href="#" role="button"   onclick="reportForm();">신고하기</a>
-												</div>
-											</c:if>
-
-
-										</div>
-
-											<div id="myStagefeed" class="container-fluid ">
-											<div class="grid_title">Recommended</div>
-
-
-											<div class="p-2 text-left">
-
-												<!--FEED-SMALL-->
-											<c:forEach items="${list }" var="video">
-												<div class="col-md-3 col-sx-10 p-2 feed-small">
 													<a href="/video/watchForm?video_id=${video.VIDEO_ID}">
 														<div class="card">
-															<img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image" alt="image" />
-															<div class="row">
-																<div class="col-2 mt-3 pl-4">
-																	<img id="img"
-																		src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-																		class="rounded-circle">
-																</div>
-																<div class="col-10 mt-3">
-																	<p class="mb-2"
-																		title="${video.VIDEO_TITLE }">
-																		${video.VIDEO_TITLE }
-																	</p>
-																	<p class=small-feed-info>
-																		${video.USER_NAME } <i class="fas fa-check-circle"></i><br>
-																		${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
-																	</p>
-																</div>
-															</div>
+															 <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
+                                               					 alt="image" />
+															 <div class="row">
+				                                                <div class="col-2 mt-3 pl-4">
+				                                                    <c:choose>
+				                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
+				                                                            <img id="img" src="/stage/profile?=${video.VIDEO_USER_ID}"
+				                                                                class="rounded-circle">
+				                                                        </c:when>
+				                                                        <c:otherwise>
+				                                                            <img id="img" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+				                                                        </c:otherwise>
+				                                                    </c:choose>
+				                                                </div>
+				                                                <div class="col-8 mt-3" style="margin-left: 20;">
+				                                                    <p class="mb-2" title="${video.VIDEO_TITLE }">
+				                                                        ${video.VIDEO_TITLE }
+				                                                    </p>
+				                                                    <p class=small-feed-info>
+				                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i><br>
+				                                                        ${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
+				                                                    </p>
+				                                                </div>
+				                                            </div>
+
 														</div>
 													</a>
 												</div>
 												<!--FEED-SMALL Ends-->
-											</c:forEach>
+
+
 
 											</div>
+										</c:forEach>
 										</div>
-
-
+										</div>
+										</div>
 									</div>
 
-
-
-
-
-
 								</div>
-
-
-
-<!-- Page Content -->
-		<div id="page-content-wrapper"  class="text-left" >
-			<div >
-				<!-- main content -->
-				<div class="row main_container">
-					<div class="row">
-						<!-- Recommended section -->
-
-
-
-						<!-- Recommended Section -->
-
-						<hr>
-
-						<!-- Trending Section -->
-						<div class="container-fluid">
-							<div class="grid_title">Trending</div>
-							<div class="row">
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								<!--FEED-SMALL-->
-								<div class="col-md-3 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
 							</div>
-						</div>
-						<!-- Trending Section -->
-						<p>
-							<br>
-						</p>
-						<p>
-							<br>
-						</p>
+
+
+
+
+
 					</div>
+
 				</div>
-				<!-- main content -->
 
-			<!-- 영상 다이브끝 -->
 			</div>
+			<!-- /#page-content-wrapper -->
 		</div>
-		</div>
-
-</div>
-
-		</div>
-		<!-- /#page-content-wrapper -->
-	</div>
-	<!-- /#wrapper -->
-	</div>
+		<!-- /#wrapper -->
 	</div>
 
 
 
-	</div>
+
 
 
 
@@ -538,8 +373,9 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
 		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
 		crossorigin="anonymous"></script>
-		<!-- 구글 -->
-	    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	<!-- 구글 -->
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad"
+		async defer></script>
 
 </body>
 </html>

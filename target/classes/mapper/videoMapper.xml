@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.boom.box.dao.VideoMapper">
-
+<!-- 1. 비디오 업로드 용 -->
 <insert id="insertVideo" parameterType="video">
 	<selectKey keyProperty="video_id" resultType="int" order="BEFORE">
 		select
@@ -63,6 +63,7 @@
 		) A
 </insert>
 
+<!-- 2. 비디오 리스트 가져오기 및 검색 -->
 <select id="selectVideoList" resultType="hashmap" parameterType="String">
 	select
 	    v.video_id as video_id
@@ -96,9 +97,179 @@
 		v.video_title like '%' || #{searchText} || '%'
 		</if>
 	order by
-	    video_indate desc
+	    v.video_indate desc
 </select>
 
+<!-- 2-1 Like 비디오 리스트 가져오기-->
+<select id="selectVideoListByLike" resultType="hashmap" parameterType="int">
+	select
+	    v.video_id as video_id
+		,v.video_user_id as video_user_id
+		,v.video_title as video_title
+		,v.video_content as video_content
+		,v.video_hit as video_hit
+		,v.video_urlS as video_urlS 
+		,v.video_urlO as video_urlO
+		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
+		,v.video_class as video_class
+		,v.video_public as video_public
+		,v.video_ageLimit as video_ageLimit
+		,v.video_thumbnailS as video_thumbnailS 
+		,v.video_thumbnailO as video_thumbnailO
+		,v.video_copyright as video_copyright
+		,v.video_motion as video_motion
+		,v.video_likeNum as video_likeNum
+		,u.user_name as user_name
+		,u.user_googleimg as user_googleimg
+		,s.stage_profileImgS as stage_profileImgS
+		,s.stage_profileImgO as stage_profileImgO
+	from
+	    video_tb v, user_tb u, stage_tb s, like_tb l
+	where
+		v.video_user_id = u.user_id
+        and
+        s.stage_user_id = u.user_id
+        and
+        l.like_video_id = v.video_id
+        and
+        l.like_user_id = #{user_id}
+</select>
+
+<select id="selectVideoByFollow" resultType="hashmap" parameterType="int">
+	select
+	    v.video_id as video_id
+		,v.video_user_id as video_user_id
+		,v.video_title as video_title
+		,v.video_content as video_content
+		,v.video_hit as video_hit
+		,v.video_urlS as video_urlS 
+		,v.video_urlO as video_urlO
+		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
+		,v.video_class as video_class
+		,v.video_public as video_public
+		,v.video_ageLimit as video_ageLimit
+		,v.video_thumbnailS as video_thumbnailS 
+		,v.video_thumbnailO as video_thumbnailO
+		,v.video_copyright as video_copyright
+		,v.video_motion as video_motion
+		,v.video_likeNum as video_likeNum
+		,u.user_name as user_name
+		,u.user_googleimg as user_googleimg
+		,s.stage_profileImgS as stage_profileImgS
+		,s.stage_profileImgO as stage_profileImgO
+	from
+	    video_tb v, user_tb u, stage_tb s
+	where
+		v.video_user_id = u.user_id
+        and
+        s.stage_user_id = u.user_id
+        and
+        v.video_user_id in (
+            select
+                follow_stage_id
+            from
+                follow_tb
+            where
+                follow_user_id = #{follow_user_id})   
+
+</select>
+
+<select id="selectVideoByInterest" resultType="hashmap" parameterType="int">
+   select
+	    v.video_id as video_id
+		,v.video_user_id as video_user_id
+        ,vi.videointerest_interest as videointerest_interest
+		,v.video_title as video_title
+		,v.video_content as video_content
+		,v.video_hit as video_hit
+		,v.video_urlS as video_urlS 
+		,v.video_urlO as video_urlO
+		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
+		,v.video_class as video_class
+		,v.video_public as video_public
+		,v.video_ageLimit as video_ageLimit
+		,v.video_thumbnailS as video_thumbnailS 
+		,v.video_thumbnailO as video_thumbnailO
+		,v.video_copyright as video_copyright
+		,v.video_motion as video_motion
+		,v.video_likeNum as video_likeNum
+		,u.user_name as user_name
+		,u.user_googleimg as user_googleimg
+		,s.stage_profileImgS as stage_profileImgS
+		,s.stage_profileImgO as stage_profileImgO  
+	from
+	    video_tb v, user_tb u, stage_tb s, videointerest_tb vi
+	where
+		v.video_user_id = u.user_id
+        and
+        s.stage_user_id = u.user_id
+        and
+        v.video_id = vi.videointerest_video_id
+        and
+        vi.videointerest_interest 
+            in (
+                select
+                    ui.userinterest_interest
+                from 
+                    user_tb u, userinterest_tb ui
+                where
+                    u.user_id = ui.userinterest_user_id
+                    and
+                    u.user_id = #{user_id}
+                )
+
+<!-- 	select
+	    v.video_id as video_id
+		,v.video_user_id as video_user_id
+		,v.video_title as video_title
+		,v.video_content as video_content
+		,v.video_hit as video_hit
+		,v.video_urlS as video_urlS 
+		,v.video_urlO as video_urlO
+		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
+		,v.video_class as video_class
+		,v.video_public as video_public
+		,v.video_ageLimit as video_ageLimit
+		,v.video_thumbnailS as video_thumbnailS 
+		,v.video_thumbnailO as video_thumbnailO
+		,v.video_copyright as video_copyright
+		,v.video_motion as video_motion
+		,v.video_likeNum as video_likeNum
+		,u.user_name as user_name
+		,u.user_googleimg as user_googleimg
+		,s.stage_profileImgS as stage_profileImgS
+		,s.stage_profileImgO as stage_profileImgO
+	from
+	    video_tb v, user_tb u, stage_tb s
+	where
+		v.video_user_id = u.user_id
+        and
+        s.stage_user_id = u.user_id
+        and
+        v.video_id 
+        in   
+            (select distinct
+                v.video_id
+            from 
+                video_tb v, videointerest_tb vi
+            where
+                v.video_id = vi.videointerest_video_id
+                and
+                vi.videointerest_interest 
+                in (
+                    select
+                        ui.userinterest_interest
+                    from 
+                        user_tb u, userinterest_tb ui
+                    where
+                        u.user_id = ui.userinterest_user_id
+                        and
+                        u.user_id = #{user_id})) -->
+</select>
+
+
+
+<!-- 3. 비디오 하나 가져오기 및 검색 -->
 <select id="selectVideoOne" parameterType="int" resultType="hashmap">
 	select
 	    v.video_id as video_id
@@ -137,6 +308,7 @@
 	    , video_urlO
 	    , video_thumbnailS
 	    , video_thumbnailO
+	    , video_user_id
 	from
 	    video_tb
 	where
@@ -172,7 +344,7 @@ where
 </update>
 
 <insert id="insertLike" parameterType="video">
-	insert into like_tb (
+	insert into like_tb(
 	    like_id
 	    ,like_user_id
 	    ,like_video_id
@@ -186,7 +358,7 @@ where
 <insert id="deleteLike" parameterType="hashmap">
 	delete from 
 		like_tb 
-	where 
+	where
 		like_user_id = #{like_user_id}
 	and
 		like_video_id = #{like_video_id}
@@ -211,5 +383,6 @@ where
 	and
 		like_video_id = #{like_video_id}   
 </select>
+
 
 </mapper>

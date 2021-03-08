@@ -167,5 +167,16 @@ FROM
 		user_id = #{user_id}
 </select>
 
+<select id="selectInterest" resultType="String" parameterType="int">
+    select
+        ui.userinterest_interest
+    from 
+        user_tb u, userinterest_tb ui
+    where
+        u.user_id = ui.userinterest_user_id
+        and
+        u.user_id = #{user_id}
+</select>
+
 
 </mapper>

@@ -124,4 +124,15 @@ public class UserDAO {
 		}
 		return url;
 	}
+	
+	public ArrayList<String> selectInterest(int user_id) {
+		ArrayList<String> list = null;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			list = mapper.selectInterest(user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

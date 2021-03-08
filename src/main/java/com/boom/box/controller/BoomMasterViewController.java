@@ -79,11 +79,6 @@ public class BoomMasterViewController {
 			logger.info("커리어 이미지 SO부여");
 		}
 
-		/*
-		 * boomMaster.setBoommaster_major1(boommaster_major1);
-		 * boomMaster.setBoommaster_major2(boommaster_major2);
-		 * boomMaster.setBoommaster_intro(boommaster_intro);
-		 */
 
 		boomMaster.setBoommaster_confirm(0);
 

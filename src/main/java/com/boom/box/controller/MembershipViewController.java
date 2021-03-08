@@ -39,8 +39,6 @@ public class MembershipViewController {
 
 		int id = (int) session.getAttribute("loginId");
 
-
-		// ���� ��¥
 		Calendar mon = Calendar.getInstance();
 		mon.add(Calendar.DATE, +0);
 		String beforeMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
