@@ -35,7 +35,6 @@
 			}
 		}
 		if (chk) {
-			alert("동의함에 체크해주세요.");
 			return;
 		} else {
 			alert("동의함에 체크해주세요.")

@@ -16,11 +16,11 @@ public class MyStageDAO {
 	@Autowired
 	private SqlSession session;
 
-	public MyStageVO selectMyStageone(int id) {
+	public MyStageVO selectMyStageOne(int id) {
 		MyStageVO vo= null;
 		try {
 			MyStageMapper mapper = session.getMapper(MyStageMapper.class);
-			vo = mapper.selectMyStageone(id);
+			vo = mapper.selectMyStageOne(id);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

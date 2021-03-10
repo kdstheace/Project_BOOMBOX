@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.boom.box.service.MyStageService;
 import com.boom.box.service.UserService;
+import com.boom.box.service.VideoService;
 import com.boom.box.util.FileService;
 import com.boom.box.vo.MyStageVO;
 
@@ -36,6 +37,8 @@ public class StageViewController {
 	private MyStageService service;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private VideoService videoService;
 	@Autowired
 	private HttpSession session;
 
@@ -68,10 +71,10 @@ public class StageViewController {
 		url = userService.selectGoogleImg(id);
 		model.addAttribute("url", url);
 		
-		ArrayList<HashMap<String, Object>> list = service.selectVideoListMystage(id);
+		ArrayList<HashMap<String, Object>> list = videoService.selectVideoListById(id);
 
 		model.addAttribute("list", list);
-		MyStageVO myStage = service.selectMyStageone(id);
+		MyStageVO myStage = service.selectMyStageOne(id);
 		model.addAttribute("myStage",myStage);
 		return "stage/myStageForm";
 	}
@@ -101,8 +104,6 @@ public class StageViewController {
 	
 	@RequestMapping(value = "/uploadStage" ,method = RequestMethod.POST)
 	public String uploadBanner(MultipartFile uploadBanner ,MultipartFile profileImg, String stage_intro) {
-
-
 
 		int id = (int)session.getAttribute("loginId");
 		MyStageVO vo = new MyStageVO();
@@ -134,19 +135,31 @@ public class StageViewController {
 		if(cnt > 0) {
 
 		}else {
-			return "/stage/uploadStage";
+			return "/stage/updateStageForm";
 		}
 
-		return "redirect:/report/closeForm";
+		return "/stage/close";
 
 	}
 
 
 	@RequestMapping(value = "/banner")
-	public void banner(HttpServletResponse response) {
+	public void banner(HttpServletResponse response, @RequestParam(defaultValue = "0")int stage_user_id) {
 
-		int id = (int)session.getAttribute("loginId");
-		MyStageVO stage = service.selectMyStageone(id);
+		
+		int id = 0;
+		int loginId = (int)session.getAttribute("loginId");	
+		if(stage_user_id == 0) {
+			stage_user_id = loginId;
+		}
+		
+		if(stage_user_id == loginId) {
+			id = loginId;
+		}else {
+			id = stage_user_id;
+		}
+
+		MyStageVO stage = service.selectMyStageOne(id);
 
 		String original_file = stage.getStage_bannerImgO();
 		try {
@@ -180,7 +193,6 @@ public class StageViewController {
 				try {
 					sos.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -203,7 +215,7 @@ public class StageViewController {
 			id = video_user_id;
 		}
 
-		MyStageVO stage = service.selectMyStageone(id);
+		MyStageVO stage = service.selectMyStageOne(id);
 
 		String original_file = stage.getStage_profileImgO();
 		try {
@@ -237,7 +249,6 @@ public class StageViewController {
 				try {
 					sos.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -249,7 +260,7 @@ public class StageViewController {
 	public String updateStageForm(Model  model) {
 
 		int id = (int)session.getAttribute("loginId");
-		MyStageVO stage = service.selectMyStageone(id);
+		MyStageVO stage = service.selectMyStageOne(id);
 
 		model.addAttribute("stage", stage);
 
@@ -262,7 +273,7 @@ public class StageViewController {
 	public String deleteBanner(Model  model) {
 
 		int id = (int)session.getAttribute("loginId");
-		MyStageVO stage = service.selectMyStageone(id);
+		MyStageVO stage = service.selectMyStageOne(id);
 		System.out.println(stage);
 
 		stage.setStage_bannerImgO("");
@@ -288,7 +299,7 @@ public class StageViewController {
 
 
 		int id = (int)session.getAttribute("loginId");
-		MyStageVO stage = service.selectMyStageone(id);
+		MyStageVO stage = service.selectMyStageOne(id);
 		System.out.println(stage);
 
 		stage.setStage_profileImgO("");

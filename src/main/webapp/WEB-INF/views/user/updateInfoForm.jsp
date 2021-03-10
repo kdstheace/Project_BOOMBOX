@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
     <!DOCTYPE html>
     <html>
 
@@ -21,9 +23,8 @@
 
         <style type="text/css">
             @charset "UTF-8";
-
             * {
-                font-family: 'Do Hyeon';
+                font-family: 'Do Hyeon', 'Sawarabi Gothic', sans-serif;
                 font-size: 20px;
             }
 
@@ -123,7 +124,7 @@
                 color: #ffffff;
             }
         </style>
-        <title>회원가입</title>
+        <title>Edit Profile</title>
         <script type="text/javascript">
 
             function fn_updateFormCheck() {
@@ -248,7 +249,7 @@
                 <img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo" width="15%"
                     style="min-width: 120px; max-width: 200px;">
             </p>
-            <h1>회원정보 수정하기</h1>
+            <h1><spring:message code="user.updateInfo.title" /></h1>
             <form action="/user/updateInfo" method="post" onsubmit="return fn_updateFormCheck();">
                 <input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}"> <label>
                     <p class="label-txt">닉네임</p>

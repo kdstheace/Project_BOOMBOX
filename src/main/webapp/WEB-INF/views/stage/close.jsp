@@ -11,16 +11,16 @@
 <script type="text/javascript">
 $(function(){
 	window.onload = function () {
+		window.opener.location.href="/stage/myStageForm";
 		close();
-
 		}
-
-
 });
 
+
+
+
+
 </script>
-
-
 </head>
 <body>
 

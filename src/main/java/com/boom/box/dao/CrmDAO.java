@@ -17,14 +17,12 @@ public class CrmDAO {
 	private static final Logger logger = LoggerFactory.getLogger(CrmDAO.class);
 
 	public int insertCrm(CrmVO crm) {
-		logger.info("붐마스터 등록 다오까지 들어옴 ㅇㅇ");
 		// 오토와이어드 안될 때 this.dao = null 로 뜬다.
 		int count = 0;
 		try {
 			CrmMapper mapper = session.getMapper(CrmMapper.class);
 			count = mapper.insertCrm(crm);
 
-			logger.info("디비 들어갔다 막 나옴");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

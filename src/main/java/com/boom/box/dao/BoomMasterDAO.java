@@ -53,18 +53,14 @@ public class BoomMasterDAO {
 		}
 	}
 	
-	public BoomMasterVO selectBoomasterOne(int id) {
-
+	public BoomMasterVO selectBoomMasterOne(int id) {
 		BoomMasterVO vo = null;
-
-
 		try {
 			BoomMasterMapper mapper = session.getMapper(BoomMasterMapper.class);
-			vo = mapper.selectBoomasterOne(id);
+			vo = mapper.selectBoomMasterOne(id);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return vo;
 	}
 

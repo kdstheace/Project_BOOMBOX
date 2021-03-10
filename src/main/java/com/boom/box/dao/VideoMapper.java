@@ -12,6 +12,7 @@ public interface VideoMapper {
 	public int insertVideoInterest(VideoVO video);
 	public ArrayList<HashMap<String, Object>> selectVideoList(RowBounds rb, String searchText);
 	public ArrayList<HashMap<String, Object>> selectVideoListByLike(RowBounds rb, int user_id);
+	public ArrayList<HashMap<String, Object>> selectVideoListById(int user_id);
 	public VideoVO selectVideoById(int video_id);
 	public HashMap<String, Object> selectVideoOne(int video_id);
 	public int selectVideoCount(String searchText);

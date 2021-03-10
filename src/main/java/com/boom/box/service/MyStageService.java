@@ -16,9 +16,9 @@ public class MyStageService {
 	private MyStageDAO dao;
 
 
-	public MyStageVO selectMyStageone(int id) {
+	public MyStageVO selectMyStageOne(int id) {
 
-		return dao.selectMyStageone(id);
+		return dao.selectMyStageOne(id);
 	}
 
 	public int updateStage(MyStageVO vo) {

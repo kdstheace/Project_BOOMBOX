@@ -49,6 +49,7 @@
 			videoInterest_id
 			,videoInterest_video_id
 			,videoInterest_interest
+			,videointerest_category
 		)
 		select
 			videoInterest_seq.nextval
@@ -57,6 +58,25 @@
 			select
 				#{video_id} as videoInterest_video_id
 				,#{arr} as videoInterest_interest
+				<if test="arr == 'HOME TRAINING'">
+					,'HOME TRAINING' as videointerest_category
+				</if>
+				<if test="arr == 'KIDS' || arr == 'CHEERLEADING' || arr == 'OTHER(TEENS)'">
+					,'TEENS' as videointerest_category
+				</if>
+				<if test="arr == 'K-POP' || arr == 'J-POP' || arr == 'OTHERS(CHOREO)'">
+					,'POP-CHOREOGRAPHY' as videointerest_category
+				</if>
+				<if test="arr == 'MALE CLUBDANCE' || arr == 'FEMALE CLUBDANCE' || arr == 'OTHERS(CLUB)'">
+					,'CLUB' as videointerest_category
+				</if>
+				<if test="arr == 'POPPIN DANCE' || arr == 'BREAK DANCE' || arr == 'LOCKING' || arr == 'OTHERS(HIPHOP)'">
+					,'HIPHOP' as videointerest_category
+				</if>
+				<if test="arr == 'TANGO' || arr == 'TAP DANCE' || arr == 'BELLY DANCE' || arr == 'JIVE' || arr == 'JAZZ' || arr == 'OTHERS'">
+					,'OTHERS' as videointerest_category
+				</if>
+				
 			from
 				dual
 		</foreach>
@@ -96,6 +116,40 @@
 	and
 		v.video_title like '%' || #{searchText} || '%'
 		</if>
+	order by
+	    v.video_indate desc
+</select>
+<!-- 2-1 UserID로 비디오 리스트 가져오기 -->
+<select id="selectVideoListById" parameterType="int" resultType="hashmap">
+	select
+	    v.video_id as video_id
+		,v.video_user_id as video_user_id
+		,v.video_title as video_title
+		,v.video_content as video_content
+		,v.video_hit as video_hit
+		,v.video_urlS as video_urlS 
+		,v.video_urlO as video_urlO
+		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
+		,v.video_class as video_class
+		,v.video_public as video_public
+		,v.video_ageLimit as video_ageLimit
+		,v.video_thumbnailS as video_thumbnailS 
+		,v.video_thumbnailO as video_thumbnailO
+		,v.video_copyright as video_copyright
+		,v.video_motion as video_motion
+		,v.video_likeNum as video_likeNum
+		,u.user_name as user_name
+		,u.user_googleimg as user_googleimg
+		,s.stage_profileImgS as stage_profileImgS
+		,s.stage_profileImgO as stage_profileImgO
+	from
+	    video_tb v, user_tb u, stage_tb s
+	where
+		v.video_user_id = u.user_id
+		and
+		s.stage_user_id = u.user_id
+		and
+		u.user_id = #{user_id}
 	order by
 	    v.video_indate desc
 </select>
@@ -218,53 +272,6 @@
                     u.user_id = #{user_id}
                 )
 
-<!-- 	select
-	    v.video_id as video_id
-		,v.video_user_id as video_user_id
-		,v.video_title as video_title
-		,v.video_content as video_content
-		,v.video_hit as video_hit
-		,v.video_urlS as video_urlS 
-		,v.video_urlO as video_urlO
-		,to_char(video_inDate, 'yyyy-MM-dd') as video_inDate
-		,v.video_class as video_class
-		,v.video_public as video_public
-		,v.video_ageLimit as video_ageLimit
-		,v.video_thumbnailS as video_thumbnailS 
-		,v.video_thumbnailO as video_thumbnailO
-		,v.video_copyright as video_copyright
-		,v.video_motion as video_motion
-		,v.video_likeNum as video_likeNum
-		,u.user_name as user_name
-		,u.user_googleimg as user_googleimg
-		,s.stage_profileImgS as stage_profileImgS
-		,s.stage_profileImgO as stage_profileImgO
-	from
-	    video_tb v, user_tb u, stage_tb s
-	where
-		v.video_user_id = u.user_id
-        and
-        s.stage_user_id = u.user_id
-        and
-        v.video_id 
-        in   
-            (select distinct
-                v.video_id
-            from 
-                video_tb v, videointerest_tb vi
-            where
-                v.video_id = vi.videointerest_video_id
-                and
-                vi.videointerest_interest 
-                in (
-                    select
-                        ui.userinterest_interest
-                    from 
-                        user_tb u, userinterest_tb ui
-                    where
-                        u.user_id = ui.userinterest_user_id
-                        and
-                        u.user_id = #{user_id})) -->
 </select>
 
 

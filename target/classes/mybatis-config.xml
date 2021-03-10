@@ -26,6 +26,7 @@
 		<mapper resource="mapper/boomMasterMapper.xml" />
 		<mapper resource="mapper/crmMapper.xml" />
 		<mapper resource="mapper/refundMapper.xml" />
+		<mapper resource="mapper/schoolMapper.xml" />
 	</mappers>
 	
 </configuration>

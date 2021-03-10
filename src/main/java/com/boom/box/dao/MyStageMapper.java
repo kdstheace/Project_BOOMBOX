@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.boom.box.vo.MyStageVO;
 
 public interface MyStageMapper {
-	public MyStageVO selectMyStageone(int id);
+	public MyStageVO selectMyStageOne(int id);
 	public int updateStage(MyStageVO vo);
 	public int deleteBanner(MyStageVO vo);
 	public int deleteProfile(MyStageVO vo);

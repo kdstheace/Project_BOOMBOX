@@ -102,7 +102,7 @@ public class UserService {
 			if(count > 0) {
 				System.out.println("개인정보 수정 성동");
 				session.setAttribute("loginName", user.getUser_name());
-				path = "redirect:/report/closeForm";
+				path = "stage/close";
 			}else {
 				System.out.println("개인정보 수정 실패");
 				path = "user/updateInfoForm";

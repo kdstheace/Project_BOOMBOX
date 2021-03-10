@@ -25,7 +25,7 @@
 <script type="text/javascript">
 
 function memberShipCrmForm() {
-    window.open("/membership/memberShipCrmForm", "memberShipCrmForm", "width=650, height=950");
+    window.open("/membership/memberShipCrmForm", "memberShipCrmForm", "width=800, height=950");
 }
 
 
@@ -47,6 +47,29 @@ function extendCk(){
 
 </script>
 
+<style type="text/css">
+
+
+#boarderStyle{
+	color: #211f53;
+	border-color: #211f53;
+	margin-left: 80px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    height: 500px;
+
+	border: 5px solid transparent;
+	border-radius: 20px;
+	box-sizing: border-box;
+ 	display: 5px solid transparent;
+	background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #fbfcb9be, #ffcdf3aa, #65d3ffaa);  border-image-slice: 1;
+ 	background: #fcc10c;
+
+}
+
+
+</style>
+
 
 </head>
 
@@ -55,7 +78,10 @@ function extendCk(){
 
 		<!-- 멤버쉽  -->
 
-		<div class="col-md-8 video_box">
+		<div > d</div><br>
+
+
+		<div id="boarderStyle" style="border-color: #211f53;" class="col-md-6 video_box">
 			<div class="p-4 pt-3">
 				<h1>멤버십</h1>
 			</div>
@@ -66,15 +92,15 @@ function extendCk(){
 				<div class="pl-5 pt-3 ">
 								<h3>현재 멤버쉽  </h3>&emsp;<a><h5>만기일 : ${year }년 ${mm }월 ${dd }일<br><br>
 								남은 멤버쉽 날짜 : <span style="color: red;">${diff }</span>일</h5></a>
-					<div class="col-7 text-right">
-					<input type="submit" value="연장하기">
-					</div>
+
+					<div class="col-10 text-right"><a class="btn btn btn-dark" href="/membership/payCheckForm" role="button" onclick="return extendCk();">연장하기</a></div>
+
 				</div>
 			</form>
 			<div class="pl-5 pt-3 ">
 
 				<h3>환불</h3>&emsp;<a><h5>- 고객센터 email</h5></a>
-				<div class="col-7 text-right"><a class="btn btn-primary" href="#" role="button" onclick="memberShipCrmForm();">환불 문의하기</a></div>
+				<div class="col-10 text-right" ><a class="btn btn btn-dark" href="#" role="button" onclick="memberShipCrmForm();">환불 문의하기</a></div>
 			</div>
 
 
@@ -82,8 +108,8 @@ function extendCk(){
 
 			<c:if test="${diff==0}">
 				<div class="p-5 pt-3">
-					<h3>현재 멤버쉽  </h3>&emsp;<a><h5>미 가입자 <br>
-					<div class="col-7 text-right"><a class="btn btn-primary" href="/membership/payCheckForm" role="button">결제하러가기</a></div>
+					<h3>현재 상태  </h3>&emsp;<a><h5>현재 멤버쉽 미가입자이십니다. <br> 지금 결제 하시면 현재일로 부터 30일간 다양한 혜택을 받을 수 있습니다. <br>
+					<div class="col-10 text-right" style="margin-top: 100px;"><a class="btn btn-dark" href="/membership/payCheckForm" role="button">결제하러가기</a></div>
 			</div>
 	 	</c:if>
 		</div>

@@ -182,10 +182,10 @@
                                     <div class="col-1 pr-0 w-2 text-right">
                                         <c:choose>
                                             <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                <img id="img" style="width:70%; margin-right: 10px" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}" class="rounded-circle">
+                                                <img id="img" height="55" style="width:70%; margin-right: 10px" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}" class="rounded-circle">
                                             </c:when>
                                             <c:otherwise>
-                                                <img id="img" style="width:70%; margin-right: 10px" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+                                                <img id="img" height="55" style="width:70%; margin-right: 10px" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
                                             </c:otherwise>
                                         </c:choose>
                        

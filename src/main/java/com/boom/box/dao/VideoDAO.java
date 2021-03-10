@@ -198,6 +198,15 @@ public class VideoDAO {
 		}
 		return list;
 	}
-
 	
+	public ArrayList<HashMap<String, Object>> selectVideoListById(int user_id){
+		ArrayList<HashMap<String, Object>> list = null;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			list = mapper.selectVideoListById(user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

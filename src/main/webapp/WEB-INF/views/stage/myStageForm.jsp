@@ -188,14 +188,14 @@ height: 120;
 											<c:when test="${myStage.stage_bannerImgO != null }">
 												<div class="pb-3">
 													<img alt="uploadPhoto"
-														src="/stage/banner?=${myStage.stage_id }" height="200px"
+														src="/stage/banner?stage_user_id=${myStage.stage_user_id }" height="200px"
 														width="100%">
 												</div>
 											</c:when>
 											<c:otherwise>
 												<div class="pb-3">
 													<img alt="BannerPhoto"
-														src="/resources/img/myStage/defultPhotoBar.png"
+														src="/resources/img/myStage/defaultPhotoBar.png"
 														height="200px" width="100%">
 												</div>
 											</c:otherwise>
@@ -216,7 +216,7 @@ height: 120;
 												<c:choose>
 													<c:when test="${myStage.stage_profileImgO != null }">
 														<img class="proFileStyleCircleshape2" alt="ProfileImg"
-															src="/stage/profile?=${myStage.stage_id }" height="200px"
+															src="/stage/profile?video_user_id=${myStage.stage_id }" height="200px"
 															width="220px">
 
 													</c:when>
@@ -291,49 +291,43 @@ height: 120;
 									<div id="stageVideoStyle" class="col-md-9 col-sx-8 p-2 feed-small">
 										<div id="videoFeed" class="row recommendRow">
 
+							<!--FEED-SMALL-->
+                            <c:forEach items="${list }" var="video">
+                                <div class="col-md-3 col-sx-10 p-2 feed-small">
+                                    <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
+                                        <div class="card">
+                                            <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
+                                                alt="image" />
+                                            <div class="row">
+                                                <div class="col-3 mt-3 pl-4">
+                                                    <c:choose>
+                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
+                                                            <img id="img" height="50" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
+                                                                class="rounded-circle">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img id="img" height="50" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                                <div class="col-9 mt-3">
+                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
+                                                        ${video.VIDEO_TITLE }
+                                                    </p>
+                                                    <p class=small-feed-info>
+                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
+                                                        <br>
+                                                        ${video.VIDEO_INDATE }
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </c:forEach>
 
-										<!--FEED-SMALL-->
-										<c:forEach items="${list }" var="video">
+                                <!--FEED-SMALL Ends-->
 
-											<div id="feedSizs"
-												class="col-md-3 col-sx-8 p-2 feed-small">
-												<div >
-													<a href="/video/watchForm?video_id=${video.VIDEO_ID}">
-														<div class="card">
-															 <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
-                                               					 alt="image" />
-															 <div class="row">
-				                                                <div class="col-2 mt-3 pl-4">
-				                                                    <c:choose>
-				                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
-				                                                            <img id="img" src="/stage/profile?=${video.VIDEO_USER_ID}"
-				                                                                class="rounded-circle">
-				                                                        </c:when>
-				                                                        <c:otherwise>
-				                                                            <img id="img" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
-				                                                        </c:otherwise>
-				                                                    </c:choose>
-				                                                </div>
-				                                                <div class="col-8 mt-3" style="margin-left: 20;">
-				                                                    <p class="mb-2" title="${video.VIDEO_TITLE }">
-				                                                        ${video.VIDEO_TITLE }
-				                                                    </p>
-				                                                    <p class=small-feed-info>
-				                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i><br>
-				                                                        ${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
-				                                                    </p>
-				                                                </div>
-				                                            </div>
-
-														</div>
-													</a>
-												</div>
-												<!--FEED-SMALL Ends-->
-
-
-
-											</div>
-										</c:forEach>
 										</div>
 										</div>
 										</div>

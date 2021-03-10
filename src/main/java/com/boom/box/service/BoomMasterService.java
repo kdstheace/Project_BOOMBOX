@@ -49,8 +49,8 @@ public class BoomMasterService {
 	
 	
 
-	public BoomMasterVO selectBoomasterOne(int id) {
-	return dao.selectBoomasterOne(id);
+	public BoomMasterVO selectBoomMasterOne(int id) {
+	return dao.selectBoomMasterOne(id);
 	}
 
 	public VideoVO selectVideoClass(int video_id) {

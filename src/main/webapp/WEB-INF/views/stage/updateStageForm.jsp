@@ -165,7 +165,7 @@ function realtimeClock() {
 		}
 
 
-	function uploadClose(){
+	/* function uploadClose(){
 
 
 
@@ -202,7 +202,7 @@ function realtimeClock() {
 
 
 
-		}
+		} */
 
 
 

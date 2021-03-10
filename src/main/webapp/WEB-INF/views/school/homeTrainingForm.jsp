@@ -17,7 +17,20 @@
     <meta name="google-signin-client_id"
         content="290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
     <jsp:include page="/WEB-INF/views/menu/navi-school.jsp" />    
+    
+    
+    <script> $('.carousel').carousel({ interval: 2000 }) </script>
+
+    
     <style>
+    
+    
+    
+    .carousel-inner > .carousel-item > img{  width: 100%; height: 500px;  }
+
+    
+    
+    
 				
 		/* feed-small */
 		.head-image {
@@ -44,9 +57,9 @@
 		    font-size: 30px;
 		}
 		
-		.main_container {
-		    padding-top: 30px;
-		    padding-left: 30px;
+			.main_container {
+		    padding-top: 10px;
+		    padding-left: 10px;
 		}
 		
 		
@@ -64,6 +77,53 @@
 		
 		}
 		
+		.schoolMainMenu a:hover{
+			background-color: orange;
+			color: black;
+		}
+		
+
+		
+							<!-- -->
+							
+/* 							.navbar {
+					  background-color: #333;
+					  width: 100%;
+					} */
+					
+					/* Style the links inside the navigation bar */
+					
+					
+/* 					.navbar a {
+					  float: left;
+					  color: #f2f2f2;
+					  text-align: center;
+					  padding: 14px 16px;
+					}
+					 */
+					
+					
+					/* Change the color of links on hover */
+					
+					
+/* 					.navbar a:hover {
+					  background-color: #ddd;
+					  color: black;
+					}
+					 */
+					
+					/* Add a color to the active/current link */
+					
+					
+/* 					.navbar a.active {
+					  background-color: #bbe1f4;
+					  color: white;
+					}
+					
+					.nav-font {
+					  font-size: 25px;
+					} */
+							
 
     </style>    
 </head>
@@ -71,22 +131,36 @@
 
 <body>
 
-<div class="allSize" id="allSize">
-	<h1>Home Training! </h1>
+	<div class="allSize" id="allSize" style="margin: 1%">
 	<div class="schoolMainMenu">
-		<a href="/school/schoolForm" class="btn btn-dark"> All </a> &emsp; 
-		<a href="/school/mySchoolForm" class="btn btn-dark">My School</a> &emsp; 
-		<a href="/school/homeTrainingForm" class="btn btn-dark">홈트레이닝</a> &emsp; 
-		<a href="/school/kidsForm" class="btn btn-dark">Kids</a> &emsp; 
-		<a href="/school/broadcastDanceForm" class="btn btn-dark">방송댄스</a> &emsp; 
-		<a href="/school/clubDanceForm" class="btn btn-dark">클럽댄스</a> &emsp; 
-		<a href="/school/hiphopForm" class="btn btn-dark">힙합</a> &emsp; 
-		<a href="/school/othersForm" class="btn btn-dark">Others</a>
+		<a href="/school/schoolForm" class="btn btn-dark" style="width: 170px; height: 40px; font-size: 22px;"> All </a> &emsp; 
+		<a href="/school/mySchoolForm" class="btn btn-dark" style="width: 170px; height: 40px; font-size: 22px;">My School</a> &emsp; 
+		<a href="/school/homeTrainingForm" class="btn btn-dark"  style="width: 170px; height: 40px; font-size: 22px; color: rgb(0, 56, 161); background-color: rgb(189, 225, 255);">홈트레이닝</a> &emsp; 
+		<a href="/school/kidsForm" class="btn btn-dark" style="width: 170px; height: 40px; font-size: 22px;">Kids</a> &emsp; 
+		<a href="/school/broadcastDanceForm" class="btn btn-dark" style="width: 170px; height: 40px; font-size: 22px;">방송댄스</a> &emsp; 
+		<a href="/school/clubDanceForm" class="btn btn-dark" style="width: 170px; height: 40px; font-size: 22px;">클럽댄스</a> &emsp; 
+		<a href="/school/hiphopForm" class="btn btn-dark" style="width: 170px; height: 40px; font-size: 22px;">힙합</a> &emsp; 
+		<a href="/school/othersForm" class="btn btn-dark" style="width: 170px; height: 40px; font-size: 22px;">Others</a>
 	</div>
 
 	<hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
 
-	
+<!-- 
+    <div class="navbar">
+        <a href="../home/home.html" class="col-1 nav-font">All</a>
+        <a href="../activity/activity_main.html" class="active col-1 nav-font">My School</a>
+        <a href="../search/search_main.html" class="col-1 nav-font">홈트레이닝</a>
+        <a href="../profile/profile_main.html" class="col-1 nav-font">Kids</a>
+        <a href="../profile/profile_main.html" class="col-1 nav-font">방송댄스</a>
+        <a href="../profile/profile_main.html" class="col-1 nav-font">클럽댄스</a>
+        <a href="../profile/profile_main.html" class="col-1 nav-font">힙합</a>
+        <a href="../profile/profile_main.html" class="col-1 nav-font">Others</a>
+    </div>
+
+
+	<hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
+
+	 -->
 	
 	
 	
@@ -95,253 +169,54 @@
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
 			
-			
 				<!-- main content -->
 				<div class="row main_container">
 					<div class="col-md-12">
 					
+					<h2>추천 강사</h2>	
+				<div class="container"></div> 
+				<div id="demo" class="carousel slide" data-ride="carousel"> 
+					<div class="carousel-inner"> 
 					
-						<!-- Recommended section -->
-						<div class="container-fluid">
-							<div class="grid_title">추천강사-1</div>
-							<div class="row recommendRow">
+						<!-- 슬라이드 쇼 --> 
+						<div class="carousel-item active"> 
+							<!--가로--> 
+							<img class="d-block w-100" src="https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="First slide"> 
+							<div class="carousel-caption d-none d-md-block"> 
+							</div> 
+						</div> 
+						
+						<div class="carousel-item"> 
+						
+							<img class="d-block w-100" src="https://images.pexels.com/photos/2355519/pexels-photo-2355519.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="Second slide"> 
+						</div> 
+						<div class="carousel-item"> 
+							<img class="d-block w-100" src="https://images.pexels.com/photos/2544554/pexels-photo-2544554.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Third slide"> 
+						</div> 
+						<!-- / 슬라이드 쇼 끝 --> 
+						
+						<!-- 왼쪽 오른쪽 화살표 버튼 --> 
+						<a class="carousel-control-prev" href="#demo" data-slide="prev"> 
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
 							
+							<!-- <span>Previous</span> --> 
+						</a> 
+							<a class="carousel-control-next" href="#demo" data-slide="next"> 
+								<span class="carousel-control-next-icon" aria-hidden="true"></span> 
+							<!-- <span>Next</span> --> </a> 
 							
-									<!--FEED-SMALL-->
-								<div class="col-md-2 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-10 mt-3">
-													<p class="mb-2" style="text-overflow: ellipsis;"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT 
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								
-									<!--FEED-SMALL-->
-								<div class="col-md-2 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-10 mt-3">
-													<p class="mb-2" style="text-overflow: ellipsis;"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT 
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-																
-									<!--FEED-SMALL-->
-								<div class="col-md-2 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-10 mt-3">
-													<p class="mb-2" style="text-overflow: ellipsis;"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT 
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								
-																<!--FEED-SMALL-->
-								<div class="col-md-2 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-10 mt-3">
-													<p class="mb-2" style="text-overflow: ellipsis;"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT 
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								
-									<!--FEED-SMALL-->
-								<div class="col-md-2 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-10 mt-3">
-													<p class="mb-2" style="text-overflow: ellipsis;"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT 
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								
-									<!--FEED-SMALL-->
-								<div class="col-md-2 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-10 mt-3">
-													<p class="mb-2" style="text-overflow: ellipsis;"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT 
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-	
-							</div>
-						</div>
-						<!-- Recommended Section -->
-	
-						<hr>
-						
-						
-						
-						
-						
-						
-						
-						
-															<!-- Recommended section -->
-						<div class="container-fluid">
-							<div class="grid_title">추천강사-2</div>
-							<div class="row recommendRow">
+							<!-- / 화살표 버튼 끝 --> 
 							
-							
-										<!--FEED-SMALL-->
-								<div class="col-md-6 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2" style="text-overflow: ellipsis;"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE |
-														Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
+							<!-- 인디케이터 --> 
+							<ul class="carousel-indicators"> 
+								<li data-target="#demo" data-slide-to="0" class="active"></li> 
 								
-										<!--FEED-SMALL-->
-								<div class="col-md-6 col-sx-10 p-2 feed-small">
-									<a href="">
-										<div class="card">
-											<img src="https://picsum.photos/200/300" class="head-image"
-												alt="image" />
-											<div class="row">
-												<div class="col-2 mt-3 pl-4">
-													<img id="img"
-														src="./image/logo/27A21DBF-B559-40CC-8597-908DB5C55B74.jpeg"
-														class="rounded-circle">
-												</div>
-												<div class="col-10 mt-3">
-													<p class="mb-2" style="text-overflow: ellipsis;"
-														title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">
-														Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE |
-														Sushant,
-													</p>
-													<p class=small-feed-info>
-														T-Series <i class="fas fa-check-circle"></i><br> 70M
-														views 7 months ago
-													</p>
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<!--FEED-SMALL Ends-->
-								
-								
-	
-							</div>
-						</div>
-						<!-- Recommended Section -->
-	
-						<hr>
+								<!--0번부터시작--> 
+								<li data-target="#demo" data-slide-to="1"></li> 
+								<li data-target="#demo" data-slide-to="2"></li>
+							</ul> <!-- 인디케이터 끝 --> </div><br>
 						
 						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-	
 						<!-- Trending Section -->
 						<div class="container-fluid">
 							<div class="grid_title">Trending</div>

@@ -17,7 +17,7 @@ public interface BoomMasterMapper {
 	// 중요 체크 
 	public void changeBoomMaster(BoomMasterVO boomMaster);
 	
-	public BoomMasterVO selectBoomasterOne(int id);
+	public BoomMasterVO selectBoomMasterOne(int id);
 	
 	public int deleteBoomMasterOne(int boomMaster_User_Id);
 

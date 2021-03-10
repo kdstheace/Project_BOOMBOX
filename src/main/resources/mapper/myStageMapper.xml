@@ -5,7 +5,7 @@
 
 <mapper namespace="com.boom.box.dao.MyStageMapper">
 
-<select id="selectMyStageone" parameterType="int" resultType="myStage">
+<select id="selectMyStageOne" parameterType="int" resultType="myStage">
 
 SELECT
 	STAGE_ID,
@@ -31,11 +31,22 @@ UPDATE
 	STAGE_TB
 SET
 	STAGE_USER_ID = #{stage_user_id}
-	,STAGE_BANNERIMGS = #{stage_bannerImgS}
-	,STAGE_BANNERIMGO = #{stage_bannerImgO}
-	,STAGE_PROFILEIMGS = #{stage_profileImgS}
-	,STAGE_PROFILEIMGO = #{stage_profileImgO}
-	,STAGE_INTRO = #{stage_intro}
+	<if test="stage_bannerImgS != null">
+		,STAGE_BANNERIMGS = #{stage_bannerImgS}
+		,STAGE_BANNERIMGO = #{stage_bannerImgO}
+	</if>
+	<if test="stage_profileImgS != null">
+		,STAGE_PROFILEIMGS = #{stage_profileImgS}
+		,STAGE_PROFILEIMGO = #{stage_profileImgO}
+	</if>
+
+	<if test="stage_intro != null">
+		,STAGE_INTRO = #{stage_intro}
+	</if>
+	<if test="stage_intro == null">
+		,STAGE_INTRO = null
+	</if>
+
 WHERE
 	STAGE_USER_ID = #{stage_user_id}
 

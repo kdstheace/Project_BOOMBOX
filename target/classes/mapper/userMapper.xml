@@ -59,6 +59,7 @@
 			userInterest_id
 			,userInterest_user_id
 			,userInterest_interest
+			,userinterest_category
 		)
 		select
 			userInterest_seq.nextval
@@ -67,6 +68,24 @@
 			select
 				#{user_id} as userInterest_user_id
 				,#{arr} as userInterest_interest
+				<if test="arr == 'HOME TRAINING'">
+					,'HOME TRAINING' as userinterest_category
+				</if>
+				<if test="arr == 'KIDS' || arr == 'CHEERLEADING' || arr == 'OTHER(TEENS)'">
+					,'TEENS' as userinterest_category
+				</if>
+				<if test="arr == 'K-POP' || arr == 'J-POP' || arr == 'OTHERS(CHOREO)'">
+					,'POP-CHOREOGRAPHY' as userinterest_category
+				</if>
+				<if test="arr == 'MALE CLUBDANCE' || arr == 'FEMALE CLUBDANCE' || arr == 'OTHERS(CLUB)'">
+					,'CLUB' as userinterest_category
+				</if>
+				<if test="arr == 'POPPIN DANCE' || arr == 'BREAK DANCE' || arr == 'LOCKING' || arr == 'OTHERS(HIPHOP)'">
+					,'HIPHOP' as userinterest_category
+				</if>
+				<if test="arr == 'TANGO' || arr == 'TAP DANCE' || arr == 'BELLY DANCE' || arr == 'JIVE' || arr == 'JAZZ' || arr == 'OTHERS'">
+					,'OTHERS' as userinterest_category
+				</if>
 			from
 				dual
 		</foreach>

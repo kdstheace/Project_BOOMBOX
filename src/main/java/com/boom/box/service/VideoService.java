@@ -90,4 +90,9 @@ public class VideoService {
 		ArrayList<HashMap<String, Object>> list = dao.selectVideoByInterest(user_id);
 		return list;
 	}
+	
+	public ArrayList<HashMap<String, Object>> selectVideoListById(int user_id){
+		ArrayList<HashMap<String, Object>> list = dao.selectVideoListById(user_id);
+		return list;
+	}
 }

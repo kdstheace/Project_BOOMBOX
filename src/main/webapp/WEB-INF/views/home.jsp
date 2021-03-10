@@ -93,11 +93,11 @@
                                                 <div class="col-3 mt-3 pl-4">
                                                     <c:choose>
                                                         <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                            <img id="img" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
+                                                            <img id="img" height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
                                                                 class="rounded-circle">
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <img id="img" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+                                                            <img id="img" height="50" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
@@ -115,12 +115,15 @@
                                         </div>
                                     </a>
                                 </div>
-                                <!--FEED-SMALL Ends-->
                             </c:forEach>
+
+                                <!--FEED-SMALL Ends-->
 
                         </div>
                     </div>
+                    <hr>
                     <!-- Recommended Section -->
+                    
                     <!-- Trending Section -->
                     <div class="container-fluid">
                         <div class="grid_title">Trending</div>
@@ -136,11 +139,11 @@
                                                 <div class="col-3 mt-3 pl-4">
                                                     <c:choose>
                                                         <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                            <img id="img" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
+                                                            <img id="img"  height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
                                                                 class="rounded-circle">
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <img id="img" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+                                                            <img id="img"  height="50"  src="${video.USER_GOOGLEIMG }" class="rounded-circle">
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </div>
@@ -158,13 +161,16 @@
                                         </div>
                                     </a>
                                 </div>
-                                <!--FEED-SMALL Ends-->
                             </c:forEach>
+                                <!--FEED-SMALL Ends-->
+
 
                         </div>
+                        
                     </div>
-                    <!-- Trending Section -->
-                    <img src="/resources/img/adimg/ad1.png" height="200px" width="100%">
+                    <hr>
+                    <!-- Trending Section Ends-->
+
                         <div class="container-fluid">
 	                        <div class="grid_title">AD</div>
 	                        <div class="row recommendRow">

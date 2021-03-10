@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.boom.box.service.MembershipService;
 import com.boom.box.service.RefundService;
 import com.boom.box.vo.MembershipVO;
+import com.boom.box.vo.RefundVO;
 import com.boom.box.vo.UserVO;
 
 @Controller
@@ -349,6 +350,25 @@ public class MembershipViewController {
 	public String payagree() {
 
 		return "membership/payagree";
+	}
+	
+	@RequestMapping(value = "/memberShipCrmForm", method = RequestMethod.GET)
+	public String crmForm() {
+
+		return "membership/memberShipCrmForm";
+	}
+
+
+	@RequestMapping(value = "/membershipCrmSend", method = RequestMethod.POST)
+	public String crmSend(RefundVO vo) {
+
+		int user_id = (int) session.getAttribute("loginId");
+		vo.setRefund_user_id(user_id);
+		System.out.println(vo);
+		refundService.insertRefund(vo);
+
+
+		return "redirect:/report/closeForm";
 	}
 
 }
