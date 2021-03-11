@@ -100,7 +100,7 @@
                      <div class="row main_container">
                         <div class="col-md-12">
                            <!-- 추천강사 section -->
-                          					<h2>추천 강사</h2>	
+                          					<h2>HOT TUTORS</h2>	
 				<div class="container"></div> 
 				<div id="demo" class="carousel slide" data-ride="carousel"> 
 					<div class="carousel-inner"> 
@@ -145,11 +145,11 @@
 
                            <!-- Trending Section -->
                            <div class="container-fluid">
-                              <div class="grid_title">영상피드 - 랜덤</div>
+                              <div class="grid_title">VIDEOS</div>
                               <div class="row">
                                  <!--FEED-SMALL-->
                                  <!--FEED-SMALL-->
-                                 <!--Gold-->
+
                                  <c:forEach items="${list }" var="video">
 
                                  	 <div class="col-md-3 col-sx-10 p-2 feed-small">
@@ -161,10 +161,10 @@
                                                 <div class="col-2 mt-3 pl-4">
                                                 <c:choose>
                                                    <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                      <img id="img" src="/stage/profile?=${myStage.stage_id }" class="rounded-circle">
+                                                      <img id="img" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID }" class="rounded-circle">
                                                    </c:when>
                                                    <c:otherwise>
-                                                      <img id="img" src="/resources/img/myStage/defultProfileImg.png" class="rounded-circle">
+                                                      <img id="img" src="${video.url }" class="rounded-circle">
                                                    </c:otherwise>
                                                 </c:choose>
                                                 </div>

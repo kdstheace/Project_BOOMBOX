@@ -23,4 +23,8 @@ public class SchoolService {
 		ArrayList<HashMap<String, Object>> list = dao.selectVideoListbyCategory(videointerest_category, startRecord, countPerPage);
 		return list;
 	}
+	public ArrayList<HashMap<String, Object>> selectMySchoolList(int follow_user_id){
+		ArrayList<HashMap<String, Object>> list = dao.selectMySchoolList(follow_user_id);
+		return list;
+	}
 }

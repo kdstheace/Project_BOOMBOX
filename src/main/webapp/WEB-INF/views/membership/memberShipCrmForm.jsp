@@ -129,6 +129,11 @@ function realtimeClock() {
 	  }
 	  return zero + n;
 	}
+	function cancle(){
+	location.href='/report/closeForm';
+
+	}
+
 
 
 </script>
@@ -170,7 +175,7 @@ function realtimeClock() {
 			</label>
 
 				<input class="butten" type="submit" value="고객센터 보내기">
-				<input type="reset" value="cancel">
+				<input type="reset" value="cancel" onclick="return cancle();">
 			</button>
 		</form>
 

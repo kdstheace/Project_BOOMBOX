@@ -43,7 +43,7 @@
             }
 
             function crmForm() {
-                window.open("/manager/crmForm", "crmForm", "width=650, height=950");
+                window.open("/crm/crmForm", "crmForm", "width=650, height=950");
             }
 
             function bmApplyForm() {
@@ -224,7 +224,7 @@
                     <a href="/" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.home" /></a>
                     <a href="/school/schoolForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.school" /></a>
                     <a href="/sidebar/followForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.follow" /></a>
-                    <a href="/sidebar/trendForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.trending" /></a>
+<%--                     <a href="/sidebar/trendForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.trending" /></a> --%>
                     <a href="/sidebar/interestForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.interest" /></a>
                     <a href="/sidebar/likeForm" class="list-group-item list-group-item-action bg-light"><spring:message code="nav.sidebar.like" /></a>
                 </div>

@@ -100,4 +100,45 @@
 
 </select>
 
+<select id="selectMySchoolList" parameterType="int" resultType="hashmap">
+    select distinct
+        f.follow_stage_id as follow_stage_id
+        ,u.user_name as user_name
+        ,s.stage_profileimgo as stage_profileimgo
+        ,s.stage_bannerimgo as stage_bannerimgo
+        ,(select
+                count(*)
+            from
+                video_tb
+            where
+                video_user_id = f.follow_stage_id) as video_count
+        ,(select
+                count(*)
+            from
+                follow_tb
+            where
+                follow_stage_id = f.follow_stage_id) as follow_count
+    from
+        follow_tb f, stage_tb s, video_tb v, user_tb u
+    where
+        s.stage_user_id = u.user_id
+        and
+        f.follow_stage_id = s.stage_user_id
+        and
+        v.video_user_id = s.stage_user_id
+        and
+        s.stage_user_id in(
+            select
+                boommaster_user_id
+            from
+                boommaster_tb
+        )        
+        and
+        follow_user_id = #{follow_user_id}
+    order by
+        u.user_name
+</select>
+
+
+
 </mapper>

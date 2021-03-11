@@ -332,17 +332,20 @@ public class MembershipViewController {
 		return "membership/payCheckForm";
 	}
 
-	@RequestMapping(value = "/paySuccessForm")
-	public String paySuccessForm(Model model, int membership_price) {
+	@RequestMapping(value = "/paySuccess", method = RequestMethod.GET)
+	public String paySuccess(Model model, int membership_price) {
 
 		MembershipVO vo = new MembershipVO();
-
 		int membership_user_id = (int) session.getAttribute("loginId");
 		vo.setMembership_user_id(membership_user_id);
 		vo.setMembership_price(membership_price);
 
-		System.out.println(vo);
 		service.insertMembership(vo);
+		return "membership/paySuccess";
+	}
+
+	@RequestMapping(value = "/paySuccessForm",method = RequestMethod.GET)
+	public String paySuccessForm() {
 
 		return "membership/paySuccessForm";
 	}

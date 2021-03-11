@@ -18,6 +18,11 @@
 					content="290856146603-r0r54hvfs9vbaf1c6cjpv5egid2ecl44.apps.googleusercontent.com">
 
 
+
+
+
+
+
 				<style>
 				        .main_container{
 				        	padding-top : 30px;
@@ -54,21 +59,23 @@
 			</head>
 
 			<body>
+
+
 				<jsp:include page="/WEB-INF/views/menu/navi.jsp" />
 
 
 
-	<div class="col-md-8 video_box">
+	<div style="    margin: 80px;"  class="col-md-8 video_box">
 			<div class="p-4 pt-3">
-				<h1>맴버십</h1>
+				<a style="font-size: 60px">맴버십</a>
 			</div>
 			<br>
 
 
 
 				<div class="p-5 pt-3">
-					<h3>결제가 완료 되었습니다. </h3>
-					<a href="/membership/membershipForm"> 맴버쉽 페이지 이동 </a>
+					<a style="font-size: 40px">멤버쉽 결제가 완료 되었습니다. </a><br><br>
+					<a style="font-size: 30px" href="/membership/membershipForm"> >>맴버쉽 페이지 이동<< </a>
 
 			</div>
 

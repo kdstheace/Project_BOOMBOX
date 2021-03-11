@@ -35,18 +35,22 @@
 			}
 		}
 		if (chk) {
+			window.open("/membership/payForm", "payForm", "width=900, height=650");
 			return;
 		} else {
 			alert("동의함에 체크해주세요.")
 			return false;
 			}
-	}
+
+
+		}
 
 
 
 	function agreeform() {
 	    window.open("/membership/payagree", "payagree", "width=950, height=950");
 	}
+
 </script>
 
 
@@ -235,8 +239,8 @@
 			<!-- 멤버쉽  -->
 
 
-		<div class="col-md-8 video_box">
-			<div class="p-4 pt-3">
+		<div style="margin-left: 200px" class="col-md-6 video_box">
+			<div style=" margin-top: 30px; margin-left: 50px " class="p-4 pt-3">
 				<h1>맴버십 구독하기</h1>
 			</div>
 			<br>
@@ -270,7 +274,7 @@
 
 
 				<div class="col-7 text-right">
-					<a class="btn btn-primary" href="/membership/payForm" role="button" onclick="return agree();">결제하러가기</a>&emsp;
+					<a class="btn btn-primary" href="#" role="button" onclick="return agree();">결제하러가기</a>&emsp;
 					<a class="btn btn-danger" href="/membership/membershipForm" role="button">취소</a>
 				</div>
 

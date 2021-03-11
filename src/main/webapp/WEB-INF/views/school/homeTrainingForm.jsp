@@ -230,14 +230,14 @@
 													class="head-image" alt="image" />
 												<div class="row">
 													<div class="col-2 mt-3 pl-4">
-													<c:choose>
-														<c:when test="${video.STAGE_PROFILEIMGO != null }">
-															<img id="img" src="/stage/profile?=${myStage.stage_id }" class="rounded-circle">
-														</c:when>
-														<c:otherwise>
-															<img id="img" src="/resources/img/myStage/defultProfileImg.png" class="rounded-circle">
-														</c:otherwise>
-													</c:choose>
+                                               <c:choose>
+                                                   <c:when test="${video.STAGE_PROFILEIMGO != null }">
+                                                      <img id="img" src="/stage/profile?video_user_id=${video.VIDEO_USER_ID }" class="rounded-circle">
+                                                   </c:when>
+                                                   <c:otherwise>
+                                                      <img id="img" src="${video.url }" class="rounded-circle">
+                                                   </c:otherwise>
+                                                </c:choose>
 													</div>
 													<div class="col-10 mt-3">
 														<p class="mb-2" title="${video.VIDEO_TITLE }">

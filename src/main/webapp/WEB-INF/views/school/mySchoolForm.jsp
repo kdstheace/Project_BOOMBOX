@@ -1,11 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>My School!</title>
+    <title>My School</title>
     <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a6b1415e6e.js" crossorigin="anonymous"></script>
@@ -101,125 +103,58 @@
 			<div class="col-md-12">
 
 <!-- Recommended section -->
+				
 				<div class="container-fluid">
-
-							<div class="row recommendRow">
-					<div class="grid_title">홈 트레이닝</div>
+			
+					<div class="row recommendRow">
+						<c:forEach items = "${list }" var="list">
 
 								<div class="container-fluid mt-3 pl-2">
-									<a href="#">
+									<a href="/stage/myStageForm?stage_user_id=${list.FOLLOW_STAGE_ID }">
 										<div>
 											<div class="row">
 												<div class="col-md-2" >
 													<div style="width: 100%; text-align: center;">
 													<!-- <div style="position: relative; z-index: 5;"> -->
-														<img class="rounded-circle" src="/resources/img/profile.jpg" alt="image" width="200" style="margin: 0 auto; width: 150px"/>
+													<c:choose>
+														<c:when test="${list.STAGE_PROFILEIMGO != null }">
+															<img class="rounded-circle" src="/stage/profile?video_user_id=${list.FOLLOW_STAGE_ID }" alt="image" width="200" style="margin: 0 auto; width: 150px"/>
+														
+														</c:when>
+														<c:otherwise>
+														
+															<img class="rounded-circle" src="${list.url }" alt="image" width="200" style="margin: 0 auto; width: 150px"/>
+														
+														</c:otherwise>
+													</c:choose>
+													
+
 													</div><br>
 													<div style="text-align: center;">
 														<p class=small-feed-info>
-                                                        sxutte <i class="fas fa-check-circle"></i> 팔로워 몇명 <i class="fas fa-eye"></i> 영상수 몇개
+                                                        ${list.USER_NAME } 
                                                         <br>
-                                                        전문분야 : 홈트레이닝
-                                                    </p>
+                                                        <i class="fas fa-check-circle"></i> ${list.FOLLOW_COUNT } <i class="fas fa-eye"></i> ${list.VIDEO_COUNT }
+                                                   		</p>
 													</div>
 												</div>
 												<div class="col-md-10">
-													<img src="/resources/img/yyy	.png" alt="image" width="100%" height="230" style=" border-radius: 10px;" />
+												
+													<c:choose>
+														<c:when test="${list.STAGE_BANNERIMGO != null }">
+															<img src="/stage/banner?stage_user_id=${list.FOLLOW_STAGE_ID }" alt="image" width="100%" height="230" style=" border-radius: 10px;" />
+														</c:when>
+														<c:otherwise>
+															<img src="/resources/img/myStage/defaultPhotoBar.png" alt="image" width="100%" height="230" style=" border-radius: 10px;" />
+														</c:otherwise>
+													</c:choose>
+
 												</div>
 											</div>
 										</div>
 									</a>
 								</div>
-								
-								
-
-								<div class="container-fluid mt-3 pl-2">
-									<a href="#">
-										<div>
-											<div class="row">
-												<div class="col-md-2" >
-													<div style="width: 100%; text-align: center;">
-													<!-- <div style="position: relative; z-index: 5;"> -->
-														<img class="rounded-circle" src="/resources/img/profile.jpg" alt="image" width="200" style="margin: 0 auto; width: 150px"/>
-													</div><br>
-													<div style="text-align: center;">
-														<p class=small-feed-info>
-                                                        sxutte <i class="fas fa-check-circle"></i> 팔로워 몇명 <i class="fas fa-eye"></i> 영상수 몇개
-                                                        <br>
-                                                        전문분야 : 홈트레이닝
-                                                    </p>
-													</div>
-												</div>
-												<div class="col-md-10">
-													<img src="/resources/img/banner_3.png" alt="image" width="100%" height="230" style=" border-radius: 10px;" />
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-
-
-
-								<div class="container-fluid mt-3 pl-2">
-									<a href="#">
-										<div>
-											<div class="row">
-												<div class="col-md-2" >
-													<div style="width: 100%; text-align: center;">
-													<!-- <div style="position: relative; z-index: 5;"> -->
-														<img class="rounded-circle" src="/resources/img/profile.jpg" alt="image" width="200" style="margin: 0 auto; width: 150px"/>
-													</div><br>
-													<div style="text-align: center;">
-														<p class=small-feed-info>
-                                                        sxutte <i class="fas fa-check-circle"></i> 팔로워 몇명 <i class="fas fa-eye"></i> 영상수 몇개
-                                                        <br>
-                                                        전문분야 : 홈트레이닝
-                                                    </p>
-													</div>
-												</div>
-												<div class="col-md-10">
-													<img src="/resources/img/banner_3.png" alt="image" width="100%" height="230" style=" border-radius: 10px;" />
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-
-
-
-								<div class="container-fluid mt-3 pl-2">
-									<a href="#">
-										<div>
-											<div class="row">
-												<div class="col-md-2" >
-													<div style="width: 100%; text-align: center;">
-													<!-- <div style="position: relative; z-index: 5;"> -->
-														<img class="rounded-circle" src="/resources/img/profile.jpg" alt="image" width="200" style="margin: 0 auto; width: 150px"/>
-													</div><br>
-													<div style="text-align: center;">
-														<p class=small-feed-info>
-                                                        sxutte <i class="fas fa-check-circle"></i> 팔로워 몇명 <i class="fas fa-eye"></i> 영상수 몇개
-                                                        <br>
-                                                        전문분야 : 홈트레이닝
-                                                    </p>
-													</div>
-												</div>
-												<div class="col-md-10">
-													<img src="/resources/img/banner_3.png" alt="image" width="100%" height="230" style=" border-radius: 10px;" />
-												</div>
-											</div>
-										</div>
-									</a>
-								</div>
-
-
-
-
-
-
-
-
-
+						</c:forEach>
 
 								
 							</div>
@@ -235,10 +170,6 @@
 
 </div>
 <!-- /#wrapper -->
-
-
-
-
 
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

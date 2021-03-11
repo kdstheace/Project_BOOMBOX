@@ -38,4 +38,15 @@ public class SchoolDAO {
 		}
 		return list;		
 	}
+	
+	public ArrayList<HashMap<String, Object>> selectMySchoolList(int follow_user_id){
+		ArrayList<HashMap<String, Object>> list = null;
+		try {
+			SchoolMapper mapper = session.getMapper(SchoolMapper.class);
+			list = mapper.selectMySchoolList(follow_user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
