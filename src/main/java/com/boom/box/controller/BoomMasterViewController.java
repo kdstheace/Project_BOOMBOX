@@ -88,10 +88,10 @@ public class BoomMasterViewController {
 
 		if (cnt > 0) {
 			logger.info("붐마등록 최종 성공!");
-			return "redirect:/";
+			return "boomMaster/close";
 		} else {
 			logger.info("실패");
-			return "redirect:/";
+			return "boomMaster/close";
 		}
 	}
 	
@@ -113,10 +113,10 @@ public class BoomMasterViewController {
 
 		if (cnt > 0) {
 			logger.info("붐마삭제 최종 성공!");
-			return "redirect:/";
+			return "boomMaster/close";
 		} else {
 			logger.info("실패");
-			return "redirect:/";
+			return "boomMaster/close";
 		}
 	}
 
@@ -126,4 +126,8 @@ public class BoomMasterViewController {
 		return "boomMaster/bmMotionApplyForm";
 	}
 
+	@RequestMapping(value = "/closeForm", method = RequestMethod.GET)
+	public String closeForm() {
+		return "boomMaster/close";
+	}
 }

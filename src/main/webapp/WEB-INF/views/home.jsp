@@ -84,37 +84,75 @@
                         <div class="row recommendRow">
                             <!--FEED-SMALL-->
                             <c:forEach items="${listFollow }" var="video">
-                                <div class="col-md-3 col-sx-10 p-2 feed-small">
-                                    <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
-                                        <div class="card">
-                                            <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
-                                                alt="image" />
-                                            <div class="row">
-                                                <div class="col-3 mt-3 pl-4">
-                                                    <c:choose>
-                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                            <img id="img" height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
-                                                                class="rounded-circle">
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <img id="img" height="50" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </div>
-                                                <div class="col-9 mt-3">
-                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
-                                                        ${video.VIDEO_TITLE }
-                                                    </p>
-                                                    <p class=small-feed-info>
-                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
-                                                        <br>
-                                                        ${video.VIDEO_INDATE }
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                            	<c:choose>
+                            		<c:when test="${video.VIDEO_CLASS ==2}">
+		                            	<div class="col-md-3 col-sx-10 p-2 feed-small" style="background-color: #ffc107;">
+		                                    <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
+		                                        <div class="card">
+		                                            <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
+		                                                alt="image" />
+		                                            <div class="row">
+		                                                <div class="col-3 mt-3 pl-4">
+		                                                    <c:choose>
+		                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
+		                                                            <img id="img" height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
+		                                                                class="rounded-circle">
+		                                                        </c:when>
+		                                                        <c:otherwise>
+		                                                            <img id="img" height="50" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+		                                                        </c:otherwise>
+		                                                    </c:choose>
+		                                                </div>
+		                                                <div class="col-9 mt-3">
+		                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
+		                                                        ${video.VIDEO_TITLE }
+		                                                    </p>
+		                                                    <p class=small-feed-info>
+		                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
+		                                                        <br>
+		                                                        ${video.VIDEO_INDATE }
+		                                                    </p>
+		                                                </div>
+		                                            </div>
+		                                        </div>
+		                                    </a>
+		                                </div>
+                            		</c:when>
+                            		<c:otherwise>
+		                            	<div class="col-md-3 col-sx-10 p-2 feed-small">
+		                                    <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
+		                                        <div class="card">
+		                                            <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
+		                                                alt="image" />
+		                                            <div class="row">
+		                                                <div class="col-3 mt-3 pl-4">
+		                                                    <c:choose>
+		                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
+		                                                            <img id="img" height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
+		                                                                class="rounded-circle">
+		                                                        </c:when>
+		                                                        <c:otherwise>
+		                                                            <img id="img" height="50" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+		                                                        </c:otherwise>
+		                                                    </c:choose>
+		                                                </div>
+		                                                <div class="col-9 mt-3">
+		                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
+		                                                        ${video.VIDEO_TITLE }
+		                                                    </p>
+		                                                    <p class=small-feed-info>
+		                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
+		                                                        <br>
+		                                                        ${video.VIDEO_INDATE }
+		                                                    </p>
+		                                                </div>
+		                                            </div>
+		                                        </div>
+		                                    </a>
+		                                </div>                            		
+                            		</c:otherwise>
+                            	</c:choose>
+                  
                             </c:forEach>
 
                                 <!--FEED-SMALL Ends-->
@@ -130,37 +168,78 @@
                         <div class="row recommendRow">
                             <!--FEED-SMALL-->
                             <c:forEach items="${list }" var="video">
-                                <div class="col-md-3 col-sx-10 p-2 feed-small">
-                                    <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
-                                        <div class="card">
-                                            <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
-                                                alt="image" />
-                                            <div class="row">
-                                                <div class="col-3 mt-3 pl-4">
-                                                    <c:choose>
-                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                                            <img id="img"  height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
-                                                                class="rounded-circle">
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <img id="img"  height="50"  src="${video.USER_GOOGLEIMG }" class="rounded-circle">
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </div>
-                                                <div class="col-9 mt-3">
-                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
-                                                        ${video.VIDEO_TITLE }
-                                                    </p>
-                                                    <p class=small-feed-info>
-                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
-                                                        <br>
-                                                        ${video.VIDEO_INDATE }
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                        		<c:choose>
+                        			<c:when test="${video.VIDEO_CLASS ==2}">
+		                                <div class="col-md-3 col-sx-10 p-2 feed-small" style="background-color: #ffc107;">
+		                                    <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
+		                                        <div class="card">
+		                                            <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
+		                                                alt="image" />
+		                                            <div class="row">
+		                                                <div class="col-3 mt-3 pl-4">
+		                                                    <c:choose>
+		                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
+		                                                            <img id="img"  height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
+		                                                                class="rounded-circle">
+		                                                        </c:when>
+		                                                        <c:otherwise>
+		                                                            <img id="img"  height="50"  src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+		                                                        </c:otherwise>
+		                                                    </c:choose>
+		                                                </div>
+		                                                <div class="col-9 mt-3">
+		                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
+		                                                        ${video.VIDEO_TITLE }
+		                                                    </p>
+		                                                    <p class=small-feed-info>
+		                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
+		                                                        <br>
+		                                                        ${video.VIDEO_INDATE }
+		                                                    </p>
+		                                                </div>
+		                                            </div>
+		                                        </div>
+		                                    </a>
+		                                </div>
+                        			</c:when>
+                        			<c:otherwise>
+		                                <div class="col-md-3 col-sx-10 p-2 feed-small">
+		                                    <a href="/video/watchForm?video_id=${video.VIDEO_ID}">
+		                                        <div class="card">
+		                                            <img src="/video/thumbnail?video_id=${video.VIDEO_ID}" class="head-image"
+		                                                alt="image" />
+		                                            <div class="row">
+		                                                <div class="col-3 mt-3 pl-4">
+		                                                    <c:choose>
+		                                                        <c:when test="${video.STAGE_PROFILEIMGO != null }">
+		                                                            <img id="img"  height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
+		                                                                class="rounded-circle">
+		                                                        </c:when>
+		                                                        <c:otherwise>
+		                                                            <img id="img"  height="50"  src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+		                                                        </c:otherwise>
+		                                                    </c:choose>
+		                                                </div>
+		                                                <div class="col-9 mt-3">
+		                                                    <p class="mb-2 video_title" title="${video.VIDEO_TITLE }">
+		                                                        ${video.VIDEO_TITLE }
+		                                                    </p>
+		                                                    <p class=small-feed-info>
+		                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
+		                                                        <br>
+		                                                        ${video.VIDEO_INDATE }
+		                                                    </p>
+		                                                </div>
+		                                            </div>
+		                                        </div>
+		                                    </a>
+		                                </div>                        			
+                        			</c:otherwise>
+                        		</c:choose>
+                        		
+                        		
+                        		
+
                             </c:forEach>
                                 <!--FEED-SMALL Ends-->
 

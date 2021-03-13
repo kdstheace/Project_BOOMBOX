@@ -43,7 +43,7 @@ public class CrmViewController {
 
 		if (cnt > 0) {
 			logger.info("고객센터 등록 최종 성공!");
-			return "redirect:/report/closeForm";
+			return "crm/close";
 		} else {
 			logger.info("실패");
 			return "redirect:/";

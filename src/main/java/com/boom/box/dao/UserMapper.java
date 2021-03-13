@@ -30,4 +30,8 @@ public interface UserMapper {
 	public String selectGoogleImg(int user_id);
 	//유저 흥미 검색
 	public ArrayList<String> selectInterest(int user_id);
+	//유저의 비디오 볼 수 있는지 validation
+	public Integer canIWatch(int membership_user_id);
+	//유저가 팔로우 하고 있는 유저를 팔로워리스트에 출력하기 위한 매퍼
+	public ArrayList<HashMap<String, Object>> selectFollowList(int follow_user_id);
 }

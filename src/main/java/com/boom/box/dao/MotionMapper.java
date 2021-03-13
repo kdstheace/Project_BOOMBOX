@@ -9,4 +9,5 @@ public interface MotionMapper {
 	public MotionVO selectMotionOne(MotionVO motion);
 	public MotionVO selectMotionOneByTitle(String motion_title);
 	public ArrayList<MotionVO> selectMotionListByClass(MotionVO motion);
+	public MotionVO selectMotionOnePic(MotionVO vo);
 }

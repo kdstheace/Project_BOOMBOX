@@ -127,79 +127,81 @@
         <title>Edit Profile</title>
         <script type="text/javascript">
 
-            function fn_updateFormCheck() {
 
-                var user_name = document.getElementById("user_name").value;
-                var user_zip = document.getElementById("user_zip").value;
-                var user_address = document.getElementById("user_address").value;
-                var user_email = document.getElementById("user_email").value;
-                var userInterest_interest = document.getElementById("userInterest_interest").value;
+        function cancle(){
+        	location.href='/report/closeForm';
+
+        	}
 
 
 
+        function fn_updateFormCheck(){
 
-                /* 닉네임 유효성 검사 */
-                if (user_name == null || user_name.length == 0) {
-                    alert("닉네임을 입력해 주세요");
-                    return false;
-                } else if (user_name.length < 3 || user_name.length > 8) {
-                    alert("닉네임은 3~8글자 사이로 입력해 주세요");
-                    return false;
-                }
+        	var user_name = document.getElementById("user_name").value;
+        	var user_zip = document.getElementById("user_zip").value;
+        	var user_address = document.getElementById("user_address").value;
+        	var user_email = document.getElementById("user_email").value;
+        	/* var userInterest_interest = document.getElementById("userInterest_interest").value; */
 
 
-
-                /* 우편번호 */
-                if (user_zip == null || user_zip.length == 0) {
-                    alert("우편번호을 입력해 주세요");
-                    return false;
-                }
-
-                /* 주소 */
-                if (user_address == null || user_address.length == 0) {
-                    alert("주소을 입력해 주세요");
-                    return false;
-                }
-
-                /* 이메일 */
-                /* 	 var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-                	
-                        if(user_email == null || user_email.length == 0){
-                        alert("이메일을 입력해 주세요");
-                        return false;
-                    }  else if (!reg_email.test(user_email)) {
-                        alert("이메일을 제대로 입력해 주세요");
-                        return false;
-                    } */
-
-
-                /* 관심장르 */
-                var count = 0;
-                for (var i = 0; i < userInterest_interest.length; i++) {
-                    if (userInterest_interest[i].checked) {
-                        count = 1;
-                        /* break; */
-                    }
-                }
-
-                if (count < 1) {  //관심분야 확인 
-                    alert("관심분야를 체크해 주세요");
-                    return false;
-                }
-
-                return true;
-
-            }
+             	/* 닉네임 유효성 검사 */
+         	  	if(user_name == null || user_name.length == 0){
+        		alert("닉네임을 입력해 주세요");
+        		return false;
+        		} else if(user_name.length < 3 || user_name.length > 8) {
+        		alert("닉네임은 3~8글자 사이로 입력해 주세요");
+        		return false;
+        		}
 
 
 
-            function nameCheckForm() {
-                window.open("/user/nameCheckForm", "nameCheckForm", "width=500, height=700");
-            }
 
-            function emailCheckForm() {
-                window.open("/user/emailCheckForm", "emailCheckForm", "width=500, height=700");
-            }
+
+        	/* 우편번호 */
+         	  if(user_zip == null || user_zip.length == 0){
+        		alert("우편번호을 입력해 주세요");
+        		return false;
+        	}
+
+        	/* 주소 */
+          	if(user_address == null || user_address.length == 0){
+        		alert("주소을 입력해 주세요");
+        		return false;
+        	}
+
+        	/* 이메일 */
+
+          	if(user_email == null || user_email.length == 0){
+        		alert("이메일을 입력해 주세요");
+        		return false;
+        	}
+
+        	/* 관심장르 */
+        	var count = 0;
+        	var interestCheck = document.getElementsByName('userInterest_interest');
+        	for(var i = 0; i < interestCheck.length; i++) {
+        		if(interestCheck[i].checked) {
+        			count = 1;
+        			break;
+        			}
+        		}
+        	if (count == 0) {  //관심분야 확인
+        		  alert("관심분야를 체크해 주세요");
+        		  return false;
+        	}
+
+
+        	return true;
+        }
+
+
+        function nameCheckForm() {
+            window.open("/user/nameCheckForm", "nameCheckForm", "width=600, height=500");
+        }
+
+        function emailCheckForm() {
+            window.open("/user/emailCheckForm", "emailCheckForm", "width=600, height=500");
+        }
 
 
 
@@ -360,7 +362,7 @@
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
-                </label> <input class="butten" type="submit" value="정보수정하기"> <input type="reset" value="cancel">
+                </label> <input class="button" type="submit" value="정보수정하기"> <input type="reset" value="cancel" onclick="cancle()">
                 </button>
             </form>
 

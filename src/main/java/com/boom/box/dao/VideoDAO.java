@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.boom.box.vo.CommentVO;
 import com.boom.box.vo.VideoVO;
 
 @Repository
@@ -208,5 +209,38 @@ public class VideoDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	//Comment
+	public int insertComment(CommentVO comment) {
+		int count = 0;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			count = mapper.insertComment(comment);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public ArrayList<CommentVO> selectComment(int comment_video_id){
+		ArrayList<CommentVO> list = null;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			list = mapper.selectComment(comment_video_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public int updateComment(CommentVO comment) {
+		int count = 0;
+		try {
+			VideoMapper mapper = session.getMapper(VideoMapper.class);
+			count = mapper.updateComment(comment);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 }

@@ -39,7 +39,9 @@
 
 		function myFunction(str){
   			location.href=str+"&view_start=1";
-			alert("시행중");
+
+  			/* location.href=src="/motion/samplePic?motion_id="${motion.motion_id }+"&motion_video_id="${motion.motion_video_id}+"&motion_class="${motion.motion_class};
+  			 */
 			/* $('#show_start').show(); */
 			}
 
@@ -57,10 +59,12 @@
 	    	    $('#pose_accuracy').css({"display": "block"});
 	    	    $('#count').css({"display": "none"});
 	    	    
+	    	    
 	    	  });
 	    	  $('#cnt').click(function(){
 	    	    $('#count').css({"display": "block"});
 	    	    $('#pose_accuracy').css({"display": "none"});
+	    	    
 	    	  });
 
 	    	  if ("${view_start }" == 1) {
@@ -81,28 +85,20 @@
 	<!-- Page Content -->
 	<!-- main content -->
 	<div class="row main_container">
-		<div class="col-md-12">
-
-<!-- 		<button class="btn_show" style="padding:3px">show</button>
-		<button class="btn_hide" style="padding:3px">hide</button>
-		<div class="btn_word">Hello world!!!</div> -->
-
-			<!-- 여기에 쓰면 된다!! -->
-
-			<input class="btn btn-warning" type="button" id="pa" name="pa" value="Pose" style="width: 130px; height: 50px; font-size: 30px;"> 
-			<input class="btn btn-warning" type="button" id="cnt" name="cnt" value="Count" style="width: 130px; height: 50px; font-size: 30px;"> 
-			<br><br> 
+		<div> 
+			
+			<input class="btn btn-warning" type="button" id="pa" name="pa" value="Pose" style="width: 130px; height: 50px; font-size: 30px;">
+			<input class="btn btn-warning" type="button" id="cnt" name="cnt" value="Count" style="width: 130px; height: 50px; font-size: 30px;"><br><br>
+			
 			<div id="pose_accuracy" >
 			<select name="pose_accuracy" onchange="myFunction(this.value)" style="width: 265px; height: 30px;">
 				<option value="">자세를 선택해 주세요</option>
 				<c:forEach items="${list1 }" var="motion1">
 					<option value="/motion/pose?motion_video_id=${motion1.motion_video_id }&motion_title=${motion1.motion_title }">${motion1.motion_title }</option>
 				</c:forEach>
-				
-				
-				
 			</select>
 			</div>
+			
 			<div id="count" style="display:none;" >
 			<select name="count" onchange="myFunction(this.value)" style="width: 265px; height: 30px;">
            		<option value=""> 자세를 선택해 주세요</option>
@@ -111,13 +107,33 @@
            		</c:forEach>
              </select>
              	</div>
+             	
+             	
 			<br>
 			<br>
+			
+			
+			
+<!-- 		<button class="btn_show" style="padding:3px">show</button>
+		<button class="btn_hide" style="padding:3px">hide</button>
+		<div class="btn_word">Hello world!!!</div> -->
+
+			<!-- 여기에 쓰면 된다!! -->
+
+			
 			<c:choose>
 					<c:when test="${motion.motion_class == 1}">
 						<div id="show_start" style="float: center; display: none;" >
 							<a style="font-size: 25px;"><strong> ${motion.motion_title}</strong></a> &emsp;
-							<button type="button" style="font-size: 25px;" onclick="initP()">StartP</button>
+							<button type="button" style="font-size: 25px;" onclick="initP()">StartP</button><br><br>
+							
+							<img style="    height: 400px;  width: 600px;" src="/motion/profile?motion_id=${motion.motion_id }&motion_video_id=${motion.motion_video_id}&motion_class=${motion.motion_class}" alt="사진">
+								<br>
+							<h3>동작 설명</h3>
+							<textarea rows="3" cols="60" readonly="readonly"
+								style="resize: none; border: none; font-size: 18px; width: 100%;">${motion.motion_info}
+								</textarea>
+							<br>
 							
 								<script src="/resources/js/tf.min.js"></script>
 								<script src="/resources/js/teachablemachine-pose.min.js"></script>
@@ -141,7 +157,7 @@
 								
 								        // Convenience function to setup a webcam
 								        const width = 900;
-								        const height = 500;
+								        const height = 900;
 								        const flip = true; // whether to flip the webcam
 								        webcam = new tmPose.Webcam(width, height, flip); // width, height, flip
 								        await webcam.setup(); // request access to the webcam
@@ -176,7 +192,7 @@
 								        const prediction = await model.predict(posenetOutput);
 								        //내가 친 곳 
 								        var okay = '/resources/img/pose/okay.png';
-								        var wrong = '/resources/img/pose/nope.png';
+								        var wrong = '/resources/img/pose/nope2.png';
 										if(prediction[0].probability.toFixed(2) == 1.00){
 											document.getElementById('result').src = okay;
 										} else if(prediction[1].probability.toFixed(2) == 1.00){
@@ -215,7 +231,30 @@
 					<c:otherwise>
 						<div id="show_start" style="float: center; display: none;" >
 							<a style="font-size: 25px;"><strong> ${motion.motion_title}</strong></a> &emsp;
-							<button type="button" style="font-size: 25px;" onclick="initC()">StartC</button>
+							<button type="button" style="font-size: 25px;" onclick="initC()">StartC</button><br><br>
+							
+							
+								<h3>동작 샘플 사진</h3>
+								<img style="    height: 400px;  width: 600px;" src="/motion/profile?motion_id=${motion.motion_id }&motion_video_id=${motion.motion_video_id}&motion_class=${motion.motion_class}" alt="사진">
+								<br>
+								<br>
+								
+							<h3>동작 설명</h3>
+							<textarea rows="3" cols="60" readonly="readonly"
+								style="resize: none; border: none; font-size: 24px;">${motion.motion_info}
+								
+								</textarea>
+								<br>
+								
+								<div style="border: 2px; margin: 50px;">
+								<div style="font-size: 30px; "><span> 카운트 : </span><span style="color: red;" id="count_check"></span></div>
+								</div>
+								
+								 
+							<br>
+							
+							
+							
 								<script type="text/javascript">
 							
 									const video_id = "<c:out value='${motion.motion_video_id}'/>"
@@ -236,7 +275,7 @@
 								
 								        // Convenience function to setup a webcam
 								        const width = 900;
-								        const height = 500;
+								        const height = 900;
 								        const flip = true; // whether to flip the webcam
 								        webcam = new tmPose.Webcam(width, height, flip); // width, height, flip
 								        await webcam.setup(); // request access to the webcam
@@ -274,6 +313,7 @@
 											if(status == "squat"){
 												count ++;
 												var audio = new Audio("/resources/count/" + (count%10) + ".mp3" );
+												document.getElementById("count_check").innerHTML = count;
 												audio.play();
 											}
 											status = "stand";
@@ -286,6 +326,9 @@
 											}
 											status = "bent";
 										}
+
+
+										
 								
 								
 								        for (let i = 0; i < maxPredictions; i++) {
@@ -296,6 +339,7 @@
 								
 								        
 								        drawPose(pose);
+
 								    }
 								
 								    function drawPose(pose) {
@@ -321,15 +365,6 @@
 			<br>
 			<br>
 
-			<h3>동작 샘플 사진</h3>
-			<img src="/resources/img/BOOMBOXsq.png" alt="사진"
-				style="width: 250px; height: 250px"> <br>
-			<br>
-
-			<h3>동작 설명</h3>
-			<textarea rows="6" cols="30" readonly="readonly"
-				style="resize: none; border: none; font-size: 18px;">이번 동작은 고양이 자세입니다.</textarea>
-			<br>
 
 
 

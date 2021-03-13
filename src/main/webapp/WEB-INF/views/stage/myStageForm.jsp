@@ -228,7 +228,7 @@ height: 120;
 													</div>
 												<p><br></p>
 												<h4><br>${list[0].USER_NAME }</h4>
-												<h5>Follow : ${followCount[0].COUNT }</h5>
+												<h5>Follow : ${countFollow }</h5>
 
 											</div>
 

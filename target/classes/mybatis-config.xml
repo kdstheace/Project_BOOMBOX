@@ -13,6 +13,7 @@
 		<typeAlias type="com.boom.box.vo.BoomMasterVO" alias="boomMaster"/>
 		<typeAlias type="com.boom.box.vo.CrmVO" alias="crm"/>
 		<typeAlias type="com.boom.box.vo.RefundVO" alias="refund"/>
+		<typeAlias type="com.boom.box.vo.CommentVO" alias="comment"/>
 	</typeAliases>
 	
 	<mappers>

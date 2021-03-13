@@ -31,7 +31,7 @@
 	<!-- Page Content -->
 
 	<!-- main content -->
-<%-- 	<div class="row main_container">
+	<%-- 	<div class="row main_container">
 		<div class="col-md-12">
 
 			<h3>${motion.motion_title}</h3>
@@ -41,28 +41,29 @@
 
 		</div>
 	</div> --%>
-	
-	
-	   <!-- main content -->
-   <div class="row main_container">
-      <div class="col-md-12">
-
-         <div class="box" style="text-align: center;">
-            <div style="background-color: orange; width: 900px; height: 500px; text-align: center; line-height: 900px;">
-               <canvas class="canvas" id="canvas"></canvas>
-            </div>
-            <img class="result" id="result" src=" ">
-            <div id="label-container" style="float: right; position: absolute; top: 10px; right: 30px; background-color: rgba(68, 68, 68, 0.397); color: rgb(255, 124, 124); "></div>
-                     <br><br>
-         
-         <textarea rows="5" cols="115" style="resize: none; border: 2px; font-size: 18px;">내용 들어갑니다</textarea>
-
-         </div>
-         
 
 
-      </div>
-   </div>
+	<!-- main content -->
+	<div class="row main_container">
+		<div class="col-md-12">
+
+			<div class="box" style="text-align: center;">
+				<div
+					style="background-color: orange; width: 900px; height: 900PX; MARGIN-LEFT: 30PX; text-align: center; line-height: 900px;">
+					<canvas class="canvas" id="canvas"></canvas>
+				</div>
+				<img class="result" id="result" src=" ">
+				<div id="label-container"
+					style="float: right; position: absolute; top: 10px; left: 60px; background-color: rgba(68, 68, 68, 0.397); color: rgb(255, 124, 124); width: 100px;"></div>
+				<br>
+				<br>
+
+			</div>
+
+
+
+		</div>
+	</div>
 
 
 
@@ -95,8 +96,8 @@
 	        maxPredictions = model.getTotalClasses();
 	
 	        // Convenience function to setup a webcam
-	        const width = 900;
-	        const height = 500;
+	        const width = 1000;
+	        const height = 800;
 	        const flip = true; // whether to flip the webcam
 	        webcam = new tmPose.Webcam(width, height, flip); // width, height, flip
 	        await webcam.setup(); // request access to the webcam

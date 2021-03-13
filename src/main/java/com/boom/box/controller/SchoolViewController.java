@@ -123,6 +123,7 @@ public class SchoolViewController {
 		MembershipVO membership = service.selectMembershipOne(id);
 		BoomMasterVO boomMaster = boomService.selectBoomMasterOne(id);
 		ArrayList<HashMap<String, Object>> list = schoolService.selectMySchoolList(id);
+		
 		//프로필 사진 
 		for(HashMap<String, Object> a : list) {
 			a.put("url", userService.selectGoogleImg(((BigDecimal)(a.get("FOLLOW_STAGE_ID"))).intValue()));

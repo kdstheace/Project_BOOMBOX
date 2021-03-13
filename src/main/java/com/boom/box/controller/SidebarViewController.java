@@ -1,5 +1,6 @@
 package com.boom.box.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,6 +41,16 @@ public class SidebarViewController {
 	  public String followForm(Model model, HttpSession session) {
 		  logger.info("팔로우 폼으로 이동");
 		  int id = (int)session.getAttribute("loginId");
+		  
+			ArrayList<HashMap<String, Object>> list = userService.selectFollowList(id);
+			logger.info("{}", list);
+			//프로필 사진 
+			for(HashMap<String, Object> a : list) {
+				a.put("url", userService.selectGoogleImg(((BigDecimal)(a.get("FOLLOW_STAGE_ID"))).intValue()));
+			}
+			
+			model.addAttribute("list", list);
+		  
 		  return "leftBar/followForm"; 
 		  
 	  }

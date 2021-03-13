@@ -17,6 +17,7 @@ public class MotionService {
 	private MotionDAO dao;
 	
 	public String insertMotion(MotionVO motion) {
+		logger.info("모션 등록 서비스로 이동"); 
 		int count = dao.insertMotion(motion);
 		String path="";
 		if(count > 0) {
@@ -42,4 +43,11 @@ public class MotionService {
 		ArrayList<MotionVO> list = dao.selectMotionListByClass(motion);
 		return list;
 	}
+
+	public MotionVO selectMotionOnePic(MotionVO vo) {
+		logger.info("사진보이기 들어감?"); 
+		MotionVO result = dao.selectMotionOnePic(vo);
+		return result;
+	}
+
 }

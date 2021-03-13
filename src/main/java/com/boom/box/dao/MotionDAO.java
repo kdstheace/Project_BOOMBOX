@@ -57,4 +57,16 @@ public class MotionDAO {
 		}
 		return list;
 	}
+	
+	public MotionVO selectMotionOnePic(MotionVO vo) {
+		MotionVO result = null;
+		try {
+			MotionMapper mapper = session.getMapper(MotionMapper.class);
+			result = mapper.selectMotionOnePic(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	
+	}
 }

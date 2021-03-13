@@ -197,5 +197,65 @@ FROM
         u.user_id = #{user_id}
 </select>
 
+<select id="canIWatch" resultType="int" parameterType="int">
+select
+    membership_user_id
+from
+	(
+	    select distinct
+	        membership_user_id
+	    from
+	        membership_tb
+	    where
+	        membership_outdate >= sysdate
+    UNION
+	    select distinct
+	        boommaster_user_id
+	    from
+	        boommaster_tb
+    UNION
+	    select
+	        user_id
+	    from
+	        user_tb
+	    where
+	        user_manager = 2
+	)
+where
+    membership_user_id = #{membership_user_id}
+</select>
+
+<select id="selectFollowList" parameterType="int" resultType="hashmap">
+    select distinct
+        f.follow_stage_id as follow_stage_id
+        ,u.user_name as user_name
+        ,s.stage_profileimgo as stage_profileimgo
+        ,s.stage_bannerimgo as stage_bannerimgo
+        ,(select
+                count(*)
+            from
+                video_tb
+            where
+                video_user_id = f.follow_stage_id) as video_count
+        ,(select
+                count(*)
+            from
+                follow_tb
+            where
+                follow_stage_id = f.follow_stage_id) as follow_count
+    from
+        follow_tb f, stage_tb s, video_tb v, user_tb u
+    where
+        s.stage_user_id = u.user_id
+        and
+        f.follow_stage_id = s.stage_user_id
+        and
+        v.video_user_id = s.stage_user_id  
+        and
+        follow_user_id = #{follow_user_id}
+    order by
+        u.user_name
+</select>
+
 
 </mapper>

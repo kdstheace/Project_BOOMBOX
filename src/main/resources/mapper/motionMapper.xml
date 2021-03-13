@@ -15,6 +15,9 @@ insert into motion_tb(
 	,motion_modelS
 	,motion_modelO
 	,motion_title
+	,motion_infoPhotoS
+	,motion_infoPhotoO
+	,motion_info
 )values(
     motion_seq.nextval
     ,#{motion_video_id}
@@ -24,6 +27,9 @@ insert into motion_tb(
     ,#{motion_modelS}
     ,#{motion_modelO}
     ,#{motion_title}
+    ,#{motion_infoPhotoS}
+	,#{motion_infoPhotoO}
+	,#{motion_info}
 )
 </insert>
 
@@ -37,7 +43,10 @@ select
 	,motion_modelS
 	,motion_modelO
 	,motion_title
-    ,motion_indate
+	,motion_inDate
+	,motion_infoPhotoS
+	,motion_infoPhotoO
+	,motion_info
 from
     motion_tb
 where
@@ -57,13 +66,42 @@ select
 	,motion_modelS
 	,motion_modelO
 	,motion_title
-    ,motion_indate
+	,motion_inDate
+	,motion_infoPhotoS
+	,motion_infoPhotoO
+	,motion_info
 from
     motion_tb
 where
     motion_video_id = #{motion_video_id}
     and
     motion_title= #{motion_title}
+</select>
+
+<select id="selectMotionOnePic" parameterType="motion" resultType="motion">
+
+SELECT
+	motion_id
+	,motion_video_id	
+	,motion_class
+	,motion_metaS
+	,motion_metaO
+	,motion_modelS
+	,motion_modelO
+	,motion_title
+	,motion_inDate
+	,motion_infoPhotoS
+	,motion_infoPhotoO
+	,motion_info
+FROM
+	HR.MOTION_TB
+WHERE
+	motion_id = #{motion_id}
+	AND 
+	motion_video_id = #{motion_video_id}
+	AND 
+	motion_class = #{motion_class}
+
 </select>
 
 <select id="selectMotionOneByTitle" parameterType="String" resultType="motion">
@@ -76,7 +114,10 @@ select
 	,motion_modelS
 	,motion_modelO
 	,motion_title
-    ,motion_indate
+	,motion_inDate
+	,motion_infoPhotoS
+	,motion_infoPhotoO
+	,motion_info
 from
     motion_tb
 where

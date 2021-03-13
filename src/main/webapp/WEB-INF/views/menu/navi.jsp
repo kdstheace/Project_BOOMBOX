@@ -190,7 +190,7 @@
                     	<img src="/resources/img/nav/upload.png">Upload
                     </a>
                     </li>
-                    <li class="nav-item nav-btn active"><a class="nav-link" href="/others/alarmForm">
+                    <li class="nav-item nav-btn active"><a class="nav-link" href="/user/alarmForm">
                     <img src="/resources/img/nav/alarm.png">Alarm</a></li>
                     <li class="nav-item dropdown">
                     	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

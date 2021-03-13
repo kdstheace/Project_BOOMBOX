@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 
+import com.boom.box.vo.CommentVO;
 import com.boom.box.vo.VideoVO;
 
 public interface VideoMapper {
@@ -25,4 +26,9 @@ public interface VideoMapper {
 	public int deleteLike(HashMap<String, Integer> map);
 	public ArrayList<HashMap<String, Object>> selectVideoByInterest(int user_id);
 	public ArrayList<HashMap<String, Object>> selectVideoByFollow(RowBounds rb, int follow_user_id);
+	
+	//comment
+	public int insertComment(CommentVO comment);
+	public ArrayList<CommentVO> selectComment(int comment_video_id);
+	public int updateComment(CommentVO comment);
 }

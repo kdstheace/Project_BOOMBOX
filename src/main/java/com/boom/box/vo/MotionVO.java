@@ -13,4 +13,7 @@ public class MotionVO {
 	private String motion_modelS;
 	private String motion_modelO;
 	private String motion_inDate;
+	private String motion_infoPhotoS;
+	private String motion_infoPhotoO;
+	private String motion_info;
 }

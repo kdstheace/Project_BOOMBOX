@@ -46,8 +46,9 @@
 
 .result {
 	position: absolute;
-	top: 200px;
-	left: 150px;
+	top: 50px;
+	left: 200px;
+	text-align: center;
 }
 </style>
 </head>
@@ -61,18 +62,20 @@
 		<div class="col-md-12">
 
 			<div class="box" style="text-align: center;">
-<!-- 			<div style="background-color: yellow; width: 920px; height: 520px; position: absolute; top: 50%; left: 50%;"> -->
-				<div style="background-color: orange; width: 900px; height: 500px; text-align: center; line-height: 900px;">
+				<!-- 			<div style="background-color: yellow; width: 920px; height: 520px; position: absolute; top: 50%; left: 50%;"> -->
+				<div
+					style="background-color: orange; width: 900px; height: 900PX;  text-align: center; line-height: 900px;">
 					<canvas class="canvas" id="canvas"></canvas>
 				</div>
 				<img class="result" id="result" src=" ">
-				<div id="label-container" style="float: right; position: absolute; top: 10px; right: 30px; background-color: rgba(68, 68, 68, 0.397); color: rgb(255, 124, 124); "></div>
-							<br><br>
-			
-			<textarea rows="5" cols="115" style="resize: none; border: 2px; font-size: 18px;">내용 들어갑니다</textarea>
+				<div id="label-container"
+					style="float: right; position: absolute; top: 10px; left: 20px; background-color: rgba(68, 68, 68, 0.397); color: rgb(255, 124, 124); width: 100px;"></div>
+				<br>
+				<br>
+
 
 			</div>
-			
+
 
 
 		</div>
@@ -82,7 +85,7 @@
 
 	<script src="/resources/js/tf.min.js"></script>
 	<script src="/resources/js/teachablemachine-pose.min.js"></script>
-<!-- 	<script type="text/javascript">
+	<!-- 	<script type="text/javascript">
 
 		const video_id = "<c:out value='${motion.motion_video_id}'/>"
 		const motion_class = "<c:out value='${motion.motion_class}'/>"

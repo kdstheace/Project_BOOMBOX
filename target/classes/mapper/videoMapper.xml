@@ -391,5 +391,44 @@ where
 		like_video_id = #{like_video_id}   
 </select>
 
+<!-- Comments -->
+<insert id="insertComment" parameterType="comment">
+insert into comment_tb(
+    comment_id
+    ,comment_user_id
+    ,comment_video_id
+    ,comment_content
+)values(
+    COMMENT_SEQ.nextval
+    ,#{comment_user_id}
+    ,#{comment_video_id}
+    ,#{comment_content}
+)
+</insert>
+
+<select id="selectComment" parameterType="int" resultType="comment">
+select
+    comment_id
+    ,comment_user_id
+    ,comment_video_id
+    ,comment_content
+	,comment_indate
+from
+    comment_tb
+where
+    comment_video_id = #{comment_video_id}
+order by
+	comment_indate desc
+</select>
+
+<update id="updateComment" parameterType="comment">
+update 
+    comment_tb 
+set 
+    comment_content = #{comment_content}
+    ,comment_indate = sysdate
+where
+    comment_user_id = #{comment_user_id}
+</update>
 
 </mapper>

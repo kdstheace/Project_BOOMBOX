@@ -3,6 +3,7 @@ package com.boom.box.controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +60,10 @@ public class StageViewController {
 		}else {
 			id = stage_user_id;
 		}
+		
+		//팔로우 숫자
+		int countFollow = service.countFollow(id);
+		model.addAttribute("countFollow", countFollow);
 		
 		//팔로우 실행 여부 확인
 		HashMap<String, Integer> map = new HashMap<String, Integer>();

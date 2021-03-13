@@ -39,6 +39,9 @@
 	metadata.json<input type="file" name="uploadMetadata"><br>
 	model.json<input type="file" name="uploadModel"><br>
 	weight.zip<input type="file" name="uploadweight"><br>
+	
+	사진 넣기 250*250<input type="file" name="uploadInfoPhoto"><br>
+	설명<textarea rows="3" cols="25" name="uploadInfo"></textarea>
 	<input type="submit" value="Upload">
 </form>
 

@@ -103,33 +103,32 @@ function extendCk(){
 
 
 		<div id="boarderStyle" style="border-color: #211f53;" class="col-md-12 video_box">
-
-		 <c:if test="${diff!=0 && diff!=null }">
-			<form action="/membership/payCheckForm" method = "get" onsubmit="return extendCk();">
-				<input type="hidden" id="diff" name="diff" value="${diff }">
-				<div style="background-color: #fcbc0e;" class="pt-5 ">
-								<h3>&emsp;현재 멤버쉽  </h3>&emsp;<a><h5>&emsp;&emsp;&emsp;만기일 : ${year }년 ${mm }월 ${dd }일<br><br>
-								&emsp;&emsp;&emsp;남은 멤버쉽 날짜 : <span style="color: red;">${diff }</span>일</h5></a>
-
-					<div class="col-11 text-right"><a class="btn btn btn-dark" href="/membership/payCheckForm" style="width: 105px;" role="button" onclick="return extendCk();">연장하기</a></div>
-
-				</div>
-			</form>
-			<div class=" pt-5  ">
-
-				<h3>&emsp;환불</h3>&emsp;<a><h5>&emsp;&emsp;&emsp;- 고객센터 email</h5></a>
-				<div class="col-11 text-right" ><a class="btn btn btn-dark" href="#" role="button" onclick="memberShipCrmForm();">환불 문의하기</a></div>
-			</div>
-
-
-			</c:if>
-
-			<c:if test="${diff==0}">
-				<div class="pt-5" style="background-color: #fbbb0f;">
-					<h3>&emsp;현재 상태  </h3>&emsp;<a><h5 style="height: 130px;">&emsp;&emsp;현재 멤버쉽 <span style="color: #ea4756;">미가입자</span>이십니다. <br> &emsp;&emsp;지금 결제 하시면 현재일로 부터 <span style="color: #ea4756;">30일</span>간 다양한 혜택을 받을 수 있습니다. <br>
-					<div class="col-11 text-right" style="margin-top: 100px;"><a class="btn btn-dark" href="/membership/payCheckForm" role="button">결제하러가기</a></div>
-			</div>
-	 	</c:if>
+			<c:choose>
+				<c:when test="${diff!=0 && diff != null }">
+					<form action="/membership/payCheckForm" method = "get" onsubmit="return extendCk();">
+						<input type="hidden" id="diff" name="diff" value="${diff }">
+						<div style="background-color: #fcbc0e;" class="pt-5 ">
+										<h3>&emsp;현재 멤버쉽  </h3>&emsp;<a><h5>&emsp;&emsp;&emsp;만기일 : ${year }년 ${mm }월 ${dd }일<br><br>
+										&emsp;&emsp;&emsp;남은 멤버쉽 날짜 : <span style="color: red;">${diff }</span>일</h5></a>
+		
+							<div class="col-11 text-right"><a class="btn btn btn-dark" href="/membership/payCheckForm" style="width: 105px;" role="button" onclick="return extendCk();">연장하기</a></div>
+		
+						</div>
+					</form>
+					<div class=" pt-5  ">
+		
+						<h3>&emsp;환불</h3>&emsp;<a><h5>&emsp;&emsp;&emsp;- 고객센터 email</h5></a>
+						<div class="col-11 text-right" ><a class="btn btn btn-dark" href="#" role="button" onclick="memberShipCrmForm();">환불 문의하기</a></div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="pt-5" style="background-color: #fbbb0f;">
+							<h3>&emsp;현재 상태  </h3>&emsp;<a><h5 style="height: 130px;">&emsp;&emsp;현재 멤버쉽 <span style="color: #ea4756;">미가입자</span>이십니다. <br> &emsp;&emsp;지금 결제 하시면 현재일로 부터 <span style="color: #ea4756;">30일</span>간 다양한 혜택을 받을 수 있습니다. <br>
+							<div class="col-11 text-right" style="margin-top: 100px;"><a class="btn btn-dark" href="/membership/payCheckForm" role="button">결제하러가기</a></div>
+					</div>
+				
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 </div>

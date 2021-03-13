@@ -135,4 +135,25 @@ public class UserDAO {
 		}
 		return list;
 	}
+	
+	public Integer canIWatch(int membership_user_id){
+		Integer user_id = 0;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			user_id = mapper.canIWatch(membership_user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user_id;
+	}
+	public ArrayList<HashMap<String, Object>> selectFollowList(int follow_user_id){
+		ArrayList<HashMap<String, Object>> list = null;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			list = mapper.selectFollowList(follow_user_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

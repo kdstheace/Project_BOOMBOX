@@ -141,4 +141,12 @@ public class UserService {
 		ArrayList<String> list = dao.selectInterest(user_id);
 		return list;
 	}
+	public Integer canIWatch(int user_id){
+		Integer result = dao.canIWatch(user_id);
+		return result;
+	}
+	public ArrayList<HashMap<String, Object>> selectFollowList(int follow_user_id){
+		ArrayList<HashMap<String, Object>> list = dao.selectFollowList(follow_user_id);
+		return list;
+	}
 }

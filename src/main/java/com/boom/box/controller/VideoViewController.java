@@ -3,6 +3,7 @@ package com.boom.box.controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,10 +25,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.boom.box.service.BoomMasterService;
+import com.boom.box.service.MembershipService;
 import com.boom.box.service.MyStageService;
+import com.boom.box.service.UserService;
 import com.boom.box.service.VideoService;
 import com.boom.box.util.FileService;
 import com.boom.box.util.PageNavigator;
+import com.boom.box.vo.CommentVO;
 import com.boom.box.vo.VideoVO;
 
 @Controller
@@ -38,6 +43,12 @@ public class VideoViewController {
 	private VideoService service;
 	@Autowired
 	private MyStageService myStageService;
+	@Autowired
+	private BoomMasterService boomMasterService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private MembershipService membershipService;
 	
 	private String uploadPath = "/uploadFile/Boombox";
 	private final int countPerPage = 10;
@@ -114,8 +125,10 @@ public class VideoViewController {
 	@RequestMapping(value="/watchForm", method=RequestMethod.GET)
 	public String watchForm(int video_id, Model model, HttpSession session) {
 		logger.info("동영상 시청하러 이동.");
-		//좋아요 실행 여부 확인.
 		int loginId = (int)session.getAttribute("loginId");
+		
+
+		//좋아요 실행 여부 확인.
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("like_user_id", loginId);
 		map.put("like_video_id", video_id);
@@ -137,7 +150,22 @@ public class VideoViewController {
 		int count = service.countLike(video_id);
 
 		HashMap<String, Object> video = service.selectVideoOne(video_id);
-		model.addAttribute("video", video);
+		
+		//유저가 비디오를 볼 자격이 있는지 확인
+		if(boomMasterService.selectBoomMasterOne(((BigDecimal)video.get("VIDEO_USER_ID")).intValue()) != null && (video.get("VIDEO_CLASS").equals("2"))) {
+			if(userService.canIWatch(loginId) != null) {
+				model.addAttribute("video", video);
+			}else {
+				membershipService.insertStartMembership(loginId);
+				return "/membership/membershipForm";
+			}
+		}else {
+			model.addAttribute("video", video);
+		}
+		
+		
+		ArrayList<CommentVO> commentList = service.selectComment(video_id);
+		model.addAttribute("commentList", commentList);
 
 		ArrayList<HashMap<String, Object>> list = service.selectVideoList("", 0, 8);
 		
@@ -262,5 +290,33 @@ public class VideoViewController {
 		return "redirect:/video/watchForm?video_id="+video_id;
 	}
 	
-
+	//Comments
+	@RequestMapping(value="/insertComment", method= RequestMethod.POST)
+	public String insertComment(CommentVO comment, HttpSession session) {
+		String path = null;
+		int loginId = (int)session.getAttribute("loginId");
+		logger.info("{}",comment.getComment_video_id());
+		comment.setComment_user_id(loginId);
+		logger.info("세팅 완료");
+		ArrayList<CommentVO> list = service.selectComment(comment.getComment_video_id());
+		logger.info("전체 리스트 가져옴{}", list);
+		if(list.size() == 0) {
+			service.insertComment(comment);
+		}
+		for(CommentVO vo : list) {
+			logger.info("반복");
+			if(vo.getComment_user_id() == loginId) {
+				service.updateComment(comment);
+				logger.info("댓글 저장 성공!1");
+				break;
+			}else {
+				service.insertComment(comment);
+				logger.info("댓글 저장 성공!2");
+				break;
+			}
+		}
+		return "redirect:/video/watchForm?video_id="+comment.getComment_video_id();
+	}
+	
+	
 }

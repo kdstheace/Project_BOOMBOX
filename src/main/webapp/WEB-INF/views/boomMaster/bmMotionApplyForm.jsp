@@ -98,9 +98,37 @@
 
 	function fn_applyMotion() {
 
-		alert("신청 메일이 전송되었습니다.");
-		window.close();
 
+		var name = document.getElementById("name").value;
+		var email = document.getElementById("email").value;
+		var boommaster_intro = document.getElementById("boommaster_intro").value;
+
+
+		if(name == null || name.length == 0){
+			alert("이름을 적어주세요.");
+			return false;
+		}
+		if(email == null || email.length == 0){
+			alert("E-MAIL를 적어주세요.");
+			return false;
+		}
+		if(boommaster_intro == null || boommaster_intro.length == 0){
+			alert("MESSAGE를 적어주세요.");
+			return false;
+		}
+
+		var result = confirm("신청 하시겠습니까?");
+		if(result){
+		    alert("신천완료 되었습니다.");
+		}else{
+		    alert("취소 되었습니다.");
+		    return false;
+		}
+		return true;
+	}
+
+	function cancel(){
+		location.href='/report/closeForm';
 	}
 </script>
 
@@ -114,50 +142,7 @@
 					width="15%" style="min-width: 120px; max-width: 200px;">
 			</p>
 			<h1>모션인식 신청하기</h1>
-			<%-- 		<form action="/user/updateInfo" method="get" onsubmit="return fn_bmApplyFormCheck();" >
-			<input type="hidden" id="user_googleId" name="user_googleId" value="${loginGoogleId}"> 
 
-			<label>
-				<p class="label-txt">모션 신청자</p><br>
-				<input type="text" readonly="readonly" value="${loginName }"><br> 
-				<div class="line-box">
-					<div class="line"></div>
-				</div>
-			</label> 
-			
-			<label>
-				<p class="label-txt">모션 신청 영상 제목</p><br>
-				<input type="text" ><br> 
-				<div class="line-box">
-					<div class="line"></div>
-				</div>
-			</label> 
-			
-			<label>
-				<p class="label-txt">모션 신청 영상 URL</p><br>
-				<input type="text" ><br> 
-				<div class="line-box">
-					<div class="line"></div>
-				</div>
-			</label> 
-			
-			
-
-			
-			
-			<label>
-				<p class="label-txt">신청사유</p> <br>
-				<textarea class="form-control" cols="200" rows="3" ></textarea> 
-<br>
-				<div class="line-box">
-					<div class="line"></div>
-				</div>
-			</label>
-			
-				<input class="butten" type="submit" value="붐마스터 신청하기"> 
-				<input type="reset" value="cancel">
-			</button>
-		</form> --%>
 
 			<div class="panel-body">
 
@@ -179,6 +164,7 @@
 						style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
 
 					<input id="submit" type="submit" value="모션인식 신청메일 보내기">
+					<input type="reset" value="cancel" onclick="return cancel();">
 
 				</form>
 

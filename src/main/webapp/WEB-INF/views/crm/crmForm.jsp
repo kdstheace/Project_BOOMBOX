@@ -91,6 +91,11 @@
 <script type="text/javascript">
 
 
+function cancel(){
+	location.href='/report/closeForm';
+
+	}
+
 function nowDate(){
 
 document.getElementById("crm_writeDate").value = new Date().toISOString().slice(0,-1);
@@ -130,6 +135,32 @@ function realtimeClock() {
 	  return zero + n;
 	}
 
+	function fn_crmFormCheck(){
+
+
+		var crm_title = document.getElementById("crm_title").value;
+    	var crm_content = document.getElementById("crm_content").value;
+
+    	/* var userInterest_interest = document.getElementById("userInterest_interest").value; */
+
+
+
+     	  	if(crm_title == null || crm_title.length == 0){
+    		alert("제목을 입력해 주세요");
+    		return false;
+
+    		}
+
+     		if(crm_content == null || crm_content.length == 0){
+        		alert("내용을 입력해 주세요");
+        		return false;
+
+        		}
+
+     		return true;
+
+		}
+
 
 </script>
 
@@ -142,10 +173,10 @@ function realtimeClock() {
 			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</p>
-		<h1>고객센터</h1>
+		<h1>CUSTOMER SERVICE</h1>
 		<form action="/crm/crmSend" method="post" onsubmit="return fn_crmFormCheck();" >
 			<label>
-			<p class="label-txt">제목</p> 
+			<p class="label-txt">Title</p> 
 			<input type="text" class="input" id="crm_title" name="crm_title"> 
 				<div class="line-box">
 					<div class="line"></div>
@@ -153,7 +184,7 @@ function realtimeClock() {
 			</label> 
 			
 			<label>
-				<p class="label-txt">내용</p><br> 
+				<p class="label-txt">Contents</p><br> 
 				<textarea class="form-control" cols="200" rows="3" id="crm_content" name="crm_content" ></textarea> <br>
 				<div class="line-box">
 					<div class="line"></div>
@@ -161,16 +192,17 @@ function realtimeClock() {
 			</label>  
 			
 			<label>
-				<p class="label-txt">문의자</p> <input type="text" class="input" value="${loginName }">
+				<p class="label-txt">ID</p> <input type="text" class="input" value="${loginName }">
 				<input type="hidden" class="input" id="crm_user_id" name="crm_user_id" value="${loginId }">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label> 
-			
-				<input class="butten" type="submit" value="고객센터 보내기"> 
-				<input type="reset" value="cancel">
-			</button>
+
+				<input class="button" type="submit" value="Submit"> 
+				<input type="reset" value="cancel" onclick="return cancel();">
+				
+
 		</form>
 
 	</div>

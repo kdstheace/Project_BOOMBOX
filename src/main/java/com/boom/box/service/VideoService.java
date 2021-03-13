@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boom.box.controller.VideoViewController;
 import com.boom.box.dao.VideoDAO;
+import com.boom.box.vo.CommentVO;
 import com.boom.box.vo.VideoVO;
 
 import org.springframework.stereotype.Service;
@@ -94,5 +95,21 @@ public class VideoService {
 	public ArrayList<HashMap<String, Object>> selectVideoListById(int user_id){
 		ArrayList<HashMap<String, Object>> list = dao.selectVideoListById(user_id);
 		return list;
+	}
+	
+	//Comment
+	public void insertComment(CommentVO comment) {
+		int count = dao.insertComment(comment);
+	}
+	
+	
+	public ArrayList<CommentVO> selectComment(int comment_video_id){
+		ArrayList<CommentVO> list = dao.selectComment(comment_video_id);
+		return list;
+	}
+	
+	public int updateComment(CommentVO comment) {
+		int count = dao.updateComment(comment);
+		return count;
 	}
 }

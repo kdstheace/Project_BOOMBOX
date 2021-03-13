@@ -244,60 +244,46 @@
                                                             aria-labelledby=collapseListGroupHeading1>
                                                             <div class="comment-widgets">
                                                                 <!-- Comment Row -->
-                                                                <div class="d-flex flex-row comment-row m-t-0">
-                                                                    <div class="p-2">
-                                                                    	<img src="${sessionScope.loginImg }" alt="user" width="50" class="rounded-circle">
-                                                                    </div>
-                                                                    <div class="comment-text w-100">
-                                                                        <p class="font-medium">${sessionScope.loginName }</p>
-                                                                        <textarea class="textinput" placeholder="Comment"></textarea>
-                                                                        <div class="comment-footer float-right">
-                                                                            <button type="button" class="btn btn-success btn-sm">Submit</button>
-                                                                           <br><br><button type="button" class="btn btn-danger btn-sm">Cancel</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
+                                                                <form action="/video/insertComment?comment_video_id=${video.VIDEO_ID }" method="POST">
+	                                                                <div class="d-flex flex-row comment-row m-t-0">
+	                                                                    <div class="p-2">
+	                                                                    	<img src="${sessionScope.loginImg }" alt="user" width="50" class="rounded-circle">
+	                                                                    </div>
+	                                                                    <div class="comment-text w-100">
+	                                                                        <p class="font-medium">${sessionScope.loginName }</p>
+	                                                                        <textarea class="textinput" name="comment_content" placeholder="Comment"></textarea>
+	                                                                        <div class="comment-footer float-right">
+	                                                                            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+	                                                                           <br><br><button type="button" class="btn btn-danger btn-sm">Cancel</button>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                </div>
+	                                                                <hr>
+                                                                </form>
                                                                 <!-- Comment Row -->
-                                                                <div class="d-flex flex-row comment-row m-t-0">
-                                                                    <div class="p-2"><img
-                                                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg"
-                                                                            alt="user" width="50"
-                                                                            class="rounded-circle"></div>
-                                                                    <div class="comment-text w-100">
-                                                                        <h6 class="font-medium">HONGJU</h6>
-                                                                        <span class="m-b-15 d-block">HOAH</span>
-                                                                        <span
-                                                                            class="text-muted float-right">2021/02/13</span><br>
-                                                                        <button type="button"
-                                                                            class="btn btn-danger btn-sm float-right">Report</button>
-
-                                                                        <div class="comment-footer">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
+                                                                <c:forEach items="${commentList }" var = "comment">
+	                                                                <div class="d-flex flex-row comment-row m-t-0">
+	                                                                    <div class="p-2"><img
+	                                                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg"
+	                                                                            alt="user" width="50"
+	                                                                            class="rounded-circle"></div>
+	                                                                    <div class="comment-text w-100">
+	                                                                        <h6 class="font-medium">${comment.comment_user_id }</h6>
+	                                                                        <span class="m-b-15 d-block">${comment.comment_content }</span>
+	                                                                        <span
+	                                                                            class="text-muted float-right">${comment.comment_inDate }</span><br>
+	                                                                        <button type="button"
+	                                                                            class="btn btn-danger btn-sm float-right">Report</button>
+	
+	                                                                        <div class="comment-footer">
+	
+	                                                                        </div>
+	                                                                    </div>
+	                                                                </div>
+	                                                                <hr>
+                                                                </c:forEach>
                                                                 <!-- Comment Row -->
-                                                                <div class="d-flex flex-row comment-row m-t-0">
-                                                                    <div class="p-2"><img
-                                                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg"
-                                                                            alt="user" width="50"
-                                                                            class="rounded-circle"></div>
-                                                                    <div class="comment-text w-100">
-                                                                        <h6 class="font-medium">CHANGWON</h6>
-                                                                        <span class="m-b-15 d-block">Someday Ill be just like you!</span>
-                                                                        <span
-                                                                            class="text-muted float-right">2021/02/12</span><br>
-                                                                        <button type="button"
-                                                                            class="btn btn-danger btn-sm float-right">Report</button>
-
-                                                                        <div class="comment-footer">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
+                                                                
                                                                 <div class="d-flex flex-row comment-row m-t-0">
                                                                     <div class="p-2"><img
                                                                             src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg"
