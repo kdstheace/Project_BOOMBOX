@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boom.box.dao.ADMapper">
+
+<insert id="insertADHomeBanner" parameterType="ad">
+
+INSERT
+	INTO
+	HR.AD_TB (
+	AD_ID,
+	ADT_TITLE ,
+	AD_NAME,
+	AD_REDIRECT_URL,
+	AD_STATDATE,
+	AD_ENDDATE,
+	AD_IMGS,
+	AD_IMGO,
+	AD_CONTEXT
+	)
+VALUES(
+	ad_seq.nextval,
+	#{adt_title},
+	#{ad_name},
+	#{ad_redirect_URL},
+	sysdate ,
+	sysdate ,
+	#{ad_imgS},
+	#{ad_imgO},
+	#{ad_context}
+	)
+
+
+</insert>
+
+<select id="selectBanner" resultType="ad">
+
+SELECT
+	AD_ID,
+	ADT_TITLE ,
+	AD_NAME,
+	AD_REDIRECT_URL,
+	AD_STATDATE,
+	AD_ENDDATE,
+	AD_IMGS,
+	AD_IMGO,
+	AD_CONTEXT
+FROM
+	HR.AD_TB
+ORDER BY
+	 AD_ID DESC
+
+</select>
+
+</mapper>

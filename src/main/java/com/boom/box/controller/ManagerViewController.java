@@ -1,21 +1,33 @@
 package com.boom.box.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.boom.box.service.ADService;
 import com.boom.box.service.BoomMasterService;
 import com.boom.box.service.ManagerService;
 import com.boom.box.service.UserService;
+import com.boom.box.util.FileService;
 import com.boom.box.util.PageNavigator;
+import com.boom.box.vo.ADVO;
 import com.boom.box.vo.BoomMasterVO;
 import com.boom.box.vo.BoomMasterVO;
 
@@ -27,13 +39,14 @@ public class ManagerViewController {
 	private UserService usService;
 	@Autowired
 	private BoomMasterService bmService;
-	
+	@Autowired
+	private ADService adService;
 	@Autowired
 	private ManagerService service;
 	
 	private final int countPerPage = 10;
 	private final int pagePerGroup = 5;
-
+	private String uploadPath = "/uploadFile/Boombox";
 	//관리자 메인페이지 가기
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String managerHome() {
@@ -119,5 +132,75 @@ public class ManagerViewController {
 		return "/manager/searchForm";
 	}
 
+	@RequestMapping(value = "/UpdateHomeADbaner", method = RequestMethod.POST)
+	public String UpdateHomeADbaner(Model model, ADVO vo ,MultipartFile uploadBanner) {
+		System.out.println(vo);
 
+		if(!uploadBanner.isEmpty()) {
+			String ad_imgImgS = uploadBanner.getOriginalFilename();
+			String ad_imgImgO = FileService.saveFile(uploadBanner, uploadPath);
+			vo.setAd_imgO(ad_imgImgO);
+			vo.setAd_imgS(ad_imgImgS);
+
+		}
+
+		adService.insertADHomeBanner(vo);
+		System.out.println(vo);
+
+		return "manager/adRegistrationForm";
+	}
+
+	@RequestMapping(value = "/homeADbanner",method = RequestMethod.GET)
+	public void  homeADbanner(HttpServletResponse response,Model model) {
+
+
+
+		ArrayList<ADVO> list = adService.selectBanner();
+
+		ADVO advo = list.get(0);
+
+		model.addAttribute("advo", advo);
+		System.out.println(advo);
+
+
+		String original_file = advo.getAd_imgO();
+		try {
+			response.setHeader("Content-Disposition", "attachment;filename="+
+			URLEncoder.encode(original_file,"UTF-8"));
+
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String fullPath = uploadPath + "/" +advo.getAd_imgO();
+		FileInputStream fis = null;
+		ServletOutputStream sos = null;
+		try {
+			fis = new FileInputStream(fullPath);
+			sos = response.getOutputStream();
+
+			FileCopyUtils.copy(fis, sos);
+
+		} catch (Exception e) {
+
+		}finally {
+			if(fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if(sos != null) {
+				try {
+					sos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+
+
+	}
 }

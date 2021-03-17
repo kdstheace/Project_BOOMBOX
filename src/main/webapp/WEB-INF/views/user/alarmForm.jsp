@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@ page session="true" %>
 		<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+		<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 			<html>
 
 			<head>
@@ -64,7 +65,10 @@
 <jsp:include page="/WEB-INF/views/menu/navi.jsp" />
 
 <div>
-	<img style="    margin-top: 20%; margin-left: 30%;" alt="construction.png" src=" /resources/img/construction.png">
+	<img style="    margin-top: 20%; margin-left: 30%;" alt="construction.png" src=" /resources/img/construction.png"><br>
+	<div>
+		<h3 style="margin-top:30px; text-align: center;"><spring:message code="paySuccessForm.sucess.content" /></h3>
+	</div>
 </div>
 
 

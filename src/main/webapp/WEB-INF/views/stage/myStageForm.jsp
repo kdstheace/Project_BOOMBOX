@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html>
 <head>
 <title>Home</title>
@@ -228,7 +228,7 @@ height: 120;
 													</div>
 												<p><br></p>
 												<h4><br>${list[0].USER_NAME }</h4>
-												<h5>Follow : ${countFollow }</h5>
+												<h5>Follow : ${followCount[0].COUNT }</h5>
 
 											</div>
 
@@ -237,19 +237,19 @@ height: 120;
 										<c:choose>
 											<c:when test="${sessionScope.loginId == myStage.stage_user_id }">
 												<div >
-													<a class="btn btn-primary" role="button" onclick="updateStageForm();">수정 하기</a>
+													<a class="btn btn-primary" role="button" onclick="updateStageForm();"><spring:message code="myStageForm.profile.update" /></a>
 												</div>
 											</c:when>
 											<c:otherwise>
 												<c:choose>
 													<c:when test="${flag }">
 														<div>
-															<a class="btn btn-primary" href="/stage/deleteFollow?stage_user_id=${myStage.stage_user_id }" role="button" >취소하기</a>
+															<a class="btn btn-primary" href="/stage/deleteFollow?stage_user_id=${myStage.stage_user_id }" role="button" ><spring:message code="myStageForm.Follow.cancel" /></a>
 														</div>
 													</c:when>
 													<c:otherwise>
 														<div>
-															<a class="btn btn-primary" href="/stage/insertFollow?stage_user_id=${myStage.stage_user_id }" role="button" >Follow</a>
+															<a class="btn btn-primary" href="/stage/insertFollow?stage_user_id=${myStage.stage_user_id }" role="button" ><spring:message code="myStageForm.Follow.follow" /></a>
 														</div>
 													</c:otherwise>
 												</c:choose>
@@ -263,14 +263,14 @@ height: 120;
 											<div>
 												<div>
 												<p><br></p>
-													<h4>Intro</h4>
+													<h4><spring:message code="myStageForm.stage.introTitle" /></h4>
 												</div>
 												<c:choose>
 													<c:when test="${myStage.stage_intro != null }">
 														<div class="card">${myStage.stage_intro }</div>
 													</c:when>
 													<c:otherwise>
-														<div class="card ">소개글을 적어주세요.</div>
+														<div class="card "><spring:message code="myStageForm.stage.intro" /></div>
 													</c:otherwise>
 												</c:choose>
 											</div>
@@ -280,7 +280,7 @@ height: 120;
 													test="${sessionScope.loginId != myStage.stage_user_id }">
 													<div>
 														<a class="btn btn-primary" href="#" role="button"
-															onclick="reportForm();">신고하기</a>
+															onclick="reportForm();"><spring:message code="myStageForm.stage.report" /></a>
 													</div>
 												</c:if>
 											</div>
@@ -315,7 +315,7 @@ height: 120;
                                                         ${video.VIDEO_TITLE }
                                                     </p>
                                                     <p class=small-feed-info>
-                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT } 
+                                                        ${video.USER_NAME } <i class="fas fa-check-circle"></i> ${video.countFollow} <i class="fas fa-eye"></i> ${video.VIDEO_HIT }
                                                         <br>
                                                         ${video.VIDEO_INDATE }
                                                     </p>

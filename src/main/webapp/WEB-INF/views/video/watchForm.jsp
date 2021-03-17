@@ -263,15 +263,22 @@
                                                                 <!-- Comment Row -->
                                                                 <c:forEach items="${commentList }" var = "comment">
 	                                                                <div class="d-flex flex-row comment-row m-t-0">
-	                                                                    <div class="p-2"><img
-	                                                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg"
-	                                                                            alt="user" width="50"
-	                                                                            class="rounded-circle"></div>
+	                                                                    <div class="p-2">
+	                                                                    <c:choose>
+	                                                                    	<c:when test="${comment.STAGE_PROFILEIMGO != null }">
+	                                                                    		<img height="50" src="/stage/profile?video_user_id=${comment.COMMENT_USER_ID}" alt="user" width="50" class="rounded-circle">
+	                                                                    	</c:when>
+	                                                                    	<c:otherwise>
+	                                                                    		<img height="50" src="${comment.USER_GOOGLEIMG }" alt="user" width="50" class="rounded-circle">
+	                                                                    	</c:otherwise>
+	                                                                    </c:choose>
+	                                                                    	
+	                                                                    </div>
 	                                                                    <div class="comment-text w-100">
-	                                                                        <h6 class="font-medium">${comment.comment_user_id }</h6>
-	                                                                        <span class="m-b-15 d-block">${comment.comment_content }</span>
+	                                                                        <h6 class="font-medium">${comment.USER_NAME }</h6>
+	                                                                        <span class="m-b-15 d-block">${comment.COMMENT_CONTENT }</span>
 	                                                                        <span
-	                                                                            class="text-muted float-right">${comment.comment_inDate }</span><br>
+	                                                                            class="text-muted float-right">${comment.COMMENT_INDATE }</span><br>
 	                                                                        <button type="button"
 	                                                                            class="btn btn-danger btn-sm float-right">Report</button>
 	

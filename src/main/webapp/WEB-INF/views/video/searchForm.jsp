@@ -120,26 +120,25 @@
                       <div class="col-md-7 p-0 pt-2">
                         <div class="row">
                           <div class="col-1 ml-2 mr-3 desc_hide">
-                            <c:choose>
-                              <c:when test="${video.STAGE_PROFILEIMGO != null }">
-                                <img id="img" width="48" src="/stage/profile?=${myStage.stage_id }"
-                                  class="rounded-circle">
-                              </c:when>
-                              <c:otherwise>
-                                <img id="img" width="48" src="/resources/img/myStage/defultProfileImg.png"
-                                  class="rounded-circle">
-                              </c:otherwise>
-                            </c:choose>
+                             <c:choose>
+                                 <c:when test="${video.STAGE_PROFILEIMGO != null }">
+                                     <img id="img" height="50"  src="/stage/profile?video_user_id=${video.VIDEO_USER_ID}"
+                                         class="rounded-circle">
+                                 </c:when>
+                                 <c:otherwise>
+                                     <img id="img" height="50" src="${video.USER_GOOGLEIMG }" class="rounded-circle">
+                                 </c:otherwise>
+                             </c:choose>
 
                           </div>
                           <div class="col-9">
-                            <p class="mb-1 title" title="${video.VIDEO_TITLE }">${video.VIDEO_TITLE }</p>
+                            <h3 class="mb-1 title" title="${video.VIDEO_TITLE }">${video.VIDEO_TITLE }</h3>
                             <p class="subtitle">
-                              ${video.USER_NAME } <i class="fas fa-check-circle"></i>
-                              ${video.VIDEO_HIT } views ${video.VIDEO_INDATE }
+                              ${video.USER_NAME } <i class="fas fa-check-circle"></i><br>
+                              <i class="fas fa-eye"></i> ${video.VIDEO_HIT } ${video.VIDEO_INDATE }
                             </p>
                             <div class="short_description">
-                              ${video.CONTENT }
+                              ${video.VIDEO_CONTENT }
                             </div>
                           </div>
                         </div>
@@ -156,6 +155,7 @@
                   searchForm.submit();
                 }
               </script>
+              <br>
               <div>
                 <a href="javascript:searchFnc(${navi.currentPage - navi.pagePerGroup});">◁◁</a>
                 <a href="javascript:searchFnc(${navi.currentPage - 1 });">◀</a>

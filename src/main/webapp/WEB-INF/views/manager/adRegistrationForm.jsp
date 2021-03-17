@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,15 @@
 <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 </head>
+
+<script type="text/javascript">
+
+function fn_check(boommaster_id, boommaster_confirm){
+	location.href = "/manager/changeBoomMaster?boommaster_id="+boommaster_id+"&boommaster_confirm="+boommaster_confirm;
+}
+
+
+</script>
 <body>
 
 <div style="margin: 30px;">
@@ -47,5 +57,29 @@
 		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
 		crossorigin="anonymous"></script>
 
+
+<form action="/manager/UpdateHomeADbaner" method="post" enctype="multipart/form-data">
+	<div style="margin-left: 30px">
+	<h5>메인화면 배너 광고 수정</h5>
+	광고 제목 : &ensp;&ensp;&ensp;<input type="text" name="adt_title" ><br>
+	광고사 이름 :  &ensp;<input type="text" name="ad_name"><br>
+	광고 내용 :  &ensp; &ensp;&ensp;<input type="text" name="ad_context" ><br>
+	광고 URL : &ensp;&ensp;&ensp;<input type="text" name="ad_redirect_URL"><br>
+	광고 사진 선택 :  &ensp;&ensp;&ensp;<input type="file" name="uploadBanner"><br><br>
+
+
+	 &ensp;<input type="submit" value="update">
+	</div>
+
+
+</form>
+
+
+
+
+
 </body>
+
+
+
 </html>

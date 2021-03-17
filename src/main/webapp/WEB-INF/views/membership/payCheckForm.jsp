@@ -2,6 +2,7 @@
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +39,7 @@
 			window.open("/membership/payForm", "payForm", "width=900, height=650");
 			return;
 		} else {
-			alert("동의함에 체크해주세요.")
+			alert("<spring:message code="payCheckForm.agree.Explanation" />")
 			return false;
 			}
 
@@ -93,35 +94,35 @@
 
 			<!-- 멤버쉽  -->
 			<div class="p-5 pt-3">
-			<h1>맴버십 구독하기</h1>
+			<h1><spring:message code="payCheckForm.agree.title" /></h1>
 			<br>
-				<h3>&emsp;상품명 : BoomBox MemberShip  </h3>&emsp;
+				<h3>&emsp;<spring:message code="payCheckForm.agree.product" /> : BoomBox MemberShip  </h3>&emsp;
 				<a>
-					<h5> &emsp;&emsp;가격 : 5000WON </h5>
+					<h5> &emsp;&emsp;<spring:message code="payCheckForm.agree.price" /> : 5000WON </h5>
 				</a>
 					<h3></h3>&emsp;
 				<a>
-					<h5> &emsp;&emsp;이용 기간 : 30일 </h5>
+					<h5> &emsp;&emsp;<spring:message code="payCheckForm.agree.term" /> </h5>
 				</a>
 				<br>
 
 				<div class="p-5 pt-3">
-					 <h6> 본 제품은 BoomMaster MemberShip으로 30일 동안 School에 들어갈 수 있는 혜택이 생깁니다.<br>
-					  Scghool에 들어 가시면 각종 댄스, 에어로빅, 힙합 등과 같이 다양한 서비스를 제공 받을 수 있습니다. <br><br>
+					 <h6> <spring:message code="payCheckForm.agree.content" /><br>
+					  <spring:message code="payCheckForm.agree.content1" /> <br><br>
 
-					 여러분의 강사를 찾아보세요!
+					 <spring:message code="payCheckForm.agree.content2" />
 					<br><br><br><br>
 
 					 </h6>
 
 					 <div >
 					 		<div >
-					 			 <a class="#" href="#" role="button" onclick="return agreeform();">약관 동의</a>
+					 			 <a class="#" href="#" role="button" onclick="return agreeform();"><spring:message code="payCheckForm.agree.Agreement" /></a>
 					 		</div>
 
 
 							<div>
-								<input type="checkbox" id="agree" name="agree" > 동의
+								<input type="checkbox" id="agree" name="agree" ><spring:message code="payCheckForm.agree.agree" />
 							</div>
 
 					</div>
@@ -131,8 +132,8 @@
 
 
 				<div class="col-7 text-right">
-					<a class="btn btn-primary" href="#" role="button" onclick="return agreeCK();">결제하러가기</a>&emsp;
-					<a class="btn btn-danger" href="/membership/membershipForm" role="button">취소</a>
+					<a class="btn btn-primary" href="#" role="button" onclick="return agreeCK();"><spring:message code="payCheckForm.agree.payment" /></a>&emsp;
+					<a class="btn btn-danger" href="/membership/membershipForm" role="button"><spring:message code="payCheckForm.agree.cansel" /></a>
 				</div>
 
 				<br>

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@ page session="true" %>
 		<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+		<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 			<html>
 
 			<head>
@@ -67,15 +68,15 @@
 
 	<div style="    margin: 80px;"  class="col-md-8 video_box">
 			<div class="p-4 pt-3">
-				<a style="font-size: 60px">맴버십</a>
+				<a style="font-size: 60px"><spring:message code="paySuccessForm.sucess.title" /></a>
 			</div>
 			<br>
 
 
 
 				<div class="p-5 pt-3">
-					<a style="font-size: 40px">멤버쉽 결제가 완료 되었습니다. </a><br><br>
-					<a style="font-size: 30px" href="/membership/membershipForm"> >>맴버쉽 페이지 이동<< </a>
+					<a style="font-size: 40px"><spring:message code="paySuccessForm.sucess.content" /> </a><br><br>
+					<a style="font-size: 30px" href="/membership/membershipForm"> >><spring:message code="paySuccessForm.sucess.move" /><< </a>
 
 			</div>
 

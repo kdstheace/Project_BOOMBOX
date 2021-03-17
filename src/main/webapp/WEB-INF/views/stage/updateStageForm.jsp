@@ -1,6 +1,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -154,11 +155,11 @@ function realtimeClock() {
 
 
 	function delectFuntion(){
-		var result = confirm("정말로 삭제 하시겠습니까?");
+		var result = confirm("<spring:message code="updateStageForm.stageupdate.effectiveness" />");
 		if(result){
-		    alert("삭제 되었습니다.");
+		    alert("<spring:message code="updateStageForm.stageupdate.effectiveness1" />");
 		}else{
-		    alert("취소 되었습니다.");
+		    alert("<spring:message code="updateStageForm.stageupdate.effectiveness2" />");
 		    return false;
 		}
 		return true;
@@ -219,12 +220,12 @@ function realtimeClock() {
 			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</p>
-		<h1>스테이지 수정</h1>
+		<h1><spring:message code="updateStageForm.stageTitle.tltle" /></h1>
 		<form action="/stage/uploadStage" method="post" enctype="multipart/form-data">
 
 			<label>
-			<p class="label-txt">Banner Upload :</p>
-			<a class="bannerST">현재 파일 : ${stage.stage_bannerImgS } <a class="btn btn-danger" href="/stage/deleteBanner" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a></a>
+			<p class="label-txt"><spring:message code="updateStageForm.stageupdate.BannerUpload" /></p>
+			<a class="bannerST"><spring:message code="updateStageForm.stageupdate.fileName" /> : ${stage.stage_bannerImgS } <a class="btn btn-danger" href="/stage/deleteBanner" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a></a>
 
 			<input type="file" id="uploadBanner" name="uploadBanner" style="margin-top: 30px; margin-bottom: 10px;" >
 
@@ -239,9 +240,9 @@ function realtimeClock() {
 
 
 			<label>
-			<p class="label-txt"  >Profile Upload :</p>
+			<p class="label-txt"  ><spring:message code="updateStageForm.stageupdate.ProfileUpload" /></p>
 
-			<a class="bannerST">현재 파일 : ${stage.stage_profileImgS} <a class="btn btn-danger" href="/stage/deleteProfile" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a><br></a>
+			<a class="bannerST"><spring:message code="updateStageForm.stageupdate.fileName" /> : ${stage.stage_profileImgS} <a class="btn btn-danger" href="/stage/deleteProfile" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a><br></a>
 
 
 
@@ -253,7 +254,7 @@ function realtimeClock() {
 			</label>
 
 			<label>
-				<p class="label-txt" style="margin-top: 20px; "> Intro </p><br> <textarea  id="stage_intro" name="stage_intro" class="form-control" rows="5"  >${stage.stage_intro }</textarea>
+				<p class="label-txt" style="margin-top: 20px; "><spring:message code="updateStageForm.stageupdate.Intro" /></p><br> <textarea  id="stage_intro" name="stage_intro" class="form-control" rows="5"  >${stage.stage_intro }</textarea>
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -261,8 +262,8 @@ function realtimeClock() {
 
 
 
-				<input class="btn btn-outline-success my-2 my-sm-7" type="submit" id="uploadsub" value="수정하기" onclick="return uploadClose();">
-				<a class="btn btn-danger" href="/report/closeForm" role="button">취소</a>
+				<input class="btn btn-outline-success my-2 my-sm-7" type="submit" id="uploadsub" value="<spring:message code="updateStageForm.stageupdate.submit" />" onclick="return uploadClose();">
+				<a class="btn btn-danger" href="/report/closeForm" role="button"><spring:message code="updateStageForm.stageupdate.cancel" /></a>
 
 		</form>
 

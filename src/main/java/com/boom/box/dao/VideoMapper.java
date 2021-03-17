@@ -29,6 +29,6 @@ public interface VideoMapper {
 	
 	//comment
 	public int insertComment(CommentVO comment);
-	public ArrayList<CommentVO> selectComment(int comment_video_id);
+	public ArrayList<HashMap<String, Object>> selectComment(int comment_video_id);
 	public int updateComment(CommentVO comment);
 }

@@ -223,8 +223,8 @@ public class VideoDAO {
 		return count;
 	}
 	
-	public ArrayList<CommentVO> selectComment(int comment_video_id){
-		ArrayList<CommentVO> list = null;
+	public ArrayList<HashMap<String, Object>> selectComment(int comment_video_id){
+		ArrayList<HashMap<String, Object>> list = null;
 		try {
 			VideoMapper mapper = session.getMapper(VideoMapper.class);
 			list = mapper.selectComment(comment_video_id);
@@ -233,6 +233,7 @@ public class VideoDAO {
 		}
 		return list;
 	}
+	
 	public int updateComment(CommentVO comment) {
 		int count = 0;
 		try {

@@ -61,7 +61,6 @@
         .ad{
             width: 100%;
             height: 200px;
-            background-image: url(https://328897-1008310-2-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2019/12/Amazon-Banner-Ad-Example-1-1.jpg);
             background-size: contain;
             background-position: center;
             cursor: pointer;
@@ -252,16 +251,17 @@
 
                         <div class="container-fluid">
 	                        <div class="grid_title">AD</div>
-	                        <div class="row recommendRow">
-	                            
+	                        <div class="row recommendRow" >
+
 	                            <!--FEED-SMALL-->
-	 							<div class="ad">
+	 							<div >
+	 								<a href="${advo.ad_redirect_URL }"><img style="width: 123%; margin-bottom: 30px;" class="ad" alt="homeADbanner" src="/manager/homeADbanner"></a>
 	 							</div>
 
 	                            <!--FEED-SMALL Ends-->
-	
+
 	                        </div>
-	                        
+
                     	</div>
                     	
                 </div>

@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.boom.box.service.ADService;
 import com.boom.box.service.MyStageService;
 import com.boom.box.service.VideoService;
+import com.boom.box.vo.ADVO;
 
 /**
  * Handles requests for the application home page.
@@ -27,6 +29,8 @@ public class HomeController {
 	private VideoService service;
 	@Autowired
 	private MyStageService stageService;
+	@Autowired
+	private ADService adService;
 	private String uploadPath = "/uploadFile/Boombox";
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -45,7 +49,11 @@ public class HomeController {
 			int countFollow = stageService.countFollow(((BigDecimal)(mapFollow.get("VIDEO_USER_ID"))).intValue());
 			mapFollow.put("countFollow",countFollow );
 		}
-		
+	      ArrayList<ADVO> adlist = adService.selectBanner();
+
+	      ADVO advo = adlist.get(0);
+
+	      model.addAttribute("advo", advo);
 		model.addAttribute("list", list);
 		model.addAttribute("listFollow", listFollow);
 		model.addAttribute("uploadPath", uploadPath);

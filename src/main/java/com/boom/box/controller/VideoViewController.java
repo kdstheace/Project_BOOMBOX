@@ -164,7 +164,7 @@ public class VideoViewController {
 		}
 		
 		
-		ArrayList<CommentVO> commentList = service.selectComment(video_id);
+		ArrayList<HashMap<String, Object>> commentList = service.selectComment(video_id);
 		model.addAttribute("commentList", commentList);
 
 		ArrayList<HashMap<String, Object>> list = service.selectVideoList("", 0, 8);
@@ -252,6 +252,13 @@ public class VideoViewController {
 		logger.info("네비에 현재 변수들로 생성, 페이지: {}", page);
 		ArrayList<HashMap<String, Object>> list = service.selectVideoList(searchText, navi.getStartRecord(), navi.getCountPerPage());
 		
+		//추가
+		for(HashMap<String, Object> map : list) { 
+			int countFollow = myStageService.countFollow(((BigDecimal)(map.get("VIDEO_USER_ID"))).intValue());
+			map.put("countFollow",countFollow );
+		}
+		//추가 끝
+		
 		model.addAttribute("list",list);
 		model.addAttribute("searchText",searchText);
 		model.addAttribute("navi", navi);
@@ -298,14 +305,14 @@ public class VideoViewController {
 		logger.info("{}",comment.getComment_video_id());
 		comment.setComment_user_id(loginId);
 		logger.info("세팅 완료");
-		ArrayList<CommentVO> list = service.selectComment(comment.getComment_video_id());
+		ArrayList<HashMap<String, Object>> list = service.selectComment(comment.getComment_video_id());
 		logger.info("전체 리스트 가져옴{}", list);
 		if(list.size() == 0) {
 			service.insertComment(comment);
 		}
-		for(CommentVO vo : list) {
+		for(HashMap<String, Object> vo : list) {
 			logger.info("반복");
-			if(vo.getComment_user_id() == loginId) {
+			if(((BigDecimal)vo.get("COMMENT_USER_ID")).intValue() == loginId) {
 				service.updateComment(comment);
 				logger.info("댓글 저장 성공!1");
 				break;

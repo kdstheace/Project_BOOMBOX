@@ -406,17 +406,25 @@ insert into comment_tb(
 )
 </insert>
 
-<select id="selectComment" parameterType="int" resultType="comment">
+<select id="selectComment" parameterType="int" resultType="hashmap">
 select
-    comment_id
-    ,comment_user_id
-    ,comment_video_id
-    ,comment_content
-	,comment_indate
+    c.comment_id as comment_id
+    ,c.comment_user_id as comment_user_id
+    ,c.comment_video_id as comment_video_id
+    ,c.comment_content as comment_content
+	,c.comment_indate as comment_indate
+    ,u.user_name as user_name
+    ,s.stage_profileimgo as stage_profileimgo
+    ,s.stage_profileimgs as stage_profileimgs
+    ,u.user_googleimg as user_googleimg
 from
-    comment_tb
+    comment_tb c, user_tb u, stage_tb s
 where
     comment_video_id = #{comment_video_id}
+    and
+    c.comment_user_id = u.user_id
+    and
+    c.comment_user_id = s.stage_user_id
 order by
 	comment_indate desc
 </select>

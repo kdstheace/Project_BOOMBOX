@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +87,7 @@
 
 
 </style>
-<title>회원가입</title>
+<title>고객센터</title>
 
 <script type="text/javascript">
 
@@ -146,11 +147,11 @@ function realtimeClock() {
 			<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo"
 				width="15%" style="min-width: 120px; max-width: 200px;">
 		</p>
-		<h1>고객센터${userVO.user_Id}</h1>
+		<h1><spring:message code="memberShipCrmForm.refund.title" /></h1>
 		<form action="/membership/membershipCrmSend" method="post"  >
 
 			<label>
-			<p class="label-txt">제목</p>
+			<p class="label-txt"><spring:message code="memberShipCrmForm.refund.title1" /></p>
 			<input type="text" class="input" id="pending_title" name="pending_title" value="환불을 요청합니다." readonly="readonly">
 				<div class="line-box">
 					<div class="line"></div>
@@ -158,7 +159,7 @@ function realtimeClock() {
 			</label>
 
 			<label>
-				<p class="label-txt">내용</p><br>
+				<p class="label-txt"><spring:message code="memberShipCrmForm.refund.content" /></p><br>
 				<textarea class="form-control" cols="200" rows="3" id="refund_content" name="refund_content"></textarea> <br>
 				<div class="line-box">
 					<div class="line"></div>
@@ -168,14 +169,14 @@ function realtimeClock() {
 
 
 			<label>
-				<p class="label-txt">환불 요청자 사용자</p> <input type="text" class="input" id="refund_name" name="refund_name" value="${loginName } ">
+				<p class="label-txt"><spring:message code="memberShipCrmForm.refund.refundUser" /></p> <input type="text" class="input" id="refund_name" name="refund_name" value="${loginName } ">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
 			</label>
 
-				<input class="butten" type="submit" value="고객센터 보내기">
-				<input type="reset" value="cancel" onclick="return cancle();">
+				<input class="butten" type="submit" value="<spring:message code="memberShipCrmForm.refund.send" />">
+				<input type="reset" value="<spring:message code="memberShipCrmForm.refund.cansel" />" onclick="return cancle();">
 			</button>
 		</form>
 

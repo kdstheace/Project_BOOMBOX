@@ -103,8 +103,8 @@ public class VideoService {
 	}
 	
 	
-	public ArrayList<CommentVO> selectComment(int comment_video_id){
-		ArrayList<CommentVO> list = dao.selectComment(comment_video_id);
+	public ArrayList<HashMap<String, Object>> selectComment(int comment_video_id){
+		ArrayList<HashMap<String, Object>> list = dao.selectComment(comment_video_id);
 		return list;
 	}
 	

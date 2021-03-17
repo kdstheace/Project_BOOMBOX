@@ -2,6 +2,7 @@
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,19 +38,19 @@ IMP.request_pay({
     if ( rsp.success ) {
 
 		console.log(rsp);
-        var msg = '결제가 완료되었습니다.';
+        var msg = '<spring:message code="payForm.sucess.content" />';
 
-        msg += '결제 금액 : ' + rsp.paid_amount;
+        msg += '<spring:message code="payForm.sucess.price" /> : ' + rsp.paid_amount;
 
-        msg += '카드 승인번호 : ' + rsp.apply_num;
+        msg += '<spring:message code="payForm.sucess.num" /> : ' + rsp.apply_num;
 
         alert(msg);
 
 /*         location.href="/membership/paySuccessForm";  */
         location.href="/membership/paySuccess?membership_price="+rsp.paid_amount;
     } else {
-        var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
+        var msg = '<spring:message code="payForm.sucess.cancel" />';
+        msg += '<spring:message code="payForm.sucess.error" /> : ' + rsp.error_msg;
 	    alert(msg);
 	    location.href="/membership/membershipForm";
     }
