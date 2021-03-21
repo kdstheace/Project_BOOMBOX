@@ -35,6 +35,7 @@ public class MembershipViewController {
 	private MembershipService service;
 	@Autowired
 	private RefundService refundService;
+	
 	@RequestMapping(value = "/membershipForm", method = RequestMethod.GET)
 	public String membershipForm(Model model) {
 
@@ -50,8 +51,6 @@ public class MembershipViewController {
 		MembershipVO vo = service.selectMembershipOne(id);
 		System.out.println(vo);
 		service.updateDefultday(id);
-		System.out.println("��¥����");
-
 
 		model.addAttribute("vo", vo);
 

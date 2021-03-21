@@ -127,7 +127,7 @@ function extendCk(){
 
 			</c:if>
 
-			<c:if test="${diff==0}">
+			<c:if test="${diff==0 || diff==null}">
 				<div class="pt-5" style="background-color: #fbbb0f;">
 					<h3>&emsp;<spring:message code="membershipForm.membershipTitle.Status" />  </h3>&emsp;<a><h5 style="height: 130px;">&emsp;&emsp;
 					 <spring:message code="membershipForm.pay.Explanation" /> <br> &emsp;&emsp;<spring:message code="membershipForm.pay.Explanation1" /> <span style="color: #ea4756;">
