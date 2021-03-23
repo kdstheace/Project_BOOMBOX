@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,7 +144,7 @@ video{
       }
     </style>    
 <!-- <link rel="stylesheet" type="text/css" href="/resources/css/user/joinForm.css"> -->
-<title>로그인</title>
+<title>Landing</title>
 
 <script type="text/javascript">
 
@@ -182,7 +183,7 @@ function onSignIn(googleUser) {
         </video>
         <div class="frontBox">
             <img class="front_Logo" src="/resources/img/BOOMBOXsq.png" width="200px" style="align-items: center;">
-            <p class="front_text">당신을 댄스머신으로 만들어 줄 Boom Box</p><br><br>
+            <p class="front_text"><spring:message code="user.LoginForm.title" /></p><br><br>
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
     </div>

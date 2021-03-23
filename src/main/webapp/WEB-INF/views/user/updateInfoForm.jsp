@@ -251,109 +251,101 @@
                 <img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo" width="15%"
                     style="min-width: 120px; max-width: 200px;">
             </p>
-            <h1><spring:message code="user.updateInfo.title" /></h1>
+            <h1><spring:message code="user.updateInfoForm.title" /></h1>
             <form action="/user/updateInfo" method="post" onsubmit="return fn_updateFormCheck();">
                 <input type="hidden" id="user_googleId" name="user_googleId" value="${userVO.user_Id}"> <label>
-                    <p class="label-txt">닉네임</p>
+                    <p class="label-txt"><spring:message code="user.updateInfoForm.nickname" /></p>
                     <input type="text" class="input" id="user_name" name="user_name" readonly="readonly"
                         value="${loginName }">
-                    <input type="button" value="닉네임 중복체크" onclick="nameCheckForm();">
+                    <input type="button" value="<spring:message code="user.updateInfoForm.nicknameCheck" />" onclick="nameCheckForm();">
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
                 </label>
 
                 <label>
-                    <p class="label-txt">우편번호</p> <input type="text" class="input" id="user_zip" name="user_zip"
+                    <p class="label-txt"><spring:message code="user.updateInfoForm.zip" /></p> <input type="text" class="input" id="user_zip" name="user_zip"
                         value="${userZip }">
-                    <input type="button" value="우편번호찾기" onclick="sample6_execDaumPostcode()" style="width: 130px;">
+                    <input type="button" value="<spring:message code="user.updateInfoForm.zipSeek" />" onclick="sample6_execDaumPostcode()" style="width: 130px;">
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
                 </label>
 
                 <label>
-                    <p class="label-txt">주소 + 상세주소 입력</p> <input type="text" class="input" id="user_address"
+                    <p class="label-txt"><spring:message code="user.updateInfoForm.address" /></p> <input type="text" class="input" id="user_address"
                         name="user_address" value="${userAddress }">
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
                 </label> <label>
-                    <p class="label-txt">이메일</p> <input type="text" class="input" id="user_email" name="user_email"
+                    <p class="label-txt"><spring:message code="user.updateInfoForm.email" /></p> <input type="text" class="input" id="user_email" name="user_email"
                         readonly="readonly" value="${userEmail }">
-                    <input type="button" value="이메일 중복체크" onclick="emailCheckForm();">
+                    <input type="button" value="<spring:message code="user.updateInfoForm.emailCheck" />" onclick="emailCheckForm();">
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
                 </label> <label>
-                    <p class="label-txt">관심장르</p> <br>
+                    <p class="label-txt"><spring:message code="user.updateInfoForm.interest" /></p> <br>
                     <div>
-                        <a href=#none id="show100"
-                            onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='▶홈트레이닝 접기'} else {hide100.style.display='none';show100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝
-                            펼치기</a>
+                        <a href=#none id="show100" onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='<spring:message code="user.updateInfoForm.homeTrainingClose" />'} else {hide100.style.display='none';show100.innerText='<spring:message code="user.updateInfoForm.homeTrainingOpen" />'}"><spring:message code="user.updateInfoForm.homeTrainingOpen" /></a>
                         <div id="hide100" style="display: none">
-                            홈 트레이닝<input type="checkbox" name="userInterest_interest" value="HOME TRAINING" checked="checked">
+                            <spring:message code="user.updateInfoForm.homeTraining" /><input type="checkbox" name="userInterest_interest" value="HOME TRAINING" checked="checked">
                         </div>
                     </div>
 
                     <div>
                         <a href=#none id="show200"
-                            onclick="if(hide200.style.display=='none') {hide200.style.display='';show200.innerText='▶Kids 접기'} else {hide200.style.display='none';show200.innerText='▶Kids 펼치기'}">▶Kids
-                            펼치기</a>
+                            onclick="if(hide200.style.display=='none') {hide200.style.display='';show200.innerText='<spring:message code="user.updateInfoForm.kidsClose" />'} else {hide200.style.display='none';show200.innerText='<spring:message code="user.updateInfoForm.kidsOpen" />'}"><spring:message code="user.updateInfoForm.kidsOpen" /></a>
                         <div id="hide200" style="display: none">
-                            동요율동<input type="checkbox" name="userInterest_interest" value="KIDS"> 
-                            치어리딩<input type="checkbox" name="userInterest_interest" value="CHEERLEADING"> 
-                            Other<input type="checkbox" name="userInterest_interest" value="OTHER(TEENS)">
+                            <spring:message code="user.updateInfoForm.fluctuation" /><input type="checkbox" name="userInterest_interest" value="KIDS"> 
+                            <spring:message code="user.updateInfoForm.cheerleading" /><input type="checkbox" name="userInterest_interest" value="CHEERLEADING"> 
+                            <spring:message code="user.updateInfoForm.others" /><input type="checkbox" name="userInterest_interest" value="OTHER(TEENS)">
                         </div>
                     </div>
 
 
                     <div>
                         <a href=#none id="show300"
-                            onclick="if(hide300.style.display=='none') {hide300.style.display='';show300.innerText='▶방송댄스 접기'} else {hide300.style.display='none';show300.innerText='▶방송댄스 펼치기'}">▶방송댄스
-                            펼치기</a>
+                            onclick="if(hide300.style.display=='none') {hide300.style.display='';show300.innerText='<spring:message code="user.updateInfoForm.broadcastDanceClose" />'} else {hide300.style.display='none';show300.innerText='<spring:message code="user.updateInfoForm.broadcastDanceOpen" />'}"><spring:message code="user.updateInfoForm.broadcastDanceOpen" /></a>
                         <div id="hide300" style="display: none">
-                            K-POP<input type="checkbox" name="userInterest_interest" value="K-POP">
-                            J-POP<input type="checkbox" name="userInterest_interest" value="J-POP">
-                            Others<input type="checkbox" name="userInterest_interest" value="OTHERS(CHOREO)">
+                            <spring:message code="user.updateInfoForm.kpop" /><input type="checkbox" name="userInterest_interest" value="K-POP">
+                            <spring:message code="user.updateInfoForm.jpop" /><input type="checkbox" name="userInterest_interest" value="J-POP">
+                            <spring:message code="user.updateInfoForm.others" /><input type="checkbox" name="userInterest_interest" value="OTHERS(CHOREO)">
                         </div>
                     </div>
 
                     <div>
                         <a href=#none id="show400"
-                            onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='▶클럽댄스 접기'} else {hide400.style.display='none';show400.innerText='▶클럽댄스 펼치기'}">▶클럽댄스
-                            펼치기</a>
+                            onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='<spring:message code="user.updateInfoForm.clubDanceClose" />'} else {hide400.style.display='none';show400.innerText='<spring:message code="user.updateInfoForm.clubDanceOpen" />'}"><spring:message code="user.updateInfoForm.clubDanceOpen" /></a>
                         <div id="hide400" style="display: none">
-                            MALE<input type="checkbox" name="userInterest_interest" value="MALE CLUBDANCE"> 
-                            FEMALE<input type="checkbox" name="userInterest_interest" value="FEMALE CLUBDANCE"">
-                            Others<input type="checkbox" name="userInterest_interest" value="OTHERS(CLUB)">
+                            <spring:message code="user.updateInfoForm.clubMale" /><input type="checkbox" name="userInterest_interest" value="MALE CLUBDANCE"> 
+                            <spring:message code="user.updateInfoForm.clubFemale" /><input type="checkbox" name="userInterest_interest" value="FEMALE CLUBDANCE">
+                            <spring:message code="user.updateInfoForm.others" /><input type="checkbox" name="userInterest_interest" value="OTHERS(CLUB)">
                         </div>
                     </div>
 
                     <div>
                         <a href=#none id="show500"
-                            onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='▶힙합 접기'} else {hide500.style.display='none';show500.innerText='▶힙합 펼치기'}">▶힙합
-                            펼치기</a>
+                            onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='<spring:message code="user.updateInfoForm.hiphopClose" />'} else {hide500.style.display='none';show500.innerText='<spring:message code="user.updateInfoForm.hiphopOpen" />'}"><spring:message code="user.updateInfoForm.hiphopOpen" /></a>
                         <div id="hide500" style="display: none">
-                            팝핀<input type="checkbox" name="userInterest_interest" value="POPPIN DANCE">
-                            B-BOY<input type="checkbox" name="userInterest_interest" value="BREAK DANCE"> 
-                            락킹<input type="checkbox" name="userInterest_interest" value="LOCKING"> 
-                            Others<input type="checkbox" name="userInterest_interest" value="OTHERS(HIPHOP)">
+                            <spring:message code="user.updateInfoForm.poppin" /><input type="checkbox" name="userInterest_interest" value="POPPIN DANCE">
+                            <spring:message code="user.updateInfoForm.bboy" /><input type="checkbox" name="userInterest_interest" value="BREAK DANCE"> 
+                            <spring:message code="user.updateInfoForm.locking" /><input type="checkbox" name="userInterest_interest" value="LOCKING"> 
+                            <spring:message code="user.updateInfoForm.others" /><input type="checkbox" name="userInterest_interest" value="OTHERS(HIPHOP)">
                         </div>
                     </div>
 
 
                     <div>
-                        <a href=#none id="show600"
-                            onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='▶Others 접기'} else {hide600.style.display='none';show600.innerText='▶Others 펼치기'}">▶Others
-                            펼치기</a>
+                        <a href=#none id="show600" onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='<spring:message code="user.updateInfoForm.othersClose" />'} else {hide600.style.display='none';show600.innerText='<spring:message code="user.updateInfoForm.othersOpen" />'}"><spring:message code="user.updateInfoForm.othersOpen" /></a>
                         <div id="hide600" style="display: none">
-						탱고<input type="checkbox" name="userInterest_interest" value = "TANGO">
-						탭댄스<input type="checkbox" name="userInterest_interest" value = "TAP DANCE">
-						발리댄스<input type="checkbox" name="userInterest_interest" value = "BELLY DANCE">
-						자이브<input type="checkbox" name="userInterest_interest" value = "JIVE">
-						재즈<input type="checkbox" name="userInterest_interest" value = "JAZZ">
-						Others<input type="checkbox" name="userInterest_interest" value = "OTHERS">
+						<spring:message code="user.updateInfoForm.tango" /><input type="checkbox" name="userInterest_interest" value = "TANGO">
+						<spring:message code="user.updateInfoForm.tapDance" /><input type="checkbox" name="userInterest_interest" value = "TAP DANCE">
+						<spring:message code="user.updateInfoForm.bellyDance" /><input type="checkbox" name="userInterest_interest" value = "BELLY DANCE">
+						<spring:message code="user.updateInfoForm.jive" /><input type="checkbox" name="userInterest_interest" value = "JIVE">
+						<spring:message code="user.updateInfoForm.jazz" /><input type="checkbox" name="userInterest_interest" value = "JAZZ"><br>
+						<spring:message code="user.updateInfoForm.others" /><input type="checkbox" name="userInterest_interest" value = "OTHERS">
                         </div>
                     </div>
                     <br>
@@ -362,7 +354,7 @@
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
-                </label> <input class="button" type="submit" value="정보수정하기"> <input type="reset" value="cancel" onclick="cancle()">
+                </label> <input class="button" type="submit" value="<spring:message code="user.updateInfoForm.editInfo" />"> <input type="reset" value="cancel" onclick="cancle()">
                 </button>
             </form>
 

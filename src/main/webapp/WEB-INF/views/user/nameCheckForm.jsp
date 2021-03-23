@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -161,25 +162,25 @@
 		<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo" width="15%" style="min-width: 120px; max-width: 200px;">
 	</p>
 	
-	<h3>ID 중복 체크 창</h3>
+	<h3><spring:message code="user.nameCheckForm.title" /></h3>
 
 	<form action="/user/nameCheck" method="post" onsubmit="return nameCheck();">
-		<p class="label-txt">체크할 아이디</p>
+		<p class="label-txt"><spring:message code="user.nameCheckForm.title" /></p>
 		<input type="text" id="user_name" name="user_name">
-		<input type="submit" value="확인">
+		<input type="submit" value="<spring:message code="user.nameCheckForm.check" />">
 		<div class="line"></div>
 	</form>
 
 	<br><br>
 
 	<c:if test="${userOne.user_name != null}">
-			<input type="text" readonly="readonly" style="width: 100%; color: red; text-align: center;" value="아이디가 중복입니다. 다시 입력해 주세요.">
+			<input type="text" readonly="readonly" style="width: 100%; color: red; text-align: center;" value="<spring:message code="user.nameCheckForm.emailAvailable" />">
 	</c:if>
 
 	<c:if test="${userOne.user_name == null}">
 		<c:if test="${checkName.user_name != null}">
-				<input type="text" readonly="readonly" style="width: 100%; text-align: center;" value="${checkName.user_name }는 사용 가능합니다."><br><br>
-			<input type="button" value="적용하기" onclick="useName('${checkName.user_name }');">
+				<input type="text" readonly="readonly" style="width: 100%; text-align: center;" value="${checkName.user_name }<spring:message code="user.nameCheckForm.emailUn" />"><br><br>
+			<input type="button" value="<spring:message code="user.nameCheckForm.apply" />" onclick="useName('${checkName.user_name }');">
 		</c:if>
 	</c:if>
 

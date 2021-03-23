@@ -164,28 +164,29 @@
 		<img id="mainLogo" src="/resources/img/BOOMBOXsq.png" alt="Logo" width="15%" style="min-width: 120px; max-width: 200px;">
 	</p>
 	
-	<h3>Email 중복 체크 창</h3>
+	<h3><spring:message code="user.emailCheckForm.title" /></h3>
 
 	<form action="/user/emailCheck" method="post" onsubmit="return emailCheck();">
 	
-		<p class="label-txt">체크할 이메일</p>
+		<p class="label-txt"><spring:message code="user.emailCheckForm.checkEmail" /></p>
 		<input type="text" id="user_email" name="user_email">
-		<input type="submit" value="확인">
+		<input type="submit" value="<spring:message code="user.emailCheckForm.okay" />">
 		
 		<div class="line"></div>
 		
 	</form>
 	<br><br>
 	<c:if test="${userOne.user_email != null}">
-		<input type="text" readonly="readonly" style="width: 100%; color: red; text-align: center;" value="Email이 중복입니다. 다시 입력해 주세요."> 
+		<input type="text" readonly="readonly" style="width: 100%; color: red; text-align: center;" value="<spring:message code="user.emailCheckForm.emailUn" />">   
 	</c:if>
 
 	<c:if test="${userOne.user_email == null}">
 		<c:if test="${checkEmail.user_email != null}">
-				${checkEmail.user_email }는 사용 가능합니다.<br><br>
-			<input type="button" value="적용하기" onclick="useEmail('${checkEmail.user_email }');">
+				${checkEmail.user_email }<spring:message code="user.emailCheckForm.emailAvailable" /><br><br>
+			<input type="button" value="<spring:message code="user.emailCheckForm.toApply" />" onclick="useEmail('${checkEmail.user_email }');">
 		</c:if>
 	</c:if>
+	
 
 </div>
 </body>

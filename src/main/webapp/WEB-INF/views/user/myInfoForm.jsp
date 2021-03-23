@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +118,7 @@ function fn_updateFormCheck(){
         	<input type="hidden" id="user_googleId" name="user_googleId" value="${BasicProfile.getId () }">
 			<input type="hidden" id="user_googleImg" name="user_googleImg" value="${BasicProfile.getImageUrl () }">
         	
-            <p class="label-txt">닉네임</p> 
+            <p class="label-txt"><spring:message code="user.myInfoForm.nickname" /></p> 
             <input type="text" class="input" id="user_name" name="user_name">
             <input id="button" type="button" value="중복체크">
             <div class="line-box"> 
@@ -128,16 +129,15 @@ function fn_updateFormCheck(){
 
  
         <label> 
-            <p class="label-txt">우편번호</p> 
+            <p class="label-txt"><spring:message code="user.myInfoForm.zip" /></p> 
             <input type="text" class="input" id="user_zip" name="user_zip"> <input id="button" type="button" value="주소검색">
             <div class="line-box"> 
                 <div class="line">
-
                 </div> 
             </div> 
         </label> 
         <label> 
-            <p class="label-txt">주소</p> 
+            <p class="label-txt"><spring:message code="user.myInfoForm.address" /></p> 
             <input type="text" class="input" id="user_address" name="user_address"> 
             <div class="line-box"> 
                 <div class="line">
@@ -146,7 +146,7 @@ function fn_updateFormCheck(){
             </div> 
         </label> 
         <label> 
-            <p class="label-txt">이메일</p> 
+            <p class="label-txt"><spring:message code="user.myInfoForm.email" /></p> 
             <input type="text" class="input" id="user_email" name="user_email" > <input id="button" type="button" value="중복체크">
             <div class="line-box"> 
                 <div class="line">
@@ -156,7 +156,7 @@ function fn_updateFormCheck(){
         </label> 
 
         <label> 
-            <p class="label-txt">관심장르</p> 
+            <p class="label-txt"><spring:message code="user.myInfoForm.interest" /></p> 
             <input type="text" class="input" id="userInterest_interest" name="userInterest_interest"> 
             <div class="line-box"> 
                 <div class="line">
