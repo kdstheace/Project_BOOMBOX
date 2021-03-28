@@ -20,7 +20,7 @@
 <a href="/manager/boomMasterRegistrationForm" class="btn btn-warning">붐마등록</a> &emsp;
 <a href="/manager/adRegistrationForm" class="btn btn-light">광고등록</a> &emsp;
 <a href="/manager/videoDeleteForm" class="btn btn-primary">영상삭제</a> &emsp;
-<a href="/manager/membershipManagerForm" class="btn btn-secondary">멤버십관리</a> &emsp;
+<!-- <a href="/manager/membershipManagerForm" class="btn btn-secondary">멤버십관리</a> &emsp; -->
 
 
 <hr class="one" style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">

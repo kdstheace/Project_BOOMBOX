@@ -238,11 +238,11 @@ function fn_joinFormCheck(){
 }
 
 function nameCheckForm(){
-	window.open("/user/nameCheckForm", "nameCheckForm","width=500, height=700");
+	window.open("/user/nameCheckForm", "nameCheckForm","width=700, height=500");
 	}
 
 function emailCheckForm(){
-	window.open("/user/emailCheckForm", "emailCheckForm","width=500, height=700");
+	window.open("/user/emailCheckForm", "emailCheckForm","width=700, height=500");
 	}
 	
 
@@ -349,7 +349,7 @@ function cancel(){
 			<label>
 				<p class="label-txt"><spring:message code="user.joinForm.zip" /></p> <input type="text" class="input"
 				id="user_zip" name="user_zip" value="${userZip }"> 
-				<input type="button" value="우편번호찾기" onclick="sample6_execDaumPostcode()" style="width: 130px;">
+				<input type="button" value="Zip code" onclick="sample6_execDaumPostcode()" style="width: 130px;">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -366,7 +366,7 @@ function cancel(){
 			<label>
 				<p class="label-txt"><spring:message code="user.joinForm.email" /></p> 
 				<input type="text" class="input" id="user_email" name="user_email"> 
-				<input type="button" value="이메일 중복체크" onclick="emailCheckForm();">
+				<input type="button" value="Email Check" onclick="emailCheckForm();">
 				<div class="line-box">
 					<div class="line"></div>
 				</div>
@@ -375,25 +375,27 @@ function cancel(){
 				<p class="label-txt"><spring:message code="user.joinForm.interest" /></p> <br>
 
 					<div>
-					<a href=#none id="show100" onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='▶홈트레이닝 접기'} else {hide100.style.display='none';show100.innerText='▶홈트레이닝 펼치기'}">▶홈트레이닝 펼치기</a>
-					<div id="hide100" style="display: none">
-						<spring:message code="user.joinForm.homeTraining" /><input type="checkbox" name="userInterest_interest" value = "HOME TRAINING">
-					</div>
+                        <a href=#none id="show100" onclick="if(hide100.style.display=='none') {hide100.style.display='';show100.innerText='<spring:message code="user.updateInfoForm.homeTrainingClose" />'} else {hide100.style.display='none';show100.innerText='<spring:message code="user.updateInfoForm.homeTrainingOpen" />'}"><spring:message code="user.updateInfoForm.homeTrainingOpen" /></a>
+                        <div id="hide100" style="display: none">
+                            <spring:message code="user.updateInfoForm.homeTraining" /><input type="checkbox" name="userInterest_interest" value="HOME TRAINING" checked="checked">
+                        </div>
 					</div>
 
 					<div>
-					<a href=#none id="show200" onclick="if(hide200.style.display=='none') {hide200.style.display='';show200.innerText='▶Kids 접기'} else {hide200.style.display='none';show200.innerText='▶Kids 펼치기'}">▶Kids 펼치기</a>
-					<div id="hide200" style="display: none">
-						<spring:message code="user.joinForm.fluctuation" /><input type="checkbox" name="userInterest_interest" value = "KIDS">
-						<spring:message code="user.joinForm.cheerleading" /><input type="checkbox" name="userInterest_interest" value = "CHEERLEADING">
+                        <a href=#none id="show200"
+                            onclick="if(hide200.style.display=='none') {hide200.style.display='';show200.innerText='<spring:message code="user.updateInfoForm.kidsClose" />'} else {hide200.style.display='none';show200.innerText='<spring:message code="user.updateInfoForm.kidsOpen" />'}"><spring:message code="user.updateInfoForm.kidsOpen" /></a>
+                        <div id="hide200" style="display: none">
+						<spring:message code="user.joinForm.fluctuation" /><input type="checkbox" name="userInterest_interest" value = "KIDS"><br>
+						<spring:message code="user.joinForm.cheerleading" /><input type="checkbox" name="userInterest_interest" value = "CHEERLEADING"><br>
 						<spring:message code="user.joinForm.others" /><input type="checkbox" name="userInterest_interest" value = "OTHER(TEENS)">
 					</div>
 					</div>
 					
 					
 					<div >
-					<a href=#none id="show300" onclick="if(hide300.style.display=='none') {hide300.style.display='';show300.innerText='▶방송댄스 접기'} else {hide300.style.display='none';show300.innerText='▶방송댄스 펼치기'}">▶방송댄스 펼치기</a>
-					<div id="hide300" style="display: none">
+                        <a href=#none id="show300"
+                            onclick="if(hide300.style.display=='none') {hide300.style.display='';show300.innerText='<spring:message code="user.updateInfoForm.broadcastDanceClose" />'} else {hide300.style.display='none';show300.innerText='<spring:message code="user.updateInfoForm.broadcastDanceOpen" />'}"><spring:message code="user.updateInfoForm.broadcastDanceOpen" /></a>
+                        <div id="hide300" style="display: none">
 						<spring:message code="user.joinForm.kpop" /><input type="checkbox" name="userInterest_interest" value = "K-POP">
 						<spring:message code="user.joinForm.jpop" /><input type="checkbox" name="userInterest_interest" value = "J-POP">
 						<spring:message code="user.joinForm.others" /><input type="checkbox" name="userInterest_interest" value = "OTHERS(CHOREO)">
@@ -401,8 +403,9 @@ function cancel(){
 					</div>
 					
 					<div>
-					<a href=#none id="show400" onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='▶클럽댄스 접기'} else {hide400.style.display='none';show400.innerText='▶클럽댄스 펼치기'}">▶클럽댄스 펼치기</a>
-					<div id="hide400" style="display: none">
+                        <a href=#none id="show400"
+                            onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='<spring:message code="user.updateInfoForm.clubDanceClose" />'} else {hide400.style.display='none';show400.innerText='<spring:message code="user.updateInfoForm.clubDanceOpen" />'}"><spring:message code="user.updateInfoForm.clubDanceOpen" /></a>
+                        <div id="hide400" style="display: none">
 						<spring:message code="user.joinForm.clubMale" /><input type="checkbox" name="userInterest_interest" value = "MALE CLUBDANCE">
 						<spring:message code="user.joinForm.clubFemale" /><input type="checkbox" name="userInterest_interest" value = "FEMALE CLUBDANCE">
 						<spring:message code="user.joinForm.others" /><input type="checkbox" name="userInterest_interest" value = "OTHERS(CLUB)">
@@ -410,24 +413,25 @@ function cancel(){
 					</div>
 					
 					<div>
-					<a href=#none id="show500" onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='▶힙합 접기'} else {hide500.style.display='none';show500.innerText='▶힙합 펼치기'}">▶힙합 펼치기</a>
-					<div id="hide500" style="display: none">
-						<spring:message code="user.joinForm.poppin" /><input type="checkbox" name="userInterest_interest" value = "POPPIN DANCE">
-						<spring:message code="user.joinForm.bboy" /><input type="checkbox" name="userInterest_interest" value = "BREAK DANCE">
-						<spring:message code="user.joinForm.locking" /><input type="checkbox" name="userInterest_interest" value = "LOCKING">
+                        <a href=#none id="show500"
+                            onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='<spring:message code="user.updateInfoForm.hiphopClose" />'} else {hide500.style.display='none';show500.innerText='<spring:message code="user.updateInfoForm.hiphopOpen" />'}"><spring:message code="user.updateInfoForm.hiphopOpen" /></a>
+                        <div id="hide500" style="display: none">
+						<spring:message code="user.joinForm.poppin" /><input type="checkbox" name="userInterest_interest" value = "POPPIN DANCE"><br>
+						<spring:message code="user.joinForm.bboy" /><input type="checkbox" name="userInterest_interest" value = "BREAK DANCE"><br>
+						<spring:message code="user.joinForm.locking" /><input type="checkbox" name="userInterest_interest" value = "LOCKING"><br>
 						<spring:message code="user.joinForm.others" /><input type="checkbox" name="userInterest_interest" value = "OTHERS(HIPHOP)">
 					</div>
 					</div>
 					
 					
 					<div>
-					<a href=#none id="show600" onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='▶Others 접기'} else {hide600.style.display='none';show600.innerText='▶Others 펼치기'}">▶Others 펼치기</a>
-					<div id="hide600" style="display: none">
-						<spring:message code="user.joinForm.tango" /><input type="checkbox" name="userInterest_interest" value = "TANGO">
-						<spring:message code="user.joinForm.tapDance" /><input type="checkbox" name="userInterest_interest" value = "TAP DANCE">
-						<spring:message code="user.joinForm.bellyDance" /><input type="checkbox" name="userInterest_interest" value = "BELLY DANCE">
-						<spring:message code="user.joinForm.jive" /><input type="checkbox" name="userInterest_interest" value = "JIVE">
-						<spring:message code="user.joinForm.jazz" /><input type="checkbox" name="userInterest_interest" value = "JAZZ">
+                        <a href=#none id="show600" onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='<spring:message code="user.updateInfoForm.othersClose" />'} else {hide600.style.display='none';show600.innerText='<spring:message code="user.updateInfoForm.othersOpen" />'}"><spring:message code="user.updateInfoForm.othersOpen" /></a>
+                        <div id="hide600" style="display: none">
+						<spring:message code="user.joinForm.tango" /><input type="checkbox" name="userInterest_interest" value = "TANGO"><br>
+						<spring:message code="user.joinForm.tapDance" /><input type="checkbox" name="userInterest_interest" value = "TAP DANCE"><br>
+						<spring:message code="user.joinForm.bellyDance" /><input type="checkbox" name="userInterest_interest" value = "BELLY DANCE"><br>
+						<spring:message code="user.joinForm.jive" /><input type="checkbox" name="userInterest_interest" value = "JIVE"><br>
+						<spring:message code="user.joinForm.jazz" /><input type="checkbox" name="userInterest_interest" value = "JAZZ"><br>
 						<spring:message code="user.joinForm.others" /><input type="checkbox" name="userInterest_interest" value = "OTHERS">
 					</div>
 					</div><br>

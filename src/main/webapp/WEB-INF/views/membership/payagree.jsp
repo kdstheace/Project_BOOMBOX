@@ -667,7 +667,7 @@ function realtimeClock() {
     		<img class="bar" src="/imagesv2/common/bar_underline.gif" alt=""><br>
 			이 약관은 2021년 01월 01일부터 시행한다.
     	</p>
-  		  <a class="btn btn-primary" href="/report/closeForm" role="button">동의합니다</a>
+  		  <a class="btn btn-primary" href="/report/closeForm" role="button">확인</a>
     	</div>
 
 

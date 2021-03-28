@@ -51,9 +51,13 @@ public class HomeController {
 		}
 	      ArrayList<ADVO> adlist = adService.selectBanner();
 
-	      ADVO advo = adlist.get(0);
+	      if(adlist!=null) {
+	    	  ADVO advo = adlist.get(0);
 
-	      model.addAttribute("advo", advo);
+		      model.addAttribute("advo", advo);  
+	    	  
+	      }
+	     
 		model.addAttribute("list", list);
 		model.addAttribute("listFollow", listFollow);
 		model.addAttribute("uploadPath", uploadPath);

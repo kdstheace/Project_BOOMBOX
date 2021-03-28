@@ -33,14 +33,14 @@
 	&emsp;
 	<a href="/manager/crmManagerForm" class="btn btn-primary">고객센터 관리</a>
 	&emsp;
-	<a href="/manager/membershipManagerForm" class="btn btn-secondary">멤버십관리</a>
-	&emsp;
+<!-- 	<a href="/manager/membershipManagerForm" class="btn btn-secondary">멤버십관리</a>
+	&emsp; -->
 
-
+ 
 	<hr class="one"
 		style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
 	<br>
-
+<%--
 <form action="/manager/reportManagerForm" name="searchUser" id="searchUser" method="get" >
 	<input type="hidden" name="page" id="page">
     <input class="form-control mr-sm-2 search-bar" type="search" name = "searchText" value="${searchText }" placeholder="Search">
@@ -51,7 +51,7 @@
 <hr class="one"
 		style="width: 100%; border-bottom: 0px; text-align: left; margin-left: 0px">
 	<br>
-
+ --%>
 	<table border="1">
 		<tr>
 			<th>유저 아이디</th>

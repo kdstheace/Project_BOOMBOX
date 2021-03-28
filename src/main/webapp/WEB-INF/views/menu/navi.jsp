@@ -190,8 +190,8 @@
                     	<img src="/resources/img/nav/upload.png">Upload
                     </a>
                     </li>
-                    <li class="nav-item nav-btn active"><a class="nav-link" href="/user/alarmForm">
-                    <img src="/resources/img/nav/alarm.png">Alarm</a></li>
+<!--                     <li class="nav-item nav-btn active"><a class="nav-link" href="/user/alarmForm">
+                    <img src="/resources/img/nav/alarm.png">Alarm</a></li> -->
                     <li class="nav-item dropdown">
                     	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img id="img" src="${sessionScope.loginImg }" class="rounded-circle">
@@ -352,7 +352,7 @@
 				<div>
 					<a style="font-size: 30px;"  href=#none id="show400" onclick="if(hide400.style.display=='none') {hide400.style.display='';show400.innerText='▶클럽댄스 접기'} else {hide400.style.display='none';show400.innerText='▶클럽댄스 펼치기'}">▶클럽댄스 펼치기</a>
 					<div id="hide400" style="display: none">
-						MALE&emsp;<input   style="zoom: 1.5; "  type="checkbox" name="videoInterestt_interest" value = "MALE CLUBDANCE">
+						MALE&emsp;<input   style="zoom: 1.5; "  type="checkbox" name="videoInterest_interest" value = "MALE CLUBDANCE">
 						&emsp;FEMALE&emsp;<input   style="zoom: 1.5; "  type="checkbox" name="videoInterest_interest" value = "FEMALE CLUBDANCE">
 						&emsp;&emsp;Others&emsp;<input   style="zoom: 1.5; "  type="checkbox" name="videoInterest_interest" value = "OTHERS(CLUB)">
 					</div>
@@ -459,6 +459,7 @@ function agree() {
 			break;
 			}
 		}
+
 	if (count == 0) {  //관심분야 확인
 		  alert("카테고리를 1개 이상 체크해 주세요");
 		  return false;

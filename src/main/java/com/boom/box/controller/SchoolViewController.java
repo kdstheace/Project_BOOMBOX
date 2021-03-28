@@ -83,7 +83,7 @@ public class SchoolViewController {
 			String payEnd = array21[0] + array21[1] + array21[2];
 			int payEnd_int = Integer.parseInt(payEnd);
 			
-			if (payEnd_int >= today_int) { 			//	2-1. 멤버십 만기 이전인 경우.
+			if (payEnd_int > today_int) { 			//	2-1. 멤버십 만기 이전인 경우.
 				return "/school/schoolForm";	
 			} else {								//	2-2. 멤버십이 만기된 경우
 				if(boomMaster == null) {  			//		2-2-1. 멤버십 만기 && 붐마스터 X

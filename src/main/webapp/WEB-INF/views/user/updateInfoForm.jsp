@@ -298,8 +298,8 @@
                         <a href=#none id="show200"
                             onclick="if(hide200.style.display=='none') {hide200.style.display='';show200.innerText='<spring:message code="user.updateInfoForm.kidsClose" />'} else {hide200.style.display='none';show200.innerText='<spring:message code="user.updateInfoForm.kidsOpen" />'}"><spring:message code="user.updateInfoForm.kidsOpen" /></a>
                         <div id="hide200" style="display: none">
-                            <spring:message code="user.updateInfoForm.fluctuation" /><input type="checkbox" name="userInterest_interest" value="KIDS"> 
-                            <spring:message code="user.updateInfoForm.cheerleading" /><input type="checkbox" name="userInterest_interest" value="CHEERLEADING"> 
+                            <spring:message code="user.updateInfoForm.fluctuation" /><input type="checkbox" name="userInterest_interest" value="KIDS"> <br>
+                            <spring:message code="user.updateInfoForm.cheerleading" /><input type="checkbox" name="userInterest_interest" value="CHEERLEADING"> <br>
                             <spring:message code="user.updateInfoForm.others" /><input type="checkbox" name="userInterest_interest" value="OTHER(TEENS)">
                         </div>
                     </div>
@@ -329,9 +329,9 @@
                         <a href=#none id="show500"
                             onclick="if(hide500.style.display=='none') {hide500.style.display='';show500.innerText='<spring:message code="user.updateInfoForm.hiphopClose" />'} else {hide500.style.display='none';show500.innerText='<spring:message code="user.updateInfoForm.hiphopOpen" />'}"><spring:message code="user.updateInfoForm.hiphopOpen" /></a>
                         <div id="hide500" style="display: none">
-                            <spring:message code="user.updateInfoForm.poppin" /><input type="checkbox" name="userInterest_interest" value="POPPIN DANCE">
-                            <spring:message code="user.updateInfoForm.bboy" /><input type="checkbox" name="userInterest_interest" value="BREAK DANCE"> 
-                            <spring:message code="user.updateInfoForm.locking" /><input type="checkbox" name="userInterest_interest" value="LOCKING"> 
+                            <spring:message code="user.updateInfoForm.poppin" /><input type="checkbox" name="userInterest_interest" value="POPPIN DANCE"><br>
+                            <spring:message code="user.updateInfoForm.bboy" /><input type="checkbox" name="userInterest_interest" value="BREAK DANCE"> <br>
+                            <spring:message code="user.updateInfoForm.locking" /><input type="checkbox" name="userInterest_interest" value="LOCKING"> <br>
                             <spring:message code="user.updateInfoForm.others" /><input type="checkbox" name="userInterest_interest" value="OTHERS(HIPHOP)">
                         </div>
                     </div>
@@ -340,10 +340,10 @@
                     <div>
                         <a href=#none id="show600" onclick="if(hide600.style.display=='none') {hide600.style.display='';show600.innerText='<spring:message code="user.updateInfoForm.othersClose" />'} else {hide600.style.display='none';show600.innerText='<spring:message code="user.updateInfoForm.othersOpen" />'}"><spring:message code="user.updateInfoForm.othersOpen" /></a>
                         <div id="hide600" style="display: none">
-						<spring:message code="user.updateInfoForm.tango" /><input type="checkbox" name="userInterest_interest" value = "TANGO">
-						<spring:message code="user.updateInfoForm.tapDance" /><input type="checkbox" name="userInterest_interest" value = "TAP DANCE">
-						<spring:message code="user.updateInfoForm.bellyDance" /><input type="checkbox" name="userInterest_interest" value = "BELLY DANCE">
-						<spring:message code="user.updateInfoForm.jive" /><input type="checkbox" name="userInterest_interest" value = "JIVE">
+						<spring:message code="user.updateInfoForm.tango" /><input type="checkbox" name="userInterest_interest" value = "TANGO"><br>
+						<spring:message code="user.updateInfoForm.tapDance" /><input type="checkbox" name="userInterest_interest" value = "TAP DANCE"><br>
+						<spring:message code="user.updateInfoForm.bellyDance" /><input type="checkbox" name="userInterest_interest" value = "BELLY DANCE"><br>
+						<spring:message code="user.updateInfoForm.jive" /><input type="checkbox" name="userInterest_interest" value = "JIVE"><br>
 						<spring:message code="user.updateInfoForm.jazz" /><input type="checkbox" name="userInterest_interest" value = "JAZZ"><br>
 						<spring:message code="user.updateInfoForm.others" /><input type="checkbox" name="userInterest_interest" value = "OTHERS">
                         </div>

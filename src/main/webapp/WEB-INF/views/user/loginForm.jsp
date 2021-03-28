@@ -179,15 +179,14 @@ function onSignIn(googleUser) {
     <div class="backVideo">
         <video muted autoplay loop>
             <source src="/resources/videos/main02.mp4" type="video/mp4" >
-            <strong>Your browser does not support the video tag. </strong>
         </video>
         <div class="frontBox">
             <img class="front_Logo" src="/resources/img/BOOMBOXsq.png" width="200px" style="align-items: center;">
-            <p class="front_text"><spring:message code="user.LoginForm.title" /></p><br><br>
+            <p class="front_text">TURN IT LOOSE, GET FUNKY!</p><br><br>
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
     </div>
-        <header>
+<!--         <header>
       <h1>섹시<br />SEXYSOO</h1>
     </header>
     <main>
@@ -228,7 +227,7 @@ function onSignIn(googleUser) {
 
       window.addEventListener('load', saFunc);
       window.addEventListener('scroll', saFunc);
-    </script>
+    </script> -->
     
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -248,8 +248,7 @@
                     </div>
                     <hr>
                     <!-- Trending Section Ends-->
-
-                        <div class="container-fluid">
+			  <div class="container-fluid">
 	                        <div class="grid_title">AD</div>
 	                        <div class="row recommendRow" >
 
@@ -263,6 +262,7 @@
 	                        </div>
 
                     	</div>
+                      
                     	
                 </div>
             </div>

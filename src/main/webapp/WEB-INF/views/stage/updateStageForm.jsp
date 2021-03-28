@@ -225,7 +225,7 @@ function realtimeClock() {
 
 			<label>
 			<p class="label-txt"><spring:message code="updateStageForm.stageupdate.BannerUpload" /></p>
-			<a class="bannerST"><spring:message code="updateStageForm.stageupdate.fileName" /> : ${stage.stage_bannerImgS } <a class="btn btn-danger" href="/stage/deleteBanner" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a></a>
+			<a class="bannerST"><spring:message code="updateStageForm.stageupdate.fileName" /> : ${stage.stage_bannerImgS } <a class="btn btn-danger" href="/stage/deleteBanner" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="return delectFuntion();">사진 삭제</a></a>
 
 			<input type="file" id="uploadBanner" name="uploadBanner" style="margin-top: 30px; margin-bottom: 10px;" >
 
@@ -242,7 +242,7 @@ function realtimeClock() {
 			<label>
 			<p class="label-txt"  ><spring:message code="updateStageForm.stageupdate.ProfileUpload" /></p>
 
-			<a class="bannerST"><spring:message code="updateStageForm.stageupdate.fileName" /> : ${stage.stage_profileImgS} <a class="btn btn-danger" href="/stage/deleteProfile" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="delectFuntion();">사진 삭제</a><br></a>
+			<a class="bannerST"><spring:message code="updateStageForm.stageupdate.fileName" /> : ${stage.stage_profileImgS} <a class="btn btn-danger" href="/stage/deleteProfile" role="button" style="font-size: 0.8px; line-height: 0.5px; " onclick="return delectFuntion();">사진 삭제</a><br></a>
 
 
 
